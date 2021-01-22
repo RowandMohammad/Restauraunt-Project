@@ -28,7 +28,6 @@ public class MenuMain {
       Menu_Item mainitem = new Menu_Item(name, calories, ingredients, price, "Main", true);
       mainItems[count] = mainitem;
       count ++;
-      System.out.println("There are "+ count);
     }
     
     
