@@ -20,7 +20,7 @@
                      <content>
                         <AnchorPane prefHeight="552.0" prefWidth="394.0">
                            <children>
-                              <ListView fx:id="MainListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="304.0" />
+                              <ListView fx:id="MainListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="367.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -33,7 +33,7 @@
                      <content>
                         <AnchorPane prefHeight="552.0" prefWidth="394.0">
                            <children>
-                              <ListView fx:id="SidesListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="304.0" />
+                              <ListView fx:id="SidesListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="368.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -46,7 +46,7 @@
                      <content>
                         <AnchorPane prefHeight="552.0" prefWidth="394.0">
                            <children>
-                              <ListView fx:id="DrinkListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="304.0" />
+                              <ListView fx:id="DrinkListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="371.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -60,6 +60,8 @@
             <Font size="48.0" />
          </font>
       </Label>
+      <Button fx:id="CallingButton" prefHeight="50" prefWidth="120" text="calling the waiter">
+      </Button>
       <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="680.0" prefWidth="400.0" text="Oaxaca Menu. Click anywhere to begin">
          <font>
             <Font size="18.0" />

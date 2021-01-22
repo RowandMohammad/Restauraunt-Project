@@ -63,6 +63,25 @@ public class ViewCustomerInterface extends Application{
     Scene scene = new Scene(root, 400, 680);
     primaryStage.setScene(scene);
     primaryStage.show();
+
+    
+    URL url = this.getClass().getClassLoader().getResource("res/12025.mp3");
+	  System.out.println(url.toExternalForm());
+	  Media media = new Media(url.toExternalForm());
+	  MediaPlayer mp = new MediaPlayer(media);
+    Button b = (Button)root.lookup("#CallingButton");
+    System.out.println(b.getText());
+    
+    b.setOnAction(new EventHandler<ActionEvent>()
+    {
+    	public void handle(ActionEvent event)
+    	{
+    		 mp.play();
+    	}
+    });
+    
+    
+
   }
   
   
