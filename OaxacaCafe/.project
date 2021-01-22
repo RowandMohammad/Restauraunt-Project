@@ -14,4 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/image/filter.png</name>
+			<type>1</type>
+			<location>C:/Users/adamt/OneDrive/Desktop/filter.png</location>
+		</link>
+		<link>
+			<name>src/image/search.png</name>
+			<type>1</type>
+			<location>C:/Users/adamt/OneDrive/Desktop/search.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>

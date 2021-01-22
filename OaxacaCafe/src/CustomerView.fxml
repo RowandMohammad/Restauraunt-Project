@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
-      <TabPane layoutY="93.0" prefHeight="588.0" prefWidth="400.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
+      <TabPane layoutY="117.0" prefHeight="564.0" prefWidth="635.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
         <tabs>
           <Tab text="Main Menu">
                <content>
-                  <ScrollPane prefHeight="680.0" prefWidth="378.0">
+                  <ScrollPane prefHeight="558.0" prefWidth="442.0">
                      <content>
-                        <AnchorPane prefHeight="552.0" prefWidth="394.0">
+                        <AnchorPane prefHeight="530.0" prefWidth="438.0">
                            <children>
-                              <ListView fx:id="MainListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="367.0" />
+                              <ListView fx:id="MainListView" layoutX="14.0" layoutY="13.0" prefHeight="511.0" prefWidth="424.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -42,7 +46,7 @@
             </Tab>
             <Tab text="Drinks">
                <content>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane prefHeight="558.0" prefWidth="185.0">
                      <content>
                         <AnchorPane prefHeight="552.0" prefWidth="394.0">
                            <children>
@@ -55,14 +59,30 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Label alignment="CENTER" layoutX="9.0" layoutY="15.0" prefHeight="74.0" prefWidth="387.0" text="MENU" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="31.0" layoutY="25.0" prefHeight="74.0" prefWidth="573.0" text="MENU" textAlignment="CENTER">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
       <Button fx:id="CallingButton" prefHeight="50" prefWidth="120" text="calling the waiter">
       </Button>
-      <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="680.0" prefWidth="400.0" text="Oaxaca Menu. Click anywhere to begin">
+      <Pane layoutX="404.0" layoutY="119.0" prefHeight="542.0" prefWidth="220.0">
+         <children>
+            <TextField layoutX="6.0" layoutY="2.0" prefHeight="25.0" prefWidth="200.0" promptText="Filter search" />
+            <ComboBox layoutX="62.0" layoutY="54.0" prefWidth="150.0" promptText="Filter" />
+            <ImageView fitHeight="17.0" fitWidth="65.0" layoutX="173.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../OneDrive/Desktop/filter.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="182.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../OneDrive/Desktop/search.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="681.0" prefWidth="635.0" text="Oaxaca Menu. Click anywhere to begin">
          <font>
             <Font size="18.0" />
          </font>
