@@ -1,0 +1,30 @@
+Beer 
+150
+beer
+2.00
+-
+Coke 
+150
+coke
+1.50
+-
+Sprite 
+120
+sprite
+1.50
+-
+Vanilla Milkshake 
+500
+Milk, Sugar, Cream, Corn syrup, Cellulose Gum, vanilla extract
+3.00
+-
+Vanilla Milkshake 
+500
+Milk, Sugar, Cream, Corn syrup, Cellulose Gum, cocoa extract
+3.00
+-
+Strawberry Milkshake 
+500
+Milk, Sugar, Cream, Corn syrup, Cellulose Gum, strawberry extract
+3.00
+-

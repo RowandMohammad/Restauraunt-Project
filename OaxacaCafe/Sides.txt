@@ -1,0 +1,35 @@
+Fries 
+150
+potatoes, paprika
+2.00
+-
+Rice 
+200
+rice, chicken stock
+3.00
+-
+Beans 
+100
+Beans, rocket, oregano
+3.00
+-
+Guacamole 
+100
+avocados, tomato, lime juice
+3.00
+-
+Salsa 
+100
+tomato, avocados, green chiles, spices, lime juice
+2.00
+-
+Three Chicken Wings 
+300
+Chicken, hot sauce, bbq sauce, chilli flakes
+5.00
+-
+Salad 
+100
+Lettuce, tomatos, olives, salad dressing, onions, red peppers, bell peppers
+3.00
+-

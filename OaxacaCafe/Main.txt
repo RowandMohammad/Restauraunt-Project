@@ -1,0 +1,40 @@
+Caldo de queso
+244
+cheese, potatoes, onions, tomato chile verde and oregano
+5.00
+-
+Queso flameado
+340
+cheese, chorizo, tomato, onion, chile
+5.00
+-
+Huevos motulenos
+200
+egg, black beans, cheese, ham, peas, salsa
+6.40
+-
+Chorizo 
+500
+sausages, pork, paprika
+4.50
+-
+Milanesas 
+600
+chicken, beef, pork, potatoes
+6.00
+-
+Churros with Chocolate Sauce 
+450
+milk, eggs, flour, vanilla bean, cocoa powder, brown sugar
+3.00
+-
+Vegetarian Tacos 
+300
+tortilla, lettuce, beans, rice, salsa
+6.00
+-
+Burrito 
+600
+rice, beef, chicken, guacamole, salsa, black beans, lettuce
+7.00
+-
