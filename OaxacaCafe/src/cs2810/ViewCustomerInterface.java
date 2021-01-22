@@ -1,8 +1,10 @@
 package cs2810;
 
 import java.io.IOException;
+import java.net.URL;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 
@@ -58,6 +62,21 @@ public class ViewCustomerInterface extends Application{
     Scene scene = new Scene(root, 400, 680);
     primaryStage.setScene(scene);
     primaryStage.show();
+    
+    URL url = this.getClass().getClassLoader().getResource("res/12025.mp3");
+	  System.out.println(url.toExternalForm());
+	  Media media = new Media(url.toExternalForm());
+	  MediaPlayer mp = new MediaPlayer(media);
+    Button b = (Button)root.lookup("#CallingButton");
+    System.out.println(b.getText());
+    
+    b.setOnAction(new EventHandler<ActionEvent>()
+    {
+    	public void handle(ActionEvent event)
+    	{
+    		 mp.play();
+    	}
+    });
     
     
   }
