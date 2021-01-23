@@ -58,11 +58,57 @@ public class ViewCustomerInterface extends Application{
     StartButton.setVisible(false);
     populateMenu();
   }
+  public void populateMenu() throws IOException{
+    main.initialiseMainItems();
+    main.initiliseDrinkItems();
+    main.initialiseSideItems(); 
+    
+    //THIS BIT IS FOR ACTUALLY MAKING THE MENU ITEMS APPEAR ON SCREEN. This is only a temporary solution but it works
+    
+    for (int i = 0; i < 8; i++) {
+      String ingr = Arrays.toString(main.mainItems[i].ingredients);
+      String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
+      MainListView.getItems().add("--"+main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories + "\nIngredients: " + ingr + "\nDietary Requirements: " +  dietary + "\n£" + main.mainItems[i].price+"0");
+    }
+    
+    for (int i = 0; i < 7; i++) {
+      String ingr = Arrays.toString(main.sideItems[i].ingredients);
+      SidesListView.getItems().add("--"+main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.sideItems[i].price+"0");
+    }
+    
+    
+    for (int i = 0; i < 6; i++) {
+      String ingr = Arrays.toString(main.drinkItems[i].ingredients);
+      DrinkListView.getItems().add("--"+main.drinkItems[i].name + "--\nCalories: " + main.drinkItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.drinkItems[i].price+"0");
+    }
+  }
+  
+  public void veg_menu() throws IOException{
+    MainListView.getItems().removeAll(MainListView.getItems());
+    for (int i = 0; i < 8; i++) {
+      String ingr = Arrays.toString(main.mainItems[i].ingredients);
+      String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
+      dietary = dietary.substring(1,dietary.length()-1);
+      String[] split_diet = dietary.split(",");
+      System.out.println(split_diet[0]);
+      if(split_diet[0].equals("veg")) {
+        System.out.println("if shite");
+        MainListView.getItems().add("--"+main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories + "\nIngredients: " + ingr + "\nDietary Requirements: " +  dietary + "\n£" + main.mainItems[i].price+"0");    
+        MainListView.refresh();
+      }
+      
+      
+      
+      
+
+    }
+    
+  }
   
   @FXML
-  public void filterChange(ActionEvent event) {
+  public void filterChange(ActionEvent event) throws IOException {
     if (filterBox.getValue() == "Vegetarian") {
-      
+      veg_menu();     
     }
     if (filterBox.getValue() == "Non-Vegetarian") {
       
@@ -103,28 +149,5 @@ public class ViewCustomerInterface extends Application{
   
   }
   
-  public void populateMenu() throws IOException{
-    main.initialiseMainItems();
-    main.initiliseDrinkItems();
-    main.initialiseSideItems(); 
-    
-    //THIS BIT IS FOR ACTUALLY MAKING THE MENU ITEMS APPEAR ON SCREEN. This is only a temporary solution but it works
-    
-    for (int i = 0; i < 8; i++) {
-      String ingr = Arrays.toString(main.mainItems[i].ingredients);
-      MainListView.getItems().add("--"+main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.mainItems[i].price+"0");
-    }
-    
-    for (int i = 0; i < 7; i++) {
-      String ingr = Arrays.toString(main.sideItems[i].ingredients);
-      SidesListView.getItems().add("--"+main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.sideItems[i].price+"0");
-    }
-    
-    
-    for (int i = 0; i < 6; i++) {
-      String ingr = Arrays.toString(main.drinkItems[i].ingredients);
-      DrinkListView.getItems().add("--"+main.drinkItems[i].name + "--\nCalories: " + main.drinkItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.drinkItems[i].price+"0");
-    }
-  }
   
 }
