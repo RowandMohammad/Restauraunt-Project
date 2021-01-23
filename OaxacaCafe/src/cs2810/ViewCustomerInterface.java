@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,14 +13,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
-
-
 
 public class ViewCustomerInterface extends Application{
   
@@ -44,17 +43,39 @@ public class ViewCustomerInterface extends Application{
   @FXML
   private Button StartButton;
   
-
+  @FXML
+  private ComboBox<String> filterBox;
   
-
+  @FXML
+  public void initialize() {
+    ObservableList<String> filterOptions = FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian", "Spicy", "Mild");
+    filterBox.setItems(filterOptions);
+  }
   
   @FXML
   void StartButtonPressed(ActionEvent event) throws IOException {
     StartButton.setDisable(true);
     StartButton.setVisible(false);
     populateMenu();
+  }
+  
+  @FXML
+  public void filterChange(ActionEvent event) {
+    if (filterBox.getValue() == "Vegetarian") {
+      
+    }
+    if (filterBox.getValue() == "Non-Vegetarian") {
+      
+    }
+    if (filterBox.getValue() == "Spicy") {
+      
+    }
+    if (filterBox.getValue() == "Mild") {
+      
+    }
     
   }
+  
 
   
   @Override
@@ -63,7 +84,7 @@ public class ViewCustomerInterface extends Application{
     Scene scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();
-
+                                
     
     URL url = this.getClass().getClassLoader().getResource("res/12025.mp3");
 	  System.out.println(url.toExternalForm());
@@ -79,12 +100,8 @@ public class ViewCustomerInterface extends Application{
     		 mp.play();
     	}
     });
-    
-    
-
+  
   }
-  
-  
   
   public void populateMenu() throws IOException{
     main.initialiseMainItems();
@@ -108,10 +125,6 @@ public class ViewCustomerInterface extends Application{
       String ingr = Arrays.toString(main.drinkItems[i].ingredients);
       DrinkListView.getItems().add("--"+main.drinkItems[i].name + "--\nCalories: " + main.drinkItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.drinkItems[i].price+"0");
     }
-
-    
-    
   }
   
-
 }

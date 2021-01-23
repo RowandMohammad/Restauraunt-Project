@@ -69,7 +69,7 @@
       <Pane layoutX="404.0" layoutY="119.0" prefHeight="542.0" prefWidth="220.0">
          <children>
             <TextField layoutX="6.0" layoutY="2.0" prefHeight="25.0" prefWidth="200.0" promptText="Filter search" />
-            <ComboBox layoutX="62.0" layoutY="54.0" prefWidth="150.0" promptText="Filter" />
+            <ComboBox fx:id="filterBox" layoutX="62.0" layoutY="54.0" onAction="#filterChange" prefWidth="150.0" promptText="Filter" />
             <ImageView fitHeight="17.0" fitWidth="65.0" layoutX="173.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/images/filter.png" />
