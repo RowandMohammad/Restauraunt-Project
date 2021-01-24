@@ -30,8 +30,7 @@ public class MenuMain {
       mainItems[count] = mainitem;
       count ++;
     }
-    
-    
+    sc.close();
   }
   
   public void initialiseSideItems() throws IOException {
@@ -52,9 +51,7 @@ public class MenuMain {
       sideItems[count] = mainitem;
       count ++;
     }
-
-
-    
+    sc.close();
   }
   
   public void initiliseDrinkItems() throws IOException {
@@ -67,7 +64,7 @@ public class MenuMain {
       String name = sc.nextLine();
       int calories = Integer.valueOf(sc.nextLine());
       String[] ingredients = sc.nextLine().split(",");
-      String[] dietaryRequirements = sc.nextLine().split(",");
+      String[] dietaryRequirements = sc.nextLine().split(" ");
       double price = Double.parseDouble(sc.nextLine());
       sc.nextLine();
       
@@ -75,8 +72,8 @@ public class MenuMain {
       drinkItems[count] = mainitem;
       count ++;
     }
-
-    
+    sc.close();
   }
+
 
 }

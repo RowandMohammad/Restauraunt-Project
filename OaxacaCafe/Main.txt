@@ -13,25 +13,25 @@ veg, spicy
 Huevos motulenos
 200
 egg, black beans, cheese, ham, peas, salsa
-non_veg, spicy
+non-veg, spicy
 6.40
 -
 Chorizo 
 500
 sausages, pork, paprika
-non_veg, spicy
+non-veg, spicy
 4.50
 -
 Milanesas 
 600
 chicken, beef, pork, potatoes
-non_veg, non_spicy
+non-veg, non-spicy
 6.00
 -
 Churros with Chocolate Sauce 
 450
 milk, eggs, flour, vanilla bean, cocoa powder, brown sugar
-veg, non_spicy
+veg, non-spicy
 3.00
 -
 Vegetarian Tacos 
@@ -43,6 +43,6 @@ veg, spicy
 Burrito 
 600
 rice, beef, chicken, guacamole, salsa, black beans, lettuce
-non_veg, non_spicy
+non-veg, non-spicy
 7.00
 -
