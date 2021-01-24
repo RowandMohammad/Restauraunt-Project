@@ -71,6 +71,7 @@ public class ViewCustomerInterface extends Application {
     for (int i = 0; i < 8; i++) {
       String ingr = Arrays.toString(main.mainItems[i].ingredients);
       String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
+      dietary = dietary.substring(1, dietary.length() - 1);
       MainListView.getItems()
           .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
               + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
@@ -80,6 +81,7 @@ public class ViewCustomerInterface extends Application {
     for (int i = 0; i < 7; i++) {
       String ingr = Arrays.toString(main.sideItems[i].ingredients);
       String dietary = Arrays.toString(main.sideItems[i].dietaryRequirements);
+      dietary = dietary.substring(1, dietary.length() - 1);
       SidesListView.getItems()
           .add("--" + main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories
               + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
@@ -90,6 +92,7 @@ public class ViewCustomerInterface extends Application {
     for (int i = 0; i < 6; i++) {
       String ingr = Arrays.toString(main.drinkItems[i].ingredients);
       String dietary = Arrays.toString(main.drinkItems[i].dietaryRequirements);
+      dietary = dietary.substring(1, dietary.length() - 1);
       DrinkListView.getItems()
           .add("--" + main.drinkItems[i].name + "--\nCalories: " + main.drinkItems[i].calories
               + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
@@ -137,6 +140,7 @@ public class ViewCustomerInterface extends Application {
       for (int i = 0; i < 8; i++) {
         String ingr = Arrays.toString(main.mainItems[i].ingredients);
         String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
+        dietary = dietary.substring(1, dietary.length() - 1);
         String[] split_diet = dietary.split(",");
 
         if (split_diet[1].contains("spicy") && !(split_diet[1].contains("non-spicy"))) {
@@ -151,6 +155,7 @@ public class ViewCustomerInterface extends Application {
       for (int i = 0; i < 8; i++) {
         String ingr = Arrays.toString(main.mainItems[i].ingredients);
         String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
+        dietary = dietary.substring(1, dietary.length() - 1);
         String[] split_diet = dietary.split(",");
 
         if (split_diet[1].contains("non-spicy")) {
