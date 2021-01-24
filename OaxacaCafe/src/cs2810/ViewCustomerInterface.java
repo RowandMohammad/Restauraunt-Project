@@ -19,18 +19,18 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-public class ViewCustomerInterface extends Application{
-  
-  
+public class ViewCustomerInterface extends Application {
+
+
   public static void main(String[] args) {
     launch(args);
 
   }
-  
-  MenuMain main = new MenuMain();
-  
 
-  
+  MenuMain main = new MenuMain();
+
+
+
   @FXML
   private ListView<String> MainListView;
 
@@ -39,124 +39,152 @@ public class ViewCustomerInterface extends Application{
 
   @FXML
   private ListView<String> DrinkListView;
-  
+
   @FXML
   private Button StartButton;
-  
+
   @FXML
   private ComboBox<String> filterBox;
-  
+
   @FXML
   public void initialize() {
-    ObservableList<String> filterOptions = FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian", "Spicy", "Mild");
+    ObservableList<String> filterOptions =
+        FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian", "Spicy", "Mild");
     filterBox.setItems(filterOptions);
   }
-  
+
   @FXML
   void StartButtonPressed(ActionEvent event) throws IOException {
     StartButton.setDisable(true);
     StartButton.setVisible(false);
     populateMenu();
   }
-  public void populateMenu() throws IOException{
+
+  public void populateMenu() throws IOException {
     main.initialiseMainItems();
     main.initiliseDrinkItems();
-    main.initialiseSideItems(); 
-    
-    //THIS BIT IS FOR ACTUALLY MAKING THE MENU ITEMS APPEAR ON SCREEN. This is only a temporary solution but it works
-    
+    main.initialiseSideItems();
+
+    // THIS BIT IS FOR ACTUALLY MAKING THE MENU ITEMS APPEAR ON SCREEN. This is only a temporary
+    // solution but it works
+
     for (int i = 0; i < 8; i++) {
       String ingr = Arrays.toString(main.mainItems[i].ingredients);
       String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
-      MainListView.getItems().add("--"+main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories + "\nIngredients: " + ingr + "\nDietary Requirements: " +  dietary + "\n£" + main.mainItems[i].price+"0");
+      MainListView.getItems()
+          .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
+              + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+              + main.mainItems[i].price + "0");
     }
-    
+
     for (int i = 0; i < 7; i++) {
       String ingr = Arrays.toString(main.sideItems[i].ingredients);
-      SidesListView.getItems().add("--"+main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.sideItems[i].price+"0");
+      SidesListView.getItems()
+          .add("--" + main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories
+              + "\nIngredients: " + ingr + "\n£" + main.sideItems[i].price + "0");
     }
-    
-    
+
+
     for (int i = 0; i < 6; i++) {
       String ingr = Arrays.toString(main.drinkItems[i].ingredients);
-      DrinkListView.getItems().add("--"+main.drinkItems[i].name + "--\nCalories: " + main.drinkItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.drinkItems[i].price+"0");
+      DrinkListView.getItems()
+          .add("--" + main.drinkItems[i].name + "--\nCalories: " + main.drinkItems[i].calories
+              + "\nIngredients: " + ingr + "\n£" + main.drinkItems[i].price + "0");
     }
   }
-  
-  
-  
+
+
+
   @FXML
   public void filterChange(ActionEvent event) throws IOException {
+    MainListView.getItems().removeAll(MainListView.getItems());
+
     if (filterBox.getValue() == "Vegetarian") {
-      MainListView.getItems().removeAll(MainListView.getItems());
       for (int i = 0; i < 8; i++) {
         String ingr = Arrays.toString(main.mainItems[i].ingredients);
         String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
-        dietary = dietary.substring(1,dietary.length()-1);
+        dietary = dietary.substring(1, dietary.length() - 1);
         String[] split_diet = dietary.split(",");
-        System.out.println(split_diet[0]);
-        if(split_diet[0].equals("veg")) {
-          MainListView.getItems().add("--"+main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories + "\nIngredients: " + ingr + "\nDietary Requirements: " +  dietary + "\n£" + main.mainItems[i].price+"0");    
-          MainListView.refresh();
+        
+        if (split_diet[0].equals("veg")) {
+          MainListView.getItems()
+              .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
+                  + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                  + main.mainItems[i].price + "0");
         }
-        
-        
       }
-          
     }
     if (filterBox.getValue() == "Non-Vegetarian") {
-      MainListView.getItems().removeAll(MainListView.getItems());
       for (int i = 0; i < 8; i++) {
         String ingr = Arrays.toString(main.mainItems[i].ingredients);
         String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
-        dietary = dietary.substring(1,dietary.length()-1);
+        dietary = dietary.substring(1, dietary.length() - 1);
         String[] split_diet = dietary.split(",");
-        System.out.println(split_diet[0]);
-        
-        if(split_diet[0].equals("non_veg")) {
-          MainListView.getItems().add("--"+main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories + "\nIngredients: " + ingr + "\nDietary Requirements: " +  dietary + "\n£" + main.mainItems[i].price+"0");    
-          MainListView.refresh();
+
+        if (split_diet[0].equals("non_veg")) {
+          MainListView.getItems()
+              .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
+                  + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                  + main.mainItems[i].price + "0");
         }
-        
-        
       }
-      
     }
     if (filterBox.getValue() == "Spicy") {
-      
+      for (int i = 0; i < 8; i++) {
+        String ingr = Arrays.toString(main.mainItems[i].ingredients);
+        String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
+        dietary = dietary.substring(1, dietary.length() - 1);
+        String[] split_diet = dietary.split(",");
+
+        if (split_diet[1].contains("spicy") && !(split_diet[1].contains("non_spicy"))) {
+          MainListView.getItems()
+              .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
+                  + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                  + main.mainItems[i].price + "0");
+        }
+      }
     }
     if (filterBox.getValue() == "Mild") {
-      
-    }
-    
-  }
-  
+      for (int i = 0; i < 8; i++) {
+        String ingr = Arrays.toString(main.mainItems[i].ingredients);
+        String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
+        dietary = dietary.substring(1, dietary.length() - 1);
+        String[] split_diet = dietary.split(",");
 
-  
+        if (split_diet[1].contains("non_spicy")) {
+          MainListView.getItems()
+              .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
+                  + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                  + main.mainItems[i].price + "0");
+        }
+      }
+    }
+  }
+
+
+
   @Override
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
     Scene scene = new Scene(root);
     primaryStage.setScene(scene);
-    primaryStage.show();   
-                                
-    
+    primaryStage.show();
+
+
     URL url = this.getClass().getClassLoader().getResource("res/12025.mp3");
-	  System.out.println(url.toExternalForm());    
-	  Media media = new Media(url.toExternalForm()); 
-	  MediaPlayer mp = new MediaPlayer(media);
-    Button b = (Button)root.lookup("#CallingButton");        
+    System.out.println(url.toExternalForm());
+    Media media = new Media(url.toExternalForm());
+    MediaPlayer mp = new MediaPlayer(media);
+    Button b = (Button) root.lookup("#CallingButton");
     System.out.println(b.getText());
-    
-    b.setOnAction(new EventHandler<ActionEvent>()
-    {   
-    	public void handle(ActionEvent event)   
-    	{
-    		 mp.play();
-    	}
+
+    b.setOnAction(new EventHandler<ActionEvent>() {
+      public void handle(ActionEvent event) {
+        mp.play();
+      }
     });
-  
+
   }
-  
-  
+
+
 }

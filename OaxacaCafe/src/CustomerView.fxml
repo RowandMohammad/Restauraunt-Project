@@ -37,7 +37,7 @@
                      <content>
                         <AnchorPane prefHeight="552.0" prefWidth="394.0">
                            <children>
-                              <ListView fx:id="SidesListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="368.0" />
+                              <ListView fx:id="SidesListView" layoutX="14.0" layoutY="13.0" prefHeight="541.0" prefWidth="424.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -50,7 +50,7 @@
                      <content>
                         <AnchorPane prefHeight="552.0" prefWidth="394.0">
                            <children>
-                              <ListView fx:id="DrinkListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="371.0" />
+                              <ListView fx:id="DrinkListView" layoutX="14.0" layoutY="13.0" prefHeight="541.0" prefWidth="424.0" />
                            </children>
                         </AnchorPane>
                      </content>
