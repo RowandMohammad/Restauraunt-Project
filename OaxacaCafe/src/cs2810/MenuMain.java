@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuMain {
-  Menu_Item[] mainItems = new Menu_Item[10];
-  Menu_Item[] sideItems = new Menu_Item[10];
-  Menu_Item[] drinkItems = new Menu_Item[10];
+  Menu_Item[] mainItems = new Menu_Item[8];
+  Menu_Item[] sideItems = new Menu_Item[7];
+  Menu_Item[] drinkItems = new Menu_Item[6];
   
 
   

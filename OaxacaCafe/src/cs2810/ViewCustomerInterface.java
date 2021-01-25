@@ -30,7 +30,6 @@ public class ViewCustomerInterface extends Application {
   MenuMain main = new MenuMain();
 
 
-
   @FXML
   private ListView<String> MainListView;
 
@@ -49,7 +48,7 @@ public class ViewCustomerInterface extends Application {
   @FXML
   public void initialize() {
     ObservableList<String> filterOptions =
-        FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian", "Spicy", "Non-Spicy");
+        FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian", "Spicy", "Non-Spicy", "All");
     filterBox.setItems(filterOptions);
   }
 
@@ -68,7 +67,7 @@ public class ViewCustomerInterface extends Application {
     // THIS BIT IS FOR ACTUALLY MAKING THE MENU ITEMS APPEAR ON SCREEN. This is only a temporary
     // solution but it works
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < main.mainItems.length; i++) {
       String ingr = Arrays.toString(main.mainItems[i].ingredients);
       String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
       dietary = dietary.substring(1, dietary.length() - 1);
@@ -78,7 +77,7 @@ public class ViewCustomerInterface extends Application {
               + main.mainItems[i].price + "0");
     }
 
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < main.sideItems.length; i++) {
       String ingr = Arrays.toString(main.sideItems[i].ingredients);
       String dietary = Arrays.toString(main.sideItems[i].dietaryRequirements);
       dietary = dietary.substring(1, dietary.length() - 1);
@@ -89,7 +88,7 @@ public class ViewCustomerInterface extends Application {
     }
 
 
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < main.drinkItems.length; i++) {
       String ingr = Arrays.toString(main.drinkItems[i].ingredients);
       String dietary = Arrays.toString(main.drinkItems[i].dietaryRequirements);
       dietary = dietary.substring(1, dietary.length() - 1);
@@ -100,74 +99,101 @@ public class ViewCustomerInterface extends Application {
     }
   }
 
-
-
+  
   @FXML
+  //This solution works however needs refactoring to remove long method smell and alternative solution rather than catching out of bounds
   public void filterChange(ActionEvent event) throws IOException {
     MainListView.getItems().removeAll(MainListView.getItems());
-
-    if (filterBox.getValue() == "Vegetarian") {
-      for (int i = 0; i < 8; i++) {
+    SidesListView.getItems().removeAll(SidesListView.getItems());
+    DrinkListView.getItems().removeAll(DrinkListView.getItems());
+    
+    try {
+      for (int i = 0; i < main.mainItems.length; i++) {
         String ingr = Arrays.toString(main.mainItems[i].ingredients);
         String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
         dietary = dietary.substring(1, dietary.length() - 1);
         String[] split_diet = dietary.split(",");
-
-        if (split_diet[0].equals("veg")) {
+  
+        if (filterBox.getValue() == "Vegetarian") {
+          if (split_diet[0].equals("veg")) {
+            MainListView.getItems()
+                .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
+                    + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                    + main.mainItems[i].price + "0");
+            SidesListView.getItems()
+            .add("--" + main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories
+                + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                + main.sideItems[i].price + "0");
+            DrinkListView.getItems()
+            .add("--" + main.drinkItems[i].name + "--\nCalories: " + main.drinkItems[i].calories
+                + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                + main.drinkItems[i].price + "0");
+          }
+        }
+        else if (filterBox.getValue() == "Non-Vegetarian") {
+          if (split_diet[0].equals("non-veg")) {
+            MainListView.getItems()
+                .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
+                    + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                    + main.mainItems[i].price + "0");
+            SidesListView.getItems()
+            .add("--" + main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories
+                + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                + main.sideItems[i].price + "0");
+            DrinkListView.getItems()
+            .add("--" + main.drinkItems[i].name + "--\nCalories: " + main.drinkItems[i].calories
+                + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                + main.drinkItems[i].price + "0");
+          }
+        }
+        else if (filterBox.getValue() == "Spicy") {
+          if (split_diet[1].contains("spicy") && !(split_diet[1].contains("non-spicy"))) {
+            MainListView.getItems()
+                .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
+                    + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                    + main.mainItems[i].price + "0");
+            SidesListView.getItems()
+            .add("--" + main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories
+                + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                + main.sideItems[i].price + "0");
+          }
+        }
+        else if (filterBox.getValue() == "Non-Spicy") {
+          if (split_diet[1].contains("non-spicy")) {
+            MainListView.getItems()
+                .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
+                    + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                    + main.mainItems[i].price + "0");
+            SidesListView.getItems()
+            .add("--" + main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories
+                + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+                + main.sideItems[i].price + "0");
+          }
+        }
+        else if (filterBox.getValue() == "All") {
           MainListView.getItems()
-              .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
-                  + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
-                  + main.mainItems[i].price + "0");
+          .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
+              + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+              + main.mainItems[i].price + "0");
+          SidesListView.getItems()
+          .add("--" + main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories
+              + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+              + main.sideItems[i].price + "0");
+          DrinkListView.getItems()
+          .add("--" + main.drinkItems[i].name + "--\nCalories: " + main.drinkItems[i].calories
+              + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
+              + main.drinkItems[i].price + "0");
         }
       }
     }
-    if (filterBox.getValue() == "Non-Vegetarian") {
-      for (int i = 0; i < 8; i++) {
-        String ingr = Arrays.toString(main.mainItems[i].ingredients);
-        String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
-        dietary = dietary.substring(1, dietary.length() - 1);
-        String[] split_diet = dietary.split(",");
-
-        if (split_diet[0].equals("non-veg")) {
-          MainListView.getItems()
-              .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
-                  + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
-                  + main.mainItems[i].price + "0");
-        }
-      }
+    catch (ArrayIndexOutOfBoundsException e) { 
+      return;
     }
-    if (filterBox.getValue() == "Spicy") {
-      for (int i = 0; i < 8; i++) {
-        String ingr = Arrays.toString(main.mainItems[i].ingredients);
-        String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
-        dietary = dietary.substring(1, dietary.length() - 1);
-        String[] split_diet = dietary.split(",");
-
-        if (split_diet[1].contains("spicy") && !(split_diet[1].contains("non-spicy"))) {
-          MainListView.getItems()
-              .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
-                  + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
-                  + main.mainItems[i].price + "0");
-        }
-      }
-    }
-    if (filterBox.getValue() == "Non-Spicy") {
-      for (int i = 0; i < 8; i++) {
-        String ingr = Arrays.toString(main.mainItems[i].ingredients);
-        String dietary = Arrays.toString(main.mainItems[i].dietaryRequirements);
-        dietary = dietary.substring(1, dietary.length() - 1);
-        String[] split_diet = dietary.split(",");
-
-        if (split_diet[1].contains("non-spicy")) {
-          MainListView.getItems()
-              .add("--" + main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories
-                  + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£"
-                  + main.mainItems[i].price + "0");
-        }
-      }
-    }
+    /* This catch is needed as the three arrays have different amount of items in each one thus its more convenient to
+     * use the length of the largest array being the MainListView and when iterating through the DrinkListView/SidesListView,
+     * throw the out of bounds exception when exceeding its limit.
+     */
   }
-
 
 
   @Override
