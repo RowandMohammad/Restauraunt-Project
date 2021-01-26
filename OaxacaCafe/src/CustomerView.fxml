@@ -60,7 +60,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="CallingButton" prefHeight="50" prefWidth="120" text="calling the waiter">
+      <Button fx:id="CallingButton" onAction="#waiterButtonPressed" prefHeight="50" prefWidth="120" text="calling the waiter">
       </Button>
       <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="680.0" prefWidth="400.0" text="Oaxaca Menu. Click anywhere to begin">
          <font>

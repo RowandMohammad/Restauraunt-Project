@@ -3,12 +3,15 @@ package cs2810;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuMain {
-  Menu_Item[] mainItems = new Menu_Item[10];
-  Menu_Item[] sideItems = new Menu_Item[10];
-  Menu_Item[] drinkItems = new Menu_Item[10];
+
+  
+  ArrayList<Menu_Item> mainItems = new ArrayList<Menu_Item>();
+  ArrayList<Menu_Item> sideItems = new ArrayList<Menu_Item>();
+  ArrayList<Menu_Item> drinkItems = new ArrayList<Menu_Item>();
   
 
   
@@ -26,7 +29,7 @@ public class MenuMain {
       sc.nextLine();
       
       Menu_Item mainitem = new Menu_Item(name, calories, ingredients, price, "Main", true);
-      mainItems[count] = mainitem;
+      mainItems.add(mainitem);
       count ++;
     }
     
@@ -46,8 +49,8 @@ public class MenuMain {
       double price = Double.parseDouble(sc.nextLine());
       sc.nextLine();
       
-      Menu_Item mainitem = new Menu_Item(name, calories, ingredients, price, "Side", true);
-      sideItems[count] = mainitem;
+      Menu_Item sideitem = new Menu_Item(name, calories, ingredients, price, "Side", true);
+      sideItems.add(sideitem);
       count ++;
     }
 
@@ -68,8 +71,8 @@ public class MenuMain {
       double price = Double.parseDouble(sc.nextLine());
       sc.nextLine();
       
-      Menu_Item mainitem = new Menu_Item(name, calories, ingredients, price, "Drink", true);
-      drinkItems[count] = mainitem;
+      Menu_Item drinkitem = new Menu_Item(name, calories, ingredients, price, "Drink", true);
+      drinkItems.add(drinkitem);
       count ++;
     }
 

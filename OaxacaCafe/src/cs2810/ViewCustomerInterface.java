@@ -44,9 +44,17 @@ public class ViewCustomerInterface extends Application{
   @FXML
   private Button StartButton;
   
-
+  @FXML
+  private Button CallingButton;
   
-
+  
+  @FXML
+  void waiterButtonPressed(ActionEvent event) {
+    URL url = this.getClass().getClassLoader().getResource("res/12025.mp3");
+    Media media = new Media(url.toExternalForm());
+    MediaPlayer mp = new MediaPlayer(media);
+    mp.play();
+  }
   
   @FXML
   void StartButtonPressed(ActionEvent event) throws IOException {
@@ -64,23 +72,6 @@ public class ViewCustomerInterface extends Application{
     primaryStage.setScene(scene);
     primaryStage.show();
 
-    
-    URL url = this.getClass().getClassLoader().getResource("res/12025.mp3");
-	  System.out.println(url.toExternalForm());
-	  Media media = new Media(url.toExternalForm());
-	  MediaPlayer mp = new MediaPlayer(media);
-    Button b = (Button)root.lookup("#CallingButton");
-    System.out.println(b.getText());
-    
-    b.setOnAction(new EventHandler<ActionEvent>()
-    {
-    	public void handle(ActionEvent event)
-    	{
-    		 mp.play();
-    	}
-    });
-    
-    
 
   }
   
@@ -91,22 +82,21 @@ public class ViewCustomerInterface extends Application{
     main.initiliseDrinkItems();
     main.initialiseSideItems(); 
     
-    //THIS BIT IS FOR ACTUALLY MAKING THE MENU ITEMS APPEAR ON SCREEN. This is only a temporary solution but it works
-    
+
     for (int i = 0; i < 8; i++) {
-      String ingr = Arrays.toString(main.mainItems[i].ingredients);
-      MainListView.getItems().add("--"+main.mainItems[i].name + "--\nCalories: " + main.mainItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.mainItems[i].price+"0");
+      String ingr = Arrays.toString(main.mainItems.get(i).ingredients);
+      MainListView.getItems().add("--"+main.mainItems.get(i).name + "--\nCalories: " + main.mainItems.get(i).calories + "\nIngredients: " + ingr + "\n£" + main.mainItems.get(i).price+"0");
     }
     
     for (int i = 0; i < 7; i++) {
-      String ingr = Arrays.toString(main.sideItems[i].ingredients);
-      SidesListView.getItems().add("--"+main.sideItems[i].name + "--\nCalories: " + main.sideItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.sideItems[i].price+"0");
+      String ingr = Arrays.toString(main.sideItems.get(i).ingredients);
+      SidesListView.getItems().add("--"+main.sideItems.get(i).name + "--\nCalories: " + main.sideItems.get(i).calories + "\nIngredients: " + ingr + "\n£" + main.sideItems.get(i).price+"0");
     }
     
     
     for (int i = 0; i < 6; i++) {
-      String ingr = Arrays.toString(main.drinkItems[i].ingredients);
-      DrinkListView.getItems().add("--"+main.drinkItems[i].name + "--\nCalories: " + main.drinkItems[i].calories + "\nIngredients: " + ingr + "\n£" + main.drinkItems[i].price+"0");
+      String ingr = Arrays.toString(main.drinkItems.get(i).ingredients);
+      DrinkListView.getItems().add("--"+main.drinkItems.get(i).name + "--\nCalories: " + main.drinkItems.get(i).calories + "\nIngredients: " + ingr + "\n£" + main.drinkItems.get(i).price+"0");
     }
 
     
