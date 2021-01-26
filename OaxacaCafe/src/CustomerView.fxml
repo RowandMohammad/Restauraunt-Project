@@ -15,9 +15,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
-      <TabPane layoutY="117.0" prefHeight="564.0" prefWidth="635.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
+      <TabPane fx:id="tabPane" layoutY="117.0" prefHeight="564.0" prefWidth="635.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
         <tabs>
-          <Tab text="Main Menu">
+          <Tab fx:id="mainTab" text="Main Menu">
                <content>
                   <ScrollPane prefHeight="558.0" prefWidth="442.0">
                      <content>
@@ -30,7 +30,7 @@
                   </ScrollPane>
                </content>
             </Tab>
-          <Tab text="Sides">
+          <Tab fx:id="sidesTab" text="Sides">
                <content>
                   <ScrollPane prefHeight="200.0" prefWidth="200.0">
                      <content>
@@ -43,13 +43,13 @@
                   </ScrollPane>
                </content>
             </Tab>
-            <Tab text="Drinks">
+            <Tab fx:id="drinksTab" text="Drinks">
                <content>
                   <ScrollPane prefHeight="558.0" prefWidth="185.0">
                      <content>
                         <AnchorPane prefHeight="552.0" prefWidth="394.0">
                            <children>
-                              <ListView fx:id="DrinkListView" layoutX="14.0" layoutY="13.0" prefHeight="541.0" prefWidth="424.0" />
+                              <ListView fx:id="DrinksListView" layoutX="14.0" layoutY="13.0" prefHeight="541.0" prefWidth="424.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -67,7 +67,9 @@
       </Button>
       <Pane layoutX="404.0" layoutY="119.0" prefHeight="542.0" prefWidth="220.0">
          <children>
-            <ComboBox fx:id="filterBox" layoutX="62.0" layoutY="54.0" onAction="#filterChange" prefWidth="150.0" promptText="Filter" />
+            <ComboBox fx:id="filterBoxMain" layoutX="62.0" layoutY="54.0" onAction="#filterChangeMain" prefWidth="150.0" promptText="Filter" />
+            <ComboBox fx:id="filterBoxSides" layoutX="62.0" layoutY="54.0" onAction="#filterChangeSides" prefWidth="150.0" promptText="Filter" visible="false" />
+            <ComboBox fx:id="filterBoxDrinks" layoutX="62.0" layoutY="54.0" onAction="#filterChangeDrinks" prefWidth="150.0" promptText="Filter" visible="false" />
             <ImageView fitHeight="17.0" fitWidth="65.0" layoutX="173.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/images/filter.png" />

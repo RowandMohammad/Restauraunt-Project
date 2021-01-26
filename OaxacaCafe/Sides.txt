@@ -7,19 +7,19 @@ veg, spicy
 Rice 
 200
 rice, chicken stock
-non_veg, non_spicy
+non-veg, non-spicy
 3.00
 -
 Beans 
 100
 Beans, rocket, oregano
-veg, non_spicy
+veg, non-spicy
 3.00
 -
 Guacamole 
 100
 avocados, tomato, lime juice
-veg, non_spicy
+veg, non-spicy
 3.00
 -
 Salsa 
@@ -31,12 +31,12 @@ veg, spicy
 Three Chicken Wings 
 300
 Chicken, hot sauce, bbq sauce, chilli flakes
-non_veg, spicy
+non-veg, spicy
 5.00
 -
 Salad 
 100
 Lettuce, tomatos, olives, salad dressing, onions, red peppers, bell peppers
-veg, non_spicy
+veg, non-spicy
 3.00
 -
