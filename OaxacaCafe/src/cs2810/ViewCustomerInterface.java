@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -43,8 +44,12 @@ public class ViewCustomerInterface extends Application{
 
   @FXML
   private ListView<String> DrinkListView;
+  
   @FXML
-  private Spinner<?> quantitySpinner;
+  private Spinner<Integer> quantitySpinner;//Quantity select
+  //Spinner Value Factory
+  final int initialValue =1;
+  SpinnerValueFactory<Integer> svf = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, initialValue);
 
   @FXML
   private TextField totalPrice;
@@ -94,7 +99,8 @@ public class ViewCustomerInterface extends Application{
   public void populateMenu() throws IOException{
     main.initialiseMainItems();
     main.initiliseDrinkItems();
-    main.initialiseSideItems(); 
+    main.initialiseSideItems();
+    quantitySpinner.setValueFactory(svf);
     
 
     for (int i = 0; i < 8; i++) {
