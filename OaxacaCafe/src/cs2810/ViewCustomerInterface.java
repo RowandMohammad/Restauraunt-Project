@@ -1,5 +1,6 @@
 package cs2810;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -13,6 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -40,6 +43,17 @@ public class ViewCustomerInterface extends Application{
 
   @FXML
   private ListView<String> DrinkListView;
+  @FXML
+  private Spinner<?> quantitySpinner;
+
+  @FXML
+  private TextField totalPrice;
+
+  @FXML
+  private Button addItemBtn;
+
+  @FXML
+  private Button checkoutBtn;
   
   @FXML
   private Button StartButton;
@@ -68,7 +82,7 @@ public class ViewCustomerInterface extends Application{
   @Override
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
-    Scene scene = new Scene(root, 400, 680);
+    Scene scene = new Scene(root, 800, 800);
     primaryStage.setScene(scene);
     primaryStage.show();
 
@@ -85,7 +99,7 @@ public class ViewCustomerInterface extends Application{
 
     for (int i = 0; i < 8; i++) {
       String ingr = Arrays.toString(main.mainItems.get(i).ingredients);
-      MainListView.getItems().add("--"+main.mainItems.get(i).name + "--\nCalories: " + main.mainItems.get(i).calories + "\nIngredients: " + ingr + "\n£" + main.mainItems.get(i).price+"0");
+      MainListView.getItems().add("--"+main.mainItems.get(i).name + "\n£" + main.mainItems.get(i).price+"0");
     }
     
     for (int i = 0; i < 7; i++) {
