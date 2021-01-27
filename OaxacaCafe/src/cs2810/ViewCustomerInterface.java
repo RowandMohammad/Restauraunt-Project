@@ -29,6 +29,7 @@ public class ViewCustomerInterface extends Application {
     launch(args);
   }
 
+  
   MenuMain main = new MenuMain();
   
   @FXML
@@ -66,7 +67,16 @@ public class ViewCustomerInterface extends Application {
   
   @FXML
   private ComboBox<String> filterBoxSides;
+  
+  @Override
+  public void start(Stage primaryStage) throws Exception {
+    Parent root = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
+    Scene scene = new Scene(root);
+    primaryStage.setScene(scene);
+    primaryStage.show();
+  }
 
+  
   @FXML
   public void initialize() {
     ObservableList<String> filterMainOpt =
@@ -74,7 +84,7 @@ public class ViewCustomerInterface extends Application {
     ObservableList<String> filterSideOpt =
         FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian", "Spicy", "Non-Spicy", "All");
     ObservableList<String> filterDrinkOpt =
-        FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian", "All");
+        FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian", "Fizzy", "Non-Fizzy", "All");
     
     filterBoxMain.setItems(filterMainOpt);
     filterBoxDrinks.setItems(filterDrinkOpt);
@@ -100,7 +110,11 @@ public class ViewCustomerInterface extends Application {
         }
       }
     });
+    /* The block of code adds a listener to the tabs so that when a tab is selected, the filtering box is hidden for the other tabs and
+     * only the selected tab has its filtering button visible. Thus 3 filtering buttons are stacked upon on another.
+     */
   }
+  
   
   @FXML
   void waiterButtonPressed(ActionEvent event) {
@@ -116,6 +130,32 @@ public class ViewCustomerInterface extends Application {
     StartButton.setDisable(true);
     StartButton.setVisible(false);
     populateMenu();
+  }
+  
+  
+  public void populateMenu() throws IOException {
+    main.initialiseMainItems();
+    main.initiliseDrinkItems();
+    main.initialiseSideItems(); 
+    
+    for (int i = 0; i < main.mainItems.size(); i++) {
+      String ingr = Arrays.toString(main.mainItems.get(i).ingredients);
+      String dietary = Arrays.toString(main.mainItems.get(i).dietaryRequirements);
+      dietary = dietary.substring(1, dietary.length() - 1);
+      MainListView.getItems().add("--"+main.mainItems.get(i).name + "--\nCalories: " + main.mainItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.mainItems.get(i).price+"0");
+    }
+    for (int i = 0; i < main.sideItems.size(); i++) {
+      String ingr = Arrays.toString(main.sideItems.get(i).ingredients);
+      String dietary = Arrays.toString(main.sideItems.get(i).dietaryRequirements);
+      dietary = dietary.substring(1, dietary.length() - 1);
+      SidesListView.getItems().add("--"+main.sideItems.get(i).name + "--\nCalories: " + main.sideItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.sideItems.get(i).price+"0");
+    }
+    for (int i = 0; i < main.drinkItems.size(); i++) {
+      String ingr = Arrays.toString(main.drinkItems.get(i).ingredients);
+      String dietary = Arrays.toString(main.drinkItems.get(i).dietaryRequirements);
+      dietary = dietary.substring(1, dietary.length() - 1);
+      DrinksListView.getItems().add("--"+main.drinkItems.get(i).name + "--\nCalories: " + main.drinkItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.drinkItems.get(i).price+"0");
+    }
   }
    
   
@@ -140,7 +180,7 @@ public class ViewCustomerInterface extends Application {
         }
       }
       else if (filterBoxMain.getValue() == "Spicy") {
-        if (split_diet[1].contains("spicy") && !(split_diet[1].contains("non-spicy"))) {
+        if (split_diet[1].contains("spicy") && !split_diet[1].contains("non-spicy")) {
           MainListView.getItems().add("--" + main.mainItems.get(i).name + "--\nCalories: " + main.mainItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.mainItems.get(i).price + "0");
         }
       }
@@ -177,7 +217,7 @@ public class ViewCustomerInterface extends Application {
         }
       }
       else if (filterBoxSides.getValue() == "Spicy") {
-        if (split_diet[1].contains("spicy") && !(split_diet[1].contains("non-spicy"))) {
+        if (split_diet[1].contains("spicy") && !split_diet[1].contains("non-spicy")) {
           SidesListView.getItems().add("--" + main.sideItems.get(i).name + "--\nCalories: " + main.sideItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.sideItems.get(i).price + "0");
         }
       }
@@ -191,6 +231,7 @@ public class ViewCustomerInterface extends Application {
       }
     }
   }
+  
   
   @FXML
   void filterChangeDrinks(ActionEvent event) {
@@ -212,48 +253,20 @@ public class ViewCustomerInterface extends Application {
           DrinksListView.getItems().add("--" + main.drinkItems.get(i).name + "--\nCalories: " + main.drinkItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.drinkItems.get(i).price + "0");
         }
       }
+      else if (filterBoxDrinks.getValue() == "Fizzy") {
+        if (split_diet[1].contains("fizzy") && !split_diet[1].contains("non-fizzy")) {
+          DrinksListView.getItems().add("--" + main.drinkItems.get(i).name + "--\nCalories: " + main.drinkItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.drinkItems.get(i).price + "0");
+        }
+      }
+      else if (filterBoxDrinks.getValue() == "Non-Fizzy") {
+        if (split_diet[1].contains("non-fizzy")) {
+          DrinksListView.getItems().add("--" + main.drinkItems.get(i).name + "--\nCalories: " + main.drinkItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.drinkItems.get(i).price + "0");
+        }
+      }
       else if (filterBoxDrinks.getValue() == "All") {
         DrinksListView.getItems().add("--" + main.drinkItems.get(i).name + "--\nCalories: " + main.drinkItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.drinkItems.get(i).price + "0");
       }
     }
   }
-
   
-  @Override
-  public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
-    Scene scene = new Scene(root);
-    primaryStage.setScene(scene);
-    primaryStage.show();
-  }
-  
-  public void populateMenu() throws IOException {
-    main.initialiseMainItems();
-    main.initiliseDrinkItems();
-    main.initialiseSideItems(); 
-    
-
-    for (int i = 0; i < main.mainItems.size(); i++) {
-      String ingr = Arrays.toString(main.mainItems.get(i).ingredients);
-      String dietary = Arrays.toString(main.mainItems.get(i).dietaryRequirements);
-      dietary = dietary.substring(1, dietary.length() - 1);
-      MainListView.getItems().add("--"+main.mainItems.get(i).name + "--\nCalories: " + main.mainItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.mainItems.get(i).price+"0");
-    }
-    
-    for (int i = 0; i < main.sideItems.size(); i++) {
-      String ingr = Arrays.toString(main.sideItems.get(i).ingredients);
-      String dietary = Arrays.toString(main.sideItems.get(i).dietaryRequirements);
-      dietary = dietary.substring(1, dietary.length() - 1);
-      SidesListView.getItems().add("--"+main.sideItems.get(i).name + "--\nCalories: " + main.sideItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.sideItems.get(i).price+"0");
-    }
-    
-    
-    for (int i = 0; i < main.drinkItems.size(); i++) {
-      String ingr = Arrays.toString(main.drinkItems.get(i).ingredients);
-      String dietary = Arrays.toString(main.drinkItems.get(i).dietaryRequirements);
-      dietary = dietary.substring(1, dietary.length() - 1);
-      DrinksListView.getItems().add("--"+main.drinkItems.get(i).name + "--\nCalories: " + main.drinkItems.get(i).calories + "\nIngredients: " + ingr + "\nDietary Requirements: " + dietary + "\n£" + main.drinkItems.get(i).price+"0");
-    }
-  }
-
 }

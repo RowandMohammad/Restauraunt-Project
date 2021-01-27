@@ -66,7 +66,7 @@ public class MenuMain {
       String name = sc.nextLine();
       int calories = Integer.valueOf(sc.nextLine());
       String[] ingredients = sc.nextLine().split(",");
-      String[] dietaryRequirements = sc.nextLine().split(" ");
+      String[] dietaryRequirements = sc.nextLine().split(",");
       double price = Double.parseDouble(sc.nextLine());
       sc.nextLine();
       

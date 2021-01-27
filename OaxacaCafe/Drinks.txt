@@ -1,36 +1,36 @@
 Beer 
 150
 beer
-veg
+veg, non-fizzy
 2.00
 -
 Coke 
 150
 coke
-veg
+veg, fizzy
 1.50
 -
 Sprite 
 120
 sprite
-veg
+veg, fizzy
 1.50
 -
 Vanilla Milkshake 
 500
 Milk, Sugar, Cream, Corn syrup, Cellulose Gum, vanilla extract
-veg
+veg, non-fizzy
 3.00
 -
-Vanilla Milkshake 
+Chocolate Milkshake 
 500
 Milk, Sugar, Cream, Corn syrup, Cellulose Gum, cocoa extract
-veg
+veg, non-fizzy
 3.00
 -
 Strawberry Milkshake 
 500
 Milk, Sugar, Cream, Corn syrup, Cellulose Gum, strawberry extract
-veg
+veg, non-fizzy
 3.00
 -
