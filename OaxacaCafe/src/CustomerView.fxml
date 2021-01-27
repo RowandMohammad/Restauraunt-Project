@@ -89,7 +89,7 @@
          </font>
       </Label>
       <Button fx:id="addItemBtn" layoutX="506.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleAddItemButton" prefHeight="28.0" prefWidth="139.0" text="Add Item/s" />
-      <Button fx:id="checkoutBtn" layoutX="651.0" layoutY="148.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="139.0" text="Checkout" />
+      <Button fx:id="checkoutBtn" layoutX="651.0" layoutY="148.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="28.0" prefWidth="139.0" text="Checkout" />
       <Button fx:id="CallingButton" onAction="#waiterButtonPressed" prefHeight="50" prefWidth="120" text="calling the waiter">
       </Button>
       <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="800.0" text="Oaxaca Menu. Click anywhere to begin">

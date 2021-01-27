@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -129,6 +130,17 @@ public class ViewCustomerInterface extends Application{
 
     
     
+  }
+  @FXML
+  void changeScreenButtonPushed(ActionEvent event) throws IOException {
+	  Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/CheckoutView.fxml"));
+	  Scene checkoutViewScene = new Scene(checkoutViewParent);
+	  
+      //This line gets the Stage information
+      Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+      
+      window.setScene(checkoutViewScene);
+      window.show();
   }
   
   //Testing method to addd to basket
