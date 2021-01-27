@@ -7,6 +7,7 @@ public class Menu_Item {
   double price;
   String type;
   boolean available;
+
   
   public Menu_Item(String name, int calories, String[] ingredients, double price, String type, boolean available) {
     this.name = name;
@@ -15,6 +16,7 @@ public class Menu_Item {
     this.calories = calories;
     this.available = true;
     this.ingredients = ingredients;
+
   }
   
   

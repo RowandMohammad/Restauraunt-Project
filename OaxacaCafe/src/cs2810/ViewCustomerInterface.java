@@ -46,6 +46,9 @@ public class ViewCustomerInterface extends Application{
   private ListView<String> DrinkListView;
   
   @FXML
+  private ListView<String> BasketView;
+  
+  @FXML
   private Spinner<Integer> quantitySpinner;//Quantity select
   //Spinner Value Factory
   final int initialValue =1;
@@ -66,6 +69,7 @@ public class ViewCustomerInterface extends Application{
   @FXML
   private Button CallingButton;
   
+
   
   @FXML
   void waiterButtonPressed(ActionEvent event) {
@@ -80,6 +84,7 @@ public class ViewCustomerInterface extends Application{
     StartButton.setDisable(true);
     StartButton.setVisible(false);
     populateMenu();
+    quantitySpinner.setValueFactory(svf);
     
   }
 
@@ -90,6 +95,7 @@ public class ViewCustomerInterface extends Application{
     Scene scene = new Scene(root, 800, 800);
     primaryStage.setScene(scene);
     primaryStage.show();
+    
 
 
   }
@@ -100,7 +106,7 @@ public class ViewCustomerInterface extends Application{
     main.initialiseMainItems();
     main.initiliseDrinkItems();
     main.initialiseSideItems();
-    quantitySpinner.setValueFactory(svf);
+    
     
 
     for (int i = 0; i < 8; i++) {
@@ -110,17 +116,23 @@ public class ViewCustomerInterface extends Application{
     
     for (int i = 0; i < 7; i++) {
       String ingr = Arrays.toString(main.sideItems.get(i).ingredients);
-      SidesListView.getItems().add("--"+main.sideItems.get(i).name + "--\nCalories: " + main.sideItems.get(i).calories + "\nIngredients: " + ingr + "\n£" + main.sideItems.get(i).price+"0");
+      SidesListView.getItems().add("--"+main.sideItems.get(i).name +  "\n£" + main.sideItems.get(i).price+"0");
     }
     
     
     for (int i = 0; i < 6; i++) {
       String ingr = Arrays.toString(main.drinkItems.get(i).ingredients);
-      DrinkListView.getItems().add("--"+main.drinkItems.get(i).name + "--\nCalories: " + main.drinkItems.get(i).calories + "\nIngredients: " + ingr + "\n£" + main.drinkItems.get(i).price+"0");
+      DrinkListView.getItems().add("--"+main.drinkItems.get(i).name + "\n£" + main.drinkItems.get(i).price+"0");
     }
 
     
     
+  }
+  
+  @FXML
+  void handleAddItemButton(ActionEvent event) {
+	  BasketView.getItems().add(String.valueOf(quantitySpinner.getValue()));
+
   }
   
 
