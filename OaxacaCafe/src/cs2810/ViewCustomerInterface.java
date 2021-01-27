@@ -134,7 +134,7 @@ public class ViewCustomerInterface extends Application{
   @FXML
   void changeScreenButtonPushed(ActionEvent event) throws IOException {
 	  Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/CheckoutView.fxml"));
-	  Scene checkoutViewScene = new Scene(checkoutViewParent);
+	  Scene checkoutViewScene = new Scene(checkoutViewParent, 800, 800);
 	  
       //This line gets the Stage information
       Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
