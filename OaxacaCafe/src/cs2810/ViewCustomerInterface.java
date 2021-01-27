@@ -57,6 +57,7 @@ public class ViewCustomerInterface extends Application{
   @FXML
   private TextField totalPrice;
 
+  //Button to add items to order
   @FXML
   private Button addItemBtn;
 
@@ -70,7 +71,7 @@ public class ViewCustomerInterface extends Application{
   private Button CallingButton;
   
 
-  
+  //Handles button click to call waiter
   @FXML
   void waiterButtonPressed(ActionEvent event) {
     URL url = this.getClass().getClassLoader().getResource("res/12025.mp3");
@@ -79,6 +80,7 @@ public class ViewCustomerInterface extends Application{
     mp.play();
   }
   
+  //Handles starting the menu
   @FXML
   void StartButtonPressed(ActionEvent event) throws IOException {
     StartButton.setDisable(true);
@@ -101,7 +103,7 @@ public class ViewCustomerInterface extends Application{
   }
   
   
-  
+  //Initialises the Menu list for Mains, Sides and Drinks
   public void populateMenu() throws IOException{
     main.initialiseMainItems();
     main.initiliseDrinkItems();
@@ -129,6 +131,7 @@ public class ViewCustomerInterface extends Application{
     
   }
   
+  //Testing method to addd to basket
   @FXML
   void handleAddItemButton(ActionEvent event) {
 	  BasketView.getItems().add(String.valueOf(quantitySpinner.getValue()));
