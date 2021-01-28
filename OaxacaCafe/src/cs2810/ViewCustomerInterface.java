@@ -13,13 +13,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+
 
 public class ViewCustomerInterface extends Application {
 
@@ -41,6 +46,8 @@ public class ViewCustomerInterface extends Application {
 
 	@FXML
 	private ListView<String> BasketView;
+	
+	
 
 	@FXML
 	private Spinner<Integer> quantitySpinner;// Quantity select
@@ -132,7 +139,10 @@ public class ViewCustomerInterface extends Application {
 	@FXML
 	void handleAddItemButton(ActionEvent event) {
 		BasketView.getItems().add(String.valueOf(quantitySpinner.getValue()));
+		BasketView.setCellFactory(param -> new XCellDelete());
 
 	}
+
+
 
 }

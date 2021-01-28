@@ -58,17 +58,22 @@
         </tabs>
       </TabPane>
       <Spinner fx:id="quantitySpinner" layoutX="423.0" layoutY="148.0" prefHeight="28.0" prefWidth="76.0" />
-      <ScrollPane layoutX="424.0" layoutY="177.0" prefHeight="612.0" prefWidth="377.0">
+      <ScrollPane layoutX="417.0" layoutY="177.0" prefHeight="612.0" prefWidth="377.0">
          <content>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="376.0">
                <children>
-                  <ListView fx:id="BasketView" layoutX="4.0" layoutY="4.0" prefHeight="565.0" prefWidth="357.0" />
-                  <TextField fx:id="totalPrice" alignment="CENTER_RIGHT" layoutX="293.0" layoutY="572.0" prefHeight="25.0" prefWidth="67.0" text="£ 0" />
-                  <Label alignment="CENTER_RIGHT" layoutX="227.0" layoutY="571.0" prefHeight="28.0" prefWidth="60.0" text="TOTAL:">
+                  <ListView fx:id="BasketView" layoutX="4.0" layoutY="4.0" prefHeight="558.0" prefWidth="357.0" />
+                  <TextField fx:id="totalPrice" alignment="CENTER_RIGHT" layoutX="289.0" layoutY="569.0" prefHeight="25.0" prefWidth="67.0" text="£ 0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="227.0" layoutY="568.0" prefHeight="28.0" prefWidth="60.0" text="TOTAL:">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
                   </Label>
+                  <Button fx:id="checkoutBtn" layoutX="7.0" layoutY="565.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="17.0" prefWidth="204.0" text="Checkout">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </content>
@@ -83,13 +88,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="424.0" layoutY="76.0" prefHeight="53.0" prefWidth="377.0" text="Basket" textAlignment="CENTER" underline="true">
+      <Label alignment="CENTER" layoutX="417.0" layoutY="76.0" prefHeight="53.0" prefWidth="377.0" text="Basket" textAlignment="CENTER" underline="true">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <Button fx:id="addItemBtn" layoutX="506.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleAddItemButton" prefHeight="28.0" prefWidth="139.0" text="Add Item/s" />
-      <Button fx:id="checkoutBtn" layoutX="651.0" layoutY="148.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="28.0" prefWidth="139.0" text="Checkout" />
       <Button fx:id="CallingButton" onAction="#waiterButtonPressed" prefHeight="50" prefWidth="120" text="calling the waiter">
       </Button>
       <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="800.0" text="Oaxaca Menu. Click anywhere to begin">
