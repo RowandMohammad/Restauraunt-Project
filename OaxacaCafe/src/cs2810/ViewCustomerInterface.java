@@ -3,6 +3,8 @@ package cs2810;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.net.URL;
+import java.util.Arrays;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -23,11 +27,13 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class ViewCustomerInterface extends Application {
-
-
+  
   public static void main(String[] args) {
     launch(args);
   }
+
+
+
 
   
   MenuMain main = new MenuMain();
@@ -45,8 +51,6 @@ public class ViewCustomerInterface extends Application {
   private Tab mainTab;
 
 
-
-	/** UPDATED Replaced String object to ListviewItem For better managment  **/
 	@FXML
 	private ListView<ListViewItem> MainListView;
 
