@@ -89,7 +89,11 @@ public class ViewCustomerInterface extends Application {
     filterBoxMain.setItems(filterMainOpt);
     filterBoxDrinks.setItems(filterDrinkOpt);
     filterBoxSides.setItems(filterSideOpt);
-    
+    setFilteringListener();
+  }
+  
+  
+  private void setFilteringListener() {
     tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
       @Override
       public void changed(ObservableValue<? extends Tab> observable, Tab oldTab, Tab newTab) {
@@ -110,10 +114,10 @@ public class ViewCustomerInterface extends Application {
         }
       }
     });
+  }
     /* The block of code adds a listener to the tabs so that when a tab is selected, the filtering box is hidden for the other tabs and
      * only the selected tab has its filtering button visible. Thus 3 filtering buttons are stacked upon on another.
      */
-  }
   
   
   @FXML
