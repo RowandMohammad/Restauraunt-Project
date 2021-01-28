@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuMain {
-
   
   ArrayList<Menu_Item> mainItems = new ArrayList<Menu_Item>();
   ArrayList<Menu_Item> sideItems = new ArrayList<Menu_Item>();
@@ -25,15 +24,15 @@ public class MenuMain {
       String name = sc.nextLine();
       int calories = Integer.valueOf(sc.nextLine());
       String[] ingredients = sc.nextLine().split(",");
+      String[] dietaryRequirements = sc.nextLine().split(",");
       double price = Double.parseDouble(sc.nextLine());
       sc.nextLine();
       
-      Menu_Item mainitem = new Menu_Item(name, calories, ingredients, price, "Main", true);
+      Menu_Item mainitem = new Menu_Item(name, calories, ingredients, price, "Main", true, dietaryRequirements);
       mainItems.add(mainitem);
       count ++;
     }
-    
-    
+    sc.close();
   }
   
   public void initialiseSideItems() throws IOException {
@@ -46,16 +45,15 @@ public class MenuMain {
       String name = sc.nextLine();
       int calories = Integer.valueOf(sc.nextLine());
       String[] ingredients = sc.nextLine().split(",");
+      String[] dietaryRequirements = sc.nextLine().split(",");
       double price = Double.parseDouble(sc.nextLine());
       sc.nextLine();
       
-      Menu_Item sideitem = new Menu_Item(name, calories, ingredients, price, "Side", true);
+      Menu_Item sideitem = new Menu_Item(name, calories, ingredients, price, "Side", true, dietaryRequirements);
       sideItems.add(sideitem);
       count ++;
     }
-
-
-    
+    sc.close();
   }
   
   public void initiliseDrinkItems() throws IOException {
@@ -68,15 +66,16 @@ public class MenuMain {
       String name = sc.nextLine();
       int calories = Integer.valueOf(sc.nextLine());
       String[] ingredients = sc.nextLine().split(",");
+      String[] dietaryRequirements = sc.nextLine().split(",");
       double price = Double.parseDouble(sc.nextLine());
       sc.nextLine();
       
-      Menu_Item drinkitem = new Menu_Item(name, calories, ingredients, price, "Drink", true);
+      Menu_Item drinkitem = new Menu_Item(name, calories, ingredients, price, "Drink", true, dietaryRequirements);
       drinkItems.add(drinkitem);
       count ++;
     }
-
-    
+    sc.close();
   }
+
 
 }
