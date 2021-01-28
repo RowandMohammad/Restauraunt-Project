@@ -1,8 +1,38 @@
 package cs2810;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.net.URL;
+import java.util.Arrays;
+=======
+import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
+>>>>>>> refs/remotes/origin/intuitiveOrdering
+import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+<<<<<<< HEAD
+=======
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import javafx.application.Application;
@@ -11,6 +41,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+>>>>>>> refs/remotes/origin/intuitiveOrdering
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,7 +49,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Button;
+<<<<<<< HEAD
 import javafx.scene.control.ComboBox;
+=======
+import javafx.scene.control.ComboBox;
+>>>>>>> refs/remotes/origin/intuitiveOrdering
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -260,6 +295,25 @@ public class ViewCustomerInterface extends Application {
       else if (filterBoxDrinks.getValue() == "All") {
         DrinksListView.getItems().add(new ListViewItem("Name:  "+main.drinkItems.get(i).name, "Price:   £"+main.drinkItems.get(i).price, "Calories:"+main.drinkItems.get(i).calories, main.drinkItems.get(i).ingredients, main.drinkItems.get(i).dietaryRequirements));      }
     }
-  }
+
+	@FXML
+	void changeScreenButtonPushed(ActionEvent event) throws IOException {
+		Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/CheckoutView.fxml"));
+		Scene checkoutViewScene = new Scene(checkoutViewParent, 800, 800);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(checkoutViewScene);
+		window.show();
+
+	}
+
+	// Testing method to add to basket
+	@FXML
+	void handleAddItemButton(ActionEvent event) {
+		BasketView.getItems().add(String.valueOf(quantitySpinner.getValue()));
+		BasketView.setCellFactory(param -> new XCellDelete());
+
+
 }
   
