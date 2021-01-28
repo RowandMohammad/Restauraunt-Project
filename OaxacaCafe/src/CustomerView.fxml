@@ -17,7 +17,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
-      <TabPane layoutY="126.0" prefHeight="675.0" prefWidth="410.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
+      <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="675.0" prefWidth="410.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
         <tabs>
           <Tab text="Main Menu">
                <content>
@@ -25,7 +25,7 @@
                      <content>
                         <AnchorPane prefHeight="679.0" prefWidth="385.0">
                            <children>
-                              <ListView fx:id="MainListView" layoutX="14.0" layoutY="13.0" prefHeight="654.0" prefWidth="359.0" />
+                              <ListView fx:id="MainListView" layoutX="14.0" layoutY="13.0" prefHeight="585.0" prefWidth="359.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -51,7 +51,7 @@
                      <content>
                         <AnchorPane prefHeight="552.0" prefWidth="394.0">
                            <children>
-                              <ListView fx:id="DrinkListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="371.0" />
+                              <ListView fx:id="DrinksListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="371.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -66,7 +66,7 @@
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="376.0">
                <children>
                   <ListView fx:id="BasketView" layoutX="4.0" layoutY="4.0" prefHeight="558.0" prefWidth="357.0" />
-                  <TextField fx:id="totalPrice" alignment="CENTER_RIGHT" layoutX="289.0" layoutY="569.0" prefHeight="25.0" prefWidth="67.0" text="£ 0" />
+                  <TextField fx:id="totalPrice" alignment="CENTER_RIGHT" layoutX="289.0" layoutY="569.0" prefHeight="25.0" prefWidth="67.0" text="� 0" />
                   <Label alignment="CENTER_RIGHT" layoutX="227.0" layoutY="568.0" prefHeight="28.0" prefWidth="60.0" text="TOTAL:">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
@@ -97,18 +97,18 @@
          </font>
       </Label>
       <Button fx:id="addItemBtn" layoutX="506.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleAddItemButton" prefHeight="28.0" prefWidth="139.0" text="Add Item/s" />
-      <Pane layoutX="197.0" layoutY="42.0" prefHeight="542.0" prefWidth="220.0">
+      <Pane layoutX="511.0" layoutY="-43.0" prefHeight="503.0" prefWidth="283.0">
          <children>
-            <ComboBox fx:id="filterBoxMain" layoutX="62.0" layoutY="54.0" onAction="#filterChangeMain" prefWidth="150.0" promptText="Filter" />
-            <ComboBox fx:id="filterBoxSides" layoutX="62.0" layoutY="54.0" onAction="#filterChangeSides" prefWidth="150.0" promptText="Filter" visible="false" />
-            <ComboBox fx:id="filterBoxDrinks" layoutX="62.0" layoutY="54.0" onAction="#filterChangeDrinks" prefWidth="150.0" promptText="Filter" visible="false" />
             <ImageView fitHeight="17.0" fitWidth="65.0" layoutX="173.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/images/filter.png" />
                </image>
             </ImageView>
+            <ComboBox fx:id="filterBoxSides" layoutX="62.0" layoutY="54.0" onAction="#filterChangeSides" prefWidth="150.0" promptText="Filter" visible="false" />
+            <ComboBox fx:id="filterBoxDrinks" layoutX="62.0" layoutY="54.0" onAction="#filterChangeDrinks" prefWidth="150.0" promptText="Filter" visible="false" />
          </children>
       </Pane>
+      <ComboBox fx:id="filterBoxMain" layoutX="109.0" layoutY="17.0" onAction="#filterChangeMain" prefWidth="150.0" promptText="Filter" />
       <Button fx:id="CallingButton" onAction="#waiterButtonPressed" prefHeight="50" prefWidth="120" text="calling the waiter">
       </Button>
       <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="800.0" text="Oaxaca Menu. Click anywhere to begin">
