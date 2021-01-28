@@ -11,7 +11,7 @@ public class XCellDelete extends ListCell<String> {
 		HBox hbox = new HBox();
 		Label label = new Label("");
 		Pane pane = new Pane();
-		Button button = new Button("x");
+		Button button = new Button("X");
 
 		public XCellDelete() {
 			super();
