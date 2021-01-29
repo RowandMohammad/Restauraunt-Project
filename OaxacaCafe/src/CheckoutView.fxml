@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.CheckoutViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.CheckoutViewController">
    <children>
       <Label layoutX="341.0" layoutY="14.0" prefHeight="78.0" prefWidth="140.0" text="Checkout">
          <font>
@@ -20,7 +20,7 @@
          <content>
             <AnchorPane prefHeight="404.0" prefWidth="274.0">
                <children>
-                  <ListView layoutX="-1.0" layoutY="-4.0" prefHeight="405.0" prefWidth="260.0" />
+                  <ListView fx:id="OrderList" layoutX="-1.0" layoutY="-4.0" prefHeight="405.0" prefWidth="260.0" />
                </children>
             </AnchorPane>
          </content>

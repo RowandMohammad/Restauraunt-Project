@@ -8,14 +8,13 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
       <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="675.0" prefWidth="410.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
         <tabs>
@@ -66,8 +65,7 @@
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="376.0">
                <children>
                   <ListView fx:id="BasketView" layoutX="4.0" layoutY="4.0" prefHeight="558.0" prefWidth="357.0" />
-                  <TextField fx:id="totalPrice" alignment="CENTER_RIGHT" layoutX="289.0" layoutY="569.0" prefHeight="25.0" prefWidth="67.0" text="£ 0" />
-                  <Label alignment="CENTER_RIGHT" layoutX="227.0" layoutY="568.0" prefHeight="28.0" prefWidth="60.0" text="TOTAL:">
+                  <Label alignment="CENTER_RIGHT" layoutX="211.0" layoutY="568.0" prefHeight="28.0" prefWidth="60.0" text="TOTAL:">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
@@ -77,6 +75,7 @@
                         <Font name="Comic Sans MS Bold" size="14.0" />
                      </font>
                   </Button>
+                  <Label fx:id="totalPrice" layoutX="279.0" layoutY="571.0" prefHeight="25.0" prefWidth="65.0" text="£ 0.00" />
                </children>
             </AnchorPane>
          </content>

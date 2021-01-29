@@ -8,28 +8,30 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
 public class XCellDelete extends ListCell<String> {
-		HBox hbox = new HBox();
-		Label label = new Label("");
-		Pane pane = new Pane();
-		Button button = new Button("X");
+  HBox hbox = new HBox();
+  Label label = new Label("");
+  Pane pane = new Pane();
+  Button button = new Button("X");
 
-		public XCellDelete() {
-			super();
+  public XCellDelete(ViewCustomerInterface VCI) {
+    super();
 
-			hbox.getChildren().addAll(label, pane, button);
-			HBox.setHgrow(pane, Priority.ALWAYS);
-			button.setOnAction(event -> getListView().getItems().remove(getItem()));
-		}
+    hbox.getChildren().addAll(label, pane, button);
+    HBox.setHgrow(pane, Priority.ALWAYS);
+    button.setOnAction(event -> getListView().getItems().remove(getItem()));
+    button.setOnAction(event -> VCI.delete(getItem()));
 
-		@Override
-		protected void updateItem(String item, boolean empty) {
-			super.updateItem(item, empty);
-			setText(null);
-			setGraphic(null);
+  }
 
-			if (item != null && !empty) {
-				label.setText(item);
-				setGraphic(hbox);
-			}
-		}
-	}
+  @Override
+  protected void updateItem(String item, boolean empty) {
+    super.updateItem(item, empty);
+    setText(null);
+    setGraphic(null);
+
+    if (item != null && !empty) {
+      label.setText(item);
+      setGraphic(hbox);
+    }
+  }
+}
