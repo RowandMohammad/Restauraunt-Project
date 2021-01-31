@@ -25,10 +25,17 @@ import javafx.scene.control.TabPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import static java.lang.System.err;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class ViewCustomerInterface extends Application {
 
   public static void main(String[] args) {
+    LoadUser(); 
     launch(args);
 
   }
@@ -167,20 +174,20 @@ public class ViewCustomerInterface extends Application {
 
     for (int i = 0; i < main.mainItems.size(); i++) {
       MainListView.getItems()
-          .add(new ListViewItem(main.mainItems.get(i).name, "£" + main.mainItems.get(i).price + "0",
+          .add(new ListViewItem(main.mainItems.get(i).name, "Â£" + main.mainItems.get(i).price + "0",
               main.mainItems.get(i).calories + "", main.mainItems.get(i).ingredients,
               main.mainItems.get(i).dietaryRequirements));
     }
     for (int i = 0; i < main.sideItems.size(); i++) {
       SidesListView.getItems()
-          .add(new ListViewItem(main.sideItems.get(i).name, "£" + main.sideItems.get(i).price + "0",
+          .add(new ListViewItem(main.sideItems.get(i).name, "Â£" + main.sideItems.get(i).price + "0",
               main.sideItems.get(i).calories + "", main.sideItems.get(i).ingredients,
               main.sideItems.get(i).dietaryRequirements));
     }
     for (int i = 0; i < main.drinkItems.size(); i++) {
       DrinksListView.getItems()
           .add(new ListViewItem(main.drinkItems.get(i).name,
-              "£" + main.drinkItems.get(i).price + "0", main.drinkItems.get(i).calories + "",
+              "Â£" + main.drinkItems.get(i).price + "0", main.drinkItems.get(i).calories + "",
               main.drinkItems.get(i).ingredients, main.drinkItems.get(i).dietaryRequirements));
     }
   }
@@ -198,34 +205,34 @@ public class ViewCustomerInterface extends Application {
         if (split_diet[0].equals("veg")) {
           MainListView.getItems()
               .add(new ListViewItem(main.mainItems.get(i).name,
-                  "£" + main.mainItems.get(i).price + "0", main.mainItems.get(i).calories + "",
+                  "Â£" + main.mainItems.get(i).price + "0", main.mainItems.get(i).calories + "",
                   main.mainItems.get(i).ingredients, main.mainItems.get(i).dietaryRequirements));
         }
       } else if (filterBoxMain.getValue() == "Non-Vegetarian") {
         if (split_diet[0].equals("non-veg")) {
           MainListView.getItems()
               .add(new ListViewItem(main.mainItems.get(i).name,
-                  "£" + main.mainItems.get(i).price + "0", main.mainItems.get(i).calories + "",
+                  "Â£" + main.mainItems.get(i).price + "0", main.mainItems.get(i).calories + "",
                   main.mainItems.get(i).ingredients, main.mainItems.get(i).dietaryRequirements));
         }
       } else if (filterBoxMain.getValue() == "Spicy") {
         if (split_diet[1].contains("spicy") && !split_diet[1].contains("non-spicy")) {
           MainListView.getItems()
               .add(new ListViewItem(main.mainItems.get(i).name,
-                  "£" + main.mainItems.get(i).price + "0", main.mainItems.get(i).calories + "",
+                  "Â£" + main.mainItems.get(i).price + "0", main.mainItems.get(i).calories + "",
                   main.mainItems.get(i).ingredients, main.mainItems.get(i).dietaryRequirements));
         }
       } else if (filterBoxMain.getValue() == "Non-Spicy") {
         if (split_diet[1].contains("non-spicy")) {
           MainListView.getItems()
               .add(new ListViewItem(main.mainItems.get(i).name,
-                  "£" + main.mainItems.get(i).price + "0", main.mainItems.get(i).calories + "",
+                  "Â£" + main.mainItems.get(i).price + "0", main.mainItems.get(i).calories + "",
                   main.mainItems.get(i).ingredients, main.mainItems.get(i).dietaryRequirements));
         }
       } else if (filterBoxMain.getValue() == "All") {
         MainListView.getItems()
             .add(new ListViewItem(main.mainItems.get(i).name,
-                "£" + main.mainItems.get(i).price + "0", main.mainItems.get(i).calories + "",
+                "Â£" + main.mainItems.get(i).price + "0", main.mainItems.get(i).calories + "",
                 main.mainItems.get(i).ingredients, main.mainItems.get(i).dietaryRequirements));
       }
     }
@@ -245,34 +252,34 @@ public class ViewCustomerInterface extends Application {
         if (split_diet[0].equals("veg")) {
           SidesListView.getItems()
               .add(new ListViewItem(main.sideItems.get(i).name,
-                  "£" + main.sideItems.get(i).price + "0", main.sideItems.get(i).calories + "",
+                  "Â£" + main.sideItems.get(i).price + "0", main.sideItems.get(i).calories + "",
                   main.sideItems.get(i).ingredients, main.sideItems.get(i).dietaryRequirements));
         }
       } else if (filterBoxSides.getValue() == "Non-Vegetarian") {
         if (split_diet[0].equals("non-veg")) {
           SidesListView.getItems()
               .add(new ListViewItem(main.sideItems.get(i).name,
-                  "£" + main.sideItems.get(i).price + "0", main.sideItems.get(i).calories + "",
+                  "Â£" + main.sideItems.get(i).price + "0", main.sideItems.get(i).calories + "",
                   main.sideItems.get(i).ingredients, main.sideItems.get(i).dietaryRequirements));
         }
       } else if (filterBoxSides.getValue() == "Spicy") {
         if (split_diet[1].contains("spicy") && !split_diet[1].contains("non-spicy")) {
           SidesListView.getItems()
               .add(new ListViewItem(main.sideItems.get(i).name,
-                  "£" + main.sideItems.get(i).price + "0", main.sideItems.get(i).calories + "",
+                  "Â£" + main.sideItems.get(i).price + "0", main.sideItems.get(i).calories + "",
                   main.sideItems.get(i).ingredients, main.sideItems.get(i).dietaryRequirements));
         }
       } else if (filterBoxSides.getValue() == "Non-Spicy") {
         if (split_diet[1].contains("non-spicy")) {
           SidesListView.getItems()
               .add(new ListViewItem(main.sideItems.get(i).name,
-                  "£" + main.sideItems.get(i).price + "0", main.sideItems.get(i).calories + "",
+                  "Â£" + main.sideItems.get(i).price + "0", main.sideItems.get(i).calories + "",
                   main.sideItems.get(i).ingredients, main.sideItems.get(i).dietaryRequirements));
         }
       } else if (filterBoxSides.getValue() == "All") {
         SidesListView.getItems()
             .add(new ListViewItem(main.sideItems.get(i).name,
-                "£" + main.sideItems.get(i).price + "0", main.sideItems.get(i).calories + "",
+                "Â£" + main.sideItems.get(i).price + "0", main.sideItems.get(i).calories + "",
                 main.sideItems.get(i).ingredients, main.sideItems.get(i).dietaryRequirements));// SidesListView.getItems().add("--"
                                                                                                // +
                                                                                                // main.sideItems.get(i).name
@@ -293,7 +300,7 @@ public class ViewCustomerInterface extends Application {
                                                                                                // +
                                                                                                // dietary
                                                                                                // +
-                                                                                               // "\n£"
+                                                                                               // "\nÂ£"
                                                                                                // +
                                                                                                // main.sideItems.get(i).price
                                                                                                // +
@@ -316,7 +323,7 @@ public class ViewCustomerInterface extends Application {
         if (split_diet[0].equals("veg")) {
           DrinksListView.getItems()
               .add(new ListViewItem(main.drinkItems.get(i).name,
-                  "£" + main.drinkItems.get(i).price + "0", main.drinkItems.get(i).calories + "",
+                  "Â£" + main.drinkItems.get(i).price + "0", main.drinkItems.get(i).calories + "",
                   main.drinkItems.get(i).ingredients, main.drinkItems.get(i).dietaryRequirements));// DrinksListView.getItems().add("--"
                                                                                                    // +
                                                                                                    // main.drinkItems.get(i).name
@@ -337,7 +344,7 @@ public class ViewCustomerInterface extends Application {
                                                                                                    // +
                                                                                                    // dietary
                                                                                                    // +
-                                                                                                   // "\n£"
+                                                                                                   // "\nÂ£"
                                                                                                    // +
                                                                                                    // main.drinkItems.get(i).price
                                                                                                    // +
@@ -347,7 +354,7 @@ public class ViewCustomerInterface extends Application {
         if (split_diet[0].equals("non-veg")) {
           DrinksListView.getItems()
               .add(new ListViewItem(main.drinkItems.get(i).name,
-                  "£" + main.drinkItems.get(i).price + "0", "" + main.drinkItems.get(i).calories,
+                  "Â£" + main.drinkItems.get(i).price + "0", "" + main.drinkItems.get(i).calories,
                   main.drinkItems.get(i).ingredients, main.drinkItems.get(i).dietaryRequirements));// DrinksListView.getItems().add("--"
                                                                                                    // +
                                                                                                    // main.drinkItems.get(i).name
@@ -368,7 +375,7 @@ public class ViewCustomerInterface extends Application {
                                                                                                    // +
                                                                                                    // dietary
                                                                                                    // +
-                                                                                                   // "\n£"
+                                                                                                   // "\nÂ£"
                                                                                                    // +
                                                                                                    // main.drinkItems.get(i).price
                                                                                                    // +
@@ -378,20 +385,20 @@ public class ViewCustomerInterface extends Application {
         if (split_diet[1].contains("fizzy") && !split_diet[1].contains("non-fizzy")) {
           DrinksListView.getItems()
               .add(new ListViewItem(main.drinkItems.get(i).name,
-                  "£" + main.drinkItems.get(i).price + "0", "" + main.drinkItems.get(i).calories,
+                  "Â£" + main.drinkItems.get(i).price + "0", "" + main.drinkItems.get(i).calories,
                   main.drinkItems.get(i).ingredients, main.drinkItems.get(i).dietaryRequirements));
         }
       } else if (filterBoxDrinks.getValue() == "Non-Fizzy") {
         if (split_diet[1].contains("non-fizzy")) {
           DrinksListView.getItems()
               .add(new ListViewItem(main.drinkItems.get(i).name,
-                  "£" + main.drinkItems.get(i).price + "0", "" + main.drinkItems.get(i).calories,
+                  "Â£" + main.drinkItems.get(i).price + "0", "" + main.drinkItems.get(i).calories,
                   main.drinkItems.get(i).ingredients, main.drinkItems.get(i).dietaryRequirements));
         }
       } else if (filterBoxDrinks.getValue() == "All") {
         DrinksListView.getItems()
             .add(new ListViewItem(main.drinkItems.get(i).name,
-                "£" + main.drinkItems.get(i).price + "0", "" + main.drinkItems.get(i).calories,
+                "Â£" + main.drinkItems.get(i).price + "0", "" + main.drinkItems.get(i).calories,
                 main.drinkItems.get(i).ingredients, main.drinkItems.get(i).dietaryRequirements));
       }
     }
@@ -431,9 +438,9 @@ public class ViewCustomerInterface extends Application {
     // had cost showing correctly
     if (quantitySpinner.getValue() != 0) {
       Float price = Float.parseFloat(totalPrice.getText().split(" ")[1]);
-      price = price + (Float.parseFloat(getSelect().getPrice().getText().split("£")[1])
+      price = price + (Float.parseFloat(getSelect().getPrice().getText().split("Â£")[1])
           * quantitySpinner.getValue());
-      totalPrice.setText("£ " + price);
+      totalPrice.setText("Â£ " + price);
     }
     quantitySpinner.getValueFactory().setValue(1);
 
@@ -452,7 +459,7 @@ public class ViewCustomerInterface extends Application {
   }
 
   void setTotalPrice(String text) {
-    totalPrice.setText("£ " + text);
+    totalPrice.setText("Â£ " + text);
   }
 
   Float getTotalPrice() {
@@ -465,4 +472,43 @@ public class ViewCustomerInterface extends Application {
     // Float.parseFloat(text.split(", ")[1])) + "");
     BasketView.getItems().remove(text);
   }
+  
+    @FXML
+  void WaiterloginButton (ActionEvent event) throws IOException {
+    Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/Waiterlogin.fxml"));
+    Scene checkoutViewScene = new Scene(checkoutViewParent, 400, 400);
+    // This line gets the Stage information
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+    window.setScene(checkoutViewScene);
+    window.show();
+
+  }
+  public static void LoadUser() {
+	  try {
+		
+	   BufferedReader reader = new BufferedReader(new FileReader(new File("user.txt")));
+	   String line = null;
+	   while ((line = reader.readLine()) != null) {
+	    String[] data = line.split("\\s+");
+	    list.add(new User(data[0], data[1]));
+
+	   }
+	   reader.close();
+	  } catch (IOException e) {
+	   err.println("cant not find user.txt");
+	   e.printStackTrace();
+	  }
+	 }
+
+	 public static boolean findUser(String account, String pwd) {
+	  return list.contains(new User(account, pwd));
+	 }
+
+	 public static User findAccount(String account) {
+	  for (User u : list)
+	   if (u.getAccount().equalsIgnoreCase(account))
+	    return u;
+	  return null;
+	 }
 }
