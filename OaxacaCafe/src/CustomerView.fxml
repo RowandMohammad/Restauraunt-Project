@@ -110,6 +110,11 @@
       </Pane>
       <Button fx:id="CallingButton" onAction="#waiterButtonPressed" prefHeight="50" prefWidth="120" text="calling the waiter">
       </Button>
+       <Button fx:id="Waiterloginbtn"  onAction="#WaiterloginButton" layoutX="550" layoutY="10.0" mnemonicParsing="false"  prefHeight="30" prefWidth="200" text="waiterlogin">
+          <font>
+            <Font  size="10" />
+          </font>
+       </Button>
       <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="800.0" text="Oaxaca Menu. Click anywhere to begin">
          <font>
             <Font size="18.0" />
