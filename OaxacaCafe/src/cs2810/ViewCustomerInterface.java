@@ -34,6 +34,8 @@ import java.util.ArrayList;
 
 public class ViewCustomerInterface extends Application {
 
+  static ArrayList<User> list = new ArrayList<User>(); 
+
   public static void main(String[] args) {
     LoadUser(); 
     launch(args);
