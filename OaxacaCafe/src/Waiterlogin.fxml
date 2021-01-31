@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.WaiterloginController">
+   <children>
+      <Label layoutX="120.0" layoutY="14.0" prefHeight="78.0" prefWidth="200.0" text="Waiterlogin">
+         <font>
+            <Font  size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="60.0" layoutY="100" prefHeight="60.0" prefWidth="100.0" text="Username">
+      </Label>
+      <TextField  fx:id="userAccount" layoutX="140" layoutY="120" prefHeight="20.0" prefWidth="150.0">
+      </TextField>
+      <Label layoutX="60.0" layoutY="130.0" prefHeight="60.0" prefWidth="100.0" text="Password">
+      </Label>
+      <PasswordField fx:id="userPwd" layoutX="140" layoutY="150.0" prefHeight="20.0" prefWidth="150.0">
+      </PasswordField>
+      <Button  fx:id="clear" onAction="#clearButton" layoutX="100" layoutY="190.0" prefHeight="20.0" prefWidth="75.0" text="clear">
+      </Button>
+      <Button  fx:id="login" onAction="#loginButton" layoutX="200" layoutY="190.0" prefHeight="20.0" prefWidth="75.0" text="login">
+      </Button>
+      <Button  onAction="#changeScreenButtonPushed" prefHeight="42.0" prefWidth="118.0" text="Back to order">
+   		</Button>
+   </children>
+</Pane>
+ 
+
+
