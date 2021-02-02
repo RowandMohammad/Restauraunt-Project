@@ -147,7 +147,6 @@ public class ViewCustomerInterface extends Application {
 
   private void setFilteringListener() {
     tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
-      @Override
       public void changed(ObservableValue<? extends Tab> observable, Tab oldTab, Tab newTab) {
         if (newTab.equals(mainTab)) {
           filterBoxMain.setVisible(true);
@@ -368,9 +367,9 @@ public class ViewCustomerInterface extends Application {
     // had cost showing correctly
     if (quantitySpinner.getValue() != 0) {
       Float price = Float.parseFloat(totalPrice.getText().split(" ")[1]);
-      price = price + (Float.parseFloat(getSelect().getPrice().getText().split("Â£")[1])
+      price = price + (Float.parseFloat(getSelect().getPrice().getText().split("£")[1])
           * quantitySpinner.getValue());
-      totalPrice.setText("Â£ " + price);
+      totalPrice.setText("£ " + price);
     }
     quantitySpinner.getValueFactory().setValue(1);
 
@@ -389,7 +388,7 @@ public class ViewCustomerInterface extends Application {
   }
 
   void setTotalPrice(String text) {
-    totalPrice.setText("Â£ " + text);
+    totalPrice.setText("£ " + text);
   }
 
   Float getTotalPrice() {
