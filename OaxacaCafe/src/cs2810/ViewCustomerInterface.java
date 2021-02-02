@@ -369,7 +369,7 @@ public class ViewCustomerInterface extends Application {
       Float price = Float.parseFloat(totalPrice.getText().split(" ")[1]);
       price = price + (Float.parseFloat(getSelect().getPrice().getText().split("£")[1])
           * quantitySpinner.getValue());
-      totalPrice.setText("£ " + price);
+      totalPrice.setText("£ " + price + "0");
     }
     quantitySpinner.getValueFactory().setValue(1);
 
