@@ -374,6 +374,7 @@ public class ViewCustomerInterface extends Application {
     quantitySpinner.getValueFactory().setValue(1);
 
   }
+  
 
   ListViewItem getSelect() {
     Tab Tab = tabPane.getSelectionModel().getSelectedItem();
