@@ -14,15 +14,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
-      <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="675.0" prefWidth="410.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
+      <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="648.0" prefWidth="410.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
         <tabs>
           <Tab fx:id="mainTab" text="Main Menu">
                <content>
-                  <ScrollPane prefHeight="679.0" prefWidth="370.0">
+                  <ScrollPane prefHeight="616.0" prefWidth="410.0">
                      <content>
-                        <AnchorPane prefHeight="679.0" prefWidth="385.0">
+                        <AnchorPane prefHeight="647.0" prefWidth="385.0">
                            <children>
                               <ListView fx:id="MainListView" layoutX="14.0" layoutY="13.0" prefHeight="585.0" prefWidth="359.0" />
                            </children>
@@ -110,7 +110,7 @@
       </Pane>
       <Button fx:id="CallingButton" onAction="#waiterButtonPressed" prefHeight="50" prefWidth="120" text="calling the waiter">
       </Button>
-       <Button fx:id="Waiterloginbtn" layoutX="550" layoutY="10.0" mnemonicParsing="false" onAction="#WaiterloginButton" prefHeight="30" prefWidth="200" text="waiterlogin">
+       <Button fx:id="Waiterloginbtn" layoutX="550" layoutY="10.0" mnemonicParsing="false" onAction="#WaiterloginButton" prefHeight="30" prefWidth="200" text="Staff Login">
           <font>
             <Font size="10" />
           </font>
