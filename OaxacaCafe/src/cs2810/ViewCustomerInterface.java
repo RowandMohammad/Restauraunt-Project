@@ -239,6 +239,8 @@ public class ViewCustomerInterface extends Application {
     }
   }
 
+  
+  
 
   @FXML
   void filterChangeSides(ActionEvent event) {
