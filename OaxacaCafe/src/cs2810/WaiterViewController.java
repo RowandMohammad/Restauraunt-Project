@@ -1,21 +1,29 @@
 package cs2810;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 
-public class WaiterViewController extends Application {
+public class WaiterViewController {
 
+    @FXML
+    private ListView<?> PendingOrdersView;
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+    @FXML
+    private ListView<?> OrdersToDeliverView;
 
-	  }
-		
-		
+    @FXML
+    private Button BackToOrdering;
+
+    @FXML
+    private Label UserLabel;
+
+    @FXML
+    void BackToOrderingPressed(ActionEvent event) {
+      System.out.println("leg");
+
+    }
+
 }
-
-	
-
-
