@@ -1,7 +1,12 @@
 package cs2810;
 
+import static java.lang.System.err;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -25,27 +30,22 @@ import javafx.scene.control.TabPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import static java.lang.System.err;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class ViewCustomerInterface extends Application {
 
-  static ArrayList<User> list = new ArrayList<User>(); 
+  static ArrayList<User> list = new ArrayList<User>();
 
   public static void main(String[] args) {
-    LoadUser(); 
+    LoadUser();
     launch(args);
-
   }
 
   String select = "";
 
 
   MenuMain main = new MenuMain();
+  ArrayList<Menu_Item> basketItems = new ArrayList<Menu_Item>();
+
   @FXML
   private TabPane tabPane;
 
@@ -84,7 +84,7 @@ public class ViewCustomerInterface extends Application {
   // Spinner Value Factory
   final int initialValue = 1;
   SpinnerValueFactory<Integer> svf =
-      new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, initialValue);
+      new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, initialValue);
 
   @FXML
   private Label totalPrice;
@@ -348,13 +348,12 @@ public class ViewCustomerInterface extends Application {
   // Testing method to add to basket
   @FXML
   void handleAddItemButton(ActionEvent event) {
-    String search = getSelect().getName();
+    ListViewItem selected = getSelect();
+    String name = selected.getName();
     int x = 0;
     int num = 0;
-    ObservableList<String> BasketList;
-    BasketList = BasketView.getItems();
-    for (String each : BasketList) {
-      if (each.contains(search)) {
+    for (String each : BasketView.getItems()) {
+      if (each.contains(name)) {
         BasketView.getItems().remove(x);
         String[] split = each.split(", ");
         num = Integer.valueOf(split[1]);
@@ -362,30 +361,60 @@ public class ViewCustomerInterface extends Application {
       }
       x++;
     }
-    BasketView.getItems().add((getSelect().getName() + ", " + (quantitySpinner.getValue() + num)));
+    BasketView.getItems().add((name + ", " + (quantitySpinner.getValue() + num)));
     BasketView.setCellFactory(param -> new XCellDelete(this));
     // had cost showing correctly
     if (quantitySpinner.getValue() != 0) {
       Float price = Float.parseFloat(totalPrice.getText().split(" ")[1]);
-      price = price + (Float.parseFloat(getSelect().getPrice().getText().split("£")[1])
+      price = price + (Float.parseFloat(selected.getPrice().getText().split("£")[1])
           * quantitySpinner.getValue());
       totalPrice.setText("£ " + price + "0");
     }
     quantitySpinner.getValueFactory().setValue(1);
 
   }
-  
+
 
   ListViewItem getSelect() {
     Tab Tab = tabPane.getSelectionModel().getSelectedItem();
     if (Tab.getText().equals("Main Menu")) {
-      return MainListView.getSelectionModel().getSelectedItem();
+      ListViewItem item = MainListView.getSelectionModel().getSelectedItem();
+      addMainItem(item.getName());
+      return item;
     } else if (Tab.getText().equals("Sides")) {
-      return SidesListView.getSelectionModel().getSelectedItem();
+      ListViewItem item = SidesListView.getSelectionModel().getSelectedItem();
+      addSideItem(item.getName());
+      return item;
     } else if (Tab.getText().equals("Drinks")) {
-      return DrinksListView.getSelectionModel().getSelectedItem();
+      ListViewItem item = SidesListView.getSelectionModel().getSelectedItem();
+      addDrinkItem(item.getName());
+      return item;
     }
     return null;
+  }
+
+  void addMainItem(String item) {
+    for (int x = 0; x < main.mainItems.size(); x++) {
+      if (item.equals(main.mainItems.get(x).name)) {
+        basketItems.add(main.mainItems.get(x));
+      }
+    }
+  }
+
+  void addSideItem(String item) {
+    for (int x = 0; x < main.sideItems.size(); x++) {
+      if (item.equals(main.sideItems.get(x).name)) {
+        basketItems.add(main.sideItems.get(x));
+      }
+    }
+  }
+
+  void addDrinkItem(String item) {
+    for (int x = 0; x < main.drinkItems.size(); x++) {
+      if (item.equals(main.drinkItems.get(x).name)) {
+        basketItems.add(main.drinkItems.get(x));
+      }
+    }
   }
 
   void setTotalPrice(String text) {
@@ -402,9 +431,9 @@ public class ViewCustomerInterface extends Application {
     // Float.parseFloat(text.split(", ")[1])) + "");
     BasketView.getItems().remove(text);
   }
-  
-    @FXML
-  void WaiterloginButton (ActionEvent event) throws IOException {
+
+  @FXML
+  void WaiterloginButton(ActionEvent event) throws IOException {
     Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/Waiterlogin.fxml"));
     Scene checkoutViewScene = new Scene(checkoutViewParent, 400, 400);
     // This line gets the Stage information
@@ -414,31 +443,32 @@ public class ViewCustomerInterface extends Application {
     window.show();
 
   }
+
   public static void LoadUser() {
-	  try {
-		
-	   BufferedReader reader = new BufferedReader(new FileReader(new File("user.txt")));
-	   String line = null;
-	   while ((line = reader.readLine()) != null) {
-	    String[] data = line.split("\\s+");
-	    list.add(new User(data[0], data[1]));
+    try {
 
-	   }
-	   reader.close();
-	  } catch (IOException e) {
-	   err.println("cant not find user.txt");
-	   e.printStackTrace();
-	  }
-	 }
+      BufferedReader reader = new BufferedReader(new FileReader(new File("user.txt")));
+      String line = null;
+      while ((line = reader.readLine()) != null) {
+        String[] data = line.split("\\s+");
+        list.add(new User(data[0], data[1]));
 
-	 public static boolean findUser(String account, String pwd) {
-	  return list.contains(new User(account, pwd));
-	 }
+      }
+      reader.close();
+    } catch (IOException e) {
+      err.println("cant not find user.txt");
+      e.printStackTrace();
+    }
+  }
 
-	 public static User findAccount(String account) {
-	  for (User u : list)
-	   if (u.getAccount().equalsIgnoreCase(account))
-	    return u;
-	  return null;
-	 }
+  public static boolean findUser(String account, String pwd) {
+    return list.contains(new User(account, pwd));
+  }
+
+  public static User findAccount(String account) {
+    for (User u : list)
+      if (u.getAccount().equalsIgnoreCase(account))
+        return u;
+    return null;
+  }
 }
