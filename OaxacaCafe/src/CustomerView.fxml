@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
-      <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="648.0" prefWidth="410.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
+      <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="648.0" prefWidth="410.0" style="-fx-background-color: blue;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
         <tabs>
           <Tab fx:id="mainTab" text="Main Menu">
                <content>
@@ -64,7 +64,7 @@
          <content>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="376.0">
                <children>
-                  <ListView fx:id="BasketView" layoutX="4.0" layoutY="4.0" prefHeight="558.0" prefWidth="357.0" />
+                  <ListView fx:id="BasketView" layoutX="4.0" layoutY="4.0" prefHeight="558.0" prefWidth="325.0" />
                   <Label alignment="CENTER_RIGHT" layoutX="211.0" layoutY="568.0" prefHeight="28.0" prefWidth="60.0" text="TOTAL:">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
@@ -87,35 +87,60 @@
       </Label>
       <Label alignment="CENTER" layoutX="195.0" prefHeight="53.0" prefWidth="410.0" text="Menu" textAlignment="CENTER" underline="true">
          <font>
-            <Font size="24.0" />
+            <Font name="Jokerman" size="24.0" />
          </font>
       </Label>
       <Label alignment="CENTER" layoutX="417.0" layoutY="76.0" prefHeight="53.0" prefWidth="377.0" text="Basket" textAlignment="CENTER" underline="true">
          <font>
-            <Font size="24.0" />
+            <Font name="Jokerman" size="25.0" />
          </font>
       </Label>
       <Button fx:id="addItemBtn" layoutX="506.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleAddItemButton" prefHeight="28.0" prefWidth="139.0" text="Add Item/s" />
-      <Pane layoutX="179.0" layoutY="2.0" prefHeight="150.0" prefWidth="169.0">
+      <Pane layoutX="9.0" layoutY="2.0" prefHeight="151.0" prefWidth="377.0">
          <children>
-            <ComboBox fx:id="filterBoxSides" onAction="#filterChangeSides" prefWidth="150.0" promptText="Filter" visible="false" />
-            <ComboBox fx:id="filterBoxDrinks" onAction="#filterChangeDrinks" prefWidth="150.0" promptText="Filter" visible="false" />
-            <ComboBox fx:id="filterBoxMain" onAction="#filterChangeMain" prefWidth="150.0" promptText="Filter" />
-            <ImageView fitHeight="17.0" fitWidth="65.0" layoutX="108.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+            <ComboBox fx:id="filterBoxMain" layoutX="185.0" layoutY="40.0" onAction="#filterChangeMain" prefHeight="25.0" prefWidth="139.0" promptText="Filter" />
+            <ComboBox fx:id="filterBoxDrinks" layoutX="185.0" layoutY="40.0" onAction="#filterChangeDrinks" prefHeight="25.0" prefWidth="139.0" promptText="Filter" visible="false" />
+            <ComboBox fx:id="filterBoxSides" layoutX="185.0" layoutY="40.0" onAction="#filterChangeSides" prefHeight="25.0" prefWidth="139.0" promptText="Filter" visible="false" />
+            <ImageView fitHeight="25.0" fitWidth="20.0" layoutX="278.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@/images/filter.png" />
+                  <Image url="@images/filter.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="285.0" layoutY="95.0">
+               <image>
+                  <Image url="@images/drink.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="157.0" layoutY="98.0">
+               <image>
+                  <Image url="@images/nachos.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="53.0" fitWidth="66.0" layoutX="25.0" layoutY="95.0">
+               <image>
+                  <Image url="@images/taco.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="45.0" prefHeight="17.0" prefWidth="66.0" text="Call waiter" textFill="WHITE">
+               <font>
+                  <Font name="Javanese Text" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="28.0" fitWidth="30.0" layoutX="9.0" layoutY="1.0">
+               <image>
+                  <Image url="@images/bell.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="CallingButton" layoutX="5.0" layoutY="4.0" onAction="#waiterButtonPressed" opacity="0.0" prefHeight="25.0" prefWidth="40.0" text="calling the waiter">
+      </Button>
          </children>
       </Pane>
-      <Button fx:id="CallingButton" onAction="#waiterButtonPressed" prefHeight="50" prefWidth="120" text="calling the waiter">
-      </Button>
-       <Button fx:id="Waiterloginbtn" layoutX="550" layoutY="10.0" mnemonicParsing="false" onAction="#WaiterloginButton" prefHeight="30" prefWidth="200" text="Staff Login">
+       <Button fx:id="Waiterloginbtn" layoutX="674.0" layoutY="7.0" mnemonicParsing="false" onAction="#WaiterloginButton" prefHeight="30" prefWidth="112.0" text="Staff Login">
           <font>
             <Font size="10" />
           </font>
        </Button>
-      <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="800.0" text="Oaxaca Menu. Click anywhere to begin">
+      <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" text="Oaxaca Menu. Click anywhere to begin">
          <font>
             <Font size="18.0" />
          </font>
