@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -338,7 +339,7 @@ public class ViewCustomerInterface extends Application {
     Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/CheckoutView.fxml"));
     Scene checkoutViewScene = new Scene(checkoutViewParent, 800, 800);
     // This line gets the Stage information
-    Stage window =  (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
     window.setScene(checkoutViewScene);
     window.show();
@@ -368,6 +369,7 @@ public class ViewCustomerInterface extends Application {
       Float price = Float.parseFloat(totalPrice.getText().split(" ")[1]);
       price = price + (Float.parseFloat(selected.getPrice().getText().split("£")[1])
           * quantitySpinner.getValue());
+      price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
       totalPrice.setText("£ " + price + "0");
     }
     quantitySpinner.getValueFactory().setValue(1);
@@ -386,7 +388,7 @@ public class ViewCustomerInterface extends Application {
       addSideItem(item.getName());
       return item;
     } else if (Tab.getText().equals("Drinks")) {
-      ListViewItem item = SidesListView.getSelectionModel().getSelectedItem();
+      ListViewItem item = DrinksListView.getSelectionModel().getSelectedItem();
       addDrinkItem(item.getName());
       return item;
     }

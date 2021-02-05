@@ -7,7 +7,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataCheck {
-
   private final static String user = "vnxcaquwfcdcmx";
   private final static String password =
       "57a2d6d4bc061d9a386aaa5352bac1ac7cfc1744b1b7e46318519a73c7dfa547";
