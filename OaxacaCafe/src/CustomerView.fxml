@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
       <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="648.0" prefWidth="410.0" style="-fx-background-color: blue;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
         <tabs>
@@ -140,10 +140,17 @@
             <Font size="10" />
           </font>
        </Button>
-      <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" text="Oaxaca Menu. Click anywhere to begin">
+      <Button fx:id="StartButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #fbc02d;">
          <font>
             <Font size="18.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="779.0" fitWidth="780.0">
+               <image>
+                  <Image url="@images/OX%20Cafe%20(800).png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </Pane>
