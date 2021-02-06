@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
       <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="648.0" prefWidth="410.0" style="-fx-background-color: blue;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
         <tabs>
@@ -44,6 +45,9 @@
                            </children>
                         </AnchorPane>
                      </content>
+                     <effect>
+                        <Glow />
+                     </effect>
                   </ScrollPane>
                </content>
             </Tab>
@@ -62,18 +66,18 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Spinner fx:id="quantitySpinner" layoutX="423.0" layoutY="148.0" prefHeight="28.0" prefWidth="76.0" />
-      <ScrollPane layoutX="417.0" layoutY="177.0" prefHeight="612.0" prefWidth="377.0">
+      <Spinner fx:id="quantitySpinner" layoutX="423.0" layoutY="148.0" prefHeight="28.0" prefWidth="76.0" style="-fx-background-color: red;" />
+      <ScrollPane layoutX="417.0" layoutY="177.0" prefHeight="612.0" prefWidth="377.0" style="-fx-background-color: green;">
          <content>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="376.0">
                <children>
                   <ListView fx:id="BasketView" layoutX="4.0" layoutY="4.0" prefHeight="558.0" prefWidth="325.0" />
-                  <Label alignment="CENTER_RIGHT" layoutX="211.0" layoutY="568.0" prefHeight="28.0" prefWidth="60.0" text="TOTAL:">
+                  <Label alignment="CENTER_RIGHT" layoutX="211.0" layoutY="568.0" prefHeight="28.0" prefWidth="60.0" text="TOTAL:" textFill="#208c35">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="checkoutBtn" layoutX="7.0" layoutY="565.0" mnemonicParsing="false" onAction="#checkoutButtonPushed" prefHeight="17.0" prefWidth="204.0" text="Checkout">
+                  <Button fx:id="checkoutBtn" layoutX="7.0" layoutY="565.0" mnemonicParsing="false" onAction="#checkoutButtonPushed" prefHeight="17.0" prefWidth="204.0" text="Checkout" textFill="#35966f">
                      <font>
                         <Font name="Comic Sans MS Bold" size="14.0" />
                      </font>
@@ -98,7 +102,10 @@
             <Font name="Jokerman" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="addItemBtn" layoutX="506.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleAddItemButton" prefHeight="28.0" prefWidth="139.0" text="Add Item/s" />
+      <Button fx:id="addItemBtn" layoutX="506.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleAddItemButton" prefHeight="28.0" prefWidth="139.0" text="Add Item/s" textFill="#23b059">
+         <font>
+            <Font name="X-Files" size="12.0" />
+         </font></Button>
       <Pane layoutX="9.0" layoutY="2.0" prefHeight="151.0" prefWidth="377.0">
          <children>
             <ComboBox fx:id="filterBoxMain" layoutX="185.0" layoutY="40.0" onAction="#filterChangeMain" prefHeight="25.0" prefWidth="139.0" promptText="Filter" />
