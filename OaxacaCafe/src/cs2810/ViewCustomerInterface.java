@@ -124,7 +124,7 @@ public class ViewCustomerInterface extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
-    Scene scene = new Scene(root, 800, 800);
+    Scene scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();
 

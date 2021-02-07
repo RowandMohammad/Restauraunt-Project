@@ -29,7 +29,7 @@ public class WaiterloginController {
 	@FXML
 	void changeScreenButtonPushed(ActionEvent event) throws IOException {
 		Parent menuViewParent = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
-		Scene menuViewScene = new Scene(menuViewParent, 800, 800);
+		Scene menuViewScene = new Scene(menuViewParent);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(menuViewScene);
 		window.show();
@@ -37,7 +37,7 @@ public class WaiterloginController {
 
 	void changeScreenLoginCorrect(ActionEvent event) throws IOException {
 		Parent waiterViewParent = FXMLLoader.load(getClass().getResource("/WaiterView.fxml"));
-		Scene waiterViewScene = new Scene(waiterViewParent, 800, 800);
+		Scene waiterViewScene = new Scene(waiterViewParent);
 
 		// This line gets the Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
