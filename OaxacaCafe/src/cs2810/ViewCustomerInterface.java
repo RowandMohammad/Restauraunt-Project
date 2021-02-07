@@ -44,7 +44,8 @@ public class ViewCustomerInterface extends Application {
 
 
   MenuMain main = new MenuMain();
-  ArrayList<Menu_Item> basketItems = new ArrayList<Menu_Item>();
+  private Basket basket = new Basket();
+  ArrayList<Menu_Item> basketItems = basket.getList();
 
   @FXML
   private TabPane tabPane;
@@ -473,4 +474,9 @@ public class ViewCustomerInterface extends Application {
         return u;
     return null;
   }
+  
+  public ArrayList<Menu_Item> getList() {
+      return basketItems;
+  }
 }
+

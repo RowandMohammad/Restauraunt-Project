@@ -1,6 +1,7 @@
 package cs2810;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,25 +16,27 @@ import javafx.stage.Stage;
 
 public class WaiterViewController {
 
-    @FXML
-    private ListView<?> PendingOrdersView;
+	MenuMain main = new MenuMain();
+	private Basket basket = new Basket();
+	ArrayList<Menu_Item> basketItems = basket.getList();
+	@FXML
+	private ListView<?> PendingOrdersView;
 
-    @FXML
-    private ListView<?> OrdersToDeliverView;
+	@FXML
+	private ListView<?> OrdersToDeliverView;
 
-    @FXML
-    private Button BackToOrdering;
+	@FXML
+	private Button BackToOrdering;
 
-    @FXML
-    private Label UserLabel;
+	@FXML
+	private Label UserLabel;
 
-    @FXML
-    void BackToOrderingPressed(ActionEvent event) throws IOException {
+	@FXML
+	void BackToOrderingPressed(ActionEvent event) throws IOException {
 		Parent menuViewParent = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
 		Scene menuViewScene = new Scene(menuViewParent);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(menuViewScene);
 		window.show();
 	}
-
 }
