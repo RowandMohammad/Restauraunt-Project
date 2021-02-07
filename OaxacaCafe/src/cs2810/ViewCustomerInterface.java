@@ -124,7 +124,7 @@ public class ViewCustomerInterface extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
-    Scene scene = new Scene(root, 800, 800);
+    Scene scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();
 
@@ -338,7 +338,7 @@ public class ViewCustomerInterface extends Application {
   @FXML
   void checkoutButtonPushed(ActionEvent event) throws IOException {
     Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/CheckoutView.fxml"));
-    Scene checkoutViewScene = new Scene(checkoutViewParent, 800, 800);
+    Scene checkoutViewScene = new Scene(checkoutViewParent);
     // This line gets the Stage information
     Stage window =  (Stage) ((Node) event.getSource()).getScene().getWindow();
 

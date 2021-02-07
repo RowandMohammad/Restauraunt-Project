@@ -30,7 +30,7 @@ public class WaiterViewController {
     @FXML
     void BackToOrderingPressed(ActionEvent event) throws IOException {
 		Parent menuViewParent = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
-		Scene menuViewScene = new Scene(menuViewParent, 800, 800);
+		Scene menuViewScene = new Scene(menuViewParent);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(menuViewScene);
 		window.show();
