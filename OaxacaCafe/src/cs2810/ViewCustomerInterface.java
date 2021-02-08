@@ -32,14 +32,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-public class ViewCustomerInterface extends Application {
+public class ViewCustomerInterface{
 
   static ArrayList<User> list = new ArrayList<User>();
 
-  public static void main(String[] args) {
-    LoadUser();
-    launch(args);
-  }
 
   String select = "";
 
@@ -115,6 +111,7 @@ public class ViewCustomerInterface extends Application {
   // Handles starting the menu
   @FXML
   void StartButtonPressed(ActionEvent event) throws IOException {
+    LoadUser();
     StartButton.setDisable(true);
     StartButton.setVisible(false);
     populateMenu();
@@ -122,14 +119,7 @@ public class ViewCustomerInterface extends Application {
 
   }
 
-  @Override
-  public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
-    Scene scene = new Scene(root, 800, 800);
-    primaryStage.setScene(scene);
-    primaryStage.show();
-
-  }
+  
 
   @FXML
   public void initialize() {
@@ -336,13 +326,13 @@ public class ViewCustomerInterface extends Application {
 
   @FXML
   void checkoutButtonPushed(ActionEvent event) throws IOException {
-    Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/CheckoutView.fxml"));
-    Scene checkoutViewScene = new Scene(checkoutViewParent, 800, 800);
-    // This line gets the Stage information
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
+    Parent root = loader.load();
+    CheckoutViewController controller = loader.getController();
 
-    window.setScene(checkoutViewScene);
-    window.show();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root));
+    stage.show();
 
   }
 
@@ -436,13 +426,13 @@ public class ViewCustomerInterface extends Application {
 
   @FXML
   void WaiterloginButton(ActionEvent event) throws IOException {
-    Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/Waiterlogin.fxml"));
-    Scene checkoutViewScene = new Scene(checkoutViewParent, 400, 400);
-    // This line gets the Stage information
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
+    Parent root = loader.load();
+    WaiterloginController controller = loader.getController();
 
-    window.setScene(checkoutViewScene);
-    window.show();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root));
+    stage.show();
 
   }
 

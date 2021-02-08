@@ -25,25 +25,24 @@ public class WaiterloginController {
 	private Button clear;
 	@FXML
 	private Button login;
+	
+	@FXML
+    private Button backToOrder;
 
 	@FXML
 	void changeScreenButtonPushed(ActionEvent event) throws IOException {
-		Parent menuViewParent = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
-		Scene menuViewScene = new Scene(menuViewParent, 800, 800);
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		window.setScene(menuViewScene);
-		window.show();
+	  Stage stage = (Stage) backToOrder.getScene().getWindow();
+	  stage.close();
 	}
 
 	void changeScreenLoginCorrect(ActionEvent event) throws IOException {
-		Parent waiterViewParent = FXMLLoader.load(getClass().getResource("/WaiterView.fxml"));
-		Scene waiterViewScene = new Scene(waiterViewParent, 800, 800);
+	  FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterView.fxml"));
+      Parent root = loader.load();
+      WaiterViewController controller = loader.getController();
 
-		// This line gets the Stage information
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-		window.setScene(waiterViewScene);
-		window.show();
+      Stage stage = new Stage();
+      stage.setScene(new Scene(root));
+      stage.show();
 	}
 
 	@FXML
@@ -60,6 +59,8 @@ public class WaiterloginController {
 			alert.setHeaderText(null);
 			alert.setContentText("Login successful");
 			alert.showAndWait();
+			Stage stage = (Stage) login.getScene().getWindow();
+		    stage.close();
 			changeScreenLoginCorrect(event);
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);

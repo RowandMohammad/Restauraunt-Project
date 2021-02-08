@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.CheckoutViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.CheckoutViewController">
    <children>
       <Label layoutX="341.0" layoutY="14.0" prefHeight="78.0" prefWidth="140.0" text="Checkout">
          <font>
             <Font name="Arial Bold Italic" size="28.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="42.0" prefWidth="118.0" text="&lt;---  Back to order" />
+      <Button fx:id="backToOrder" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="42.0" prefWidth="118.0" text="&lt;---  Back to order" />
       <ScrollPane layoutX="509.0" layoutY="202.0" prefHeight="405.0" prefWidth="273.0">
          <content>
             <AnchorPane prefHeight="404.0" prefWidth="274.0">
@@ -30,5 +30,6 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
+      <Button layoutX="285.0" layoutY="656.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="252.0" text="Click to Confirm Order" />
    </children>
 </Pane>
