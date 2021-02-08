@@ -35,7 +35,8 @@ import javafx.stage.Stage;
 public class ViewCustomerInterface{
 
   static ArrayList<User> list = new ArrayList<User>();
-
+  
+  ArrayList<ArrayList<Menu_Item>> pendingOrders = new ArrayList<ArrayList<Menu_Item>>();
 
   String select = "";
 
@@ -326,13 +327,22 @@ public class ViewCustomerInterface{
 
   @FXML
   void checkoutButtonPushed(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
-    Parent root = loader.load();
-    CheckoutViewController controller = loader.getController();
+    if (basketItems.size() != 0) {
+      pendingOrders.add(basketItems);
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
+      Parent root = loader.load();
+      CheckoutViewController controller = loader.getController();
 
-    Stage stage = new Stage();
-    stage.setScene(new Scene(root));
-    stage.show();
+      Stage stage = new Stage();
+      stage.setScene(new Scene(root));
+      stage.show();
+      
+    }
+    else{
+      System.out.println("Basket is empty");
+    }
+    
+    
 
   }
 
@@ -363,6 +373,10 @@ public class ViewCustomerInterface{
       totalPrice.setText("£ " + price + "0");
     }
     quantitySpinner.getValueFactory().setValue(1);
+    
+    for (int i =0; i < basketItems.size(); i++) {
+      System.out.println(basketItems.get(i));
+    }
 
   }
 
@@ -429,7 +443,7 @@ public class ViewCustomerInterface{
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
     Parent root = loader.load();
     WaiterloginController controller = loader.getController();
-
+    controller.getPendingOrders(pendingOrders);
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();

@@ -4,6 +4,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 
 public class WaiterloginController {
-
+  ArrayList<ArrayList<Menu_Item>> pendingOrders;
 	@FXML
 	private TextField userAccount;
 	@FXML
@@ -39,10 +40,14 @@ public class WaiterloginController {
 	  FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterView.fxml"));
       Parent root = loader.load();
       WaiterViewController controller = loader.getController();
-
+      controller.populatePending(pendingOrders);
       Stage stage = new Stage();
       stage.setScene(new Scene(root));
       stage.show();
+	}
+	
+	public void getPendingOrders(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
+	  this.pendingOrders = pendingOrders;
 	}
 
 	@FXML
