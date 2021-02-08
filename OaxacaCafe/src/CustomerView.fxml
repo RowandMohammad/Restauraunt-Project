@@ -171,7 +171,12 @@
             <Image url="@images/filter.png" />
          </image>
       </ImageView>
-      <Button fx:id="StartButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #fbc02d;" visible="false">
+      <ImageView fitHeight="113.0" fitWidth="258.0" layoutX="598.0" layoutY="42.0">
+         <image>
+            <Image url="@images/basket_chilli%20(1).png" />
+         </image>
+      </ImageView>
+      <Button fx:id="StartButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #fbc02d;">
          <font>
             <Font size="18.0" />
          </font>
