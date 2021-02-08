@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
       <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="648.0" prefWidth="522.0" style="-fx-background-color: #e6e6e6;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
         <tabs>
@@ -102,6 +102,11 @@
          <font>
             <Font name="X-Files" size="12.0" />
          </font></Button>
+      <ImageView fitHeight="113.0" fitWidth="200.0" layoutX="322.0" layoutY="6.0">
+         <image>
+            <Image url="@images/Basket%20(1).png" />
+         </image>
+      </ImageView>
       <Pane layoutX="9.0" layoutY="2.0" prefHeight="151.0" prefWidth="377.0">
          <children>
             <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="285.0" layoutY="95.0">
@@ -164,6 +169,11 @@
       <ImageView fitHeight="25.0" fitWidth="20.0" layoutX="471.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/filter.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="113.0" fitWidth="258.0" layoutX="598.0" layoutY="42.0">
+         <image>
+            <Image url="@images/basket_chilli%20(1).png" />
          </image>
       </ImageView>
       <Button fx:id="StartButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #fbc02d;">
