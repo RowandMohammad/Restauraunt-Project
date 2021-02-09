@@ -11,34 +11,35 @@ import javafx.stage.Stage;
 
 public class WaiterViewController {
 
-    @FXML
-    private ListView<String> PendingOrdersView;
+	@FXML
+	private ListView<String> PendingOrdersView;
 
-    @FXML
-    private ListView<String> OrdersToDeliverView;
+	@FXML
+	private ListView<String> OrdersToDeliverView;
 
-    @FXML
-    private Button BackToOrdering;
-    @FXML
-    private Label UserLabel;
+	@FXML
+	private Button BackToOrdering;
+	@FXML
+	private Label UserLabel;
 
-    @FXML
-    void BackToOrderingPressed(ActionEvent event) throws IOException {
-      Stage stage = (Stage) BackToOrdering.getScene().getWindow();
-      stage.close();
+	@FXML
+	void BackToOrderingPressed(ActionEvent event) throws IOException {
+		Stage stage = (Stage) BackToOrdering.getScene().getWindow();
+		stage.close();
 	}
-    
-    public void populatePending(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
-      for (int i = 0; i < pendingOrders.size(); i++) {
-        System.out.println("Order:");
-        String fullOrder = "";
-        for (int j = 0; j < pendingOrders.get(i).size(); j++) {
-          fullOrder = fullOrder + pendingOrders.get(i).get(j).name + "\n";
-        }
-        PendingOrdersView.getItems().add(fullOrder);
-        
-      }
-      
-    }
+
+	public void populatePending(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
+		for (int i = 0; i < pendingOrders.size(); i++) {
+			System.out.println("Order:");
+			String fullOrder = "";
+
+			for (int j = 0; j < pendingOrders.get(i).size(); j++) {
+				fullOrder = fullOrder + pendingOrders.get(i).get(j).name + "\n";
+			}
+			PendingOrdersView.getItems().add(fullOrder);
+			PendingOrdersView.setCellFactory(param -> new CancelOrder());
+
+		}
+	}
 
 }
