@@ -14,7 +14,7 @@ public class XCellDelete extends ListCell<String> {
   Button button = new Button("X");
 
   public XCellDelete(ViewCustomerInterface VCI) {
-
+    super();
 
     hbox.getChildren().addAll(label, pane, button);
     HBox.setHgrow(pane, Priority.ALWAYS);
