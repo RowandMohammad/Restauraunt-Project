@@ -2,10 +2,12 @@ package cs2810;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,9 @@ public class PendingOrderViewItem extends HBox {
     private Button confirmButton;
     private Label orderDetailLabel;
 
+    private WaiterViewController parentController;
+    private int index;
+    private boolean isPending;
     /**
      * No default initialization allowed
      */
@@ -30,7 +35,11 @@ public class PendingOrderViewItem extends HBox {
      * Parametrized constructor for initializing new order view object
      * @param orderDetails:  List of items selected for order
      */
-    public PendingOrderViewItem(ArrayList<Menu_Item> orderDetails) {
+    public PendingOrderViewItem(WaiterViewController parentController, ArrayList<Menu_Item> orderDetails,
+                                int index, boolean isPending) {
+        this.parentController = parentController;
+        this.index = index;
+        this.isPending = isPending;
         this.orderDetails = orderDetails;
         this.setUpView();
         this.setupCallback();
@@ -40,12 +49,13 @@ public class PendingOrderViewItem extends HBox {
      * Utility function for initializing view
      */
     private void setUpView() {
-        this.setAlignment(Pos.CENTER);
+        this.setAlignment(Pos.CENTER_LEFT);
         this.confirmButton = new Button("Confirm");
+        HBox.setMargin(this.confirmButton, new Insets(0, 0,0,300));
         this.orderDetailLabel = new Label();
         String orderDetail = "";
         for (Menu_Item menuItem : orderDetails) {
-            orderDetail+= menuItem.name;
+            orderDetail+= menuItem.name+"\n";
         }
         this.orderDetailLabel.setText(orderDetail);
         this.getChildren().addAll(orderDetailLabel, confirmButton);
@@ -58,7 +68,10 @@ public class PendingOrderViewItem extends HBox {
         this.confirmButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //@TODO implement a strategy to Confirm order
+                if(isPending)
+                    parentController.confirmOrder(index);
+                else
+                    parentController.deliverOrder(index);
             }
         });
     }
@@ -84,5 +97,29 @@ public class PendingOrderViewItem extends HBox {
      */
     public void setOrderDetails(ArrayList<Menu_Item> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public WaiterViewController getParentController() {
+        return parentController;
+    }
+
+    public void setParentController(WaiterViewController parentController) {
+        this.parentController = parentController;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public boolean isPending() {
+        return isPending;
+    }
+
+    public void setPending(boolean pending) {
+        isPending = pending;
     }
 }
