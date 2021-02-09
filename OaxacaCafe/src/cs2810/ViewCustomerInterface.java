@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -17,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -32,17 +30,17 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-public class ViewCustomerInterface{
+public class ViewCustomerInterface {
 
   static ArrayList<User> list = new ArrayList<User>();
-  
+
   ArrayList<ArrayList<Menu_Item>> pendingOrders = new ArrayList<ArrayList<Menu_Item>>();
 
   String select = "";
 
 
   MenuMain main = new MenuMain();
-  ArrayList<Menu_Item> basketItems = new ArrayList<Menu_Item>();
+  private ArrayList<Menu_Item> basketItems = new ArrayList<Menu_Item>();
 
   @FXML
   private TabPane tabPane;
@@ -120,7 +118,7 @@ public class ViewCustomerInterface{
 
   }
 
-  
+
 
   @FXML
   public void initialize() {
@@ -332,17 +330,18 @@ public class ViewCustomerInterface{
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
       Parent root = loader.load();
       CheckoutViewController controller = loader.getController();
+      controller.populateCheckout(basketItems,
+          Float.parseFloat(totalPrice.getText().split(" ")[1]));
 
       Stage stage = new Stage();
       stage.setScene(new Scene(root));
       stage.show();
-      
-    }
-    else{
+
+    } else {
       System.out.println("Basket is empty");
     }
-    
-    
+
+
 
   }
 
@@ -362,7 +361,8 @@ public class ViewCustomerInterface{
       }
       x++;
     }
-    BasketView.getItems().add((name + ", " + (quantitySpinner.getValue() + num)));
+    BasketView.getItems().add(
+        (name + ", " + (quantitySpinner.getValue() + num) + ", " + selected.getPrice().getText()));
     BasketView.setCellFactory(param -> new XCellDelete(this));
     // had cost showing correctly
     if (quantitySpinner.getValue() != 0) {
@@ -370,11 +370,11 @@ public class ViewCustomerInterface{
       price = price + (Float.parseFloat(selected.getPrice().getText().split("£")[1])
           * quantitySpinner.getValue());
       price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-      totalPrice.setText("£ " + price + "0");
+      setTotalPrice(price);
     }
     quantitySpinner.getValueFactory().setValue(1);
-    
-    for (int i =0; i < basketItems.size(); i++) {
+
+    for (int i = 0; i < basketItems.size(); i++) {
       System.out.println(basketItems.get(i));
     }
 
@@ -423,8 +423,8 @@ public class ViewCustomerInterface{
     }
   }
 
-  void setTotalPrice(String text) {
-    totalPrice.setText("£ " + text);
+  void setTotalPrice(float price) {
+    totalPrice.setText("£ " + price + "");
   }
 
   Float getTotalPrice() {
@@ -432,9 +432,23 @@ public class ViewCustomerInterface{
   }
 
   void delete(String text) {
+    System.out.print(text);
+    String name = text.split(", ")[0];
+    int num = Integer.parseInt(text.split(", ")[1]);
+    float price = getTotalPrice();
+    for (int x = 0; x < basketItems.size(); x++) {
+      while (num > 0) {
+        if (basketItems.get(x).name.equals(name)) {
+          price = price - (float) basketItems.get(x).price;
+          basketItems.remove(x);
+          num--;
+        }
+      }
+    }
     // setTotalPrice((getTotalPrice()
     // - (Float.parseFloat(***InsertMethodToFindPriceOfItemFromBasket***.split(", ")[1])) *
     // Float.parseFloat(text.split(", ")[1])) + "");
+    setTotalPrice(price);
     BasketView.getItems().remove(text);
   }
 
@@ -443,7 +457,7 @@ public class ViewCustomerInterface{
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
     Parent root = loader.load();
     WaiterloginController controller = loader.getController();
-    controller.getPendingOrders(pendingOrders);
+    controller.setPendingOrders(pendingOrders);
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();
@@ -476,5 +490,9 @@ public class ViewCustomerInterface{
       if (u.getAccount().equalsIgnoreCase(account))
         return u;
     return null;
+  }
+
+  public ArrayList<Menu_Item> getBasketItems() {
+    return basketItems;
   }
 }
