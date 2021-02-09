@@ -40,7 +40,8 @@ public class ViewCustomerInterface {
 
 
   MenuMain main = new MenuMain();
-  private ArrayList<Menu_Item> basketItems = new ArrayList<Menu_Item>();
+  private Basket basket = new Basket();
+  ArrayList<Menu_Item> basketItems = basket.getList();
 
   @FXML
   private TabPane tabPane;
