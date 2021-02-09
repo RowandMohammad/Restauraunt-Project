@@ -2,13 +2,8 @@ package cs2810;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -16,27 +11,34 @@ import javafx.stage.Stage;
 
 public class WaiterViewController {
 
-	MenuMain main = new MenuMain();
-	private Basket basket = new Basket();
-	ArrayList<Menu_Item> basketItems = basket.getList();
-	@FXML
-	private ListView<?> PendingOrdersView;
+    @FXML
+    private ListView<String> PendingOrdersView;
 
-	@FXML
-	private ListView<?> OrdersToDeliverView;
+    @FXML
+    private ListView<String> OrdersToDeliverView;
 
-	@FXML
-	private Button BackToOrdering;
+    @FXML
+    private Button BackToOrdering;
+    @FXML
+    private Label UserLabel;
 
-	@FXML
-	private Label UserLabel;
-
-	@FXML
-	void BackToOrderingPressed(ActionEvent event) throws IOException {
-		Parent menuViewParent = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
-		Scene menuViewScene = new Scene(menuViewParent);
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		window.setScene(menuViewScene);
-		window.show();
+    @FXML
+    void BackToOrderingPressed(ActionEvent event) throws IOException {
+      Stage stage = (Stage) BackToOrdering.getScene().getWindow();
+      stage.close();
 	}
+    
+    public void populatePending(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
+      for (int i = 0; i < pendingOrders.size(); i++) {
+        System.out.println("Order:");
+        String fullOrder = "";
+        for (int j = 0; j < pendingOrders.get(i).size(); j++) {
+          fullOrder = fullOrder + pendingOrders.get(i).get(j).name + "\n";
+        }
+        PendingOrdersView.getItems().add(fullOrder);
+        
+      }
+      
+    }
+
 }

@@ -5,10 +5,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,21 +30,17 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-public class ViewCustomerInterface extends Application {
+public class ViewCustomerInterface {
 
   static ArrayList<User> list = new ArrayList<User>();
 
-  public static void main(String[] args) {
-    LoadUser();
-    launch(args);
-  }
+  ArrayList<ArrayList<Menu_Item>> pendingOrders = new ArrayList<ArrayList<Menu_Item>>();
 
   String select = "";
 
 
   MenuMain main = new MenuMain();
-  private Basket basket = new Basket();
-  ArrayList<Menu_Item> basketItems = basket.getList();
+  private ArrayList<Menu_Item> basketItems = new ArrayList<Menu_Item>();
 
   @FXML
   private TabPane tabPane;
@@ -115,6 +110,7 @@ public class ViewCustomerInterface extends Application {
   // Handles starting the menu
   @FXML
   void StartButtonPressed(ActionEvent event) throws IOException {
+    LoadUser();
     StartButton.setDisable(true);
     StartButton.setVisible(false);
     populateMenu();
@@ -122,14 +118,7 @@ public class ViewCustomerInterface extends Application {
 
   }
 
-  @Override
-  public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
-    Scene scene = new Scene(root);
-    primaryStage.setScene(scene);
-    primaryStage.show();
 
-  }
 
   @FXML
   public void initialize() {
@@ -240,8 +229,6 @@ public class ViewCustomerInterface extends Application {
     }
   }
 
-  
-  
 
   @FXML
   void filterChangeSides(ActionEvent event) {
@@ -338,13 +325,23 @@ public class ViewCustomerInterface extends Application {
 
   @FXML
   void checkoutButtonPushed(ActionEvent event) throws IOException {
-    Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/CheckoutView.fxml"));
-    Scene checkoutViewScene = new Scene(checkoutViewParent);
-    // This line gets the Stage information
-    Stage window =  (Stage) ((Node) event.getSource()).getScene().getWindow();
+    if (basketItems.size() != 0) {
+      pendingOrders.add(basketItems);
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
+      Parent root = loader.load();
+      CheckoutViewController controller = loader.getController();
+      controller.populateCheckout(basketItems,
+          Float.parseFloat(totalPrice.getText().split(" ")[1]));
 
-    window.setScene(checkoutViewScene);
-    window.show();
+      Stage stage = new Stage();
+      stage.setScene(new Scene(root));
+      stage.show();
+
+    } else {
+      System.out.println("Basket is empty");
+    }
+
+
 
   }
 
@@ -364,16 +361,22 @@ public class ViewCustomerInterface extends Application {
       }
       x++;
     }
-    BasketView.getItems().add((name + ", " + (quantitySpinner.getValue() + num)));
+    BasketView.getItems().add(
+        (name + ", " + (quantitySpinner.getValue() + num) + ", " + selected.getPrice().getText()));
     BasketView.setCellFactory(param -> new XCellDelete(this));
     // had cost showing correctly
     if (quantitySpinner.getValue() != 0) {
       Float price = Float.parseFloat(totalPrice.getText().split(" ")[1]);
       price = price + (Float.parseFloat(selected.getPrice().getText().split("£")[1])
           * quantitySpinner.getValue());
-      totalPrice.setText("£ " + price + "0");
+      price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+      setTotalPrice(price);
     }
     quantitySpinner.getValueFactory().setValue(1);
+
+    for (int i = 0; i < basketItems.size(); i++) {
+      System.out.println(basketItems.get(i));
+    }
 
   }
 
@@ -389,7 +392,7 @@ public class ViewCustomerInterface extends Application {
       addSideItem(item.getName());
       return item;
     } else if (Tab.getText().equals("Drinks")) {
-      ListViewItem item = SidesListView.getSelectionModel().getSelectedItem();
+      ListViewItem item = DrinksListView.getSelectionModel().getSelectedItem();
       addDrinkItem(item.getName());
       return item;
     }
@@ -420,8 +423,8 @@ public class ViewCustomerInterface extends Application {
     }
   }
 
-  void setTotalPrice(String text) {
-    totalPrice.setText("£ " + text);
+  void setTotalPrice(float price) {
+    totalPrice.setText("£ " + price + "");
   }
 
   Float getTotalPrice() {
@@ -429,21 +432,35 @@ public class ViewCustomerInterface extends Application {
   }
 
   void delete(String text) {
+    System.out.print(text);
+    String name = text.split(", ")[0];
+    int num = Integer.parseInt(text.split(", ")[1]);
+    float price = getTotalPrice();
+    for (int x = 0; x < basketItems.size(); x++) {
+      while (num > 0) {
+        if (basketItems.get(x).name.equals(name)) {
+          price = price - (float) basketItems.get(x).price;
+          basketItems.remove(x);
+          num--;
+        }
+      }
+    }
     // setTotalPrice((getTotalPrice()
     // - (Float.parseFloat(***InsertMethodToFindPriceOfItemFromBasket***.split(", ")[1])) *
     // Float.parseFloat(text.split(", ")[1])) + "");
+    setTotalPrice(price);
     BasketView.getItems().remove(text);
   }
 
   @FXML
   void WaiterloginButton(ActionEvent event) throws IOException {
-    Parent checkoutViewParent = FXMLLoader.load(getClass().getResource("/Waiterlogin.fxml"));
-    Scene checkoutViewScene = new Scene(checkoutViewParent, 400, 400);
-    // This line gets the Stage information
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-    window.setScene(checkoutViewScene);
-    window.show();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
+    Parent root = loader.load();
+    WaiterloginController controller = loader.getController();
+    controller.setPendingOrders(pendingOrders);
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root));
+    stage.show();
 
   }
 
@@ -474,9 +491,8 @@ public class ViewCustomerInterface extends Application {
         return u;
     return null;
   }
-  
-  public ArrayList<Menu_Item> getList() {
-      return basketItems;
+
+  public ArrayList<Menu_Item> getBasketItems() {
+    return basketItems;
   }
 }
-
