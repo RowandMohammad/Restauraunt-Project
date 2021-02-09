@@ -18,8 +18,7 @@ public class XCellDelete extends ListCell<String> {
 
     hbox.getChildren().addAll(label, pane, button);
     HBox.setHgrow(pane, Priority.ALWAYS);
-    button.setOnAction(event -> getListView().getItems().remove(getItem()));
-    button.setOnAction(event -> VCI.delete(getItem()));
+    button.setOnAction(event -> VCI.delete(label.getText()));
 
   }
 

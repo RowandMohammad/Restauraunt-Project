@@ -1,4 +1,4 @@
-  
+
 package cs2810;
 
 public class Menu_Item {
@@ -9,8 +9,9 @@ public class Menu_Item {
   String type;
   boolean available;
   String[] dietaryRequirements;
-  
-  public Menu_Item(String name, int calories, String[] ingredients, double price, String type, boolean available, String[] dietaryRequirements) {
+
+  public Menu_Item(String name, int calories, String[] ingredients, double price, String type,
+      boolean available, String[] dietaryRequirements) {
     this.name = name;
     this.type = type;
     this.price = price;
@@ -19,7 +20,15 @@ public class Menu_Item {
     this.ingredients = ingredients;
     this.dietaryRequirements = dietaryRequirements;
   }
-  
-  
+
+  public void Clone(Menu_Item item) {
+    // cloneList calls Clone() to clone each individual item
+  }
+
+  public void cloneList() {
+    // method to clone arraylist of menu_item without pointing to same objects
+
+  }
+
 
 }
