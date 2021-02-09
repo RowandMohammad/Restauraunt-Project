@@ -1,0 +1,7 @@
+Order Number:
+Food Ordered:
+TotalPrice:
+Time Ordered:
+ETA:
+Table:
+

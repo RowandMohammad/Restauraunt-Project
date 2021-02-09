@@ -8,21 +8,24 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
-      <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="648.0" prefWidth="410.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
+      <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="648.0" prefWidth="522.0" style="-fx-background-color: blue;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
         <tabs>
           <Tab fx:id="mainTab" text="Main Menu">
                <content>
-                  <ScrollPane prefHeight="616.0" prefWidth="410.0">
+                  <ScrollPane prefHeight="618.0" prefWidth="466.0">
                      <content>
-                        <AnchorPane prefHeight="647.0" prefWidth="385.0">
+                        <AnchorPane prefHeight="647.0" prefWidth="443.0">
                            <children>
                               <ListView fx:id="MainListView" layoutX="14.0" layoutY="13.0" prefHeight="585.0" prefWidth="359.0" />
                            </children>
@@ -33,11 +36,11 @@
             </Tab>
           <Tab fx:id="sidesTab" text="Sides">
                <content>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane prefHeight="618.0" prefWidth="466.0">
                      <content>
-                        <AnchorPane prefHeight="552.0" prefWidth="394.0">
+                        <AnchorPane prefHeight="467.0" prefWidth="385.0">
                            <children>
-                              <ListView fx:id="SidesListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="368.0" />
+                              <ListView fx:id="SidesListView" layoutX="14.0" layoutY="12.0" prefHeight="585.0" prefWidth="359.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -46,11 +49,11 @@
             </Tab>
             <Tab fx:id="drinksTab" text="Drinks">
                <content>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane prefHeight="618.0" prefWidth="466.0">
                      <content>
-                        <AnchorPane prefHeight="552.0" prefWidth="394.0">
+                        <AnchorPane prefHeight="467.0" prefWidth="385.0">
                            <children>
-                              <ListView fx:id="DrinksListView" layoutX="14.0" layoutY="13.0" prefHeight="527.0" prefWidth="371.0" />
+                              <ListView fx:id="DrinksListView" layoutX="14.0" layoutY="13.0" prefHeight="585.0" prefWidth="359.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -59,18 +62,18 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Spinner fx:id="quantitySpinner" layoutX="423.0" layoutY="148.0" prefHeight="28.0" prefWidth="76.0" />
-      <ScrollPane layoutX="417.0" layoutY="177.0" prefHeight="612.0" prefWidth="377.0">
+      <Spinner fx:id="quantitySpinner" layoutX="532.0" layoutY="160.0" prefHeight="28.0" prefWidth="76.0" style="-fx-background-color: red;" />
+      <ScrollPane layoutX="530.0" layoutY="189.0" prefHeight="612.0" prefWidth="377.0" style="-fx-background-color: green;">
          <content>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="376.0">
                <children>
-                  <ListView fx:id="BasketView" layoutX="4.0" layoutY="4.0" prefHeight="558.0" prefWidth="357.0" />
-                  <Label alignment="CENTER_RIGHT" layoutX="211.0" layoutY="568.0" prefHeight="28.0" prefWidth="60.0" text="TOTAL:">
+                  <ListView fx:id="BasketView" layoutX="4.0" layoutY="4.0" prefHeight="558.0" prefWidth="325.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="211.0" layoutY="568.0" prefHeight="28.0" prefWidth="60.0" text="TOTAL:" textFill="#208c35">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="checkoutBtn" layoutX="7.0" layoutY="565.0" mnemonicParsing="false" onAction="#checkoutButtonPushed" prefHeight="17.0" prefWidth="204.0" text="Checkout">
+                  <Button fx:id="checkoutBtn" layoutX="7.0" layoutY="565.0" mnemonicParsing="false" onAction="#checkoutButtonPushed" prefHeight="17.0" prefWidth="204.0" text="Checkout" textFill="#35966f">
                      <font>
                         <Font name="Comic Sans MS Bold" size="14.0" />
                      </font>
@@ -80,45 +83,100 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Label layoutX="424.0" layoutY="129.0" prefHeight="17.0" prefWidth="76.0" text="Quantity">
+      <Label layoutX="533.0" layoutY="139.0" prefHeight="17.0" prefWidth="76.0" text="Quantity">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <Label alignment="CENTER" layoutX="195.0" prefHeight="53.0" prefWidth="410.0" text="Menu" textAlignment="CENTER" underline="true">
          <font>
-            <Font size="24.0" />
+            <Font name="Jokerman" size="24.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="417.0" layoutY="76.0" prefHeight="53.0" prefWidth="377.0" text="Basket" textAlignment="CENTER" underline="true">
+      <Label alignment="CENTER" layoutX="472.0" layoutY="85.0" prefHeight="53.0" prefWidth="377.0" text="Basket" textAlignment="CENTER" underline="true">
          <font>
-            <Font size="24.0" />
+            <Font name="Jokerman" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="addItemBtn" layoutX="506.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleAddItemButton" prefHeight="28.0" prefWidth="139.0" text="Add Item/s" />
-      <Pane layoutX="179.0" layoutY="2.0" prefHeight="150.0" prefWidth="169.0">
+      <Button fx:id="addItemBtn" layoutX="754.0" layoutY="158.0" mnemonicParsing="false" onAction="#handleAddItemButton" prefHeight="28.0" prefWidth="139.0" text="Add Item/s" textFill="#23b059">
+         <font>
+            <Font name="X-Files" size="12.0" />
+         </font></Button>
+      <Pane layoutX="9.0" layoutY="2.0" prefHeight="151.0" prefWidth="377.0">
          <children>
-            <ComboBox fx:id="filterBoxSides" onAction="#filterChangeSides" prefWidth="150.0" promptText="Filter" visible="false" />
-            <ComboBox fx:id="filterBoxDrinks" onAction="#filterChangeDrinks" prefWidth="150.0" promptText="Filter" visible="false" />
-            <ComboBox fx:id="filterBoxMain" onAction="#filterChangeMain" prefWidth="150.0" promptText="Filter" />
-            <ImageView fitHeight="17.0" fitWidth="65.0" layoutX="108.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="285.0" layoutY="95.0">
                <image>
-                  <Image url="@/images/filter.png" />
+                  <Image url="@images/drink.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="157.0" layoutY="98.0">
+               <image>
+                  <Image url="@images/nachos.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="53.0" fitWidth="66.0" layoutX="25.0" layoutY="95.0">
+               <image>
+                  <Image url="@images/taco.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="44.0" layoutY="-5.0" prefHeight="40.0" prefWidth="76.0" text="Call waiter" textFill="WHITE">
+               <font>
+                  <Font name="Javanese Text" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="28.0" fitWidth="30.0" layoutX="9.0" layoutY="1.0">
+               <image>
+                  <Image url="@images/bell.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="CallingButton" layoutX="5.0" layoutY="4.0" onAction="#waiterButtonPressed" opacity="0.0" prefHeight="25.0" prefWidth="40.0" text="calling the waiter">
+      </Button>
          </children>
       </Pane>
-      <Button fx:id="CallingButton" onAction="#waiterButtonPressed" prefHeight="50" prefWidth="120" text="calling the waiter">
-      </Button>
-       <Button fx:id="Waiterloginbtn" layoutX="550" layoutY="10.0" mnemonicParsing="false" onAction="#WaiterloginButton" prefHeight="30" prefWidth="200" text="Staff Login">
+      <ImageView fitHeight="35.0" fitWidth="49.0" layoutX="849.0" layoutY="9.0">
+         <image>
+            <Image url="@images/padlock.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="783.0" layoutY="6.0" prefHeight="17.0" prefWidth="66.0" text="Staff login" textFill="WHITE">
+         <font>
+            <Font name="Javanese Text" size="14.0" />
+         </font>
+      </Label>
+       <Button fx:id="Waiterloginbtn" layoutX="849.0" layoutY="9.0" mnemonicParsing="false" onAction="#WaiterloginButton" opacity="0.0" prefHeight="35.0" prefWidth="49.0" style="-fx-background-color: #ffd54f;" text="Staff Login">
           <font>
-            <Font size="10" />
+            <Font name="Javanese Text" size="10.0" />
           </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
        </Button>
-      <Button fx:id="StartButton" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="800.0" text="Oaxaca Menu. Click anywhere to begin">
+      <ComboBox fx:id="filterBoxSides" layoutX="375.0" layoutY="228.0" onAction="#filterChangeSides" prefHeight="25.0" prefWidth="130.0" promptText="Filter" visible="false" />
+      <ComboBox fx:id="filterBoxDrinks" layoutX="375.0" layoutY="228.0" onAction="#filterChangeDrinks" prefHeight="25.0" prefWidth="130.0" promptText="Filter" visible="false" />
+      <ComboBox fx:id="filterBoxMain" layoutX="375.0" layoutY="228.0" onAction="#filterChangeMain" prefHeight="25.0" prefWidth="130.0" promptText="Filter" />
+      <ImageView fitHeight="25.0" fitWidth="20.0" layoutX="471.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/filter.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="StartButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #fbc02d;">
          <font>
             <Font size="18.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="786.0" fitWidth="884.0">
+               <image>
+                  <Image url="@images/OX%20Cafe%20(800).png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </Pane>

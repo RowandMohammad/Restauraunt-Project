@@ -20,4 +20,11 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/images/drink.png</name>
+			<type>1</type>
+			<location>C:/Users/adamt/git/TeamProject2021_13/OaxacaCafe/src/images/drink.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>
