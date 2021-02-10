@@ -181,12 +181,12 @@
             <Image url="@images/basket_chilli%20(1).png" />
          </image>
       </ImageView>
-      <Button fx:id="StartButton" layoutX="-30.0" layoutY="-20.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="832.0" prefWidth="961.0" styleClass="tab-header-background" stylesheets="@styling/style.css">
+      <Button fx:id="StartButton" layoutX="-30.0" layoutY="-20.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="832.0" prefWidth="961.0" style="-fx-background-color: #FFCF6E;" styleClass="tab-header-background" stylesheets="@styling/style.css">
          <font>
             <Font size="18.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="808.0" fitWidth="920.0">
+            <ImageView fitHeight="793.0" fitWidth="892.0">
                <image>
                   <Image url="@images/OX%20Cafe%20(800).png" />
                </image>
