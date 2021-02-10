@@ -1,0 +1,24 @@
+.tab-header-background {
+	-fx-background-color: #d32f2f;
+}
+
+.mousechange:hover {
+    -fx-cursor: hand;
+}
+
+.tab {
+	-fx-background-color: #d32f2f;
+	-fx-background-radius: 5 5 0 0, 5 5 0 0, 4 4 0 0, 3 3 0 0;
+	-fx-border-color: black;
+}
+
+.tab:selected {
+	-fx-font-family: Arial;
+	-fx-font-size: 18;
+	-fx-font-weight: bold;
+	-fx-background-color: #64dd17
+}
+
+.scroll-pane {
+	-fx-background: white;
+}
