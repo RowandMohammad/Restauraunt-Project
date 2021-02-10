@@ -11,17 +11,26 @@ import javafx.stage.Stage;
 
 public class WaiterViewController {
 
+<<<<<<< HEAD
     @FXML
     private ListView<PendingOrderViewItem> PendingOrdersView;
 
     @FXML
     private ListView<PendingOrderViewItem> OrdersToDeliverView;
+=======
+	@FXML
+	private ListView<String> PendingOrdersView;
 
-    @FXML
-    private Button BackToOrdering;
-    @FXML
-    private Label UserLabel;
+	@FXML
+	private ListView<String> OrdersToDeliverView;
+>>>>>>> 377f154e7ba5370b1852e01bfd96a5e218ba27ac
 
+	@FXML
+	private Button BackToOrdering;
+	@FXML
+	private Label UserLabel;
+
+<<<<<<< HEAD
     private
 
     @FXML
@@ -37,6 +46,27 @@ public class WaiterViewController {
             index ++;
         }
     }
+=======
+	@FXML
+	void BackToOrderingPressed(ActionEvent event) throws IOException {
+		Stage stage = (Stage) BackToOrdering.getScene().getWindow();
+		stage.close();
+	}
+
+	public void populatePending(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
+		for (int i = 0; i < pendingOrders.size(); i++) {
+			System.out.println("Order:");
+			String fullOrder = "";
+
+			for (int j = 0; j < pendingOrders.get(i).size(); j++) {
+				fullOrder = fullOrder + pendingOrders.get(i).get(j).name + "\n";
+			}
+			PendingOrdersView.getItems().add(fullOrder);
+			PendingOrdersView.setCellFactory(param -> new CancelOrder());
+
+		}
+	}
+>>>>>>> 377f154e7ba5370b1852e01bfd96a5e218ba27ac
 
     /**
      * Utility function for moving order from pending state to deliverable state

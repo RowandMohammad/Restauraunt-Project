@@ -26,10 +26,11 @@ public class MenuMain {
       String[] ingredients = sc.nextLine().split(",");
       String[] dietaryRequirements = sc.nextLine().split(",");
       double price = Double.parseDouble(sc.nextLine());
+      int cooktime = Integer.valueOf(sc.nextLine());
       sc.nextLine();
 
       Menu_Item mainitem =
-          new Menu_Item(name, calories, ingredients, price, "Main", true, dietaryRequirements);
+          new Menu_Item(name, calories, ingredients, price, cooktime, "Main", true, dietaryRequirements);
       mainItems.add(mainitem);
       count++;
     }
@@ -48,10 +49,11 @@ public class MenuMain {
       String[] ingredients = sc.nextLine().split(",");
       String[] dietaryRequirements = sc.nextLine().split(",");
       double price = Double.parseDouble(sc.nextLine());
+      int cooktime = Integer.valueOf(sc.nextLine());
       sc.nextLine();
 
       Menu_Item sideitem =
-          new Menu_Item(name, calories, ingredients, price, "Side", true, dietaryRequirements);
+          new Menu_Item(name, calories, ingredients, price,cooktime, "Side", true, dietaryRequirements);
       sideItems.add(sideitem);
       count++;
     }
@@ -70,10 +72,11 @@ public class MenuMain {
       String[] ingredients = sc.nextLine().split(",");
       String[] dietaryRequirements = sc.nextLine().split(",");
       double price = Double.parseDouble(sc.nextLine());
+      int cooktime = Integer.valueOf(sc.nextLine());
       sc.nextLine();
 
       Menu_Item drinkitem =
-          new Menu_Item(name, calories, ingredients, price, "Drink", true, dietaryRequirements);
+          new Menu_Item(name, calories, ingredients, price,cooktime, "Drink", true, dietaryRequirements);
       drinkItems.add(drinkitem);
       count++;
     }
