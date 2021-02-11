@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
@@ -44,10 +47,25 @@ public class WaiterViewController {
     void handleCancelOrder(ActionEvent event) {
     	int index = PendingOrdersView.getSelectionModel().getSelectedIndex();
     	if (index >= 0) {
-    		PendingOrdersView.getItems().remove(index);
+    		cancelConfirmation(index);
     	}
 
     }
+	void cancelConfirmation(int index) {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Cancel");
+		alert.setContentText("Are you sure you want to cancel this order?");
+		ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+		ButtonType cancelButton = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+		alert.getButtonTypes().setAll(yesButton, cancelButton);
+		alert.showAndWait().ifPresent(type -> {
+			if (type == yesButton) {
+				PendingOrdersView.getItems().remove(index);;
+				
+			} else {
+			}
+		});
+	}
 
 
 	/**
