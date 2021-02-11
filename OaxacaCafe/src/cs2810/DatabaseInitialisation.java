@@ -26,6 +26,12 @@ public class DatabaseInitialisation {
 		dropTable(dbConnection, "mainmenu");
 		createTable(dbConnection, "mainmenu (name varchar(50) PRIMARY KEY," + "calories int, "
 				+ "ingredients varchar(200), " + "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " +  "ETA int)");
+		dropTable(dbConnection, "sidesmenu");
+		createTable(dbConnection, "sidesmenu (name varchar(50) PRIMARY KEY," + "calories int, "
+				+ "ingredients varchar(200), " + "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " +  "ETA int)");
+		dropTable(dbConnection, "drinksmenu");
+		createTable(dbConnection, "drinksmenu (name varchar(50) PRIMARY KEY," + "calories int, "
+				+ "ingredients varchar(200), " + "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " +  "ETA int)");
 	}
 
 	}
