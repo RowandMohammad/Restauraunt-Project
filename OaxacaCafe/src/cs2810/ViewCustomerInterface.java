@@ -117,19 +117,39 @@ public class ViewCustomerInterface {
     populateMenu();
     quantitySpinner.setValueFactory(svf);
 
-  public void enableEdit(){
+  public void mainableEdit(){
     for(ListViewItem listPane: MainListView.getItems()){
       listPane.setEditable(true);
     }
   }
-
-
-  public void disableEdit(){
+  public void sideableEdit(){
+	    for(ListViewItem listPane: SidesListView.getItems()){
+	      listPane.setEditable(true);
+	    }
+	  }
+  public void drinkableEdit(){
+	    for(ListViewItem listPane: DrinksListView.getItems()){
+	      listPane.setEditable(true);
+	    }
+	  }
+  
+  
+  public void maindisableEdit(){
     for(ListViewItem listPane: MainListView.getItems()){
       listPane.setEditable(false);
-    }}
+    }
+   }
 
-  }
+	  public void sidedisableEdit(){
+		    for(ListViewItem listPane: SidesListView.getItems()){
+		      listPane.setEditable(false);
+		    }
+		  }
+	  public void drinkdisableEdit(){
+		    for(ListViewItem listPane: DrinksListView.getItems()){
+		      listPane.setEditable(false);
+		    }
+		  }
 
   @FXML
   public void initialize() {
@@ -470,7 +490,10 @@ public class ViewCustomerInterface {
   }
   
 void logout(ActionEvent event) {
-  disableEdit();
+  maindisableEdit();
+  sidedisableEdit();
+  drinkdisableEdit();
+  
   }
   @FXML
   void WaiterloginButton(ActionEvent event) throws IOException {
@@ -481,7 +504,9 @@ void logout(ActionEvent event) {
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();
-    enableEdit();
+    mainableEdit();
+    sideableEdit();
+    drinkableEdit();
 
   }
 
