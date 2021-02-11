@@ -8,13 +8,15 @@ import java.util.Scanner;
 
 public class MenuMain {
 
-  ArrayList<Menu_Item> mainItems = new ArrayList<Menu_Item>();
-  ArrayList<Menu_Item> sideItems = new ArrayList<Menu_Item>();
-  ArrayList<Menu_Item> drinkItems = new ArrayList<Menu_Item>();
+	private static ArrayList<Menu_Item> mainItems = new ArrayList<Menu_Item>();
+	private static ArrayList<Menu_Item> sideItems = new ArrayList<Menu_Item>();
+	private static ArrayList<Menu_Item> drinkItems = new ArrayList<Menu_Item>();
 
 
+	public static ArrayList<Menu_Item> initialiseMainItems() throws IOException {
+		if (null != mainItems && mainItems.size() > 0) {
 
-  public void initialiseMainItems() throws IOException {
+		} else {
     File file = new File("Main.txt");
     Scanner sc = new Scanner(file);
     int count = 0;
@@ -36,8 +38,13 @@ public class MenuMain {
     }
     sc.close();
   }
+    	return mainItems;
+	}
 
-  public void initialiseSideItems() throws IOException {
+	public static ArrayList<Menu_Item> initialiseSideItems() throws IOException {
+		if (null != sideItems && sideItems.size() > 0) {
+
+		} else {
     File file = new File("Sides.txt");
     Scanner sc = new Scanner(file);
     int count = 0;
@@ -59,8 +66,12 @@ public class MenuMain {
     }
     sc.close();
   }
+    return sideItems;
+}
+	public static ArrayList<Menu_Item> initiliseDrinkItems() throws IOException {
+		if (null != drinkItems && drinkItems.size() > 0) {
 
-  public void initiliseDrinkItems() throws IOException {
+		} else {
     File file = new File("Drinks.txt");
     Scanner sc = new Scanner(file);
     int count = 0;
@@ -82,6 +93,9 @@ public class MenuMain {
     }
     sc.close();
   }
+    return drinkItems;
+	}
+
 
 
 
