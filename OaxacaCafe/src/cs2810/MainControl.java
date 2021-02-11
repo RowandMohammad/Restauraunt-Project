@@ -16,8 +16,10 @@ public class MainControl extends Application{
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
     Scene scene = new Scene(root);
+    scene.getStylesheets().add(getClass().getClassLoader().getResource("styling/style.css").toExternalForm());
     primaryStage.setScene(scene);
     primaryStage.show();
+    primaryStage.setResizable(false);
 
   }
 

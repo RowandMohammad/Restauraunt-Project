@@ -119,8 +119,6 @@ public class ViewCustomerInterface {
 
   }
 
-
-
   @FXML
   public void initialize() {
     ObservableList<String> filterMainOpt = FXCollections.observableArrayList("Vegetarian",
