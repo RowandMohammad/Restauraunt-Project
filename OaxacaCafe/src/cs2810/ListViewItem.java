@@ -1,19 +1,31 @@
 package cs2810;
 
 
-import org.controlsfx.control.PopOver;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 
 /**
  * Utility class for managing all data for ListView items
@@ -37,9 +49,10 @@ import java.util.Arrays;
 public class ListViewItem extends HBox {
 
     Label name = new Label();
-    Label price = new Label();
+    TextField price = new TextField();
     Button calories    = new Button("  Calories   ");
     Button ingredients = new Button("Ingredients");
+    Button updateBtn = new Button("UpDate");
     private String cal;
     private String[] ing;
     String[] dietaryRequirements;
@@ -66,10 +79,18 @@ public class ListViewItem extends HBox {
         this.cal = cal;
         this.ing = ing;
         this.name = new Label(_name);
-        this.price = new Label(_price);
+        this.price = new TextField(_price);
         this.dietaryRequirements = dietaryRequirements;
+	    
+        new LoginMessage();
+		Map<String, Object> map = LoginMessage.getMessage();
+		if (map.isEmpty()) {
+			
+			price.setEditable(false);
+		}
+
         VBox lablesCotaier = new VBox(this.name, this.price);
-        VBox buttonContainer = new VBox(this.ingredients, this.calories);
+        VBox buttonContainer = new VBox(this.ingredients, this.calories,this.updateBtn);
         VBox.setMargin(calories,new Insets(2,0,0,0));
         lablesCotaier.setAlignment(Pos.BASELINE_LEFT);
         buttonContainer.setAlignment(Pos.CENTER);
@@ -77,7 +98,60 @@ public class ListViewItem extends HBox {
         HBox.setHgrow(lablesCotaier, Priority.ALWAYS);
         setCaloriesActionListener();
         setIngredientActionListener();
+	setDeleteBtnActionListener();
     }
+private void setDeleteBtnActionListener() {
+		// TODO Auto-generated method stub
+		updateBtn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				String names = name.getText();
+				String prices = price.getText();
+				if (names == null || prices == null) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("warn");
+					alert.setHeaderText(null);
+					alert.setContentText("please input right information");
+				}
+				try {
+					new MenuMain();
+					ArrayList<Menu_Item> mainItems = MenuMain.initialiseMainItems();
+					new MenuMain();
+					ArrayList<Menu_Item> drinkItems = MenuMain.initiliseDrinkItems();
+					new MenuMain();
+					ArrayList<Menu_Item> sideItems = MenuMain.initialiseSideItems();
+					for (Menu_Item item : mainItems) {
+						if (names.equals(item.getName())) {
+							item.setPrice(Double.parseDouble(prices.split("�")[1]));
+							mainItems.add(item);
+						}
+					}for (Menu_Item item : drinkItems) {
+						if (names.equals(item.getName())) {
+							item.setPrice(Double.parseDouble(prices.split("�")[1]));
+							drinkItems.add(item);
+						}
+					}for (Menu_Item item : sideItems) {
+						if (names.equals(item.getName())) {
+							item.setPrice(Double.parseDouble(prices.split("�")[1]));
+							sideItems.add(item);
+						}
+					}
+					Parent waiterViewParent = FXMLLoader.load(getClass().getResource("/WaiterView.fxml"));
+					Scene waiterViewScene = new Scene(waiterViewParent, 800, 800);
+
+					// This line gets the Stage information
+					Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+					window.setScene(waiterViewScene);
+					window.show();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+	}
 
     /**
      * callback function for showing product calories pop-up
@@ -177,18 +251,18 @@ public class ListViewItem extends HBox {
      *
      * @return
      */
-    public Label getPrice() {
-        return price;
-    }
+	public TextField getPrice() {
+		return price;
+	}
+
 
     /**
      *
      * @param price
      */
-    public void setPrice(Label price) {
-        this.price = price;
-    }
-
+	public void setPrice(TextField price) {
+		this.price = price;
+	}
     /**
      *
      * @return
