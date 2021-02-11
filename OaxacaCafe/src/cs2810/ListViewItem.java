@@ -327,4 +327,8 @@ private void setDeleteBtnActionListener() {
     public void setIng(String[] ing) {
         this.ing = ing;
     }
+		public void setEditable(boolean isEditable) {
+		// TODO Auto-generated method stub
+		this.price.setDisable(!isEditable);
+	}
 }
