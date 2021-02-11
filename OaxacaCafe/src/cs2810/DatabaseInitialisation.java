@@ -1,9 +1,13 @@
 package cs2810;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -12,6 +16,7 @@ public class DatabaseInitialisation {
 	private final static String password = "57a2d6d4bc061d9a386aaa5352bac1ac7cfc1744b1b7e46318519a73c7dfa547";
 
 	public static void main(String[] args) throws URISyntaxException, SQLException {
+		String mainmenuFile = "mainmenu.txt";
 		System.out.println("************** Checking JDBC Connection With PostgreSQL **************");
 		Connection dbConnection = null;
 		dbConnection = getConnection();
@@ -23,16 +28,19 @@ public class DatabaseInitialisation {
 			return;
 		}
 		{
-		dropTable(dbConnection, "mainmenu");
-		createTable(dbConnection, "mainmenu (name varchar(50) PRIMARY KEY," + "calories int, "
-				+ "ingredients varchar(200), " + "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " +  "ETA int)");
-		dropTable(dbConnection, "sidesmenu");
-		createTable(dbConnection, "sidesmenu (name varchar(50) PRIMARY KEY," + "calories int, "
-				+ "ingredients varchar(200), " + "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " +  "ETA int)");
-		dropTable(dbConnection, "drinksmenu");
-		createTable(dbConnection, "drinksmenu (name varchar(50) PRIMARY KEY," + "calories int, "
-				+ "ingredients varchar(200), " + "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " +  "ETA int)");
-	}
+			dropTable(dbConnection, "mainmenu");
+			createTable(dbConnection,
+					"mainmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
+			dropTable(dbConnection, "sidesmenu");
+			createTable(dbConnection,
+					"sidesmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
+			dropTable(dbConnection, "drinksmenu");
+			createTable(dbConnection,
+					"drinksmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
+		}
 
 	}
 
@@ -56,19 +64,80 @@ public class DatabaseInitialisation {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	  //Creates tables in the database
-	  public static void createTable(Connection dbConnection, String tableDescription){ 
-	    Statement st = null;
-	    try {
-	      st=dbConnection.createStatement();
-	      st.execute("CREATE TABLE " + tableDescription);
-	      st.close();
-	    }
-	    catch (SQLException e) {
-	      e.printStackTrace();
-	    }
-	  }
-	
+
+	// Creates tables in the database
+	public static void createTable(Connection dbConnection, String tableDescription) {
+		Statement st = null;
+		try {
+			st = dbConnection.createStatement();
+			st.execute("CREATE TABLE " + tableDescription);
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void insertDataIntoTable(Connection dbConnection, String table, String file) {
+		int batchSize = 3;
+
+		try {
+
+			int count = 0;
+			String lineText = null;
+			BufferedReader lineReader;
+			lineReader = new BufferedReader(new FileReader(file));
+			System.out.println("Reading " + file + " file and inserting values in database");
+			while ((lineText = lineReader.readLine()) != null) {
+				String sqlLine = "INSERT INTO " + table + " VALUES(";
+				String[] menuBL = lineText.split(",");
+
+				for (int j = 0; j <= menuBL.length; j++) {
+					if (j < menuBL.length - 1) {
+						sqlLine += "?,";
+					} else if (j == menuBL.length - 1) {
+						sqlLine += "?)";
+					}
+
+				}
+
+				PreparedStatement statement = dbConnection.prepareStatement(sqlLine);
+				for (int i = 0; i < menuBL.length; i++)
+					if (stringToNumeralChecker(menuBL[i])) {
+						statement.setInt(i + 1, Integer.parseInt(menuBL[i]));
+					}
+					else {
+						statement.setString(i + 1, menuBL[i]);
+					}
+				statement.addBatch();
+
+				if (count % batchSize == 0) {
+					statement.executeBatch();
+				}
+
+			}
+			lineReader.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	// Checks whether passed string can be converted to a numeric value
+	public static boolean stringToNumeralChecker(String numberInString) {
+		if (numberInString == null) {
+			return false;
+		}
+		try {
+			int i = Integer.parseInt(numberInString);
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+		return true;
+	}
+
 }

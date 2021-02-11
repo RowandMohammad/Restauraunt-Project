@@ -16,6 +16,7 @@ import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 
 public class WaiterViewController {
+	ArrayList<ArrayList<Menu_Item>> pendingOrders;
 
 	@FXML
 	private ListView<PendingOrderViewItem> PendingOrdersView;
@@ -27,10 +28,15 @@ public class WaiterViewController {
 	private Button BackToOrdering;
 	@FXML
 	private Label UserLabel;
+	@FXML
+	private Button CancelOrder;
 
+	public void setPendingOrders(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
+		this.pendingOrders = pendingOrders;
+	}
 
-
-	@FXML void BackToOrderingPressed(ActionEvent event) throws IOException {
+	@FXML
+	void BackToOrderingPressed(ActionEvent event) throws IOException {
 		((Stage) BackToOrdering.getScene().getWindow()).close();
 	}
 
@@ -42,15 +48,16 @@ public class WaiterViewController {
 			index++;
 		}
 	}
-	
-    @FXML
-    void handleCancelOrder(ActionEvent event) {
-    	int index = PendingOrdersView.getSelectionModel().getSelectedIndex();
-    	if (index >= 0) {
-    		cancelConfirmation(index);
-    	}
 
-    }
+	@FXML
+	void handleCancelOrder(ActionEvent event) {
+		int index = PendingOrdersView.getSelectionModel().getSelectedIndex();
+		if (index >= 0) {
+			cancelConfirmation(index);
+		}
+
+	}
+
 	void cancelConfirmation(int index) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Cancel");
@@ -60,13 +67,13 @@ public class WaiterViewController {
 		alert.getButtonTypes().setAll(yesButton, cancelButton);
 		alert.showAndWait().ifPresent(type -> {
 			if (type == yesButton) {
-				PendingOrdersView.getItems().remove(index);;
-				
+				PendingOrdersView.getItems().remove(index);
+				PendingOrdersView.refresh();
+
 			} else {
 			}
 		});
 	}
-
 
 	/**
 	 * Utility function for moving order from pending state to deliverable state
