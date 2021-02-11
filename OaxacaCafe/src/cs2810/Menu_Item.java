@@ -32,5 +32,61 @@ public class Menu_Item {
 		// method to clone arraylist of menu_item without pointing to same objects
 
 	}
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getCalories() {
+		return calories;
+	}
+
+	public void setCalories(int calories) {
+		this.calories = calories;
+	}
+
+	public String[] getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(String[] ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
+	public String[] getDietaryRequirements() {
+		return dietaryRequirements;
+	}
+
+	public void setDietaryRequirements(String[] dietaryRequirements) {
+		this.dietaryRequirements = dietaryRequirements;
+	}
+	  
 
 }
