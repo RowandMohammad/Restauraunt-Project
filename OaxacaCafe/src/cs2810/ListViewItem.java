@@ -123,17 +123,17 @@ private void setDeleteBtnActionListener() {
 					ArrayList<Menu_Item> sideItems = MenuMain.initialiseSideItems();
 					for (Menu_Item item : mainItems) {
 						if (names.equals(item.getName())) {
-							item.setPrice(Double.parseDouble(prices.split("ï¿½")[1]));
+							item.setPrice(Double.parseDouble(prices.split("£")[1]));
 							mainItems.add(item);
 						}
 					}for (Menu_Item item : drinkItems) {
 						if (names.equals(item.getName())) {
-							item.setPrice(Double.parseDouble(prices.split("ï¿½")[1]));
+							item.setPrice(Double.parseDouble(prices.split("£")[1]));
 							drinkItems.add(item);
 						}
 					}for (Menu_Item item : sideItems) {
 						if (names.equals(item.getName())) {
-							item.setPrice(Double.parseDouble(prices.split("ï¿½")[1]));
+							item.setPrice(Double.parseDouble(prices.split("£")[1]));
 							sideItems.add(item);
 						}
 					}
