@@ -22,6 +22,7 @@ public class CheckoutViewController extends Application {
 
     window.setScene(menuViewScene);
     window.show();
+    window.setResizable(false);
   }
 
   @Override

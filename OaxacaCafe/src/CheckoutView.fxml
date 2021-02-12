@@ -4,36 +4,22 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.CheckoutViewController">
    <children>
-      <Button layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="40.0" prefWidth="102.0" style="-fx-background-radius: 50;" text="Back to order">
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant>
-                     <color>
-                        <Color red="0.1745370328426361" green="0.99210524559021" blue="0.3516768217086792" />
-                     </color>
-                  </Light.Distant>
-               </light>
-            </Lighting>
-         </effect>
+      <Button layoutX="8.0" layoutY="6.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="40.0" prefWidth="102.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 1.2;" styleClass="back-to-order" stylesheets="@styling/style.css" text="Back to order" textFill="#008001">
          <font>
             <Font name="Forte" size="13.0" />
-         </font></Button>
+         </font>
+         <effect>
+            <Reflection bottomOpacity="0.17" fraction="0.64" topOpacity="0.35" />
+         </effect></Button>
       <ImageView fitHeight="397.0" fitWidth="551.0" layoutX="154.0" layoutY="-110.0">
          <image>
             <Image url="@images/checkout.png" />
