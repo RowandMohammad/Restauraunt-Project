@@ -2,16 +2,29 @@
 	-fx-background-color: #d32f2f;
 }
 
+.back-to-order {
+	-fx-border-color: #008001;
+}
+
+.back-to-order:hover {
+	-fx-background-color: #008001;
+	-fx-text-fill: white;
+	-fx-border-color: white;
+	-fx-border-radius: 50;
+	-fx-border-width: 1.2;
+}
+
+.back-to-order:pressed {
+	
+}
+
 .mousechange:hover {
     -fx-cursor: hand;
 }
 
 .Waiterloginbtn:hover {
 	-fx-background-image: url("unlocked.png");
-	-fx-background-size: 900px;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: 90%;
-	-fx-z-index: -1;
+	-fx-graphic: url("unlocked.png");
 }
 
 .tab {
@@ -56,4 +69,13 @@
 
 .addItemBtn:pressed { 
 	-fx-rotate: 15;
+
 }
+
+.filterboxmenu{
+	-fx-background-color: linear-gradient(#ff5400, #be1d00);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+

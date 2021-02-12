@@ -20,7 +20,6 @@ public class CheckoutViewController {
   @FXML
   void changeScreenButtonPushed(ActionEvent event) throws IOException {
     Stage stage = (Stage) backToOrder.getScene().getWindow();
-
     stage.close();
   }
 
