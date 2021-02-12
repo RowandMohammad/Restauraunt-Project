@@ -40,8 +40,10 @@ public class ViewCustomerInterface {
 
 
   MenuMain main = new MenuMain();
-  private Basket basket = new Basket();
-  ArrayList<Menu_Item> basketItems = basket.getList();
+  
+  ArrayList<Menu_Item> basketItems;
+  // = new ArrayList<Menu_Item>();
+  
 
   @FXML
   private TabPane tabPane;
@@ -119,6 +121,8 @@ public class ViewCustomerInterface {
     StartButton.setVisible(false);
     populateMenu();
     quantitySpinner.setValueFactory(svf);
+    basketItems = new ArrayList<Menu_Item>();
+    
   }
 
   public void mainableEdit() {
@@ -377,7 +381,9 @@ public class ViewCustomerInterface {
       CheckoutViewController controller = loader.getController();
       controller.populateCheckout(basketItems,
           Float.parseFloat(totalPrice.getText().split(" ")[1]));
-
+      
+      basketItems = new ArrayList<Menu_Item>();
+      BasketView.getItems().clear();
       Stage stage = new Stage();
       stage.setScene(new Scene(root));
       stage.show();
@@ -475,7 +481,7 @@ public class ViewCustomerInterface {
   }
 
   void setTotalPrice(float price) {
-    totalPrice.setText("Â£ " + price + "");
+    totalPrice.setText("£ " + price + "0");
   }
 
   Float getTotalPrice() {
