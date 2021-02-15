@@ -3,25 +3,16 @@ package cs2810;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,13 +40,13 @@ import org.controlsfx.control.PopOver;
  */
 public class ListViewItem extends HBox {
 
-    Label name = new Label();
+	TextField name = new TextField();
     TextField price = new TextField();
     Button calories    = new Button("  Calories   ");
     Button ingredients = new Button("Ingredients");
     Button updateBtn = new Button("UpDate");
     private String cal;
-    private String[] ing;
+    private String ing [];
     String[] dietaryRequirements;
 
     /**
@@ -75,11 +66,11 @@ public class ListViewItem extends HBox {
      * @param cal: Product's total calories
      * @param ing: Product's ingredient list
      */
-    public ListViewItem(String _name, String _price, String cal, String [] ing, String[] dietaryRequirements) {
+    public ListViewItem(String _name, String _price, String cal, String[] ing, String[] dietaryRequirements) {
         super();
         this.cal = cal;
         this.ing = ing;
-        this.name = new Label(_name);
+        this.name = new TextField(_name);
         this.price = new TextField(_price);
         this.dietaryRequirements = dietaryRequirements;
 	    
@@ -88,6 +79,7 @@ public class ListViewItem extends HBox {
 		if (map.isEmpty()) {
 			
 			price.setEditable(false);
+			name.setEditable(false);
 		}
 
         VBox lablesCotaier = new VBox(this.name, this.price);
@@ -108,6 +100,7 @@ private void setDeleteBtnActionListener() {
 			public void handle(ActionEvent event) {
 				String names = name.getText();
 				String prices = price.getText();
+				String[] ings = ing;
 				if (names == null || prices == null) {
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("warn");
@@ -122,30 +115,28 @@ private void setDeleteBtnActionListener() {
 					new MenuMain();
 					ArrayList<Menu_Item> sideItems = MenuMain.initialiseSideItems();
 					for (Menu_Item item : mainItems) {
-						if (names.equals(item.getName())) {
-							item.setPrice(Double.parseDouble(prices.split("£")[1]));
-							mainItems.add(item);
-						}
-					}for (Menu_Item item : drinkItems) {
-						if (names.equals(item.getName())) {
-							item.setPrice(Double.parseDouble(prices.split("£")[1]));
-							drinkItems.add(item);
-						}
-					}for (Menu_Item item : sideItems) {
-						if (names.equals(item.getName())) {
-							item.setPrice(Double.parseDouble(prices.split("£")[1]));
-							sideItems.add(item);
+						if (ings.equals(item.getIngredients())) {
+							item.setPrice(Double.parseDouble(prices.split("ï¿½")[1]));
+							item.setName(names);
 						}
 					}
-					Parent waiterViewParent = FXMLLoader.load(getClass().getResource("/WaiterView.fxml"));
-					Scene waiterViewScene = new Scene(waiterViewParent, 800, 800);
+					for (Menu_Item item : drinkItems) {
+						if (ings.equals(item.getIngredients())) {
+							item.setPrice(Double.parseDouble(prices.split("ï¿½")[1]));
+							item.setName(names);
+						}
+					}
+					for (Menu_Item item : sideItems) {
+						if (ings.equals(item.getIngredients())) {
+							item.setPrice(Double.parseDouble(prices.split("ï¿½")[1]));
 
-					// This line gets the Stage information
-					Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+							item.setName(names);
 
-					window.setScene(waiterViewScene);
-					window.show();
-				} catch (IOException e) {
+					}
+					}
+				}
+					
+				 catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -327,8 +318,5 @@ private void setDeleteBtnActionListener() {
     public void setIng(String[] ing) {
         this.ing = ing;
     }
-		public void setEditable(boolean isEditable) {
-		// TODO Auto-generated method stub
-		this.price.setDisable(!isEditable);
-	}
+
 }
