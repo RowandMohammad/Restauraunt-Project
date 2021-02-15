@@ -206,6 +206,7 @@
        </Button>
       <Button fx:id="CallingButton" layoutX="14.0" layoutY="4.0" onAction="#waiterButtonPressed" opacity="0.0" prefHeight="43.0" prefWidth="49.0" styleClass="mousechange" stylesheets="@styling/style.css" text="calling the waiter">
       </Button>
+      <Button fx:id="refreshbutton" layoutX="650" layoutY="5" mnemonicParsing="false" onAction="#refresh" text="refresh" />
       <Button fx:id="logoutbutton" layoutX="720" layoutY="5" mnemonicParsing="false" onAction="#logout" text="logout" />
       <ImageView fitHeight="238.0" fitWidth="249.0" layoutX="350.0" layoutY="-22.0">
          <image>
