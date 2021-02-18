@@ -362,13 +362,14 @@ public class ViewCustomerInterface {
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss");
     String timeOfClick = dateFormat.format(date);
     
+    
     if (basketItems.size() != 0) {
       pendingOrders.add(basketItems);
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
       Parent root = loader.load();
       CheckoutViewController controller = loader.getController();
       controller.populateCheckout(basketItems,
-          Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick);
+          Float.parseFloat(totalPrice.getText().split(" ")[1]),timeOfClick );
       
       basketItems = new ArrayList<Menu_Item>();
       BasketView.getItems().clear();

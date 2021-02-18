@@ -26,7 +26,7 @@ public class CheckoutViewController {
   public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time) {
     String order = "";
     for (int i = 0; i < basket.size(); i++) {
-      order = order + basket.get(i).name + "  £" + basket.get(i).price + "\n";
+      order = order + basket.get(i).name + "  £" + basket.get(i).price + "  Time: "+ time +"\n";
     }
     price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
     OrderList.getItems().add(order);
