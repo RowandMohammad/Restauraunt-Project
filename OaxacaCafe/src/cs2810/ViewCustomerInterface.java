@@ -1,6 +1,18 @@
 package cs2810;
 
-import static java.lang.System.err;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,27 +23,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
+import static java.lang.System.err;
 
 public class ViewCustomerInterface {
 
@@ -382,6 +374,7 @@ public class ViewCustomerInterface {
     // Testing method to add to basket
     @FXML
     void handleAddItemButton(ActionEvent event) {
+        orderStatus.setText("Not Placed");
         ListViewItem selected = getSelect();
         String name = selected.getName();
         int x = 0;
