@@ -10,6 +10,7 @@ public class Menu_Item {
   boolean available;
   String[] dietaryRequirements;
   int cooktime;
+  String purchaseDate;
 
 
 	public Menu_Item(String name, int calories, String[] ingredients, double price, int cooktime, String type,
@@ -26,6 +27,14 @@ public class Menu_Item {
 
 	public void Clone(Menu_Item item) {
 		// cloneList calls Clone() to clone each individual item
+	}
+	
+	public void setPurchaseDate(String purchaseDate) {
+	  this.purchaseDate = purchaseDate;
+	}
+	
+	public String getPurchaseDate() {
+	  return purchaseDate;
 	}
 
 	public void cloneList() {

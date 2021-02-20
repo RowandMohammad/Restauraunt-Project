@@ -49,14 +49,23 @@ public class PendingOrderViewItem extends HBox {
      * Utility function for initializing view
      */
     private void setUpView() {
+        int i = 0;
         this.setAlignment(Pos.CENTER_LEFT);
         this.confirmButton = new Button("Confirm");
         HBox.setMargin(this.confirmButton, new Insets(0, 0,0,300));
         this.orderDetailLabel = new Label();
         String orderDetail = "";
         for (Menu_Item menuItem : orderDetails) {
-            orderDetail+= menuItem.name+"\n";
+          if (i == 0) {
+            orderDetail+= menuItem.getPurchaseDate() + "\n";
+            i++;
+          }
+          else {
+            orderDetail+=  menuItem.name + "\n";
+            i++;
+          }
         }
+        i = 0;
         this.orderDetailLabel.setText(orderDetail);
         this.getChildren().addAll(orderDetailLabel, confirmButton);
     }

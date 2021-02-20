@@ -129,8 +129,6 @@ public class ViewCustomerInterface {
   }
 
 
-
-
   @FXML
   public void initialize() {
     ObservableList<String> filterMainOpt = FXCollections.observableArrayList("Vegetarian",
@@ -355,12 +353,15 @@ public class ViewCustomerInterface {
   }
 
 
-
   @FXML
   void checkoutButtonPushed(ActionEvent event) throws IOException {
     Date date = Calendar.getInstance().getTime();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss:");
     String timeOfClick = dateFormat.format(date);
+    
+    for(Menu_Item item : basketItems) {
+      item.setPurchaseDate(timeOfClick);
+    }
     
     
     if (basketItems.size() != 0) {
@@ -369,7 +370,7 @@ public class ViewCustomerInterface {
       Parent root = loader.load();
       CheckoutViewController controller = loader.getController();
       controller.populateCheckout(basketItems,
-          Float.parseFloat(totalPrice.getText().split(" ")[1]),timeOfClick );
+          Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick );
       
       basketItems = new ArrayList<Menu_Item>();
       BasketView.getItems().clear();

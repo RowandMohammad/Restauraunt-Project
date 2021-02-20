@@ -44,7 +44,7 @@ public class ListViewItem extends HBox {
     TextField price = new TextField();
     Button calories    = new Button("  Calories   ");
     Button ingredients = new Button("Ingredients");
-    Button updateBtn = new Button("UpDate");
+    Button updateBtn = new Button("Update");
     private String cal;
     private String ing [];
     String[] dietaryRequirements;
