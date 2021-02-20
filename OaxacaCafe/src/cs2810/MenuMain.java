@@ -22,7 +22,6 @@ public class MenuMain {
     int count = 0;
 
     while (sc.hasNextLine()) {
-
       String name = sc.nextLine();
       int calories = Integer.valueOf(sc.nextLine());
       String[] ingredients = sc.nextLine().split(",");
