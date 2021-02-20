@@ -357,6 +357,8 @@ public class ViewCustomerInterface {
     @FXML
     void checkoutButtonPushed(ActionEvent event) throws IOException {
         if (basketItems.size() != 0) {
+            //Update order status to received
+            orderStatus.setText("received");
             pendingOrders.add(basketItems);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
             Parent root = loader.load();
@@ -510,7 +512,7 @@ public class ViewCustomerInterface {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
         Parent root = loader.load();
         WaiterloginController controller = loader.getController();
-        controller.setPendingOrders(pendingOrders);
+        controller.setInitialData(this, pendingOrders);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();

@@ -28,6 +28,8 @@ public class WaiterloginController {
   @FXML
   private Button backToOrder;
 
+  private ViewCustomerInterface parent;
+
   @FXML
   void changeScreenButtonPushed(ActionEvent event) throws IOException {
     Stage stage = (Stage) backToOrder.getScene().getWindow();
@@ -38,10 +40,15 @@ public class WaiterloginController {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterView.fxml"));
     Parent root = loader.load();
     WaiterViewController controller = loader.getController();
-    controller.populatePending(pendingOrders);
+    controller.setInitialData(this.parent,  pendingOrders);
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();
+  }
+
+  public void setInitialData(ViewCustomerInterface parent, ArrayList<ArrayList<Menu_Item>> pendingOrders){
+    this.parent = parent;
+    setPendingOrders(pendingOrders);
   }
 
   public void setPendingOrders(ArrayList<ArrayList<Menu_Item>> pendingOrders) {

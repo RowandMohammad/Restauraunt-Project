@@ -31,6 +31,8 @@ public class WaiterViewController {
 	@FXML
 	private Button CancelOrder;
 
+	private ViewCustomerInterface parent;
+
 	public void setPendingOrders(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
 		this.pendingOrders = pendingOrders;
 	}
@@ -38,6 +40,11 @@ public class WaiterViewController {
 	@FXML
 	void BackToOrderingPressed(ActionEvent event) throws IOException {
 		((Stage) BackToOrdering.getScene().getWindow()).close();
+	}
+
+	public void setInitialData(ViewCustomerInterface parent, ArrayList<ArrayList<Menu_Item>> pendingOrders){
+		this.parent = parent;
+		this.populatePending(pendingOrders);
 	}
 
 	public void populatePending(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
