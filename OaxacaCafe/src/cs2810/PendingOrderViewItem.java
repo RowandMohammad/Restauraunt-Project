@@ -16,7 +16,9 @@ import java.util.ArrayList;
  * data members
  * 		orderDetails: ArrayList<Menu_Item>  ==> List of items selected for order
  */
+
 public class PendingOrderViewItem extends HBox {
+    public static int x;
     private ArrayList<Menu_Item> orderDetails;
     private Button confirmButton;
     private Label orderDetailLabel;
@@ -55,15 +57,23 @@ public class PendingOrderViewItem extends HBox {
         HBox.setMargin(this.confirmButton, new Insets(0, 0,0,300));
         this.orderDetailLabel = new Label();
         String orderDetail = "";
+        
+        int x = -1;
         for (Menu_Item menuItem : orderDetails) {
+          x++;
           if (i == 0) {
-            orderDetail+= menuItem.getPurchaseDate() + "\n" + menuItem.name + "\n";
+            orderDetail+= menuItem.getPurchaseDate2(x) + "\n" + menuItem.name + "\n";
+            System.out.println(x);
             i++;
           }
           else {
+            System.out.println(x);
+            menuItem.getPurchaseDate2(x);
             orderDetail+=  menuItem.name + "\n";
             i++;
+            x++;
           }
+          menuItem.order_times.remove(x);
         }
         i = 0;
         this.orderDetailLabel.setText(orderDetail);

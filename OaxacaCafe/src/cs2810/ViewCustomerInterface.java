@@ -360,7 +360,7 @@ public class ViewCustomerInterface {
     String timeOfClick = dateFormat.format(date);
     
     for(Menu_Item item : basketItems) {
-      item.setPurchaseDate(timeOfClick);
+      item.order_times.add(timeOfClick);
     }
     
     if (basketItems.size() != 0) {
