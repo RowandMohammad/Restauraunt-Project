@@ -38,6 +38,7 @@ public class WaiterloginController {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterView.fxml"));
     Parent root = loader.load();
     WaiterViewController controller = loader.getController();
+    controller.setPendingOrders(pendingOrders);
     controller.populatePending(pendingOrders);
     Stage stage = new Stage();
     stage.setScene(new Scene(root));

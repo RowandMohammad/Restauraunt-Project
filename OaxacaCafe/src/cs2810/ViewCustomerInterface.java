@@ -363,7 +363,6 @@ public class ViewCustomerInterface {
       item.setPurchaseDate(timeOfClick);
     }
     
-    
     if (basketItems.size() != 0) {
       pendingOrders.add(basketItems);
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));

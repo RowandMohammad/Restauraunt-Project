@@ -34,6 +34,10 @@ public class WaiterViewController {
 	public void setPendingOrders(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
 		this.pendingOrders = pendingOrders;
 	}
+	
+	public ArrayList<ArrayList<Menu_Item>> getPendingOrders() {
+	  return pendingOrders;
+	}
 
 	@FXML
 	void BackToOrderingPressed(ActionEvent event) throws IOException {
@@ -59,6 +63,7 @@ public class WaiterViewController {
 	}
 
 	void cancelConfirmation(int index) {
+	    ArrayList<ArrayList<Menu_Item>> pending = getPendingOrders();
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Cancel");
 		alert.setContentText("Are you sure you want to cancel this order?");
@@ -68,6 +73,7 @@ public class WaiterViewController {
 		alert.showAndWait().ifPresent(type -> {
 			if (type == yesButton) {
 				PendingOrdersView.getItems().remove(index);
+				pending.remove(index);
 				PendingOrdersView.refresh();
 
 			} else {
