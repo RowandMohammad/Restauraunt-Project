@@ -15,6 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class WaiterloginController {
+  
+  private ViewCustomerInterface parent;
+  
   ArrayList<ArrayList<Menu_Item>> pendingOrders;
   @FXML
   private TextField userAccount;
@@ -38,7 +41,7 @@ public class WaiterloginController {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterView.fxml"));
     Parent root = loader.load();
     WaiterViewController controller = loader.getController();
-    controller.populatePending(pendingOrders);
+    controller.setInitialData(parent,  pendingOrders);
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();
@@ -77,6 +80,11 @@ public class WaiterloginController {
 
     }
 
+  }
+  
+  public void setInitialData(ViewCustomerInterface parent, ArrayList<ArrayList<Menu_Item>> pendingOrders){
+    this.parent = parent;
+    setPendingOrders(pendingOrders);
   }
 
 }

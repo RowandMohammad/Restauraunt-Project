@@ -16,6 +16,9 @@ import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 
 public class WaiterViewController {
+  
+    private ViewCustomerInterface parent;
+  
 	ArrayList<ArrayList<Menu_Item>> pendingOrders;
 
 	@FXML
@@ -82,13 +85,28 @@ public class WaiterViewController {
 	 */
 	public void confirmOrder(int index) {
 		PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
+		pendingOrders.remove(index);
+		updateIndex(PendingOrdersView, item.getIndex());
+		
+        this.parent.updatePendingOrders(pendingOrders);
 		item.setPending(false);
 		OrdersToDeliverView.getItems().add(item);
 		PendingOrdersView.refresh();
 		OrdersToDeliverView.refresh();
 	}
 
-	/**
+  private void updateIndex(ListView<PendingOrderViewItem> pendingOrdersView, int currentIndex) {
+    for (int i = 0; i < pendingOrders.size(); i++) {
+      
+      if (pendingOrdersView.getItems().get(i).index > currentIndex) {
+        pendingOrdersView.getItems().get(i).index --;
+      }
+      
+    }
+    
+  }
+
+  /**
 	 * Utility function for moving order from deliverable state to delivered
 	 * 
 	 * @param index of order which have to be moved to delivered
@@ -97,4 +115,11 @@ public class WaiterViewController {
 		OrdersToDeliverView.getItems().remove(index);
 		OrdersToDeliverView.refresh();
 	}
+	
+	public void setInitialData(ViewCustomerInterface parent, ArrayList<ArrayList<Menu_Item>> pendingOrders){
+      this.parent = parent;
+      setPendingOrders(pendingOrders);
+      populatePending(pendingOrders);
+      System.out.println("pendingOrderssize: "+ pendingOrders.size());
+  }
 }
