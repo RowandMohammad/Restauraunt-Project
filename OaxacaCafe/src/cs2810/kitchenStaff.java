@@ -6,7 +6,7 @@ public class kitchenStaff {
   String user;
   String pass;
 
-  void alertWaiter(ArrayList<Menu_Item> order, ArrayList<waiterStaff> waiters, int tableNum) {
+  void alertWaiter(Order order, ArrayList<waiterStaff> waiters) {
     // alert waiter for order to be served to table
   }
 
