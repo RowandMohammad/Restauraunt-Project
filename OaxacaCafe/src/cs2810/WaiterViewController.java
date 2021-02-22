@@ -70,7 +70,11 @@ public class WaiterViewController {
 		alert.getButtonTypes().setAll(yesButton, cancelButton);
 		alert.showAndWait().ifPresent(type -> {
 			if (type == yesButton) {
-				PendingOrdersView.getItems().remove(index);
+		        PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
+		        pendingOrders.remove(index);
+		        updateIndex(PendingOrdersView, item.getIndex());
+		        this.parent.updatePendingOrders(pendingOrders);
+		        item.setPending(false);
 				PendingOrdersView.refresh();
 
 			} else {
@@ -87,7 +91,6 @@ public class WaiterViewController {
 		PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
 		pendingOrders.remove(index);
 		updateIndex(PendingOrdersView, item.getIndex());
-		
         this.parent.updatePendingOrders(pendingOrders);
 		item.setPending(false);
 		OrdersToDeliverView.getItems().add(item);
