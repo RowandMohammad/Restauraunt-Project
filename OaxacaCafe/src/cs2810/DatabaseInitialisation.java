@@ -41,6 +41,7 @@ public class DatabaseInitialisation {
 					"drinksmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
 							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
 		}
+		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, ETA)", mainmenuFile);
 
 	}
 
@@ -103,13 +104,15 @@ public class DatabaseInitialisation {
 				}
 
 				PreparedStatement statement = dbConnection.prepareStatement(sqlLine);
-				for (int i = 0; i < menuBL.length; i++)
+				for (int i = 0; i < menuBL.length; i++) {
 					if (stringToNumeralChecker(menuBL[i])) {
 						statement.setInt(i + 1, Integer.parseInt(menuBL[i]));
 					}
+
 					else {
 						statement.setString(i + 1, menuBL[i]);
 					}
+				}
 				statement.addBatch();
 
 				if (count % batchSize == 0) {
@@ -117,6 +120,7 @@ public class DatabaseInitialisation {
 				}
 
 			}
+
 			lineReader.close();
 
 		} catch (SQLException e) {
@@ -139,5 +143,4 @@ public class DatabaseInitialisation {
 		}
 		return true;
 	}
-
 }
