@@ -19,7 +19,7 @@ public class WaiterViewController {
   
     private ViewCustomerInterface parent;
   
-	ArrayList<ArrayList<Menu_Item>> pendingOrders;
+	ArrayList<Order> pendingOrders;
 
 	@FXML
 	private ListView<PendingOrderViewItem> PendingOrdersView;
@@ -34,7 +34,7 @@ public class WaiterViewController {
 	@FXML
 	private Button CancelOrder;
 
-	public void setPendingOrders(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
+	public void setPendingOrders(ArrayList<Order> pendingOrders) {
 		this.pendingOrders = pendingOrders;
 	}
 
@@ -43,10 +43,10 @@ public class WaiterViewController {
 		((Stage) BackToOrdering.getScene().getWindow()).close();
 	}
 
-	public void populatePending(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
+	public void populatePending(ArrayList<Order> pendingOrders) {
 		int index = 0;
-		for (ArrayList<Menu_Item> order : pendingOrders) {
-			PendingOrderViewItem item = new PendingOrderViewItem(this, order, index, true);
+		for (Order order : pendingOrders) {
+			PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, true);
 			PendingOrdersView.getItems().add(item);
 			index++;
 		}
@@ -119,7 +119,7 @@ public class WaiterViewController {
 		OrdersToDeliverView.refresh();
 	}
 	
-	public void setInitialData(ViewCustomerInterface parent, ArrayList<ArrayList<Menu_Item>> pendingOrders){
+	public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders){
       this.parent = parent;
       setPendingOrders(pendingOrders);
       populatePending(pendingOrders);

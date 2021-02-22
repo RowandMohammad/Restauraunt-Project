@@ -8,8 +8,14 @@ public class Order {
   private int waiterId;
 
   Order(ArrayList<Menu_Item> order, int tableNum, int waiterId) {
-    this.order = new ArrayList<Menu_Item>();
+    this.order = order;
     this.tableNum = tableNum;
     this.waiterId = waiterId;
+  }
+  
+  
+  ArrayList<Menu_Item> getOrder(){
+    return order;
+    
   }
 }

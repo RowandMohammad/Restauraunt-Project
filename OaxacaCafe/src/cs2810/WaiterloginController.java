@@ -18,7 +18,7 @@ public class WaiterloginController {
   
   private ViewCustomerInterface parent;
   
-  ArrayList<ArrayList<Menu_Item>> pendingOrders;
+  ArrayList<Order> pendingOrders;
   @FXML
   private TextField userAccount;
   @FXML
@@ -41,13 +41,13 @@ public class WaiterloginController {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterView.fxml"));
     Parent root = loader.load();
     WaiterViewController controller = loader.getController();
-    controller.setInitialData(parent,  pendingOrders);
+    controller.setInitialData(parent, pendingOrders);
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();
   }
 
-  public void setPendingOrders(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
+  public void setPendingOrders(ArrayList<Order> pendingOrders) {
     this.pendingOrders = pendingOrders;
   }
 
@@ -82,7 +82,7 @@ public class WaiterloginController {
 
   }
   
-  public void setInitialData(ViewCustomerInterface parent, ArrayList<ArrayList<Menu_Item>> pendingOrders){
+  public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders){
     this.parent = parent;
     setPendingOrders(pendingOrders);
   }

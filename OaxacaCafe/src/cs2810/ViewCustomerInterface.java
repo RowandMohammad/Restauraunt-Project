@@ -34,7 +34,7 @@ public class ViewCustomerInterface {
 
   static ArrayList<User> list = new ArrayList<User>();
 
-  ArrayList<ArrayList<Menu_Item>> pendingOrders = new ArrayList<ArrayList<Menu_Item>>();
+  ArrayList<Order> pendingOrders = new ArrayList<Order>();
 
   String select = "";
 
@@ -356,7 +356,8 @@ public class ViewCustomerInterface {
   @FXML
   void checkoutButtonPushed(ActionEvent event) throws IOException {
     if (basketItems.size() != 0) {
-      pendingOrders.add(basketItems);
+      Order order = new Order(basketItems,1,111);
+      pendingOrders.add(order);
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
       Parent root = loader.load();
       CheckoutViewController controller = loader.getController();
@@ -507,6 +508,7 @@ public class ViewCustomerInterface {
 
   @FXML
   void WaiterloginButton(ActionEvent event) throws IOException {
+
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
     Parent root = loader.load();
     WaiterloginController controller = loader.getController();
@@ -552,7 +554,7 @@ public class ViewCustomerInterface {
   
 
   
-  public void updatePendingOrders(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
+  public void updatePendingOrders(ArrayList<Order> pendingOrders) {
     this.pendingOrders = pendingOrders;
   }
   
