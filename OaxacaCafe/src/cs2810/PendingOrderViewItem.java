@@ -57,7 +57,7 @@ public class PendingOrderViewItem extends HBox {
         String orderDetail = "";
         for (Menu_Item menuItem : orderDetails) {
           if (i == 0) {
-            orderDetail+= menuItem.getPurchaseDate() + "\n";
+            orderDetail+= menuItem.getPurchaseDate() + "\n" + menuItem.name + "\n";
             i++;
           }
           else {
