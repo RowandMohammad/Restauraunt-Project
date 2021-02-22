@@ -510,7 +510,7 @@ public class ViewCustomerInterface {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
     Parent root = loader.load();
     WaiterloginController controller = loader.getController();
-    controller.setPendingOrders(pendingOrders);
+    controller.setInitialData(this, pendingOrders);
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();
@@ -549,4 +549,34 @@ public class ViewCustomerInterface {
   public ArrayList<Menu_Item> getBasketItems() {
     return basketItems;
   }
+  
+
+  
+  public void updatePendingOrders(ArrayList<ArrayList<Menu_Item>> pendingOrders) {
+    this.pendingOrders = pendingOrders;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }

@@ -22,7 +22,7 @@ public class PendingOrderViewItem extends HBox {
     private Label orderDetailLabel;
 
     private WaiterViewController parentController;
-    private int index;
+    int index;
     private boolean isPending;
     /**
      * No default initialization allowed
