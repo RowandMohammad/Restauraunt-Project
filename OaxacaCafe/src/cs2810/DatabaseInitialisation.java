@@ -18,6 +18,7 @@ public class DatabaseInitialisation {
 	public static void main(String[] args) throws URISyntaxException, SQLException {
 		String mainmenuFile = "mainmenu.txt";
 		String sidesmenuFile = "sidesmenu.txt";
+		String drinksmenuFile = "drinksmenu.txt";
 		System.out.println("************** Checking JDBC Connection With PostgreSQL **************");
 		Connection dbConnection = null;
 		dbConnection = getConnection();
@@ -44,6 +45,7 @@ public class DatabaseInitialisation {
 		}
 		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, ETA)", mainmenuFile);
 		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, ETA)", sidesmenuFile);
+		insertDataIntoTable(dbConnection, "drinksmenu (name, calories, ingredients, type, price, ETA)", drinksmenuFile);
 
 	}
 
