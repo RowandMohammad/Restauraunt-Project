@@ -2,6 +2,7 @@ Order Number:
 Food Ordered:
 TotalPrice:
 Time Ordered:
+Waiter:
 ETA:
 Table:
 
