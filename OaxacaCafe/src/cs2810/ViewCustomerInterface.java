@@ -527,7 +527,7 @@ public class ViewCustomerInterface {
       String line = null;
       while ((line = reader.readLine()) != null) {
         String[] data = line.split("\\s+");
-        list.add(new User(data[0], data[1]));
+        list.add(new User(data[0], data[1], data[2]));
 
       }
       reader.close();
@@ -537,8 +537,8 @@ public class ViewCustomerInterface {
     }
   }
 
-  public static boolean findUser(String account, String pwd) {
-    return list.contains(new User(account, pwd));
+  public static boolean findUser(String account, String pwd, String staff) {
+    return list.contains(new User(account, pwd, staff));
   }
 
   public static User findAccount(String account) {

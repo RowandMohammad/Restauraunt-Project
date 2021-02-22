@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,6 +28,7 @@ public class WaiterloginController {
   private Button clear;
   @FXML
   private Button login;
+  
 
   @FXML
   private Button backToOrder;
@@ -37,14 +39,26 @@ public class WaiterloginController {
     stage.close();
   }
 
-  void changeScreenLoginCorrect(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterView.fxml"));
-    Parent root = loader.load();
-    WaiterViewController controller = loader.getController();
-    controller.setInitialData(parent, pendingOrders);
-    Stage stage = new Stage();
-    stage.setScene(new Scene(root));
-    stage.show();
+  void changeScreenLoginCorrect(ActionEvent event, String staff) throws IOException {
+    System.out.println(staff);
+    if (staff.equals("waiter")) {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterView.fxml"));
+      Parent root = loader.load();
+      WaiterViewController controller = loader.getController();
+      controller.setInitialData(parent, pendingOrders);
+      Stage stage = new Stage();
+      stage.setScene(new Scene(root));
+      stage.show();
+    }
+    else if(staff.equals("kitchen")) {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/KitchenView.fxml"));
+      Parent root = loader.load();
+      KitchenStaffView controller = loader.getController();
+      Stage stage = new Stage();
+      stage.setScene(new Scene(root));
+      stage.show();
+    }
+    
   }
 
   public void setPendingOrders(ArrayList<Order> pendingOrders) {
@@ -59,7 +73,7 @@ public class WaiterloginController {
 
   @FXML
   void loginButton(ActionEvent event) throws IOException {
-    if (ViewCustomerInterface.findUser(userAccount.getText(), userPwd.getText())) {
+    if (ViewCustomerInterface.findUser(userAccount.getText(), userPwd.getText(), "waiter")) {
       Alert alert = new Alert(AlertType.INFORMATION);
       alert.setTitle("success");
       alert.setHeaderText(null);
@@ -68,8 +82,21 @@ public class WaiterloginController {
       alert.showAndWait();
       Stage stage = (Stage) login.getScene().getWindow();
       stage.close();
-      changeScreenLoginCorrect(event);
-    } else {
+      changeScreenLoginCorrect(event, "waiter");
+    }
+    else if(ViewCustomerInterface.findUser(userAccount.getText(), userPwd.getText(), "kitchen")) {
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("success");
+      alert.setHeaderText(null);
+      alert.setContentText("Login successful");
+      new LoginMessage().getMessage().put("Login", "successful");
+      alert.showAndWait();
+      Stage stage = (Stage) login.getScene().getWindow();
+      stage.close();
+      changeScreenLoginCorrect(event, "kitchen");
+      
+    }
+    else {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setTitle("error");
       alert.setHeaderText(null);
