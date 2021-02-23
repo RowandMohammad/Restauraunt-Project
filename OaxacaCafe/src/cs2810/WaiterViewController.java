@@ -81,7 +81,7 @@ public class WaiterViewController {
 			if (type == yesButton) {
 		        PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
 		        pendingOrders.remove(index);
-		        updateIndex(PendingOrdersView, item.getIndex());
+		        updateIndex(PendingOrdersView, pendingOrders, item.getIndex());
 		        this.parent.updatePendingOrders(pendingOrders);
 		        item.setPending(false);
 				PendingOrdersView.refresh();
@@ -97,21 +97,21 @@ public class WaiterViewController {
 	 * @param index of order which have to be moved to deliverable state
 	 */
 	public void confirmOrder(int index) {
-		PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
+		PendingOrdersView.getItems().remove(index);
 		ordersToCook.add(pendingOrders.get(index));
 		pendingOrders.remove(index);
-		updateIndex(PendingOrdersView, item.getIndex());
+		updateIndex(PendingOrdersView, pendingOrders, index);
         this.parent.updatePendingOrders(pendingOrders);
         this.parent.updateOrdersToCook(ordersToCook);
 		PendingOrdersView.refresh();
 		OrdersToDeliverView.refresh();
 	}
 	
-  private void updateIndex(ListView<PendingOrderViewItem> pendingOrdersView, int currentIndex) {
-    for (int i = 0; i < pendingOrders.size(); i++) {
+  private void updateIndex(ListView<PendingOrderViewItem> View, ArrayList<Order> Orders, int currentIndex) {
+    for (int i = 0; i < Orders.size(); i++) {
       
-      if (pendingOrdersView.getItems().get(i).index > currentIndex) {
-        pendingOrdersView.getItems().get(i).index --;
+      if (View.getItems().get(i).index > currentIndex) {
+        View.getItems().get(i).index --;
       }
       
     }
@@ -126,6 +126,7 @@ public class WaiterViewController {
 	public void deliverOrder(int index) {
 	    ordersToDeliver.remove(index);
 		OrdersToDeliverView.getItems().remove(index);
+		updateIndex(OrdersToDeliverView, ordersToDeliver, index);
 		OrdersToDeliverView.refresh();
 	}
 	
