@@ -35,6 +35,8 @@ public class ViewCustomerInterface {
   static ArrayList<User> list = new ArrayList<User>();
 
   ArrayList<Order> pendingOrders = new ArrayList<Order>();
+  ArrayList<Order> ordersToCook = new ArrayList<Order>();
+  ArrayList<Order> ordersToDeliver = new ArrayList<Order>();
 
   String select = "";
 
@@ -512,7 +514,7 @@ public class ViewCustomerInterface {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
     Parent root = loader.load();
     WaiterloginController controller = loader.getController();
-    controller.setInitialData(this, pendingOrders);
+    controller.setInitialData(this, pendingOrders, ordersToCook, ordersToDeliver);
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();
@@ -558,8 +560,13 @@ public class ViewCustomerInterface {
     this.pendingOrders = pendingOrders;
   }
   
+  public void updateOrdersToCook(ArrayList<Order> ordersToCook) {
+    this.ordersToCook = ordersToCook;
+  }
   
-  
+  public void updateOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
+    this.ordersToDeliver = ordersToDeliver;
+  }
   
   
   

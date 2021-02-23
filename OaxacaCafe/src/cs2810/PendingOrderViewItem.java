@@ -22,12 +22,24 @@ public class PendingOrderViewItem extends HBox {
     private Label orderDetailLabel;
 
     private WaiterViewController parentController;
+    private KitchenStaffView parentController2;
+    
     int index;
     private boolean isPending;
     /**
      * No default initialization allowed
+     * @param isPending 
+     * @param index 
+     * @param arrayList 
+     * @param kitchenStaffView 
      */
-    private PendingOrderViewItem(){
+    public PendingOrderViewItem(KitchenStaffView parentController2, ArrayList<Menu_Item> orderDetails, int index, boolean isPending){
+      this.parentController2 = parentController2;
+      this.index = index;
+      this.isPending = isPending;
+      this.orderDetails = orderDetails;
+      this.setUpView();
+      this.setupCallback();
 
     }
 

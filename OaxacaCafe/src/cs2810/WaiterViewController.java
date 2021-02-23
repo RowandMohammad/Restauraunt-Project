@@ -20,6 +20,8 @@ public class WaiterViewController {
     private ViewCustomerInterface parent;
   
 	ArrayList<Order> pendingOrders;
+	ArrayList<Order> ordersToCook;
+	ArrayList<Order> ordersToDeliver;
 
 	@FXML
 	private ListView<PendingOrderViewItem> PendingOrdersView;
@@ -34,9 +36,6 @@ public class WaiterViewController {
 	@FXML
 	private Button CancelOrder;
 
-	public void setPendingOrders(ArrayList<Order> pendingOrders) {
-		this.pendingOrders = pendingOrders;
-	}
 
 	@FXML
 	void BackToOrderingPressed(ActionEvent event) throws IOException {
@@ -89,15 +88,15 @@ public class WaiterViewController {
 	 */
 	public void confirmOrder(int index) {
 		PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
+		ordersToCook.add(pendingOrders.get(index));
 		pendingOrders.remove(index);
 		updateIndex(PendingOrdersView, item.getIndex());
         this.parent.updatePendingOrders(pendingOrders);
-		item.setPending(false);
-		OrdersToDeliverView.getItems().add(item);
+        this.parent.updateOrdersToCook(ordersToCook);
 		PendingOrdersView.refresh();
 		OrdersToDeliverView.refresh();
 	}
-
+	
   private void updateIndex(ListView<PendingOrderViewItem> pendingOrdersView, int currentIndex) {
     for (int i = 0; i < pendingOrders.size(); i++) {
       
@@ -119,10 +118,11 @@ public class WaiterViewController {
 		OrdersToDeliverView.refresh();
 	}
 	
-	public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders){
+	public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders, ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToCook){
       this.parent = parent;
-      setPendingOrders(pendingOrders);
+      this.pendingOrders = pendingOrders;
+      this.ordersToDeliver = ordersToDeliver;
+      this.ordersToCook = ordersToCook;
       populatePending(pendingOrders);
-      System.out.println("pendingOrderssize: "+ pendingOrders.size());
   }
 }
