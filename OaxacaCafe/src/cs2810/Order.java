@@ -7,10 +7,12 @@ public class Order {
   private int tableNum;
   private int waiterId;
 
+
   Order(ArrayList<Menu_Item> order, int tableNum, int waiterId) {
     this.order = order;
     this.tableNum = tableNum;
     this.waiterId = waiterId;
+
   }
   
   
@@ -18,4 +20,7 @@ public class Order {
     return order;
     
   }
+  
+
+  
 }

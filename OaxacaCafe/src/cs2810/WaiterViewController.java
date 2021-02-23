@@ -50,6 +50,16 @@ public class WaiterViewController {
 			index++;
 		}
 	}
+	
+	
+	public void populateOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
+      int index = 0;
+      for (Order order : ordersToDeliver) {
+          PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, false);
+          OrdersToDeliverView.getItems().add(item);
+          index++;
+      }
+  }
 
 	@FXML
 	void handleCancelOrder(ActionEvent event) {
@@ -114,6 +124,7 @@ public class WaiterViewController {
 	 * @param index of order which have to be moved to delivered
 	 */
 	public void deliverOrder(int index) {
+	    ordersToDeliver.remove(index);
 		OrdersToDeliverView.getItems().remove(index);
 		OrdersToDeliverView.refresh();
 	}
@@ -124,5 +135,6 @@ public class WaiterViewController {
       this.ordersToDeliver = ordersToDeliver;
       this.ordersToCook = ordersToCook;
       populatePending(pendingOrders);
+      populateOrdersToDeliver(ordersToDeliver);
   }
 }

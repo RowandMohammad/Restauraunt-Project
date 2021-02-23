@@ -42,5 +42,27 @@ public class KitchenStaffView {
       }
       
     }
+    
+    
+    public void confirmOrder(int index) {
+      PendingOrderViewItem item = ordersToCookView.getItems().remove(index);
+      ordersToDeliver.add(ordersToCook.get(index));
+      ordersToCook.remove(index);
+      updateIndex(ordersToCookView, item.getIndex());
+      this.parent.updateOrdersToCook(ordersToCook);
+      this.parent.updateOrdersToDeliver(ordersToDeliver);
+      ordersToCookView.refresh();
+  }
+    
+    private void updateIndex(ListView<PendingOrderViewItem> ordersToCookView, int currentIndex) {
+      for (int i = 0; i < ordersToCook.size(); i++) {
+        
+        if (ordersToCookView.getItems().get(i).index > currentIndex) {
+          ordersToCookView.getItems().get(i).index --;
+        }
+        
+      }
+      
+    }
 
 }

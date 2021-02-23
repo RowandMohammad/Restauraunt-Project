@@ -33,15 +33,7 @@ public class PendingOrderViewItem extends HBox {
      * @param arrayList 
      * @param kitchenStaffView 
      */
-    public PendingOrderViewItem(KitchenStaffView parentController2, ArrayList<Menu_Item> orderDetails, int index, boolean isPending){
-      this.parentController2 = parentController2;
-      this.index = index;
-      this.isPending = isPending;
-      this.orderDetails = orderDetails;
-      this.setUpView();
-      this.setupCallback();
-
-    }
+    
 
     /**
      * Parametrized constructor for initializing new order view object
@@ -54,7 +46,18 @@ public class PendingOrderViewItem extends HBox {
         this.isPending = isPending;
         this.orderDetails = orderDetails;
         this.setUpView();
-        this.setupCallback();
+        this.setupCallback("waiter");
+    }
+    
+    
+    public PendingOrderViewItem(KitchenStaffView parentController2, ArrayList<Menu_Item> orderDetails, int index, boolean isPending){
+      this.parentController2 = parentController2;
+      this.index = index;
+      this.isPending = isPending;
+      this.orderDetails = orderDetails;
+      this.setUpView();
+      this.setupCallback("kitchen");
+
     }
 
     /**
@@ -75,15 +78,25 @@ public class PendingOrderViewItem extends HBox {
 
     /**
      * Utility function for assigning callback function to button click and confirming order
+     * @param string 
      */
-    private void setupCallback() {
+    private void setupCallback(String staff) {
         this.confirmButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(isPending)
+                if(isPending) {
+                  if (staff.equals("waiter")) {
                     parentController.confirmOrder(index);
-                else
+                  }
+                  else if (staff.equals("kitchen")) {
+                    parentController2.confirmOrder(index);
+                    
+                  }
+                } 
+                else {
                     parentController.deliverOrder(index);
+                    }
+                
             }
         });
     }
