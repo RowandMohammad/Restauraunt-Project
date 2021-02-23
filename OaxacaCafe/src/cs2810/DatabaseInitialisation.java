@@ -42,6 +42,9 @@ public class DatabaseInitialisation {
 			createTable(dbConnection,
 					"drinksmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
 							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
+			dropTable(dbConnection, "stafflogin");
+			createTable(dbConnection,
+					"stafflogin (username int PRIMARY KEY," + "password int, " + " staffrole varchar(50))");
 		}
 		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, ETA)", mainmenuFile);
 		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, ETA)", sidesmenuFile);
@@ -108,14 +111,14 @@ public class DatabaseInitialisation {
 				}
 
 				PreparedStatement statement = dbConnection.prepareStatement(sqlLine);
-				for (int i = 0; i < menuBL.length; i++) { 
+				for (int i = 0; i < menuBL.length; i++) {
 					if (stringToNumeralChecker(menuBL[i])) {
 						statement.setInt(i + 1, Integer.parseInt(menuBL[i]));
 					}
 					if (stringToFloatChecker(menuBL[i])) {
 						statement.setFloat(i + 1, Float.parseFloat(menuBL[i]));
 					}
-					
+
 					else {
 						statement.setString(i + 1, menuBL[i]);
 					}
@@ -125,10 +128,9 @@ public class DatabaseInitialisation {
 				if (count % batchSize == 0) {
 					statement.executeBatch();
 				}
-				
 
 			}
-			
+
 			lineReader.close();
 
 		} catch (SQLException e) {
@@ -138,7 +140,6 @@ public class DatabaseInitialisation {
 		}
 
 	}
-	
 
 	// Checks whether passed string can be converted to a numeric value
 	public static boolean stringToNumeralChecker(String numberInString) {
@@ -152,6 +153,7 @@ public class DatabaseInitialisation {
 		}
 		return true;
 	}
+
 	// Checks whether passed string can be converted to a numeric value
 	public static boolean stringToFloatChecker(String numberInString) {
 		if (numberInString == null) {
@@ -166,4 +168,3 @@ public class DatabaseInitialisation {
 	}
 
 }
-
