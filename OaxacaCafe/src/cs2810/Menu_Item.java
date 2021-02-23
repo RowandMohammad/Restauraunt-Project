@@ -29,8 +29,21 @@ public class Menu_Item {
 		this.dietaryRequirements = dietaryRequirements;
 	}
 
-	public void Clone(Menu_Item item) {
-		// cloneList calls Clone() to clone each individual item
+	public Menu_Item() {
+    // TODO Auto-generated constructor stub
+  }
+
+  public Menu_Item Clone(Menu_Item item) {
+	  Menu_Item clone = new Menu_Item();
+	  clone.name = item.name;
+	  clone.type = item.type;
+	  clone.price = item.price;
+	  clone.cooktime = item.cooktime;
+	  clone.calories = item.calories;
+	  this.available = true;
+	  clone.ingredients = item.ingredients;
+	  clone.dietaryRequirements = item.dietaryRequirements;
+      return clone;
 	}
 	
 	public void setPurchaseDate(String purchaseDate) {

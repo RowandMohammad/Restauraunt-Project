@@ -443,7 +443,9 @@ public class ViewCustomerInterface {
     for (int x = 0; x < mainItems.size(); x++) {
       if (item.equals(mainItems.get(x).name)) {
         for (int y = 0; y < quantitySpinner.getValue(); y++) {
-          basketItems.add(mainItems.get(x));
+          Menu_Item main = mainItems.get(x);
+          Menu_Item clonedMain = main.Clone(main);
+          basketItems.add(clonedMain);
         }
       }
     }
@@ -453,7 +455,9 @@ public class ViewCustomerInterface {
     for (int x = 0; x < sideItems.size(); x++) {
       if (item.equals(sideItems.get(x).name)) {
         for (int y = 0; y < quantitySpinner.getValue(); y++) {
-          basketItems.add(sideItems.get(x));
+          Menu_Item side = sideItems.get(x);
+          Menu_Item clonedMain = side.Clone(side);
+          basketItems.add(clonedMain);
         }
       }
     }
@@ -463,7 +467,9 @@ public class ViewCustomerInterface {
     for (int x = 0; x < drinkItems.size(); x++) {
       if (item.equals(drinkItems.get(x).name)) {
         for (int y = 0; y < quantitySpinner.getValue(); y++) {
-          basketItems.add(drinkItems.get(x));
+          Menu_Item drink = drinkItems.get(x);
+          Menu_Item clonedDrink = drink.Clone(drink);
+          basketItems.add(clonedDrink);
         }
       }
     }
@@ -557,4 +563,5 @@ public class ViewCustomerInterface {
   public ArrayList<Menu_Item> getBasketItems() {
     return basketItems;
   }
+  
 }
