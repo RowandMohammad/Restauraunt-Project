@@ -360,7 +360,7 @@ public class ViewCustomerInterface {
     String timeOfClick = dateFormat.format(date);
     
     for(Menu_Item item : basketItems) {
-      item.order_times.add(timeOfClick);
+      item.setPurchaseDate(timeOfClick);
     }
     
     if (basketItems.size() != 0) {
@@ -413,11 +413,9 @@ public class ViewCustomerInterface {
       setTotalPrice(price);
     }
     quantitySpinner.getValueFactory().setValue(1);
-
     for (int i = 0; i < basketItems.size(); i++) {
       System.out.println(basketItems.get(i));
     }
-
   }
 
 
@@ -456,8 +454,8 @@ public class ViewCustomerInterface {
       if (item.equals(sideItems.get(x).name)) {
         for (int y = 0; y < quantitySpinner.getValue(); y++) {
           Menu_Item side = sideItems.get(x);
-          Menu_Item clonedMain = side.Clone(side);
-          basketItems.add(clonedMain);
+          Menu_Item clonedSide = side.Clone(side);
+          basketItems.add(clonedSide);
         }
       }
     }
@@ -506,17 +504,17 @@ public class ViewCustomerInterface {
   
   @FXML
   void refresh(ActionEvent event) throws IOException {
-	  filterChangeMain(event);
-	  filterChangeSides(event);
-	  filterChangeDrinks(event);
+      filterChangeMain(event);
+      filterChangeSides(event);
+      filterChangeDrinks(event);
   }
-	  
+      
   @FXML
   void logout(ActionEvent event) throws IOException {
-	  LoginMessage.getMessage().clear();
-	  filterChangeMain(event);
-	  filterChangeSides(event);
-	  filterChangeDrinks(event);
+      LoginMessage.getMessage().clear();
+      filterChangeMain(event);
+      filterChangeSides(event);
+      filterChangeDrinks(event);
   }
 
   @FXML
@@ -528,19 +526,15 @@ public class ViewCustomerInterface {
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();
-
-
   }
 
   public static void LoadUser() {
     try {
-
       BufferedReader reader = new BufferedReader(new FileReader(new File("user.txt")));
       String line = null;
       while ((line = reader.readLine()) != null) {
         String[] data = line.split("\\s+");
         list.add(new User(data[0], data[1]));
-
       }
       reader.close();
     } catch (IOException e) {
