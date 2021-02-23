@@ -7,7 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+
 
 import java.util.ArrayList;
 
@@ -18,7 +18,6 @@ import java.util.ArrayList;
  */
 
 public class PendingOrderViewItem extends HBox {
-    public static int x;
     private ArrayList<Menu_Item> orderDetails;
     private Button confirmButton;
     private Label orderDetailLabel;
@@ -26,12 +25,11 @@ public class PendingOrderViewItem extends HBox {
     private WaiterViewController parentController;
     private int index;
     private boolean isPending;
+    
     /**
      * No default initialization allowed
      */
-    private PendingOrderViewItem(){
-
-    }
+    private PendingOrderViewItem(){}
 
     /**
      * Parametrized constructor for initializing new order view object
@@ -58,22 +56,15 @@ public class PendingOrderViewItem extends HBox {
         this.orderDetailLabel = new Label();
         String orderDetail = "";
         
-        int x = -1;
         for (Menu_Item menuItem : orderDetails) {
-          x++;
           if (i == 0) {
-            orderDetail+= menuItem.getPurchaseDate2(x) + "\n" + menuItem.name + "\n";
-            System.out.println(x);
+            orderDetail+= menuItem.getPurchaseDate() + "\n" + menuItem.name + "\n";
             i++;
           }
           else {
-            System.out.println(x);
-            menuItem.getPurchaseDate2(x);
             orderDetail+=  menuItem.name + "\n";
             i++;
-            x++;
           }
-          menuItem.order_times.remove(x);
         }
         i = 0;
         this.orderDetailLabel.setText(orderDetail);

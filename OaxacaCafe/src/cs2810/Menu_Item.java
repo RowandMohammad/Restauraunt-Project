@@ -1,21 +1,15 @@
-
 package cs2810;
 
-import java.util.ArrayList;
-
-
-
 public class Menu_Item {
-  String name;
-  int calories;
-  String[] ingredients;
-  double price;
-  String type;
-  boolean available;
-  String[] dietaryRequirements;
-  int cooktime;
-  String purchaseDate;
-  ArrayList<String> order_times = new ArrayList<String>();
+    String name;
+    int calories;
+    String[] ingredients;
+    double price;
+    String type;
+    boolean available;
+    String[] dietaryRequirements;
+    int cooktime;
+    String purchaseDate;
 
 	public Menu_Item(String name, int calories, String[] ingredients, double price, int cooktime, String type,
 			boolean available, String[] dietaryRequirements) {
@@ -30,8 +24,8 @@ public class Menu_Item {
 	}
 
 	public Menu_Item() {
-    // TODO Auto-generated constructor stub
-  }
+	  //Default constructor for cloning a Menu_Item
+    }
 
   public Menu_Item Clone(Menu_Item item) {
 	  Menu_Item clone = new Menu_Item();
@@ -48,23 +42,17 @@ public class Menu_Item {
 	
 	public void setPurchaseDate(String purchaseDate) {
 	  this.purchaseDate = purchaseDate;
-	  order_times.add(purchaseDate);
 	}
 	
 	public String getPurchaseDate() {
 	  return purchaseDate;
 	}
 	
-	public String getPurchaseDate2(int index) {
-	  System.out.println(order_times);
-	  System.out.println("REAL CALL:"+ order_times.get(index));
-      return order_times.get(index);
-    }
 
 	public void cloneList() {
 		// method to clone arraylist of menu_item without pointing to same objects
-
 	}
+	
 	public String getName() {
 		return name;
 	}
