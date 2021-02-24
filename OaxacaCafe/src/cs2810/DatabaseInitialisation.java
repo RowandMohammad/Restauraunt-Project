@@ -45,6 +45,7 @@ public class DatabaseInitialisation {
 			dropTable(dbConnection, "stafflogin");
 			createTable(dbConnection,
 					"stafflogin (username int PRIMARY KEY," + "password int, " + " staffrole varchar(50))");
+
 		}
 		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, ETA)", mainmenuFile);
 		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, ETA)", sidesmenuFile);
