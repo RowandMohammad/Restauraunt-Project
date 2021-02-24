@@ -16,9 +16,10 @@ public class DatabaseInitialisation {
 	private final static String password = "57a2d6d4bc061d9a386aaa5352bac1ac7cfc1744b1b7e46318519a73c7dfa547";
 
 	public static void main(String[] args) throws URISyntaxException, SQLException {
-		String mainmenuFile = "mainmenu.txt";
-		String sidesmenuFile = "sidesmenu.txt";
-		String drinksmenuFile = "drinksmenu.txt";
+		String mainMenuFile = "mainmenu.txt";
+		String sidesMenuFile = "sidesmenu.txt";
+		String drinksMenuFile = "drinksmenu.txt";
+		String staffLoginFile = "stafflogin.txt";
 		System.out.println("************** Checking JDBC Connection With PostgreSQL **************");
 		Connection dbConnection = null;
 		dbConnection = getConnection();
@@ -42,10 +43,20 @@ public class DatabaseInitialisation {
 			createTable(dbConnection,
 					"drinksmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
 							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
+			dropTable(dbConnection, "stafflogin");
+			createTable(dbConnection,
+					"stafflogin (username int PRIMARY KEY," + "password int, " + " staffrole varchar(50))");
+			dropTable(dbConnection, "orders");
+			createTable(dbConnection,
+					"orders (ordernumber int PRIMARY KEY," + "foodordered varchar(500), "
+							+ "totalprice DECIMAL(4 , 2 ) NOT NULL, " + "ordertime int, " + "waiter varchar(50), "
+							+ "ETA int, " + "tablenumber int)");
+
 		}
-		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, ETA)", mainmenuFile);
-		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, ETA)", sidesmenuFile);
-		insertDataIntoTable(dbConnection, "drinksmenu (name, calories, ingredients, type, price, ETA)", drinksmenuFile);
+		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, ETA)", mainMenuFile);
+		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, ETA)", sidesMenuFile);
+		insertDataIntoTable(dbConnection, "drinksmenu (name, calories, ingredients, type, price, ETA)", drinksMenuFile);
+		insertDataIntoTable(dbConnection, "stafflogin (username, password, staffrole)", staffLoginFile);
 
 	}
 
@@ -108,14 +119,14 @@ public class DatabaseInitialisation {
 				}
 
 				PreparedStatement statement = dbConnection.prepareStatement(sqlLine);
-				for (int i = 0; i < menuBL.length; i++) { 
+				for (int i = 0; i < menuBL.length; i++) {
 					if (stringToNumeralChecker(menuBL[i])) {
 						statement.setInt(i + 1, Integer.parseInt(menuBL[i]));
 					}
 					if (stringToFloatChecker(menuBL[i])) {
 						statement.setFloat(i + 1, Float.parseFloat(menuBL[i]));
 					}
-					
+
 					else {
 						statement.setString(i + 1, menuBL[i]);
 					}
@@ -125,10 +136,9 @@ public class DatabaseInitialisation {
 				if (count % batchSize == 0) {
 					statement.executeBatch();
 				}
-				
 
 			}
-			
+
 			lineReader.close();
 
 		} catch (SQLException e) {
@@ -138,7 +148,6 @@ public class DatabaseInitialisation {
 		}
 
 	}
-	
 
 	// Checks whether passed string can be converted to a numeric value
 	public static boolean stringToNumeralChecker(String numberInString) {
@@ -152,6 +161,7 @@ public class DatabaseInitialisation {
 		}
 		return true;
 	}
+
 	// Checks whether passed string can be converted to a numeric value
 	public static boolean stringToFloatChecker(String numberInString) {
 		if (numberInString == null) {
@@ -166,4 +176,3 @@ public class DatabaseInitialisation {
 	}
 
 }
-
