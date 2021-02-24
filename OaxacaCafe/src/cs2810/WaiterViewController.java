@@ -31,11 +31,12 @@ public class WaiterViewController {
 
 	@FXML
 	private Button BackToOrdering;
+	
 	@FXML
 	private Label UserLabel;
+	
 	@FXML
 	private Button CancelOrder;
-
 
 	@FXML
 	void BackToOrderingPressed(ActionEvent event) throws IOException {

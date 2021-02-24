@@ -7,7 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+
 
 import java.util.ArrayList;
 
@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * data members
  * 		orderDetails: ArrayList<Menu_Item>  ==> List of items selected for order
  */
+
 public class PendingOrderViewItem extends HBox {
     private ArrayList<Menu_Item> orderDetails;
     private Button confirmButton;
@@ -26,6 +27,7 @@ public class PendingOrderViewItem extends HBox {
     
     int index;
     private boolean isPending;
+    
     /**
      * No default initialization allowed
      * @param isPending 
@@ -64,13 +66,21 @@ public class PendingOrderViewItem extends HBox {
      * Utility function for initializing view
      */
     private void setUpView() {
+        boolean isFirst = true;
         this.setAlignment(Pos.CENTER_LEFT);
         this.confirmButton = new Button("Confirm");
         HBox.setMargin(this.confirmButton, new Insets(0, 0,0,300));
         this.orderDetailLabel = new Label();
         String orderDetail = "";
+        
         for (Menu_Item menuItem : orderDetails) {
-            orderDetail+= menuItem.name+"\n";
+          if (isFirst) {
+            orderDetail+= "Order Time: "+menuItem.getPurchaseDate() + "\n" + "Order Item(s):\n" +menuItem.name + "\n";
+            isFirst = false;
+          }
+          else {
+            orderDetail+=  menuItem.name + "\n";
+          }
         }
         this.orderDetailLabel.setText(orderDetail);
         this.getChildren().addAll(orderDetailLabel, confirmButton);

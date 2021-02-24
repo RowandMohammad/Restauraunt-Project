@@ -1,16 +1,15 @@
-
 package cs2810;
 
 public class Menu_Item {
-  String name;
-  int calories;
-  String[] ingredients;
-  double price;
-  String type;
-  boolean available;
-  String[] dietaryRequirements;
-  int cooktime;
-
+    String name;
+    int calories;
+    String[] ingredients;
+    double price;
+    String type;
+    boolean available;
+    String[] dietaryRequirements;
+    int cooktime;
+    String purchaseDate;
 
 	public Menu_Item(String name, int calories, String[] ingredients, double price, int cooktime, String type,
 			boolean available, String[] dietaryRequirements) {
@@ -24,14 +23,36 @@ public class Menu_Item {
 		this.dietaryRequirements = dietaryRequirements;
 	}
 
-	public void Clone(Menu_Item item) {
-		// cloneList calls Clone() to clone each individual item
+	public Menu_Item() {
+	  //Default constructor for cloning a Menu_Item
+    }
+
+  public Menu_Item Clone(Menu_Item item) {
+	  Menu_Item clone = new Menu_Item();
+	  clone.name = item.name;
+	  clone.type = item.type;
+	  clone.price = item.price;
+	  clone.cooktime = item.cooktime;
+	  clone.calories = item.calories;
+	  this.available = true;
+	  clone.ingredients = item.ingredients;
+	  clone.dietaryRequirements = item.dietaryRequirements;
+      return clone;
 	}
+	
+	public void setPurchaseDate(String purchaseDate) {
+	  this.purchaseDate = purchaseDate;
+	}
+	
+	public String getPurchaseDate() {
+	  return purchaseDate;
+	}
+	
 
 	public void cloneList() {
 		// method to clone arraylist of menu_item without pointing to same objects
-
 	}
+	
 	public String getName() {
 		return name;
 	}

@@ -23,13 +23,15 @@ public class CheckoutViewController {
     stage.close();
   }
 
-  public void populateCheckout(ArrayList<Menu_Item> basket, Float price) {
+  public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time) {
     String order = "";
+    String completeOrder = "";
     for (int i = 0; i < basket.size(); i++) {
       order = order + basket.get(i).name + "  £" + basket.get(i).price + "\n";
     }
+    completeOrder = time + "\n" + order;
     price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-    OrderList.getItems().add(order);
+    OrderList.getItems().add(completeOrder);
     OrderList.getItems().add("Total Price: £" + price + "");
 
   }

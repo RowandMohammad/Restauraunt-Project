@@ -63,6 +63,7 @@ public class WaiterloginController {
       DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
     EventHandler<ActionEvent> eventHandler = e -> {
 
+
        stage.setTitle(df.format(new Date()));
 
 
