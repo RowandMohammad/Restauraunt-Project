@@ -52,6 +52,16 @@ public class WaiterloginController {
       Stage stage = new Stage();
       stage.setScene(new Scene(root));
       stage.show();
+      DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+    EventHandler<ActionEvent> eventHandler = e -> {
+
+       stage.setTitle(df.format(new Date()));
+
+
+    };
+    Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
+    animation.setCycleCount(Timeline.INDEFINITE);
+    animation.play();
     }
     else if(staff.equals("kitchen")) {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/KitchenView.fxml"));
@@ -61,6 +71,16 @@ public class WaiterloginController {
       Stage stage = new Stage();
       stage.setScene(new Scene(root));
       stage.show();
+      DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+    EventHandler<ActionEvent> eventHandler = e -> {
+
+       stage.setTitle(df.format(new Date()));
+
+
+    };
+    Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
+    animation.setCycleCount(Timeline.INDEFINITE);
+    animation.play();
     }
     
   }
