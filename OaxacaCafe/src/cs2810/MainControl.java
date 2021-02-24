@@ -8,6 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.util.Date;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
 
 
 
@@ -29,6 +35,18 @@ public class MainControl extends Application {
     Scene scene = new Scene(root);
     scene.getStylesheets()
         .add(getClass().getClassLoader().getResource("styling/style.css").toExternalForm());
+    
+    DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+    
+    EventHandler<ActionEvent> eventHandler = e -> {
+
+       primaryStage.setTitle(df.format(new Date()));
+
+
+    };
+    Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
+    animation.setCycleCount(Timeline.INDEFINITE);
+    animation.play();
     primaryStage.setScene(scene);
     primaryStage.show();
     primaryStage.setResizable(false);
