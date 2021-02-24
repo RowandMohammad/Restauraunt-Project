@@ -371,6 +371,16 @@ public class ViewCustomerInterface {
       Stage stage = new Stage();
       stage.setScene(new Scene(root));
       stage.show();
+      DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+       EventHandler<ActionEvent> eventHandler = e -> {
+
+       stage.setTitle(df.format(new Date()));
+
+
+    };
+    Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
+    animation.setCycleCount(Timeline.INDEFINITE);
+    animation.play();
 
     } else {
       System.out.println("Basket is empty");
@@ -518,6 +528,16 @@ public class ViewCustomerInterface {
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();
+    DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+    EventHandler<ActionEvent> eventHandler = e -> {
+
+       stage.setTitle(df.format(new Date()));
+
+
+    };
+    Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
+    animation.setCycleCount(Timeline.INDEFINITE);
+    animation.play();
 
 
   }
