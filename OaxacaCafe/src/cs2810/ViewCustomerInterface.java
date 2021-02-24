@@ -356,7 +356,7 @@ public class ViewCustomerInterface {
   @FXML
   void checkoutButtonPushed(ActionEvent event) throws IOException {
     Date date = Calendar.getInstance().getTime();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss:");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss");
     String timeOfClick = dateFormat.format(date);
     
     for(Menu_Item item : basketItems) {
