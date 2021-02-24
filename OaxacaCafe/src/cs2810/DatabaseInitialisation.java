@@ -16,10 +16,10 @@ public class DatabaseInitialisation {
 	private final static String password = "57a2d6d4bc061d9a386aaa5352bac1ac7cfc1744b1b7e46318519a73c7dfa547";
 
 	public static void main(String[] args) throws URISyntaxException, SQLException {
-		String mainmenuFile = "mainmenu.txt";
-		String sidesmenuFile = "sidesmenu.txt";
-		String drinksmenuFile = "drinksmenu.txt";
-		String staffloginFile = "stafflogin.txt";
+		String mainMenuFile = "mainmenu.txt";
+		String sidesMenuFile = "sidesmenu.txt";
+		String drinksMenuFile = "drinksmenu.txt";
+		String staffLoginFile = "stafflogin.txt";
 		System.out.println("************** Checking JDBC Connection With PostgreSQL **************");
 		Connection dbConnection = null;
 		dbConnection = getConnection();
@@ -48,10 +48,10 @@ public class DatabaseInitialisation {
 					"stafflogin (username int PRIMARY KEY," + "password int, " + " staffrole varchar(50))");
 
 		}
-		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, ETA)", mainmenuFile);
-		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, ETA)", sidesmenuFile);
-		insertDataIntoTable(dbConnection, "drinksmenu (name, calories, ingredients, type, price, ETA)", drinksmenuFile);
-		insertDataIntoTable(dbConnection, "stafflogin (username, password, staffrole)", staffloginFile);
+		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, ETA)", mainMenuFile);
+		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, ETA)", sidesMenuFile);
+		insertDataIntoTable(dbConnection, "drinksmenu (name, calories, ingredients, type, price, ETA)", drinksMenuFile);
+		insertDataIntoTable(dbConnection, "stafflogin (username, password, staffrole)", staffLoginFile);
 
 	}
 
