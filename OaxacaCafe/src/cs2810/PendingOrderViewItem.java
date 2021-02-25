@@ -88,7 +88,7 @@ public class PendingOrderViewItem extends HBox {
 
     /**
      * Utility function for assigning callback function to button click and confirming order
-     * @param string 
+     * @param staff
      */
     private void setupCallback(String staff) {
         this.confirmButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
