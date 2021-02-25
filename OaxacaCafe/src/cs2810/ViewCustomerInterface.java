@@ -117,6 +117,7 @@ public class ViewCustomerInterface {
   @FXML
   private Label orderStatus;
 
+  
   // Handles button click to call waiter
   @FXML
   void waiterButtonPressed(ActionEvent event) {

@@ -82,7 +82,6 @@ public class WaiterViewController {
                 pendingOrders.remove(index);
                 updateIndex(PendingOrdersView, pendingOrders, item.getIndex());
                 this.parent.updatePendingOrders(pendingOrders);
-                item.setPending(false);
                 PendingOrdersView.refresh();
                 updateOrderStatus("Canceled");
             } else {
@@ -97,15 +96,12 @@ public class WaiterViewController {
      */
     public void confirmOrder(int index) {
         PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
-        item.setPending(false);
         ordersToCook.add(pendingOrders.get(index));
         Order order = pendingOrders.remove(index);
-        ordersToDeliver.add(order);
         updateIndex(PendingOrdersView, pendingOrders, index);
         this.parent.updatePendingOrders(pendingOrders);
         this.parent.updateOrdersToCook(ordersToCook);
         updateOrderStatus("In progress");
-        OrdersToDeliverView.getItems().add(item);
         PendingOrdersView.refresh();
         OrdersToDeliverView.refresh();
     }
