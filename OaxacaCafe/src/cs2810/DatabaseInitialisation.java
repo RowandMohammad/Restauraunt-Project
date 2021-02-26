@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -148,6 +149,28 @@ public class DatabaseInitialisation {
 		}
 
 	}
+	
+	  //Connects to database to execute queries
+	  public static ResultSet executeSelect(Connection dbConnection, String sqlQuery) {
+	    Statement st = null;
+	    try {
+	      st = dbConnection.createStatement();
+	    } catch (SQLException e) {
+	      e.printStackTrace();
+	      return null;
+	    }
+	    ResultSet rs = null;
+	    try {
+	      rs = st.executeQuery(sqlQuery);
+	    } catch (SQLException e) {
+	      e.printStackTrace();
+	      return null;
+	    }
+	    
+	    
+	    return rs;
+	    
+	  }
 
 	// Checks whether passed string can be converted to a numeric value
 	public static boolean stringToNumeralChecker(String numberInString) {
