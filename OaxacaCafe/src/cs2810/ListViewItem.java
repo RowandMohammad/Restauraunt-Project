@@ -116,19 +116,19 @@ private void setDeleteBtnActionListener() {
 					ArrayList<Menu_Item> sideItems = MenuMain.initialiseSideItems();
 					for (Menu_Item item : mainItems) {
 						if (ings.equals(item.getIngredients())) {
-							item.setPrice(Double.parseDouble(prices.split("Â£")[1]));
+							item.setPrice(Double.parseDouble(prices.split("£")[1]));
 							item.setName(names);
 						}
 					}
 					for (Menu_Item item : drinkItems) {
 						if (ings.equals(item.getIngredients())) {
-							item.setPrice(Double.parseDouble(prices.split("Â£")[1]));
+							item.setPrice(Double.parseDouble(prices.split("£")[1]));
 							item.setName(names);
 						}
 					}
 					for (Menu_Item item : sideItems) {
 						if (ings.equals(item.getIngredients())) {
-							item.setPrice(Double.parseDouble(prices.split("Â£")[1]));
+							item.setPrice(Double.parseDouble(prices.split("£")[1]));
 
 							item.setName(names);
 

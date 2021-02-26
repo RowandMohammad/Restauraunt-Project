@@ -114,6 +114,10 @@ public class ViewCustomerInterface {
   @FXML
   private Button logoutbutton;
 
+  @FXML
+  private Label orderStatus;
+
+  
   // Handles button click to call waiter
   @FXML
   void waiterButtonPressed(ActionEvent event) {
@@ -364,6 +368,7 @@ public class ViewCustomerInterface {
 
   @FXML
   void checkoutButtonPushed(ActionEvent event) throws IOException {
+    setOrderStatus("Placed");
     Date date = Calendar.getInstance().getTime();
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss");
     String timeOfClick = dateFormat.format(date);
@@ -404,6 +409,7 @@ public class ViewCustomerInterface {
   // Testing method to add to basket
   @FXML
   void handleAddItemButton(ActionEvent event) {
+    setOrderStatus("Not Placed");
     ListViewItem selected = getSelect();
     String name = selected.getName();
     int x = 0;
@@ -605,5 +611,13 @@ public class ViewCustomerInterface {
   public void updateOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
     this.ordersToDeliver = ordersToDeliver;
   }
-   
+
+  /**
+   * Mutator function for updating order status from other views
+   *
+   * @param status of order
+   */
+  public void setOrderStatus(String status){
+    orderStatus.setText(status);
+  }
 }
