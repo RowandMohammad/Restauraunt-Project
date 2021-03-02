@@ -14,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import java.util.Date;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -56,12 +57,13 @@ public class WaiterloginController {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterView.fxml"));
       Parent root = loader.load();
       WaiterViewController controller = loader.getController();
+      WaiterViewController.setIsShowing(true);
       controller.setInitialData(parent, pendingOrders, ordersToDeliver, ordersToCook);
       Stage stage = new Stage();
       stage.setScene(new Scene(root));
       stage.show();
       DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
-    EventHandler<ActionEvent> eventHandler = e -> {
+      EventHandler<ActionEvent> eventHandler = e -> {
 
 
        stage.setTitle(df.format(new Date()));
@@ -71,6 +73,7 @@ public class WaiterloginController {
     Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
     animation.setCycleCount(Timeline.INDEFINITE);
     animation.play();
+    closeWaiterViewListener(stage);
     }
     else if(staff.equals("kitchen")) {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/KitchenView.fxml"));
@@ -143,6 +146,14 @@ public class WaiterloginController {
     this.pendingOrders = pendingOrders;
     this.ordersToCook = ordersToCook;
     this.ordersToDeliver = ordersToDeliver;
+  }
+  
+  private void closeWaiterViewListener(Stage stage) {
+    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+      public void handle(WindowEvent we) {
+          WaiterViewController.setIsShowing(false);
+      }
+    }); 
   }
 
 }

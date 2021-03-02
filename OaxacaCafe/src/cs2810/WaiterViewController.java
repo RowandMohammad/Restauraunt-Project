@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -16,10 +17,12 @@ import javafx.stage.Stage;
 public class WaiterViewController {
 
     private ViewCustomerInterface parent;
+    private static boolean isShowing;
 
     ArrayList<Order> pendingOrders;
     ArrayList<Order> ordersToCook;
     ArrayList<Order> ordersToDeliver;
+    
 
     @FXML
     private ListView<PendingOrderViewItem> PendingOrdersView;
@@ -34,11 +37,19 @@ public class WaiterViewController {
     private Label UserLabel;
 
     @FXML
-    private Button CancelOrder;
+    private Button CancelOrder; 
 
     @FXML
     void BackToOrderingPressed(ActionEvent event) throws IOException {
         ((Stage) BackToOrdering.getScene().getWindow()).close();
+        isShowing = false;
+    }
+    
+    public static void assistancePopup() {
+      if (isShowing) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.showAndWait();
+      }
     }
 
     public void populatePending(ArrayList<Order> pendingOrders) {
@@ -138,5 +149,9 @@ public class WaiterViewController {
         this.ordersToCook = ordersToCook;
         populatePending(pendingOrders);
         populateOrdersToDeliver(ordersToDeliver);
+    }
+    
+    public static void setIsShowing(boolean bool) {
+      isShowing = bool;
     }
 }

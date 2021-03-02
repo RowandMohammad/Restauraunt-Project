@@ -120,11 +120,12 @@ public class ViewCustomerInterface {
   
   // Handles button click to call waiter
   @FXML
-  void waiterButtonPressed(ActionEvent event) {
+  void waiterButtonPressed(ActionEvent event) throws IOException {
     URL url = this.getClass().getClassLoader().getResource("res/12025.mp3");
     Media media = new Media(url.toExternalForm());
     MediaPlayer mp = new MediaPlayer(media);
     mp.play();
+    WaiterViewController.assistancePopup();
   }
 
   // Handles starting the menu
@@ -138,8 +139,6 @@ public class ViewCustomerInterface {
     basketItems = new ArrayList<Menu_Item>();
     
   }
-
-
 
 
   @FXML
