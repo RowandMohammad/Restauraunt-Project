@@ -120,7 +120,7 @@ public class ViewCustomerInterface {
   
   // Handles button click to call waiter
   @FXML
-  void waiterButtonPressed(ActionEvent event) throws IOException {
+  void waiterButtonPressed(ActionEvent event) {
     URL url = this.getClass().getClassLoader().getResource("res/12025.mp3");
     Media media = new Media(url.toExternalForm());
     MediaPlayer mp = new MediaPlayer(media);
