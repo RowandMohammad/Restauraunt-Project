@@ -47,9 +47,9 @@ public class WaiterViewController {
     
     public static void assistancePopup() {
       if (isShowing) {
-        Alert alert = new Alert(AlertType.INFORMATION);
+        Alert alert = new Alert(AlertType.NONE, "Customer on table X is calling for assistance", ButtonType.OK);
         alert.showAndWait();
-      }
+      }       
     }
 
     public void populatePending(ArrayList<Order> pendingOrders) {
