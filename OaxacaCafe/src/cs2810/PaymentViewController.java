@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 public class PaymentViewController {
 
     @FXML
-    private TextField emailField;
+    private TextField nameField;
 
     @FXML
     private TextField cardNoField;
