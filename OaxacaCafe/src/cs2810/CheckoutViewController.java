@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -27,8 +30,11 @@ public class CheckoutViewController {
   }
   
   @FXML
-  void changeToPaymentView(ActionEvent event) {
-    //Method to switch to payment view
+  void changeToPaymentView(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/PaymentView.fxml"));
+    Parent root = loader.load();
+    Stage window = (Stage) payOrderButton.getScene().getWindow();
+    window.setScene(new Scene(root));
   }
 
   public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time) {
