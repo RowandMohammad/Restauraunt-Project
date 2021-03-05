@@ -61,7 +61,7 @@
                         <Font name="Calibri Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="orderButton" layoutX="151.0" layoutY="359.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: gold; -fx-background-radius: 20; -fx-background-insets: 1; -fx-border-style: solid; -fx-border-radius: 20; -fx-border-width: 2;" text="Order">
+                  <Button fx:id="orderButton" layoutX="151.0" layoutY="359.0" mnemonicParsing="false" onAction="#purchaseOrder" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: gold; -fx-background-radius: 20; -fx-background-insets: 1; -fx-border-style: solid; -fx-border-radius: 20; -fx-border-width: 2;" text="Order">
                      <font>
                         <Font name="Forte" size="16.0" />
                      </font>
