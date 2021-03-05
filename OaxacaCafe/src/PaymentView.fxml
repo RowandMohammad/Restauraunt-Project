@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.PaymentViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.PaymentViewController">
    <children>
       <ImageView fitHeight="198.0" fitWidth="623.0" layoutX="99.0" layoutY="14.0" pickOnBounds="true">
          <image>
@@ -31,12 +31,12 @@
                         <Font name="Calibri Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="98.0" layoutY="51.0" text="Name:" textFill="#73e019">
+                  <Label layoutX="93.0" layoutY="51.0" text="Name:" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="93.0" layoutY="140.0" text="Card Number:" textFill="#73e019">
+                  <Label layoutX="86.0" layoutY="140.0" text="Card Number:" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
@@ -46,12 +46,12 @@
                         <Font name="Calibri Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="86.0" layoutY="226.0" text="Expiry Date:" textFill="#73e019">
+                  <Label layoutX="85.0" layoutY="226.0" text="Expiry Date:" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="275.0" layoutY="226.0" text="CVC:" textFill="#73e019">
+                  <Label layoutX="264.0" layoutY="226.0" text="CVC:" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>

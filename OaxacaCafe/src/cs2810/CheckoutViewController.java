@@ -16,11 +16,19 @@ public class CheckoutViewController {
 
   @FXML
   private ListView<String> OrderList;
+  
+  @FXML
+  private Button payOrderButton;
 
   @FXML
   void changeScreenButtonPushed(ActionEvent event) throws IOException {
     Stage stage = (Stage) backToOrder.getScene().getWindow();
     stage.close();
+  }
+  
+  @FXML
+  void changeToPaymentView(ActionEvent event) {
+    //Method to switch to payment view
   }
 
   public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time) {
