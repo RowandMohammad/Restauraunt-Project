@@ -31,7 +31,7 @@
                         <Font name="Calibri Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="93.0" layoutY="51.0" text="Name:" textFill="#73e019">
+                  <Label layoutX="93.0" layoutY="51.0" text="Full Name:" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
@@ -46,12 +46,12 @@
                         <Font name="Calibri Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="85.0" layoutY="226.0" text="Expiry Date:" textFill="#73e019">
+                  <Label layoutX="84.0" layoutY="225.0" text="Expiry Date:" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="264.0" layoutY="226.0" text="CVC:" textFill="#73e019">
+                  <Label layoutX="255.0" layoutY="225.0" text="CVC:" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
@@ -61,7 +61,7 @@
                         <Font name="Calibri Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="orderButton" layoutX="151.0" layoutY="359.0" mnemonicParsing="false" onAction="#purchaseOrder" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: gold; -fx-background-radius: 20; -fx-background-insets: 1; -fx-border-style: solid; -fx-border-radius: 20; -fx-border-width: 2;" text="Order">
+                  <Button fx:id="payButton" layoutX="151.0" layoutY="359.0" mnemonicParsing="false" onAction="#purchaseOrder" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: gold; -fx-background-radius: 20; -fx-background-insets: 1; -fx-border-style: solid; -fx-border-radius: 20; -fx-border-width: 2;" text="Purchase">
                      <font>
                         <Font name="Forte" size="16.0" />
                      </font>

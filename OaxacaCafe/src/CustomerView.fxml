@@ -20,7 +20,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<Pane layoutX="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
+<Pane layoutX="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ViewCustomerInterface">
    <children>
       <ImageView fitHeight="123.0" fitWidth="236.0" layoutX="118.0" layoutY="43.0">
          <image>
@@ -114,7 +114,7 @@
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="checkoutBtn" layoutX="7.0" layoutY="565.0" mnemonicParsing="false" onAction="#checkoutButtonPushed" prefHeight="17.0" prefWidth="204.0" style="-fx-background-radius: 20; -fx-border-style: solid; -fx-border-radius: 20; -fx-border-width: 2;" styleClass="checkoutBtn" stylesheets="@styling/style.css" text="Checkout">
+                  <Button fx:id="checkoutBtn" layoutX="7.0" layoutY="565.0" mnemonicParsing="false" onAction="#checkoutButtonPushed" prefHeight="17.0" prefWidth="204.0" style="-fx-background-radius: 20; -fx-border-style: solid; -fx-border-radius: 20; -fx-border-width: 2;" styleClass="checkoutBtn" stylesheets="@styling/style.css" text="Place Order">
                      <font>
                         <Font name="Forte" size="17.0" />
                      </font>
@@ -179,7 +179,7 @@
                <light>
                   <Light.Distant>
                      <color>
-                        <Color blue="0.3529411852359772" green="0.9921568632125854" red="0.1764705926179886" />
+                        <Color red="0.1764705926179886" green="0.9921568632125854" blue="0.3529411852359772" />
                      </color>
                   </Light.Distant>
                </light>

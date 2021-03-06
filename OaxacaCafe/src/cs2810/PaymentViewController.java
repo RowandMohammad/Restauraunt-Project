@@ -20,7 +20,7 @@ public class PaymentViewController {
     private TextField cvcField;
 
     @FXML
-    private Button orderButton;
+    private Button payButton;
     
     private void checkCardDetails() {
       if (isValidName() && isValidCardNo() && isValidExpiry() && isValidCVC()) {
