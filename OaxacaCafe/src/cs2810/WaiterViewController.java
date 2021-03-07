@@ -26,6 +26,9 @@ public class WaiterViewController {
 
     @FXML
     private ListView<PendingOrderViewItem> OrdersToDeliverView;
+    
+    @FXML
+    private ListView<String> LeftToPayView;
 
     @FXML
     private Button BackToOrdering;
