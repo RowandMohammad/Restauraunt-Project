@@ -5,8 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 
 public class PaymentViewController {
+  
+  
 
     @FXML
     private TextField nameField;
@@ -23,6 +26,15 @@ public class PaymentViewController {
     @FXML
     private Button payButton;
     
+    @FXML
+    public void initialize() {
+      setCardNoListener();
+    }
+    
+    private void setCardNoListener() {
+      // TODO Auto-generated method stub
+    }
+
     private void checkCardDetails() {
       boolean test = isValidCVC();
       System.out.println();
@@ -46,15 +58,17 @@ public class PaymentViewController {
       return false;
     }
 
-    private boolean isValidCardNo() { // Adam
-      // TODO Auto-generated method stub
+    private boolean isValidCardNo() {
+      String cardNo = cardNoField.getText();
+      if (Pattern.matches("[0-9-]{19}", cardNo) && cardNo != null) {
+        return true;
+      }               
       return false;
     }
 
     private boolean isValidName() {
       String name = nameField.getText();
       if (Pattern.matches("[a-zA-Z' ']+", name) && name != null) {
-        System.out.println("HI");
         return true;
       }               
       return false;
