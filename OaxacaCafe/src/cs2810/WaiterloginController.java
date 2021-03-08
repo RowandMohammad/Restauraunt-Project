@@ -89,6 +89,20 @@ public class WaiterloginController {
     animation.setCycleCount(Timeline.INDEFINITE);
     animation.play();
     }
+    else if(staff.equals("manager")) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ManagerView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+        DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+      EventHandler<ActionEvent> eventHandler = e -> {
+         stage.setTitle(df.format(new Date()));
+      };
+      Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
+      animation.setCycleCount(Timeline.INDEFINITE);
+      animation.play();
+      }
     
   }
 
@@ -123,6 +137,18 @@ public class WaiterloginController {
       changeScreenLoginCorrect(event, "kitchen");
       
     }
+    else if(ViewCustomerInterface.findUser(userAccount.getText(), userPwd.getText(), "manager")) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("success");
+        alert.setHeaderText(null);
+        alert.setContentText("Login successful");
+        new LoginMessage().getMessage().put("Login", "successful");
+        alert.showAndWait();
+        Stage stage = (Stage) login.getScene().getWindow();
+        stage.close();
+        changeScreenLoginCorrect(event, "manager");
+        
+      }
     else {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setTitle("error");
