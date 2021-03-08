@@ -22,8 +22,12 @@ public class PaymentViewController {
     @FXML
     private Button payButton;
     
+    
+   
     private void checkCardDetails() {
-      if (isValidName() && isValidCardNo() && isValidExpiry() && isValidCVC()) {
+      boolean test = isValidCVC();
+      System.out.println();
+      if (isValidName() && isValidCardNo() && isValidExpiry() && isValidCVC() && isNull()) {
         //Create alert box that mentions that the transaction was successful
       }
       else {
@@ -31,23 +35,30 @@ public class PaymentViewController {
       }
     }
     
-    private boolean isValidCVC() {
+    private boolean isValidCVC() { //Hartik
+      // TODO Auto-generated method stub
+      String cvc = cvcField.getText();
+      
+      return false;
+    }
+
+    private boolean isValidExpiry() { // Hartik
       // TODO Auto-generated method stub
       return false;
     }
 
-    private boolean isValidExpiry() {
+    private boolean isValidCardNo() { // Adam
       // TODO Auto-generated method stub
       return false;
     }
 
-    private boolean isValidCardNo() {
+    private boolean isValidName() { //Adam
+      
       // TODO Auto-generated method stub
       return false;
     }
-
-    private boolean isValidName() {
-      // TODO Auto-generated method stub
+    
+    private boolean isNull() {
       return false;
     }
 
