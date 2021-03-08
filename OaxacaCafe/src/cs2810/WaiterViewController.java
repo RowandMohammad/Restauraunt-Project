@@ -142,4 +142,9 @@ public class WaiterViewController {
         populatePending(pendingOrders);
         populateOrdersToDeliver(ordersToDeliver);
     }
+
+    public void addOrderToDeliver(PendingOrderViewItem order) {
+        OrdersToDeliverView.getItems().add(order);
+        OrdersToDeliverView.refresh();
+    }
 }

@@ -82,7 +82,6 @@ public class ListViewItem extends HBox {
         new LoginMessage();
         Map<String, Object> map = LoginMessage.getMessage();
         if (map.isEmpty()) {
-
             price.setEditable(false);
             name.setEditable(false);
         }
@@ -140,9 +139,7 @@ public class ListViewItem extends HBox {
                     for (Menu_Item item : sideItems) {
                         if (ings.equals(item.getIngredients())) {
                             item.setPrice(Double.parseDouble(prices.split("£")[1]));
-
                             item.setName(names);
-
                         }
                     }
                 } catch (IOException e) {

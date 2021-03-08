@@ -117,6 +117,12 @@ public class ViewCustomerInterface {
   @FXML
   private Label orderStatus;
 
+
+  /**
+   * member variable for obtaining waiter referenceacrosss different views
+   */
+  private WaiterViewController waiterController;
+
   
   // Handles button click to call waiter
   @FXML
@@ -619,5 +625,21 @@ public class ViewCustomerInterface {
    */
   public void setOrderStatus(String status){
     orderStatus.setText(status);
+  }
+
+  /**
+   * Accessor for obtaining refrance to waiter view
+   * @return waiterViewController object
+   */
+  public WaiterViewController getWaiterController() {
+    return waiterController;
+  }
+
+  /**
+   * Mutator for updating waiter view
+   * @param waiterController
+   */
+  public void setWaiterController(WaiterViewController waiterController) {
+    this.waiterController = waiterController;
   }
 }

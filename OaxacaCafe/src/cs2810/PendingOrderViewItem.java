@@ -100,7 +100,6 @@ public class PendingOrderViewItem extends HBox {
                   }
                   else if (staff.equals("kitchen")) {
                     parentController2.confirmOrder(index);
-                    
                   }
                 } 
                 else {

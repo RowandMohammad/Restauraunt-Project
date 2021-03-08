@@ -62,7 +62,4 @@ public class MainControl extends Application {
       WS.add(new waiterStaff());
     }
   }
-
-
-
 }
