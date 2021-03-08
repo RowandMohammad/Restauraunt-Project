@@ -9,8 +9,6 @@ import javafx.scene.control.TextFormatter;
 
 public class PaymentViewController {
   
-  
-
     @FXML
     private TextField nameField;
 
@@ -31,8 +29,9 @@ public class PaymentViewController {
       setCardNoListener();
     }
     
-    private void setCardNoListener() {
-      // TODO Auto-generated method stub
+    @FXML
+    void purchaseOrder(ActionEvent event) {
+      checkCardDetails();
     }
 
     private void checkCardDetails() {
@@ -44,7 +43,7 @@ public class PaymentViewController {
       }
     }
     
-    private boolean isValidCVC() { //Hartik
+    private boolean isValidCVC() {
       // TODO Auto-generated method stub
       String cvc = cvcField.getText();
       if (Pattern.matches("[0-9]{3}", cvc)) { //check if cvc is a number and is only 3 digits
@@ -54,9 +53,9 @@ public class PaymentViewController {
       return false;
     }
 
-    private boolean isValidExpiry() { // Hartik
+    private boolean isValidExpiry() {
       // TODO Auto-generated method stub
-      return true;
+      return false;
     }
 
     private boolean isValidCardNo() {
@@ -72,16 +71,24 @@ public class PaymentViewController {
       if (Pattern.matches("[a-zA-Z' ']+", name) && name != null) {
         return true;
       }               
-      return true;
+      return false;
     }
 
     private boolean isNull() {
       return false;
     }
-       
-    @FXML
-    void purchaseOrder(ActionEvent event) {
-      checkCardDetails();
+    
+    private void setCardNoListener() {
+      cardNoField.setTextFormatter(new TextFormatter<>(change -> {
+        String cardNo = change.getControlNewText();
+        if (cardNo.length() > 19) {
+          return null;
+        }
+        if (change.getCaretPosition() == 5 || change.getCaretPosition() == 10 || change.getCaretPosition() == 15) {
+          change.setText("-");
+        }
+        return change;
+      }));
     }
 
 }
