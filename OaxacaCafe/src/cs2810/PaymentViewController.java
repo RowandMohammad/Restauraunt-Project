@@ -36,8 +36,6 @@ public class PaymentViewController {
     }
 
     private void checkCardDetails() {
-      boolean test = isValidCVC();
-      System.out.println();
       if (isValidName() && isValidCardNo() && isValidExpiry() && isValidCVC() && isNull()) {
         //Create alert box that mentions that the transaction was successful
       }
@@ -49,13 +47,16 @@ public class PaymentViewController {
     private boolean isValidCVC() { //Hartik
       // TODO Auto-generated method stub
       String cvc = cvcField.getText();
-      
+      if (Pattern.matches("[0-9]{3}", cvc)) { //check if cvc is a number and is only 3 digits
+        System.out.println("Test: CVC Works");
+        return true;
+      }            
       return false;
     }
 
     private boolean isValidExpiry() { // Hartik
       // TODO Auto-generated method stub
-      return false;
+      return true;
     }
 
     private boolean isValidCardNo() {
@@ -71,10 +72,9 @@ public class PaymentViewController {
       if (Pattern.matches("[a-zA-Z' ']+", name) && name != null) {
         return true;
       }               
-      return false;
+      return true;
     }
 
-    
     private boolean isNull() {
       return false;
     }
