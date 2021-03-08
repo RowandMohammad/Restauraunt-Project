@@ -505,11 +505,11 @@ public class ViewCustomerInterface {
 
 
   void setTotalPrice(float price) {
-    totalPrice.setText("£ " + price + "0");
+    totalPrice.setText("£: " + price + "0");
   }
 
   Float getTotalPrice() {
-    return Float.parseFloat(this.totalPrice.getText().split(" ")[1]);
+    return Float.parseFloat(this.totalPrice.getText().split("£")[1]);
   }
 
   void delete(String text) {
