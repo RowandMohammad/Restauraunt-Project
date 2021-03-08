@@ -31,33 +31,6 @@ public class DatabaseInitialisation {
 			System.out.println("************** Connection Failedl! **************\"");
 			return;
 		}
-		{
-			dropTable(dbConnection, "mainmenu");
-			createTable(dbConnection,
-					"mainmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
-							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
-			dropTable(dbConnection, "sidesmenu");
-			createTable(dbConnection,
-					"sidesmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
-							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
-			dropTable(dbConnection, "drinksmenu");
-			createTable(dbConnection,
-					"drinksmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
-							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
-			dropTable(dbConnection, "stafflogin");
-			createTable(dbConnection,
-					"stafflogin (username int PRIMARY KEY," + "password int, " + " staffrole varchar(50))");
-			dropTable(dbConnection, "orders");
-			createTable(dbConnection,
-					"orders (ordernumber int PRIMARY KEY," + "foodordered varchar(500), "
-							+ "totalprice DECIMAL(4 , 2 ) NOT NULL, " + "ordertime int, " + "waiter varchar(50), "
-							+ "ETA int, " + "tablenumber int)");
-
-		}
-		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, ETA)", mainMenuFile);
-		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, ETA)", sidesMenuFile);
-		insertDataIntoTable(dbConnection, "drinksmenu (name, calories, ingredients, type, price, ETA)", drinksMenuFile);
-		insertDataIntoTable(dbConnection, "stafflogin (username, password, staffrole)", staffLoginFile);
 
 	}
 
@@ -149,28 +122,27 @@ public class DatabaseInitialisation {
 		}
 
 	}
-	
-	  //Connects to database to execute queries
-	  public static ResultSet executeSelect(Connection dbConnection, String sqlQuery) {
-	    Statement st = null;
-	    try {
-	      st = dbConnection.createStatement();
-	    } catch (SQLException e) {
-	      e.printStackTrace();
-	      return null;
-	    }
-	    ResultSet rs = null;
-	    try {
-	      rs = st.executeQuery(sqlQuery);
-	    } catch (SQLException e) {
-	      e.printStackTrace();
-	      return null;
-	    }
-	    
-	    
-	    return rs;
-	    
-	  }
+
+	// Connects to database to execute queries
+	public static ResultSet executeSelect(Connection dbConnection, String sqlQuery) {
+		Statement st = null;
+		try {
+			st = dbConnection.createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		ResultSet rs = null;
+		try {
+			rs = st.executeQuery(sqlQuery);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		return rs;
+
+	}
 
 	// Checks whether passed string can be converted to a numeric value
 	public static boolean stringToNumeralChecker(String numberInString) {
