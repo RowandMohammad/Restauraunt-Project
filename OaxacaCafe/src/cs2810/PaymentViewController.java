@@ -1,5 +1,6 @@
 package cs2810;
 
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,8 +23,6 @@ public class PaymentViewController {
     @FXML
     private Button payButton;
     
-    
-   
     private void checkCardDetails() {
       boolean test = isValidCVC();
       System.out.println();
@@ -52,16 +51,20 @@ public class PaymentViewController {
       return false;
     }
 
-    private boolean isValidName() { //Adam
-      
-      // TODO Auto-generated method stub
+    private boolean isValidName() {
+      String name = nameField.getText();
+      if (Pattern.matches("[a-zA-Z' ']+", name) && name != null) {
+        System.out.println("HI");
+        return true;
+      }               
       return false;
     }
+
     
     private boolean isNull() {
       return false;
     }
-
+       
     @FXML
     void purchaseOrder(ActionEvent event) {
       checkCardDetails();
