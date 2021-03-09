@@ -5,20 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
-
 import org.controlsfx.control.PopOver;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,8 +35,8 @@ import javafx.scene.image.ImageView;
  */
 public class ListViewItem extends HBox {
 
-    TextField name = new TextField();
-    TextField price = new TextField();
+    Label name = new Label();
+    Label price = new Label();
     Button calories = new Button("  Calories   ");
     Button ingredients = new Button("Ingredients");
     private String cal;
@@ -77,13 +69,6 @@ public class ListViewItem extends HBox {
         this.name = new TextField(_name);
         this.price = new TextField(_price);
         this.dietaryRequirements = dietaryRequirements;
-
-        new LoginMessage();
-        Map<String, Object> map = LoginMessage.getMessage();
-        if (map.isEmpty()) {
-            price.setEditable(false);
-            name.setEditable(false);
-        }
 
         imageView.setFitHeight(50);
     	imageView.setFitWidth(50);
@@ -263,7 +248,7 @@ public class ListViewItem extends HBox {
      *
      * @return
      */
-    public TextField getPrice() {
+    public Label getPrice() {
         return price;
     }
 
@@ -272,7 +257,7 @@ public class ListViewItem extends HBox {
      *
      * @param price
      */
-    public void setPrice(TextField price) {
+    public void setPrice(Label price) {
         this.price = price;
     }
 
