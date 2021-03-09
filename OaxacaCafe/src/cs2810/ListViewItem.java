@@ -86,9 +86,71 @@ public class ListViewItem extends HBox {
         }
 
         imageView.setFitHeight(50);
-        imageView.setFitWidth(50);
-        Image image = new Image("foodpictures/"+_name+".png");
-        imageView.setImage(image);
+    	imageView.setFitWidth(50);
+    	if(_name.equals("Burrito")) {
+    	Image image = new Image("foodpictures/Burrito.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Beer")) {
+    	Image image = new Image("foodpictures/Beer.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Caldo de queso")) {
+    	Image image = new Image("foodpictures/Caldo de queso.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Chorizo")) {
+    	Image image = new Image("foodpictures/Chorizo.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Churros with Chocolate Sauce")) {
+    	Image image = new Image("foodpictures/Churros with Chocolate Sauce.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Fries")) {
+    	Image image = new Image("foodpictures/Fries.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Guacamole")) {
+    	Image image = new Image("foodpictures/Guacamole.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Queso flameado")) {
+    	Image image = new Image("foodpictures/Queso flameado.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Huevos motulenos")) {
+    	Image image = new Image("foodpictures/Huevos motulenos.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Milanesas")) {
+    	Image image = new Image("foodpictures/Milanesas.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Vegetarian Tacos")) {
+    	Image image = new Image("foodpictures/Vegetarian Tacos.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Rice")) {
+    	Image image = new Image("foodpictures/Rice.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Salsa")) {
+    	Image image = new Image("foodpictures/Salsa.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Three Chicken Wings")) {
+    	Image image = new Image("foodpictures/Three Chicken Wings.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Sprite")) {
+    	Image image = new Image("foodpictures/Sprite.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Salad")) {
+    	Image image = new Image("foodpictures/Salad.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Beans")) {
+    	Image image = new Image("foodpictures/Beans.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Coke")) {
+    	Image image = new Image("foodpictures/Coke.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Vanilla Milkshake")) {
+    	Image image = new Image("foodpictures/Vanilla Milkshake.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Chocolate Milkshake")) {
+    	Image image = new Image("foodpictures/Chocolate Milkshake.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Strawberry Milkshake")) {
+    	Image image = new Image("foodpictures/Strawberry Milkshake.png");
+    	imageView.setImage(image);  
+    }
         VBox lablesCotaier = new VBox(this.name, this.price, this.imageView);
         VBox buttonContainer = new VBox(this.ingredients, this.calories);
         VBox.setMargin(calories, new Insets(2, 0, 0, 0));
