@@ -119,7 +119,6 @@ public class WaiterloginController {
       alert.setTitle("success");
       alert.setHeaderText(null);
       alert.setContentText("Login successful");
-      new LoginMessage().getMessage().put("Login", "successful");
       alert.showAndWait();
       Stage stage = (Stage) login.getScene().getWindow();
       stage.close();
@@ -130,7 +129,6 @@ public class WaiterloginController {
       alert.setTitle("success");
       alert.setHeaderText(null);
       alert.setContentText("Login successful");
-      new LoginMessage().getMessage().put("Login", "successful");
       alert.showAndWait();
       Stage stage = (Stage) login.getScene().getWindow();
       stage.close();

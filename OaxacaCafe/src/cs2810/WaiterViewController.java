@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -44,6 +47,20 @@ public class WaiterViewController {
         ((Stage) BackToOrdering.getScene().getWindow()).close();
     }
 
+    @FXML
+    void changethemenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/ChangeMenu.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        scene.getStylesheets()
+            .add(getClass().getClassLoader().getResource("styling/style.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+        stage.setResizable(false);
+        new LoginMessage();
+		LoginMessage.getMessage().put("Login", "successful");
+        
+    }
     public void populatePending(ArrayList<Order> pendingOrders) {
         int index = 0;
         for (Order order : pendingOrders) {

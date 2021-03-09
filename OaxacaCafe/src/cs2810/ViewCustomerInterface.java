@@ -540,13 +540,7 @@ public class ViewCustomerInterface {
 	  filterChangeDrinks(event);
   }
 	  
-  @FXML
-  void logout(ActionEvent event) throws IOException {
-	  LoginMessage.getMessage().clear();
-	  filterChangeMain(event);
-	  filterChangeSides(event);
-	  filterChangeDrinks(event);
-  }
+
 
   @FXML
   void WaiterloginButton(ActionEvent event) throws IOException {

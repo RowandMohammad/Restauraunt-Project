@@ -5,20 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
-
 import org.controlsfx.control.PopOver;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,11 +35,10 @@ import javafx.scene.image.ImageView;
  */
 public class ListViewItem extends HBox {
 
-    TextField name = new TextField();
-    TextField price = new TextField();
+    Label name = new Label();
+    Label price = new Label();
     Button calories = new Button("  Calories   ");
     Button ingredients = new Button("Ingredients");
-    Button updateBtn = new Button("Update");
     private String cal;
     private String ing[];
     String[] dietaryRequirements;
@@ -75,23 +66,78 @@ public class ListViewItem extends HBox {
         super();
         this.cal = cal;
         this.ing = ing;
-        this.name = new TextField(_name);
-        this.price = new TextField(_price);
+        this.name = new Label(_name);
+        this.price = new Label(_price);
         this.dietaryRequirements = dietaryRequirements;
 
-        new LoginMessage();
-        Map<String, Object> map = LoginMessage.getMessage();
-        if (map.isEmpty()) {
-            price.setEditable(false);
-            name.setEditable(false);
-        }
-
         imageView.setFitHeight(50);
-        imageView.setFitWidth(50);
-        Image image = new Image("foodpictures/"+_name+".png");
-        imageView.setImage(image);
+    	imageView.setFitWidth(50);
+    	if(_name.equals("Burrito")) {
+    	Image image = new Image("foodpictures/Burrito.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Beer")) {
+    	Image image = new Image("foodpictures/Beer.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Caldo de queso")) {
+    	Image image = new Image("foodpictures/Caldo de queso.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Chorizo")) {
+    	Image image = new Image("foodpictures/Chorizo.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Churros with Chocolate Sauce")) {
+    	Image image = new Image("foodpictures/Churros with Chocolate Sauce.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Fries")) {
+    	Image image = new Image("foodpictures/Fries.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Guacamole")) {
+    	Image image = new Image("foodpictures/Guacamole.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Queso flameado")) {
+    	Image image = new Image("foodpictures/Queso flameado.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Huevos motulenos")) {
+    	Image image = new Image("foodpictures/Huevos motulenos.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Milanesas")) {
+    	Image image = new Image("foodpictures/Milanesas.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Vegetarian Tacos")) {
+    	Image image = new Image("foodpictures/Vegetarian Tacos.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Rice")) {
+    	Image image = new Image("foodpictures/Rice.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Salsa")) {
+    	Image image = new Image("foodpictures/Salsa.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Three Chicken Wings")) {
+    	Image image = new Image("foodpictures/Three Chicken Wings.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Sprite")) {
+    	Image image = new Image("foodpictures/Sprite.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Salad")) {
+    	Image image = new Image("foodpictures/Salad.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Beans")) {
+    	Image image = new Image("foodpictures/Beans.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Coke")) {
+    	Image image = new Image("foodpictures/Coke.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Vanilla Milkshake")) {
+    	Image image = new Image("foodpictures/Vanilla Milkshake.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Chocolate Milkshake")) {
+    	Image image = new Image("foodpictures/Chocolate Milkshake.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Strawberry Milkshake")) {
+    	Image image = new Image("foodpictures/Strawberry Milkshake.png");
+    	imageView.setImage(image);  
+    }
         VBox lablesCotaier = new VBox(this.name, this.price, this.imageView);
-        VBox buttonContainer = new VBox(this.ingredients, this.calories, this.updateBtn);
+        VBox buttonContainer = new VBox(this.ingredients, this.calories);
         VBox.setMargin(calories, new Insets(2, 0, 0, 0));
         VBox.setMargin(imageView, new Insets(10, 0, 0, 0));
         lablesCotaier.setAlignment(Pos.BASELINE_LEFT);
@@ -100,56 +146,8 @@ public class ListViewItem extends HBox {
         HBox.setHgrow(lablesCotaier, Priority.ALWAYS);
         setCaloriesActionListener();
         setIngredientActionListener();
-        setDeleteBtnActionListener();
     }
 
-    private void setDeleteBtnActionListener() {
-        // TODO Auto-generated method stub
-        updateBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                String names = name.getText();
-                String prices = price.getText();
-                String[] ings = ing;
-                if (names == null || prices == null) {
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("warn");
-                    alert.setHeaderText(null);
-                    alert.setContentText("please input right information");
-                }
-                try {
-                    new MenuMain();
-                    ArrayList<Menu_Item> mainItems = MenuMain.initialiseMainItems();
-                    new MenuMain();
-                    ArrayList<Menu_Item> drinkItems = MenuMain.initiliseDrinkItems();
-                    new MenuMain();
-                    ArrayList<Menu_Item> sideItems = MenuMain.initialiseSideItems();
-                    for (Menu_Item item : mainItems) {
-                        if (ings.equals(item.getIngredients())) {
-                            item.setPrice(Double.parseDouble(prices.split("£")[1]));
-                            item.setName(names);
-                        }
-                    }
-                    for (Menu_Item item : drinkItems) {
-                        if (ings.equals(item.getIngredients())) {
-                            item.setPrice(Double.parseDouble(prices.split("£")[1]));
-                            item.setName(names);
-                        }
-                    }
-                    for (Menu_Item item : sideItems) {
-                        if (ings.equals(item.getIngredients())) {
-                            item.setPrice(Double.parseDouble(prices.split("£")[1]));
-                            item.setName(names);
-                        }
-                    }
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
-            }
-        });
-    }
 
     /**
      * callback function for showing product calories pop-up
@@ -250,7 +248,7 @@ public class ListViewItem extends HBox {
      *
      * @return
      */
-    public TextField getPrice() {
+    public Label getPrice() {
         return price;
     }
 
@@ -259,7 +257,7 @@ public class ListViewItem extends HBox {
      *
      * @param price
      */
-    public void setPrice(TextField price) {
+    public void setPrice(Label price) {
         this.price = price;
     }
 
