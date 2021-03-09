@@ -66,8 +66,8 @@ public class ListViewItem extends HBox {
         super();
         this.cal = cal;
         this.ing = ing;
-        this.name = new TextField(_name);
-        this.price = new TextField(_price);
+        this.name = new Label(_name);
+        this.price = new Label(_price);
         this.dietaryRequirements = dietaryRequirements;
 
         imageView.setFitHeight(50);
