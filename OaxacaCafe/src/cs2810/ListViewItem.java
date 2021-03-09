@@ -47,7 +47,6 @@ public class ListViewItem extends HBox {
     TextField price = new TextField();
     Button calories = new Button("  Calories   ");
     Button ingredients = new Button("Ingredients");
-    Button updateBtn = new Button("Update");
     private String cal;
     private String ing[];
     String[] dietaryRequirements;
@@ -91,7 +90,7 @@ public class ListViewItem extends HBox {
         Image image = new Image("foodpictures/"+_name+".png");
         imageView.setImage(image);
         VBox lablesCotaier = new VBox(this.name, this.price, this.imageView);
-        VBox buttonContainer = new VBox(this.ingredients, this.calories, this.updateBtn);
+        VBox buttonContainer = new VBox(this.ingredients, this.calories);
         VBox.setMargin(calories, new Insets(2, 0, 0, 0));
         VBox.setMargin(imageView, new Insets(10, 0, 0, 0));
         lablesCotaier.setAlignment(Pos.BASELINE_LEFT);
@@ -100,56 +99,8 @@ public class ListViewItem extends HBox {
         HBox.setHgrow(lablesCotaier, Priority.ALWAYS);
         setCaloriesActionListener();
         setIngredientActionListener();
-        setDeleteBtnActionListener();
     }
 
-    private void setDeleteBtnActionListener() {
-        // TODO Auto-generated method stub
-        updateBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                String names = name.getText();
-                String prices = price.getText();
-                String[] ings = ing;
-                if (names == null || prices == null) {
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("warn");
-                    alert.setHeaderText(null);
-                    alert.setContentText("please input right information");
-                }
-                try {
-                    new MenuMain();
-                    ArrayList<Menu_Item> mainItems = MenuMain.initialiseMainItems();
-                    new MenuMain();
-                    ArrayList<Menu_Item> drinkItems = MenuMain.initiliseDrinkItems();
-                    new MenuMain();
-                    ArrayList<Menu_Item> sideItems = MenuMain.initialiseSideItems();
-                    for (Menu_Item item : mainItems) {
-                        if (ings.equals(item.getIngredients())) {
-                            item.setPrice(Double.parseDouble(prices.split("£")[1]));
-                            item.setName(names);
-                        }
-                    }
-                    for (Menu_Item item : drinkItems) {
-                        if (ings.equals(item.getIngredients())) {
-                            item.setPrice(Double.parseDouble(prices.split("£")[1]));
-                            item.setName(names);
-                        }
-                    }
-                    for (Menu_Item item : sideItems) {
-                        if (ings.equals(item.getIngredients())) {
-                            item.setPrice(Double.parseDouble(prices.split("£")[1]));
-                            item.setName(names);
-                        }
-                    }
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
-            }
-        });
-    }
 
     /**
      * callback function for showing product calories pop-up
