@@ -27,6 +27,7 @@ public class PaymentViewController {
     @FXML
     public void initialize() {
       setCardNoListener();
+      setExpiraryListener();
     }
     
     @FXML
@@ -90,5 +91,21 @@ public class PaymentViewController {
         return change;
       }));
     }
+    
+    private void setExpiraryListener() {
+      expiryField.setTextFormatter(new TextFormatter<>(change -> {
+        String expiryNo = change.getControlNewText();
+        if (expiryNo.length() > 5) {
+          return null;
+        }
+        if (change.getCaretPosition() == 3) {
+          change.setText("/");
+        }
+        return change;
+      }));
+      
+    }
+    
+    
 
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.PaymentViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.PaymentViewController">
    <children>
       <ImageView fitHeight="198.0" fitWidth="623.0" layoutX="99.0" layoutY="14.0" pickOnBounds="true">
          <image>
@@ -41,22 +41,22 @@
                         <Font name="Candara" size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="expiryField" layoutX="86.0" layoutY="255.0" prefHeight="29.0" prefWidth="95.0" styleClass="payment-text-field" stylesheets="@styling/style.css">
+                  <TextField fx:id="expiryField" layoutX="69.0" layoutY="284.0" prefHeight="29.0" prefWidth="113.0" styleClass="payment-text-field" stylesheets="@styling/style.css">
                      <font>
                         <Font name="Calibri Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="84.0" layoutY="225.0" text="Expiry Date:" textFill="#73e019">
+                  <Label layoutX="24.0" layoutY="242.0" prefHeight="26.0" prefWidth="202.0" text="Expiry Date: [MM/YY]" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="255.0" layoutY="225.0" text="CVC:" textFill="#73e019">
+                  <Label layoutX="310.0" layoutY="242.0" text="CVC:" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="cvcField" layoutX="248.0" layoutY="255.0" prefHeight="29.0" prefWidth="95.0" styleClass="payment-text-field" stylesheets="@styling/style.css">
+                  <TextField fx:id="cvcField" layoutX="284.0" layoutY="284.0" prefHeight="29.0" prefWidth="95.0" styleClass="payment-text-field" stylesheets="@styling/style.css">
                      <font>
                         <Font name="Calibri Italic" size="14.0" />
                      </font>
