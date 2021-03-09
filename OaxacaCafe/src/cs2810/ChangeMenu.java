@@ -120,19 +120,19 @@ public class ChangeMenu {
 
     for (int i = 0; i < mainItems.size(); i++) {
       MainListView.getItems()
-          .add(new ListViewItem(mainItems.get(i).name, "�" + mainItems.get(i).price + "0",
+          .add(new ListViewItem(mainItems.get(i).name, "£" + mainItems.get(i).price + "0",
               mainItems.get(i).calories + "", mainItems.get(i).ingredients,
               mainItems.get(i).dietaryRequirements));
     }
     for (int i = 0; i < sideItems.size(); i++) {
       SidesListView.getItems()
-          .add(new ListViewItem(sideItems.get(i).name, "�" + sideItems.get(i).price + "0",
+          .add(new ListViewItem(sideItems.get(i).name, "£" + sideItems.get(i).price + "0",
               sideItems.get(i).calories + "", sideItems.get(i).ingredients,
               sideItems.get(i).dietaryRequirements));
     }
     for (int i = 0; i < drinkItems.size(); i++) {
       DrinksListView.getItems()
-          .add(new ListViewItem(drinkItems.get(i).name, "�" + drinkItems.get(i).price + "0",
+          .add(new ListViewItem(drinkItems.get(i).name, "£" + drinkItems.get(i).price + "0",
               drinkItems.get(i).calories + "", drinkItems.get(i).ingredients,
               drinkItems.get(i).dietaryRequirements));
     }
