@@ -24,6 +24,7 @@ public class MainControl extends Application {
   static ArrayList<waiterStaff> WS = new ArrayList<waiterStaff>();
 
   public static void main(String[] args) throws URISyntaxException, SQLException {
+	  
     StaffInitialization();
     DatabaseInitialisation.main(args);
     launch(args);
@@ -53,8 +54,11 @@ public class MainControl extends Application {
     primaryStage.show();
     primaryStage.setResizable(false);
   }
+  
+  
 
   static void StaffInitialization() {
+	  
     for (int x = 0; x < 10; x++) {
       KS.add(new kitchenStaff());
     }

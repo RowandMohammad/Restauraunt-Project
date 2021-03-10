@@ -132,6 +132,7 @@ public class ViewCustomerInterface {
     MediaPlayer mp = new MediaPlayer(media);
     mp.play();
   }
+  
 
   // Handles starting the menu
   @FXML
