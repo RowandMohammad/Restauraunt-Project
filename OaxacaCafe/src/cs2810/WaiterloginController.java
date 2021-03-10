@@ -29,6 +29,7 @@ public class WaiterloginController {
   ArrayList<Order> pendingOrders;
   ArrayList<Order> ordersToCook;
   ArrayList<Order> ordersToDeliver;
+  ArrayList<Order> ordersToPay;
   
   @FXML
   private TextField userAccount;
@@ -58,7 +59,7 @@ public class WaiterloginController {
       Parent root = loader.load();
       WaiterViewController controller = loader.getController();
       WaiterViewController.setIsShowing(true);
-      controller.setInitialData(parent, pendingOrders, ordersToDeliver, ordersToCook);
+      controller.setInitialData(parent, pendingOrders, ordersToDeliver, ordersToCook, ordersToPay);
       parent.setWaiterController(waiterViewController);
       Stage stage = new Stage();
       stage.setScene(new Scene(root));
@@ -163,11 +164,12 @@ public class WaiterloginController {
 
   }
   
-  public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders, ArrayList<Order> ordersToCook, ArrayList<Order> ordersToDeliver){
+  public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders, ArrayList<Order> ordersToCook, ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToPay){
     this.parent = parent;
     this.pendingOrders = pendingOrders;
     this.ordersToCook = ordersToCook;
     this.ordersToDeliver = ordersToDeliver;
+    this.ordersToPay = ordersToPay;
   }
   
   private void closeWaiterViewListener(Stage stage) {

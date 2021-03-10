@@ -25,6 +25,7 @@ public class WaiterViewController {
     ArrayList<Order> pendingOrders;
     ArrayList<Order> ordersToCook;
     ArrayList<Order> ordersToDeliver;
+    ArrayList<Order> ordersToPay;
     
 
     @FXML
@@ -34,7 +35,7 @@ public class WaiterViewController {
     private ListView<PendingOrderViewItem> OrdersToDeliverView;
     
     @FXML
-    private ListView<String> LeftToPayView;
+    private ListView<PendingOrderViewItem> LeftToPayView;
 
     @FXML
     private Button BackToOrdering;
@@ -149,11 +150,12 @@ public class WaiterViewController {
         parent.setOrderStatus(status);
     }
 
-    public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders, ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToCook) {
+    public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders, ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToCook, ArrayList<Order> ordersToPay) {
         this.parent = parent;
         this.pendingOrders = pendingOrders;
         this.ordersToDeliver = ordersToDeliver;
         this.ordersToCook = ordersToCook;
+        this.ordersToPay = ordersToPay;
         populatePending(pendingOrders);
         populateOrdersToDeliver(ordersToDeliver);
     }

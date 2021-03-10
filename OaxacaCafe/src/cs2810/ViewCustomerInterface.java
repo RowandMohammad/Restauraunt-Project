@@ -45,6 +45,7 @@ public class ViewCustomerInterface {
   ArrayList<Order> pendingOrders = new ArrayList<Order>();
   ArrayList<Order> ordersToCook = new ArrayList<Order>();
   ArrayList<Order> ordersToDeliver = new ArrayList<Order>();
+  ArrayList<Order> ordersToPay = new ArrayList<Order>();
 
   String select = "";
 
@@ -547,7 +548,7 @@ public class ViewCustomerInterface {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
     Parent root = loader.load();
     WaiterloginController controller = loader.getController();
-    controller.setInitialData(this, pendingOrders, ordersToCook, ordersToDeliver);
+    controller.setInitialData(this, pendingOrders, ordersToCook, ordersToDeliver, ordersToPay);
     Stage stage = new Stage();
     stage.setScene(new Scene(root));
     stage.show();
