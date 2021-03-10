@@ -33,7 +33,7 @@ public class DatabaseInitialisation {
 		}
 		dropTable(dbConnection, "stafflogin");
 		createTable(dbConnection,
-				"stafflogin (username int PRIMARY KEY," + "password int, " + " staffrole varchar(50), " + " name varchar(50))");
+				"stafflogin (username int," + "password int, " + " staffrole varchar(50), " + " name varchar(50) PRIMARY KEY)");
 		dropTable(dbConnection, "orders");
 		createTable(dbConnection,
 				"orders (ordernumber int PRIMARY KEY," + "foodordered varchar(500), "
