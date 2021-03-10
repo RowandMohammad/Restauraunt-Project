@@ -31,21 +31,22 @@ public class DatabaseInitialisation {
 			System.out.println("************** Connection Failedl! **************\"");
 			return;
 		}
-		dropTable(dbConnection, "stafflogin");
+		dropTable(dbConnection, "staffinfo");
 		createTable(dbConnection,
-				"stafflogin (username int," + "password int, " + " staffrole varchar(50), " + " name varchar(50) PRIMARY KEY)");
+				"staffinfo (username int," + "password int, " + " staffrole varchar(50), " + " name varchar(50) PRIMARY KEY)");
 		dropTable(dbConnection, "orders");
 		createTable(dbConnection,
 				"orders (ordernumber int PRIMARY KEY," + "foodordered varchar(500), "
-						+ "totalprice DECIMAL(4 , 2 ) NOT NULL, " + "ordertime int, " + "staffname varchar(50) REFERENCES stafflogin(name), "
-						+ "ETA int, " + "tablenumber int)");
+						+ "totalprice DECIMAL(4 , 2 ) NOT NULL, " + "ordertime int, " + "waitername varchar(50) REFERENCES staffinfo(name), "
+						+ "cookname varchar(50) REFERENCES staffinfo(name), "
+						+  "ETA int, " + "tablenumber int)");
 
 
-		insertDataIntoTable(dbConnection, "stafflogin (username, password, staffrole, name)", staffLoginFile);
+		insertDataIntoTable(dbConnection, "staffinfo (username, password, staffrole, name)", staffLoginFile);
 
 	}
 
-	private static Connection getConnection() throws URISyntaxException, SQLException {
+	public static Connection getConnection() throws URISyntaxException, SQLException {
 		URI dbUri = new URI(
 				"postgres://vnxcaquwfcdcmx:57a2d6d4bc061d9a386aaa5352bac1ac7cfc1744b1b7e46318519a73c7dfa547@ec2-52-211-161-21.eu-west-1.compute.amazonaws.com:5432/dakl9haghtbqac");
 
