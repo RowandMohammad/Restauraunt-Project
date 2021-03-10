@@ -10,7 +10,7 @@
       <Pane prefHeight="800.0" prefWidth="1358.0">
          <children>
             <Button fx:id="BackToOrdering" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#BackToOrderingPressed" prefHeight="107.0" prefWidth="207.0" text="Back to Ordering" />
-            <Button  layoutX="250" layoutY="14" mnemonicParsing="false" onAction="#changethemenu" prefHeight="107.0" prefWidth="207.0" text="Change the menu" />
+            <Button layoutX="24.0" layoutY="246.0" mnemonicParsing="false" onAction="#changethemenu" prefHeight="62.0" prefWidth="437.0" text="Change the menu" />
             <Label layoutX="548.0" layoutY="68.0" text="Logged In As:" />
             <Label fx:id="UserLabel" layoutX="632.0" layoutY="68.0" prefHeight="17.0" prefWidth="160.0" />
             <Button fx:id="viewEmployee" layoutX="24.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleViewEmployee" prefHeight="62.0" prefWidth="437.0" text="Employee View" />
