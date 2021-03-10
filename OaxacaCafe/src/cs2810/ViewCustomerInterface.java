@@ -131,6 +131,7 @@ public class ViewCustomerInterface {
     Media media = new Media(url.toExternalForm());
     MediaPlayer mp = new MediaPlayer(media);
     mp.play();
+    WaiterViewController.assistancePopup();
   }
   
 
@@ -145,8 +146,6 @@ public class ViewCustomerInterface {
     basketItems = new ArrayList<Menu_Item>();
     
   }
-
-
 
 
   @FXML

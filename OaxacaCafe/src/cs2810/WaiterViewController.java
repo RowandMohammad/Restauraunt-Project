@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -19,10 +20,12 @@ import javafx.stage.Stage;
 public class WaiterViewController {
 
     private ViewCustomerInterface parent;
+    private static boolean isShowing;
 
     ArrayList<Order> pendingOrders;
     ArrayList<Order> ordersToCook;
     ArrayList<Order> ordersToDeliver;
+    
 
     @FXML
     private ListView<PendingOrderViewItem> PendingOrdersView;
@@ -40,11 +43,19 @@ public class WaiterViewController {
     private Label UserLabel;
 
     @FXML
-    private Button CancelOrder;
+    private Button CancelOrder; 
 
     @FXML
     void BackToOrderingPressed(ActionEvent event) throws IOException {
         ((Stage) BackToOrdering.getScene().getWindow()).close();
+        isShowing = false;
+    }
+    
+    public static void assistancePopup() {
+      if (isShowing) {
+        Alert alert = new Alert(AlertType.NONE, "Customer on table X is calling for assistance", ButtonType.OK);
+        alert.showAndWait();
+      }       
     }
 
 
@@ -146,6 +157,11 @@ public class WaiterViewController {
         populatePending(pendingOrders);
         populateOrdersToDeliver(ordersToDeliver);
     }
+    
+    public static void setIsShowing(boolean bool) {
+      isShowing = bool;
+    }
+
 
     public void addOrderToDeliver(PendingOrderViewItem order) {
         OrdersToDeliverView.getItems().add(order);
