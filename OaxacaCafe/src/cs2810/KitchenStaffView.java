@@ -55,8 +55,8 @@ public class KitchenStaffView {
         this.parent.updateOrdersToCook(ordersToCook);
         this.parent.updateOrdersToDeliver(ordersToDeliver);
         ordersToCookView.refresh();
-        waiterController.addOrderToDeliver(item);
-        parent.setOrderStatus("Food Cooked");
+        this.parent.setOrderStatus("Food Cooked");
+        
     }
 
     private void updateIndex(ListView<PendingOrderViewItem> ordersToCookView, int currentIndex) {
