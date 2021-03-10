@@ -1,13 +1,20 @@
 package cs2810;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class PaymentViewController {
   Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -45,11 +52,18 @@ public class PaymentViewController {
 
     private void checkCardDetails() {
       if (isValidExpiry() && isValidName() && isValidCardNo() && isValidCVC()) {
-        //Create alert box that mentions that the transaction was successful
-        System.out.println("Card details valid");
+        Alert alert = new Alert(AlertType.NONE, "Transaction was successful! Press OK to return to main menu.", ButtonType.OK);
+        ButtonType result = alert.showAndWait().orElse(ButtonType.OK);
+        if (ButtonType.OK.equals(result)) {
+          Stage stage = (Stage) payButton.getScene().getWindow();
+          stage.close();
+        }
       }
       else {
-        //Create alert box that mentions invalid card details
+        Alert alert = new Alert(AlertType.ERROR, "Please re-enter your card details.", ButtonType.OK);
+        alert.setTitle("Incorrect details");
+        alert.setHeaderText("Incorrect card details");
+        alert.showAndWait();
       }
     }
     
