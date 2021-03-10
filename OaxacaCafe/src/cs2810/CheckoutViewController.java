@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 public class CheckoutViewController {
   
+  private ViewCustomerInterface parent;
   private Float totalPrice;
 
   @FXML
@@ -38,6 +39,7 @@ public class CheckoutViewController {
     PaymentViewController controller = loader.getController();
     Stage window = (Stage) payOrderButton.getScene().getWindow();
     controller.setTotalPrice(totalPrice);
+    controller.setParentController(parent);
     window.setScene(new Scene(root));
   }
 
@@ -56,6 +58,10 @@ public class CheckoutViewController {
   
   private void setTotalPrice(Float price) {
     totalPrice = price;
+  }
+  
+  public void setParentController(ViewCustomerInterface controller) {
+    parent = controller;
   }
 
 }

@@ -1,25 +1,20 @@
 package cs2810;
 
-import java.util.Optional;
 import java.util.regex.Pattern;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class PaymentViewController {
-  Alert alert = new Alert(Alert.AlertType.ERROR);
-  
-  
+    private ViewCustomerInterface parent;
+ 
     @FXML
     private TextField nameField;
 
@@ -42,7 +37,6 @@ public class PaymentViewController {
     public void initialize() {
       setCardNoListener();
       setExpiraryListener();
-      
     }
     
     @FXML
@@ -52,11 +46,14 @@ public class PaymentViewController {
 
     private void checkCardDetails() {
       if (isValidExpiry() && isValidName() && isValidCardNo() && isValidCVC()) {
-        Alert alert = new Alert(AlertType.NONE, "Transaction was successful! Press OK to return to main menu.", ButtonType.OK);
+        Alert alert = new Alert(AlertType.INFORMATION, "Press OK to return to main menu.", ButtonType.OK);
+        alert.setTitle("Transaction complete");
+        alert.setHeaderText("Transaction was successfully processed. Thank you!");
         ButtonType result = alert.showAndWait().orElse(ButtonType.OK);
         if (ButtonType.OK.equals(result)) {
           Stage stage = (Stage) payButton.getScene().getWindow();
           stage.close();
+          parent.setTotalPrice(0);
         }
       }
       else {
@@ -74,6 +71,7 @@ public class PaymentViewController {
 
     private boolean isValidExpiry() {
       //month Test
+      Alert alert = new Alert(Alert.AlertType.ERROR);
       String expMonth = expiryField.getText(0,2); //gets month
       String expYear = expiryField.getText(3,5); //gets Year
       
@@ -140,5 +138,9 @@ public class PaymentViewController {
     public void setTotalPrice(Float price) {
       String strPrice = price.toString();
       totalPrice.setText("£" + strPrice);
+    }
+
+    public void setParentController(ViewCustomerInterface controller) {
+      parent = controller;
     }
 }

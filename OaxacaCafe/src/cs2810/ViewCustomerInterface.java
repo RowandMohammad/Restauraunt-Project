@@ -382,6 +382,7 @@ public class ViewCustomerInterface {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
       Parent root = loader.load();
       CheckoutViewController controller = loader.getController();
+      controller.setParentController(this);
       controller.populateCheckout(basketItems,
           Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick);
       
@@ -620,4 +621,5 @@ public class ViewCustomerInterface {
   public void setOrderStatus(String status){
     orderStatus.setText(status);
   }
+  
 }
