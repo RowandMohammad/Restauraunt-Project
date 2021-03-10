@@ -63,17 +63,18 @@ public class PaymentViewController {
 
     private boolean isValidExpiry() {
       //month Test
-      System.out.println("function is working");
-      String expMonth = expiryField.getText(0,2);
-      String expYear = expiryField.getText(3,5);
+ 
+      String expMonth = expiryField.getText(0,2); //gets month
+      String expYear = expiryField.getText(3,5); //gets Year
+      
       if ((Pattern.matches("[0-9]+", expMonth)) && (Pattern.matches("[0-9]+", expYear))) { //checks data type of Year and Month
         int intMonth = Integer.parseInt(expMonth);
         
-        if(intMonth<=12) {
+        if(intMonth <=12 && intMonth > 0) { //checks if Month is greater than 0 but less than or equal to 12
           return true;
         }
       }else {
-        alert.setContentText("Incorrect Expiry Date , Please Try Again");
+        alert.setContentText("Incorrect Payment Expiry Date , Please Try Again");
         alert.show();
         return false;
       }
