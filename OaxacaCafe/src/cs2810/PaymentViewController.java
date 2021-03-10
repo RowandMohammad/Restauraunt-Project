@@ -41,7 +41,8 @@ public class PaymentViewController {
 
     private void checkCardDetails() {
       if (isValidName() && isValidCardNo() && isValidExpiry() && isValidCVC()) {
-        //Create alert box that mentions that the transaction was successful
+        //Create alert box that mentions the transaction was successful and returns to customer view
+        System.out.println("Card details are correct");
       }
       else {
         //Create alert box that mentions invalid card details
@@ -49,22 +50,21 @@ public class PaymentViewController {
     }
     
     private boolean isValidCVC() {
-      String cvc = cvcField.getText();
-      if (Pattern.matches("[0-9]{3}", cvc) && cvc != null ) { //check if cvc is a number and is only 3 digits
-        System.out.println("Test: CVC Works");
+      //TODO
+      return true;
+    }
+
+    private boolean isValidExpiry() {
+      String expiry = expiryField.getText();
+      if (Pattern.matches("[0-9]{2}+[/]{1}+[0-9]{2}", expiry) && expiry != null ) { //check if expiry is a number and is only 3 digits
         return true;
       }            
       return false;
     }
 
-    private boolean isValidExpiry() {
-      // TODO Auto-generated method stub
-      return false;
-    }
-
     private boolean isValidCardNo() {
       String cardNo = cardNoField.getText();
-      if (Pattern.matches("[0-9-]{19}", cardNo) && cardNo != null) {
+      if (Pattern.matches("[0-9]{4}+[-]{1}+[0-9]{4}+[-]{1}+[0-9]{4}+[-]{1}+[0-9]{4}", cardNo) && cardNo != null) {
         return true;
       }               
       return false;
