@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
@@ -25,6 +26,9 @@ public class PaymentViewController {
     private Button payButton;
     
     @FXML
+    private Label totalPrice;
+    
+    @FXML
     public void initialize() {
       setCardNoListener();
       setExpiraryListener();
@@ -36,7 +40,7 @@ public class PaymentViewController {
     }
 
     private void checkCardDetails() {
-      if (isValidName() && isValidCardNo() && isValidExpiry() && isValidCVC() && isNull()) {
+      if (isValidName() && isValidCardNo() && isValidExpiry() && isValidCVC()) {
         //Create alert box that mentions that the transaction was successful
       }
       else {
@@ -45,9 +49,8 @@ public class PaymentViewController {
     }
     
     private boolean isValidCVC() {
-      // TODO Auto-generated method stub
       String cvc = cvcField.getText();
-      if (Pattern.matches("[0-9]{3}", cvc)) { //check if cvc is a number and is only 3 digits
+      if (Pattern.matches("[0-9]{3}", cvc) && cvc != null ) { //check if cvc is a number and is only 3 digits
         System.out.println("Test: CVC Works");
         return true;
       }            
@@ -72,10 +75,6 @@ public class PaymentViewController {
       if (Pattern.matches("[a-zA-Z' ']+", name) && name != null) {
         return true;
       }               
-      return false;
-    }
-
-    private boolean isNull() {
       return false;
     }
     
@@ -103,9 +102,6 @@ public class PaymentViewController {
         }
         return change;
       }));
-      
     }
     
-    
-
 }
