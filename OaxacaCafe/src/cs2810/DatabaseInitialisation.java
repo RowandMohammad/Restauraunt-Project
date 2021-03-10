@@ -31,6 +31,17 @@ public class DatabaseInitialisation {
 			System.out.println("************** Connection Failedl! **************\"");
 			return;
 		}
+		dropTable(dbConnection, "stafflogin");
+		createTable(dbConnection,
+				"stafflogin (username int PRIMARY KEY," + "password int, " + " staffrole varchar(50), " + " name varchar(50))");
+		dropTable(dbConnection, "orders");
+		createTable(dbConnection,
+				"orders (ordernumber int PRIMARY KEY," + "foodordered varchar(500), "
+						+ "totalprice DECIMAL(4 , 2 ) NOT NULL, " + "ordertime int, " + "waiter varchar(50), "
+						+ "ETA int, " + "tablenumber int)");
+
+
+		insertDataIntoTable(dbConnection, "stafflogin (username, password, staffrole, name)", staffLoginFile);
 
 	}
 
