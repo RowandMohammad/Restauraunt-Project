@@ -47,8 +47,7 @@ public class WaiterViewController {
         ((Stage) BackToOrdering.getScene().getWindow()).close();
     }
 
-   
-    }
+
     public void populatePending(ArrayList<Order> pendingOrders) {
         int index = 0;
         for (Order order : pendingOrders) {
