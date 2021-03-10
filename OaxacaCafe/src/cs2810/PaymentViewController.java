@@ -3,12 +3,15 @@ package cs2810;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
 public class PaymentViewController {
+  Alert alert = new Alert(Alert.AlertType.ERROR);
+  
   
     @FXML
     private TextField nameField;
@@ -32,6 +35,7 @@ public class PaymentViewController {
     public void initialize() {
       setCardNoListener();
       setExpiraryListener();
+      
     }
     
     @FXML
@@ -40,9 +44,9 @@ public class PaymentViewController {
     }
 
     private void checkCardDetails() {
-      if (isValidName() && isValidCardNo() && isValidExpiry() && isValidCVC()) {
-        //Create alert box that mentions the transaction was successful and returns to customer view
-        System.out.println("Card details are correct");
+      if (isValidExpiry() && isValidName() && isValidCardNo() && isValidCVC()) {
+        //Create alert box that mentions that the transaction was successful
+        System.out.println("Card details valid");
       }
       else {
         //Create alert box that mentions invalid card details
@@ -55,11 +59,26 @@ public class PaymentViewController {
     }
 
     private boolean isValidExpiry() {
-      String expiry = expiryField.getText();
-      if (Pattern.matches("[0-9]{2}+[/]{1}+[0-9]{2}", expiry) && expiry != null ) { //check if expiry is a number and is only 3 digits
-        return true;
-      }            
-      return false;
+      //month Test
+      String expMonth = expiryField.getText(0,2); //gets month
+      String expYear = expiryField.getText(3,5); //gets Year
+      
+      if ((Pattern.matches("[0-9]{2}", expMonth)) && (Pattern.matches("[0-9]{2}", expYear))) { //checks data type of Year and Month
+        int intMonth = Integer.parseInt(expMonth);
+        
+        if(intMonth <=12 && intMonth > 0) { //checks if Month is greater than 0 but less than or equal to 12
+          return true;
+        }
+        else {
+          alert.setContentText("Expiry month should be between 1-12, Please Try Again");
+          alert.show();
+          return false;
+        }
+      }else {
+        alert.setContentText("Incorrect expiry date, Please Try Again");
+        alert.show();
+        return false;
+      }
     }
 
     private boolean isValidCardNo() {
@@ -78,7 +97,7 @@ public class PaymentViewController {
       return false;
     }
     
-    private void setCardNoListener() {
+    private void setCardNoListener() { // Card Number Auto-Fill of "-"
       cardNoField.setTextFormatter(new TextFormatter<>(change -> {
         String cardNo = change.getControlNewText();
         if (cardNo.length() > 19) {
@@ -91,7 +110,7 @@ public class PaymentViewController {
       }));
     }
     
-    private void setExpiraryListener() {
+    private void setExpiraryListener() { //Expire Auto Fill of "/"
       expiryField.setTextFormatter(new TextFormatter<>(change -> {
         String expiryNo = change.getControlNewText();
         if (expiryNo.length() > 5) {
