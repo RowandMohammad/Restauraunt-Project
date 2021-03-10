@@ -13,6 +13,8 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 public class CheckoutViewController {
+  
+  private Float totalPrice;
 
   @FXML
   private Button backToOrder;
@@ -33,11 +35,14 @@ public class CheckoutViewController {
   void changeToPaymentView(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/PaymentView.fxml"));
     Parent root = loader.load();
+    PaymentViewController controller = loader.getController();
     Stage window = (Stage) payOrderButton.getScene().getWindow();
+    controller.setTotalPrice(totalPrice);
     window.setScene(new Scene(root));
   }
 
   public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time) {
+    setTotalPrice(price);
     String order = "";
     String completeOrder = "";
     for (int i = 0; i < basket.size(); i++) {
@@ -47,7 +52,10 @@ public class CheckoutViewController {
     price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
     OrderList.getItems().add(completeOrder);
     OrderList.getItems().add("Total Price: £" + price + "");
-
+  }
+  
+  private void setTotalPrice(Float price) {
+    totalPrice = price;
   }
 
 }

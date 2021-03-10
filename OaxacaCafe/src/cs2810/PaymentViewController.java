@@ -104,4 +104,8 @@ public class PaymentViewController {
       }));
     }
     
+    public void setTotalPrice(Float price) {
+      String strPrice = price.toString();
+      totalPrice.setText("£" + strPrice);
+    }
 }

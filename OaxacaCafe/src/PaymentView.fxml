@@ -21,7 +21,7 @@
          <children>
             <Pane prefHeight="479.0" prefWidth="414.0">
                <children>
-                  <TextField fx:id="nameField" layoutX="86.0" layoutY="77.0" prefHeight="29.0" prefWidth="245.0" styleClass="payment-text-field" stylesheets="@styling/style.css">
+                  <TextField fx:id="nameField" layoutX="86.0" layoutY="78.0" prefHeight="29.0" prefWidth="245.0" styleClass="payment-text-field" stylesheets="@styling/style.css">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
@@ -36,7 +36,7 @@
                         <Font name="Candara" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="86.0" layoutY="140.0" text="Card Number:" textFill="#73e019">
+                  <Label layoutX="90.0" layoutY="148.0" text="Card Number:" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
@@ -46,12 +46,12 @@
                         <Font name="Calibri Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="24.0" layoutY="242.0" prefHeight="26.0" prefWidth="202.0" text="Expiry Date: [MM/YY]" textFill="#73e019">
+                  <Label layoutX="24.0" layoutY="257.0" prefHeight="26.0" prefWidth="202.0" text="Expiry Date: [MM/YY]" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="310.0" layoutY="242.0" text="CVC:" textFill="#73e019">
+                  <Label layoutX="295.0" layoutY="257.0" text="CVC:" textFill="#73e019">
                      <font>
                         <Font name="Candara" size="22.0" />
                      </font>
