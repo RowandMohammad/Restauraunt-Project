@@ -3,12 +3,15 @@ package cs2810;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
 public class PaymentViewController {
+  Alert alert = new Alert(Alert.AlertType.ERROR);
+  
   
     @FXML
     private TextField nameField;
@@ -32,6 +35,7 @@ public class PaymentViewController {
     public void initialize() {
       setCardNoListener();
       setExpiraryListener();
+      
     }
     
     @FXML
@@ -40,7 +44,7 @@ public class PaymentViewController {
     }
 
     private void checkCardDetails() {
-      if (isValidName() && isValidCardNo() && isValidExpiry() && isValidCVC()) {
+      if (isValidExpiry() && isValidName() && isValidCardNo() && isValidCVC()) {
         //Create alert box that mentions that the transaction was successful
       }
       else {
@@ -58,8 +62,23 @@ public class PaymentViewController {
     }
 
     private boolean isValidExpiry() {
-      // TODO Auto-generated method stub
+      //month Test
+      System.out.println("function is working");
+      String expMonth = expiryField.getText(0,2);
+      String expYear = expiryField.getText(3,5);
+      if ((Pattern.matches("[0-9]+", expMonth)) && (Pattern.matches("[0-9]+", expYear))) { //checks data type of Year and Month
+        int intMonth = Integer.parseInt(expMonth);
+        
+        if(intMonth<=12) {
+          return true;
+        }
+      }else {
+        alert.setContentText("Incorrect Expiry Date , Please Try Again");
+        alert.show();
+        return false;
+      }
       return false;
+      
     }
 
     private boolean isValidCardNo() {
@@ -78,7 +97,7 @@ public class PaymentViewController {
       return false;
     }
     
-    private void setCardNoListener() {
+    private void setCardNoListener() { // Card Number Auto-Fill of "-"
       cardNoField.setTextFormatter(new TextFormatter<>(change -> {
         String cardNo = change.getControlNewText();
         if (cardNo.length() > 19) {
@@ -91,7 +110,7 @@ public class PaymentViewController {
       }));
     }
     
-    private void setExpiraryListener() {
+    private void setExpiraryListener() { //Expire Auto Fill of "/"
       expiryField.setTextFormatter(new TextFormatter<>(change -> {
         String expiryNo = change.getControlNewText();
         if (expiryNo.length() > 5) {
