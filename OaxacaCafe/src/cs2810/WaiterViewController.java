@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -29,6 +32,9 @@ public class WaiterViewController {
 
     @FXML
     private ListView<PendingOrderViewItem> OrdersToDeliverView;
+    
+    @FXML
+    private ListView<String> LeftToPayView;
 
     @FXML
     private Button BackToOrdering;
@@ -51,6 +57,7 @@ public class WaiterViewController {
         alert.showAndWait();
       }       
     }
+
 
     public void populatePending(ArrayList<Order> pendingOrders) {
         int index = 0;
@@ -153,5 +160,11 @@ public class WaiterViewController {
     
     public static void setIsShowing(boolean bool) {
       isShowing = bool;
+    }
+
+
+    public void addOrderToDeliver(PendingOrderViewItem order) {
+        OrdersToDeliverView.getItems().add(order);
+        OrdersToDeliverView.refresh();
     }
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Utility class for handling detail for new Order
  * data members
- * 		orderDetails: ArrayList<Menu_Item>  ==> List of items selected for order
+ * orderDetails: ArrayList<Menu_Item>  ==> List of items selected for order
  */
 
 public class PendingOrderViewItem extends HBox {
@@ -23,22 +23,23 @@ public class PendingOrderViewItem extends HBox {
     private Label orderDetailLabel;
     private WaiterViewController parentController;
     private KitchenStaffView parentController2;
-    
+
     int index;
     private boolean isPending;
-    
+
     /**
      * No default initialization allowed
-     * @param isPending 
-     * @param index 
-     * @param arrayList 
-     * @param kitchenStaffView 
+     * @param isPending
+     * @param index
+     * @param arrayList
+     * @param kitchenStaffView
      */
-    
+
 
     /**
      * Parametrized constructor for initializing new order view object
-     * @param orderDetails:  List of items selected for order
+     *
+     * @param orderDetails: List of items selected for order
      */
     public PendingOrderViewItem(WaiterViewController parentController, ArrayList<Menu_Item> orderDetails,
                                 int index, boolean isPending) {
@@ -49,15 +50,15 @@ public class PendingOrderViewItem extends HBox {
         this.setUpView();
         this.setupCallback("waiter");
     }
-    
-    
-    public PendingOrderViewItem(KitchenStaffView parentController2, ArrayList<Menu_Item> orderDetails, int index, boolean isPending){
-      this.parentController2 = parentController2;
-      this.index = index;
-      this.isPending = isPending;
-      this.orderDetails = orderDetails;
-      this.setUpView();
-      this.setupCallback("kitchen");
+
+
+    public PendingOrderViewItem(KitchenStaffView parentController2, ArrayList<Menu_Item> orderDetails, int index, boolean isPending) {
+        this.parentController2 = parentController2;
+        this.index = index;
+        this.isPending = isPending;
+        this.orderDetails = orderDetails;
+        this.setUpView();
+        this.setupCallback("kitchen");
 
     }
 
@@ -68,18 +69,17 @@ public class PendingOrderViewItem extends HBox {
         boolean isFirst = true;
         this.setAlignment(Pos.CENTER_LEFT);
         this.confirmButton = new Button("Confirm");
-        HBox.setMargin(this.confirmButton, new Insets(0, 0,0,300));
+        HBox.setMargin(this.confirmButton, new Insets(0, 0, 0, 300));
         this.orderDetailLabel = new Label();
         String orderDetail = "";
-        
+
         for (Menu_Item menuItem : orderDetails) {
-          if (isFirst) {
-            orderDetail+= "Order Time: "+menuItem.getPurchaseDate() + "\n" + "Order Item(s):\n" +menuItem.name + "\n";
-            isFirst = false;
-          }
-          else {
-            orderDetail+=  menuItem.name + "\n";
-          }
+            if (isFirst) {
+                orderDetail += "Order Time: " + menuItem.getPurchaseDate() + "\n" + "Order Item(s):\n" + menuItem.name + "\n";
+                isFirst = false;
+            } else {
+                orderDetail += menuItem.name + "\n";
+            }
         }
         this.orderDetailLabel.setText(orderDetail);
         this.getChildren().addAll(orderDetailLabel, confirmButton);
@@ -87,25 +87,24 @@ public class PendingOrderViewItem extends HBox {
 
     /**
      * Utility function for assigning callback function to button click and confirming order
+     *
      * @param staff
      */
     private void setupCallback(String staff) {
         this.confirmButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(isPending) {
-                  if (staff.equals("waiter")) {
-                    parentController.confirmOrder(index);
-                  }
-                  else if (staff.equals("kitchen")) {
-                    parentController2.confirmOrder(index);
-                    
-                  }
-                } 
-                else {
-                    parentController.deliverOrder(index);
+                if (isPending) {
+                    if (staff.equals("waiter")) {
+                        parentController.confirmOrder(index);
+                    } else if (staff.equals("kitchen")) {
+                        parentController2.confirmOrder(index);
+                        isPending = false;
                     }
-                
+                } else {
+                    parentController.deliverOrder(index);
+                }
+
             }
         });
     }
@@ -113,12 +112,11 @@ public class PendingOrderViewItem extends HBox {
     /**
      * Utility function for updating customer about order confirmation
      */
-    private void updateCustomerView(){
+    private void updateCustomerView() {
         //@TODO implement a strategy to communicate order status to customer
     }
 
     /**
-     *
      * @return List of all items in order
      */
     public ArrayList<Menu_Item> getOrderDetails() {
@@ -126,7 +124,6 @@ public class PendingOrderViewItem extends HBox {
     }
 
     /**
-     *
      * @param orderDetails List of all items in order
      */
     public void setOrderDetails(ArrayList<Menu_Item> orderDetails) {

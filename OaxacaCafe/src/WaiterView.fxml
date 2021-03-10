@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.WaiterViewController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.WaiterViewController">
    <children>
       <Pane prefHeight="800.0" prefWidth="1358.0">
          <children>
-            <TabPane layoutX="-2.0" layoutY="144.0" prefHeight="656.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="383.0">
+            <TabPane layoutX="-2.0" layoutY="144.0" prefHeight="656.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="250.0">
               <tabs>
                 <Tab text="Pending Orders">
                   <content>
@@ -33,9 +33,19 @@
                         </AnchorPane>
                   </content>
                 </Tab>
+                  <Tab text="Tables left to Pay">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ListView fx:id="LeftToPayView" layoutX="14.0" layoutY="14.0" prefHeight="606.0" prefWidth="780.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
               </tabs>
             </TabPane>
             <Button fx:id="BackToOrdering" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#BackToOrderingPressed" prefHeight="107.0" prefWidth="207.0" text="Back to Ordering" />
+           
             <Label layoutX="548.0" layoutY="68.0" text="Logged In As:" />
             <Label fx:id="UserLabel" layoutX="632.0" layoutY="68.0" prefHeight="17.0" prefWidth="160.0" />
             <Button fx:id="CancelOrder" layoutX="679.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="33.0" prefWidth="115.0" text="Cancel Order" />

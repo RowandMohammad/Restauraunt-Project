@@ -11,14 +11,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import java.util.Date;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 import java.text.DateFormat;
@@ -45,6 +43,8 @@ public class WaiterloginController {
   @FXML
   private Button backToOrder;
 
+  private WaiterViewController waiterViewController;
+
   @FXML
   void changeScreenButtonPushed(ActionEvent event) throws IOException {
     Stage stage = (Stage) backToOrder.getScene().getWindow();
@@ -59,6 +59,7 @@ public class WaiterloginController {
       WaiterViewController controller = loader.getController();
       WaiterViewController.setIsShowing(true);
       controller.setInitialData(parent, pendingOrders, ordersToDeliver, ordersToCook);
+      parent.setWaiterController(waiterViewController);
       Stage stage = new Stage();
       stage.setScene(new Scene(root));
       stage.show();
@@ -79,21 +80,32 @@ public class WaiterloginController {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/KitchenView.fxml"));
       Parent root = loader.load();
       KitchenStaffView controller = loader.getController();
-      controller.initialiseData(parent, ordersToCook, ordersToDeliver);
+      controller.initialiseData(parent, parent.getWaiterController(), ordersToCook, ordersToDeliver);
       Stage stage = new Stage();
       stage.setScene(new Scene(root));
       stage.show();
       DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
     EventHandler<ActionEvent> eventHandler = e -> {
-
        stage.setTitle(df.format(new Date()));
-
-
     };
     Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
     animation.setCycleCount(Timeline.INDEFINITE);
     animation.play();
     }
+    else if(staff.equals("manager")) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ManagerView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+        DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+      EventHandler<ActionEvent> eventHandler = e -> {
+         stage.setTitle(df.format(new Date()));
+      };
+      Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
+      animation.setCycleCount(Timeline.INDEFINITE);
+      animation.play();
+      }
     
   }
 
@@ -110,7 +122,6 @@ public class WaiterloginController {
       alert.setTitle("success");
       alert.setHeaderText(null);
       alert.setContentText("Login successful");
-      new LoginMessage().getMessage().put("Login", "successful");
       alert.showAndWait();
       Stage stage = (Stage) login.getScene().getWindow();
       stage.close();
@@ -121,13 +132,24 @@ public class WaiterloginController {
       alert.setTitle("success");
       alert.setHeaderText(null);
       alert.setContentText("Login successful");
-      new LoginMessage().getMessage().put("Login", "successful");
       alert.showAndWait();
       Stage stage = (Stage) login.getScene().getWindow();
       stage.close();
       changeScreenLoginCorrect(event, "kitchen");
       
     }
+    else if(ViewCustomerInterface.findUser(userAccount.getText(), userPwd.getText(), "manager")) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("success");
+        alert.setHeaderText(null);
+        alert.setContentText("Login successful");
+        new LoginMessage().getMessage().put("Login", "successful");
+        alert.showAndWait();
+        Stage stage = (Stage) login.getScene().getWindow();
+        stage.close();
+        changeScreenLoginCorrect(event, "manager");
+        
+      }
     else {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setTitle("error");

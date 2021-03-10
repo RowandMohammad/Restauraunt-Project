@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<Pane layoutX="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="530.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ChangeMenu">
+   <children>
+      <ImageView fitHeight="123.0" fitWidth="236.0" layoutX="118.0" layoutY="43.0">
+         <image>
+            <Image url="@images/Basket%20(1).png" />
+         </image>
+      </ImageView>
+      <TabPane fx:id="tabPane" layoutY="153.0" prefHeight="648.0" prefWidth="522.0" side="LEFT" style="-fx-background-color: #64dd17;" stylesheets="@styling/style.css" tabClosingPolicy="UNAVAILABLE" tabMinWidth="116.0">
+        <tabs>
+          <Tab fx:id="mainTab" text="Main Menu">
+               <content>
+                  <ScrollPane prefHeight="618.0" prefWidth="466.0" stylesheets="@styling/style.css">
+                     <content>
+                        <AnchorPane prefHeight="553.0" prefWidth="410.0">
+                           <children>
+                              <ListView fx:id="MainListView" layoutX="14.0" layoutY="13.0" prefHeight="586.0" prefWidth="331.0" />
+                              <ImageView fitHeight="50.0" fitWidth="66.0" layoutX="387.0" layoutY="15.0">
+                                 <image>
+                                    <Image url="@images/taco.png" />
+                                 </image>
+                              </ImageView>
+                           
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+          <Tab fx:id="sidesTab" text="Sides">
+               <content>
+                  <ScrollPane prefHeight="616.0" prefWidth="398.0">
+                     <content>
+                        <AnchorPane prefHeight="622.0" prefWidth="461.0">
+                           <children>
+                              <ListView fx:id="SidesListView" layoutX="14.0" layoutY="12.0" prefHeight="586.0" prefWidth="331.0" />
+                              <ImageView fitHeight="53.0" fitWidth="66.0" layoutX="387.0" layoutY="15.0">
+                                 <image>
+                                    <Image url="@images/nachos.png" />
+                                 </image>
+                              </ImageView>
+                              
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+            <Tab fx:id="drinksTab" text="Drinks">
+               <content>
+                  <ScrollPane prefHeight="618.0" prefWidth="466.0" stylesheets="@styling/style.css">
+                     <content>
+                        <AnchorPane prefHeight="638.0" prefWidth="480.0">
+                           <children>
+                              <ListView fx:id="DrinksListView" layoutX="14.0" layoutY="13.0" prefHeight="586.0" prefWidth="331.0" />
+                              <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="387.0" layoutY="15.0">
+                                 <image>
+                                    <Image url="@images/drink.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button fx:id="logoutbutton"  mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" onAction="#logout" text="back" />
+      <Button fx:id="StartButton" layoutX="-30.0" layoutY="-20.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="600.0" text="Click anywhere to start change the menu">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

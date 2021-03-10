@@ -5,30 +5,23 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
 import org.controlsfx.control.PopOver;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
  * Utility class for managing all data for ListView items
- * data members 
- * 		name: Label   ==> Product's Name
- * 		price: Label  ==> Product's Price
- * 		cal: String   ==> Product's Calories
- * 		ing: String[] ==> list of ingredients used in product
- * 
+ * data members
+ * name: Label   ==> Product's Name
+ * price: Label  ==> Product's Price
+ * cal: String   ==> Product's Calories
+ * ing: String[] ==> list of ingredients used in product
  */
 
 /**
@@ -38,28 +31,29 @@ import javafx.scene.image.ImageView;
  * 		price: Label  ==> Product's Price
  * 		cal: String   ==> Product's Calories
  * 		ing: String[] ==> list of ingredients used in product
- * 
+ *
  */
 public class ListViewItem extends HBox {
 
-	TextField name = new TextField();
-    TextField price = new TextField();
-    Button calories    = new Button("  Calories   ");
+    Label name = new Label();
+    Label price = new Label();
+    Button calories = new Button("  Calories   ");
     Button ingredients = new Button("Ingredients");
-    Button updateBtn = new Button("Update");
     private String cal;
-    private String ing [];
+    private String ing[];
     String[] dietaryRequirements;
     ImageView imageView = new ImageView();
+
     /**
      *  No default construction allowed
      *  Must be initialized using parameterized constructor
      *  so that all necessary data is provided
      */
     @SuppressWarnings("unused")
-	private ListViewItem(){
+    private ListViewItem() {
 
     }
+
     /**
      * setup initial view and callback for list item
      * parameterized constructor  
@@ -72,153 +66,93 @@ public class ListViewItem extends HBox {
         super();
         this.cal = cal;
         this.ing = ing;
-        this.name = new TextField(_name);
-        this.price = new TextField(_price);
+        this.name = new Label(_name);
+        this.price = new Label(_price);
         this.dietaryRequirements = dietaryRequirements;
-	    
-        new LoginMessage();
-		Map<String, Object> map = LoginMessage.getMessage();
-		if (map.isEmpty()) {
-			
-			price.setEditable(false);
-			name.setEditable(false);
-		}
-	    
-	imageView.setFitHeight(50);
-	imageView.setFitWidth(50);
-	if(_name.equals("Burrito")) {
-	Image image = new Image("foodpictures/Burrito.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Beer")) {
-	Image image = new Image("foodpictures/Beer.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Caldo de queso")) {
-	Image image = new Image("foodpictures/Caldo de queso.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Chorizo")) {
-	Image image = new Image("foodpictures/Chorizo.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Churros with Chocolate Sauce")) {
-	Image image = new Image("foodpictures/Churros with Chocolate Sauce.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Fries")) {
-	Image image = new Image("foodpictures/Fries.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Guacamole")) {
-	Image image = new Image("foodpictures/Guacamole.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Queso flameado")) {
-	Image image = new Image("foodpictures/Queso flameado.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Huevos motulenos")) {
-	Image image = new Image("foodpictures/Huevos motulenos.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Milanesas")) {
-	Image image = new Image("foodpictures/Milanesas.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Vegetarian Tacos")) {
-	Image image = new Image("foodpictures/Vegetarian Tacos.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Rice")) {
-	Image image = new Image("foodpictures/Rice.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Salsa")) {
-	Image image = new Image("foodpictures/Salsa.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Three Chicken Wings")) {
-	Image image = new Image("foodpictures/Three Chicken Wings.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Sprite")) {
-	Image image = new Image("foodpictures/Sprite.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Salad")) {
-	Image image = new Image("foodpictures/Salad.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Beans")) {
-	Image image = new Image("foodpictures/Beans.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Coke")) {
-	Image image = new Image("foodpictures/Coke.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Vanilla Milkshake")) {
-	Image image = new Image("foodpictures/Vanilla Milkshake.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Chocolate Milkshake")) {
-	Image image = new Image("foodpictures/Chocolate Milkshake.png");
-	imageView.setImage(image);  
-	}else if(_name.equals("Strawberry Milkshake")) {
-	Image image = new Image("foodpictures/Strawberry Milkshake.png");
-	imageView.setImage(image);  
-}
 
-        VBox lablesCotaier = new VBox(this.name, this.price,this.imageView);
-        VBox buttonContainer = new VBox(this.ingredients, this.calories,this.updateBtn);
-        VBox.setMargin(calories,new Insets(2,0,0,0));
+        imageView.setFitHeight(50);
+    	imageView.setFitWidth(50);
+    	if(_name.equals("Burrito")) {
+    	Image image = new Image("foodpictures/Burrito.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Beer")) {
+    	Image image = new Image("foodpictures/Beer.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Caldo de queso")) {
+    	Image image = new Image("foodpictures/Caldo de queso.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Chorizo")) {
+    	Image image = new Image("foodpictures/Chorizo.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Churros with Chocolate Sauce")) {
+    	Image image = new Image("foodpictures/Churros with Chocolate Sauce.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Fries")) {
+    	Image image = new Image("foodpictures/Fries.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Guacamole")) {
+    	Image image = new Image("foodpictures/Guacamole.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Queso flameado")) {
+    	Image image = new Image("foodpictures/Queso flameado.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Huevos motulenos")) {
+    	Image image = new Image("foodpictures/Huevos motulenos.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Milanesas")) {
+    	Image image = new Image("foodpictures/Milanesas.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Vegetarian Tacos")) {
+    	Image image = new Image("foodpictures/Vegetarian Tacos.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Rice")) {
+    	Image image = new Image("foodpictures/Rice.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Salsa")) {
+    	Image image = new Image("foodpictures/Salsa.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Three Chicken Wings")) {
+    	Image image = new Image("foodpictures/Three Chicken Wings.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Sprite")) {
+    	Image image = new Image("foodpictures/Sprite.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Salad")) {
+    	Image image = new Image("foodpictures/Salad.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Beans")) {
+    	Image image = new Image("foodpictures/Beans.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Coke")) {
+    	Image image = new Image("foodpictures/Coke.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Vanilla Milkshake")) {
+    	Image image = new Image("foodpictures/Vanilla Milkshake.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Chocolate Milkshake")) {
+    	Image image = new Image("foodpictures/Chocolate Milkshake.png");
+    	imageView.setImage(image);  
+    	}else if(_name.equals("Strawberry Milkshake")) {
+    	Image image = new Image("foodpictures/Strawberry Milkshake.png");
+    	imageView.setImage(image);  
+    }
+        VBox lablesCotaier = new VBox(this.name, this.price, this.imageView);
+        VBox buttonContainer = new VBox(this.ingredients, this.calories);
+        VBox.setMargin(calories, new Insets(2, 0, 0, 0));
         VBox.setMargin(imageView, new Insets(10, 0, 0, 0));
-	lablesCotaier.setAlignment(Pos.BASELINE_LEFT);
+        lablesCotaier.setAlignment(Pos.BASELINE_LEFT);
         buttonContainer.setAlignment(Pos.CENTER);
         this.getChildren().addAll(lablesCotaier, buttonContainer);
         HBox.setHgrow(lablesCotaier, Priority.ALWAYS);
         setCaloriesActionListener();
         setIngredientActionListener();
-	setDeleteBtnActionListener();
     }
-private void setDeleteBtnActionListener() {
-		// TODO Auto-generated method stub
-		updateBtn.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				String names = name.getText();
-				String prices = price.getText();
-				String[] ings = ing;
-				if (names == null || prices == null) {
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("warn");
-					alert.setHeaderText(null);
-					alert.setContentText("please input right information");
-				}
-				try {
-					new MenuMain();
-					ArrayList<Menu_Item> mainItems = MenuMain.initialiseMainItems();
-					new MenuMain();
-					ArrayList<Menu_Item> drinkItems = MenuMain.initiliseDrinkItems();
-					new MenuMain();
-					ArrayList<Menu_Item> sideItems = MenuMain.initialiseSideItems();
-					for (Menu_Item item : mainItems) {
-						if (ings.equals(item.getIngredients())) {
-							item.setPrice(Double.parseDouble(prices.split("£")[1]));
-							item.setName(names);
-						}
-					}
-					for (Menu_Item item : drinkItems) {
-						if (ings.equals(item.getIngredients())) {
-							item.setPrice(Double.parseDouble(prices.split("£")[1]));
-							item.setName(names);
-						}
-					}
-					for (Menu_Item item : sideItems) {
-						if (ings.equals(item.getIngredients())) {
-							item.setPrice(Double.parseDouble(prices.split("£")[1]));
 
-							item.setName(names);
-
-					}
-					}
-				}
-					
-				 catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-	}
 
     /**
      * callback function for showing product calories pop-up
      */
-    private void setCaloriesActionListener(){
+    private void setCaloriesActionListener() {
         calories.setOnAction(
                 new EventHandler<ActionEvent>() {
                     @Override
@@ -235,18 +169,18 @@ private void setDeleteBtnActionListener() {
     /**
      * callback function for showing product Ingredients pop-up
      */
-    private void setIngredientActionListener(){
+    private void setIngredientActionListener() {
         ingredients.setOnAction(
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
                         String _ingredients = "";
-                        for(String _ing : ListViewItem.this.ing) {
-                            _ingredients += _ing+"\n" ;
+                        for (String _ing : ListViewItem.this.ing) {
+                            _ingredients += _ing + "\n";
                         }
                         Label l = new Label(_ingredients);
-                        Insets insets = new Insets(5,5,5,5);
-                        VBox.setMargin(l,insets);
+                        Insets insets = new Insets(5, 5, 5, 5);
+                        VBox.setMargin(l, insets);
                         VBox box = new VBox(l);
                         box.setAlignment(Pos.CENTER);
                         PopOver popOver = new PopOver(box);
@@ -306,25 +240,27 @@ private void setDeleteBtnActionListener() {
      * @param name of product
      */
     public void setName(String name) {
-        this.name.setText(name); ;
+        this.name.setText(name);
+        ;
     }
 
     /**
      *
      * @return
      */
-	public TextField getPrice() {
-		return price;
-	}
+    public Label getPrice() {
+        return price;
+    }
 
 
     /**
      *
      * @param price
      */
-	public void setPrice(TextField price) {
-		this.price = price;
-	}
+    public void setPrice(Label price) {
+        this.price = price;
+    }
+
     /**
      *
      * @return
