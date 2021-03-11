@@ -25,7 +25,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -117,6 +120,8 @@ public class ViewCustomerInterface {
   @FXML
   private Label orderStatus;
 
+  @FXML
+  private Button payButton;
   
   // Handles button click to call waiter
   @FXML
@@ -136,11 +141,32 @@ public class ViewCustomerInterface {
     populateMenu();
     quantitySpinner.setValueFactory(svf);
     basketItems = new ArrayList<Menu_Item>();
-    
   }
-
-
-
+  
+  @FXML
+  void payTotalCost(ActionEvent event) throws IOException {
+    Alert alert = new Alert(AlertType.ERROR, "Press OK to return to main menu", ButtonType.OK);
+    alert.setTitle("Payment error");
+    
+    if (!totalPrice.getText().equals("£ 0.00") && basketItems.isEmpty()) {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/PaymentView.fxml"));
+      Parent root = loader.load();
+      PaymentViewController controller = loader.getController();
+      controller.setParentController(this);
+      controller.setTotalPrice(getTotalPrice());
+      Stage stage = new Stage();
+      stage.setScene(new Scene(root));
+      stage.show();
+    }
+    else if (totalPrice.getText().equals("£ 0.00")) {
+      alert.setHeaderText("Total cost of purchase should be above £0.00");
+      alert.showAndWait();
+    }
+    else if (!basketItems.isEmpty()) {
+      alert.setHeaderText("Order needs to be placed first");
+      alert.showAndWait();
+    }
+  }
 
   @FXML
   public void initialize() {

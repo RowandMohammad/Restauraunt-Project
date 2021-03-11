@@ -19,9 +19,9 @@
             <Image url="@images/checkout.png" />
          </image>
       </ImageView>
-      <Button fx:id="backToOrder" layoutX="8.0" layoutY="6.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="40.0" prefWidth="102.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 1.2;" styleClass="back-to-order" stylesheets="@styling/style.css" text="Back to order" textFill="#008001">
+      <Button fx:id="backToOrder" layoutX="8.0" layoutY="13.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="40.0" prefWidth="105.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 1.2;" styleClass="back-to-order" stylesheets="@styling/style.css" text="Pay later" textFill="#008001">
          <font>
-            <Font name="Forte" size="13.0" />
+            <Font name="Forte" size="15.0" />
          </font>
          <effect>
             <Reflection bottomOpacity="0.17" fraction="0.64" topOpacity="0.35" />
