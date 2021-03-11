@@ -79,3 +79,11 @@
     -fx-text-fill: white;
 }
 
+.payment-text-field {
+	-fx-text-fill: white;
+	-fx-border-color: white;
+	-fx-background-color: #37474f;
+	-fx-border-width: 0 0 2px;
+}
+
+
