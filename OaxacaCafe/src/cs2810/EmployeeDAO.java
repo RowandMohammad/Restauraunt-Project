@@ -15,6 +15,7 @@ public class EmployeeDAO {
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		ResultSet rsSet = DatabaseInitialisation.executeSelect(dbConnection, employeeQuery);
 		ObservableList<Employee> empList = getEmployeeObjects(rsSet);
+		return empList;
 
 	}
 
