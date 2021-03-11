@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 public class WaiterloginController {
   
   private ViewCustomerInterface parent;
+  private MainControl view;
   
   ArrayList<Order> pendingOrders;
   ArrayList<Order> ordersToCook;
@@ -144,7 +145,6 @@ public class WaiterloginController {
         alert.setTitle("success");
         alert.setHeaderText(null);
         alert.setContentText("Login successful");
-        new LoginMessage().getMessage().put("Login", "successful");
         alert.showAndWait();
         Stage stage = (Stage) login.getScene().getWindow();
         stage.close();

@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 public class ManagerViewController {
     private ViewCustomerInterface parent;
+    private EmployeeViewController ev;
 
     @FXML
     private Button BackToOrdering;
@@ -42,7 +43,13 @@ public class ManagerViewController {
     }
 
     @FXML
-    void handleViewEmployee(ActionEvent event) {
+    void handleViewEmployee(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/EmployeeView.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        stage.setResizable(false);
 
     }
 

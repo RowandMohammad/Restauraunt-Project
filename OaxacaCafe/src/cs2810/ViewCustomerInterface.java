@@ -138,6 +138,7 @@ public class ViewCustomerInterface {
     mp.play();
     WaiterViewController.assistancePopup();
   }
+  
 
   // Handles starting the menu
   @FXML

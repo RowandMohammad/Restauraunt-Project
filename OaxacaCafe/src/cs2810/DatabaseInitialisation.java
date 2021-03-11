@@ -31,10 +31,23 @@ public class DatabaseInitialisation {
 			System.out.println("************** Connection Failedl! **************\"");
 			return;
 		}
+		dropTable(dbConnection, "stafflogin");
+		dropTable(dbConnection, "staffinfo");
+		createTable(dbConnection,
+				"staffinfo (employeeID int PRIMARY KEY," + "employeeName varchar(50) ," + "username int," + "password int, " + " employeeRole varchar(50)," + " employeeEmail varchar(50))");
+		dropTable(dbConnection, "orders");
+		createTable(dbConnection,
+				"orders (ordernumber int PRIMARY KEY," + "foodordered varchar(500), "
+						+ "totalprice DECIMAL(4 , 2 ) NOT NULL, " + "ordertime int, " + "waiterid int REFERENCES staffinfo(employeeID), "
+						+ "cookid int REFERENCES staffinfo(employeeID), "
+						+  "ETA int, " + "tablenumber int)");
+
+
+		insertDataIntoTable(dbConnection, "staffinfo (employeeID, employeeName, username, password, employeeRole, employeeEmail)", staffLoginFile);
 
 	}
 
-	private static Connection getConnection() throws URISyntaxException, SQLException {
+	public static Connection getConnection() throws URISyntaxException, SQLException {
 		URI dbUri = new URI(
 				"postgres://vnxcaquwfcdcmx:57a2d6d4bc061d9a386aaa5352bac1ac7cfc1744b1b7e46318519a73c7dfa547@ec2-52-211-161-21.eu-west-1.compute.amazonaws.com:5432/dakl9haghtbqac");
 
