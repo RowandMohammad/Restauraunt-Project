@@ -65,8 +65,27 @@ public class PaymentViewController {
     }
     
     private boolean isValidCVC() {
-      //TODO
-      return true;
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      String cvc = cvcField.getText();
+      if(cvc.length() == 3) { //checks CVC Length
+        if((Pattern.matches("[0-9]{3}", cvc))){
+          return true;
+     
+        }
+        else {
+          alert.setContentText("Incorrect,Has to be numbers,It has to be 3 numbers long, Please Try Again");
+          alert.show();
+          return false;
+          
+        }  
+        
+      }else {
+        alert.setContentText("Incorrect CVC Length ,It has to be 3 numbers long, Please Try Again");
+        alert.show();
+        return false;
+        
+        
+      }
     }
 
     private boolean isValidExpiry() {
