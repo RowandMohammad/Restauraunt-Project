@@ -37,6 +37,7 @@ public class PaymentViewController {
     public void initialize() {
       setCardNoListener();
       setExpiraryListener();
+      setCVCListener();
     }
     
     @FXML
@@ -149,6 +150,16 @@ public class PaymentViewController {
         }
         if (change.getCaretPosition() == 3) {
           change.setText("/");
+        }
+        return change;
+      }));
+    }
+    
+    private void setCVCListener() { 
+      cvcField.setTextFormatter(new TextFormatter<>(change -> {
+        String cvc = change.getControlNewText();
+        if (cvc.length() > 3) {
+          return null;
         }
         return change;
       }));
