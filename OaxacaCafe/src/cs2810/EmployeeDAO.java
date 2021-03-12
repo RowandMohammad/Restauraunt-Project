@@ -42,4 +42,12 @@ public class EmployeeDAO {
 		}
 	}
 
+	public static ObservableList<Employee> searchEmployee(String empID) throws URISyntaxException, SQLException {
+		String employeeSql = "select * from staffinfo where employeeID = "+empID+";";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		ResultSet rsEmployee = DatabaseInitialisation.executeSelect(dbConnection, employeeSql);
+		ObservableList<Employee> list = getEmployeeObjects(rsEmployee);
+		return list;
+	}
+
 }

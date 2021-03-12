@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class EmployeeViewController {
@@ -30,9 +31,13 @@ public class EmployeeViewController {
 	@FXML
 	private TableColumn<Employee, String> colEmpEmail;
 	@FXML
-	private TableView employeeList;
+	private TableView<Employee> employeeList;
 	@FXML
 	private Button BackToOrdering;
+    @FXML
+    private TextField searchEmpID;
+    @FXML
+    private Button searchButton;
 
 	
 	@FXML
@@ -57,6 +62,17 @@ public class EmployeeViewController {
 		employeeList.setItems(empList);
 		
 	}
+	@FXML
+	private void searchEmployee(ActionEvent event) throws URISyntaxException, SQLException {
+		ObservableList<Employee> list = EmployeeDAO.searchEmployee(searchEmpID.getText());
+		if (list.size() > 0) {
+			populateTable(list);
+		}
+		
+	}
+	
+	
+
 	
 
 }
