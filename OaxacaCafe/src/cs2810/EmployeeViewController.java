@@ -34,12 +34,13 @@ public class EmployeeViewController {
 	private TableView<Employee> employeeList;
 	@FXML
 	private Button BackToOrdering;
-    @FXML
-    private TextField searchEmpID;
-    @FXML
-    private Button searchButton;
+	@FXML
+	private TextField searchEmpID;
+	@FXML
+	private Button searchButton;
+	@FXML
+	private Button searchAllEmployee;
 
-	
 	@FXML
 	private void initialize() throws URISyntaxException, SQLException {
 		colEmpID.setCellValueFactory(cellData -> cellData.getValue().getEmployeeID().asObject());
@@ -50,29 +51,34 @@ public class EmployeeViewController {
 		colEmpEmail.setCellValueFactory(cellData -> cellData.getValue().getEmployeeEmail());
 		ObservableList<Employee> empList = EmployeeDAO.getAllRecords();
 		populateTable(empList);
-		
+
 	}
-	
+
 	@FXML
 	void BackToOrderingPressed(ActionEvent event) {
 		((Stage) BackToOrdering.getScene().getWindow()).close();
 
 	}
+
 	private void populateTable(ObservableList<Employee> empList) {
 		employeeList.setItems(empList);
-		
+
 	}
+
 	@FXML
 	private void searchEmployee(ActionEvent event) throws URISyntaxException, SQLException {
 		ObservableList<Employee> list = EmployeeDAO.searchEmployee(searchEmpID.getText());
 		if (list.size() > 0) {
 			populateTable(list);
 		}
-		
-	}
-	
-	
 
-	
+	}
+
+	@FXML
+	void searchAllEmployees(ActionEvent event) throws URISyntaxException, SQLException {
+		ObservableList<Employee> list = EmployeeDAO.getAllRecords();
+		populateTable(list);
+
+	}
 
 }
