@@ -8,10 +8,13 @@ import java.sql.SQLException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 public class EmployeeViewController {
 	@FXML
@@ -28,6 +31,9 @@ public class EmployeeViewController {
 	private TableColumn<Employee, String> colEmpEmail;
 	@FXML
 	private TableView employeeList;
+	@FXML
+	private Button BackToOrdering;
+
 	
 	@FXML
 	private void initialize() throws URISyntaxException, SQLException {
@@ -41,7 +47,12 @@ public class EmployeeViewController {
 		populateTable(empList);
 		
 	}
+	
+	@FXML
+	void BackToOrderingPressed(ActionEvent event) {
+		((Stage) BackToOrdering.getScene().getWindow()).close();
 
+	}
 	private void populateTable(ObservableList<Employee> empList) {
 		employeeList.setItems(empList);
 		
