@@ -419,7 +419,7 @@ public class ViewCustomerInterface {
       item.setPurchaseDate(timeOfClick);
     }
     if (basketItems.size() != 0) {
-      Order order = new Order(basketItems,1,111, false);
+      Order order = new Order(basketItems,1,111, false, "Placed");
       pendingOrders.add(order);
       currentOrders.add(order);
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));

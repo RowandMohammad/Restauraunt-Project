@@ -63,7 +63,7 @@ public class WaiterViewController {
     public void populatePending(ArrayList<Order> pendingOrders) {
         int index = 0;
         for (Order order : pendingOrders) {
-            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, true, order.payed);
+            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, order.payed, order.status);
             PendingOrdersView.getItems().add(item);
             index++;
         }
@@ -73,7 +73,7 @@ public class WaiterViewController {
     public void populateOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
         int index = 0;
         for (Order order : ordersToDeliver) {
-            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, false, order.payed);
+            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, order.payed, order.status);
             OrdersToDeliverView.getItems().add(item);
             index++;
         }
@@ -82,7 +82,7 @@ public class WaiterViewController {
     public void populateLeftToPay(ArrayList<Order> ordersToPay) {
       int index = 0;
       for (Order order : ordersToPay) {
-          PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, false, order.payed);
+          PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, order.payed, order.status);
           LeftToPayView.getItems().add(item);
           index++;
       }
@@ -124,6 +124,7 @@ public class WaiterViewController {
      * @param index of order which have to be moved to deliverable state
      */
     public void confirmOrder(int index) {
+        pendingOrders.get(index).status = "In progress";
         PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
         ordersToCook.add(pendingOrders.get(index));
         Order order = pendingOrders.remove(index);
@@ -149,11 +150,14 @@ public class WaiterViewController {
      * @param index of order which have to be moved to delivered
      */
     public void deliverOrder(int index) {
+      ordersToDeliver.get(index).status = "Delivered";
       
       if(ordersToDeliver.get(index).payed == false) {
         ordersToPay.add(ordersToDeliver.get(index));
         this.parent.updateOrdersToPay(ordersToPay);
-        populateLeftToPay(ordersToPay);
+        PendingOrderViewItem item = new PendingOrderViewItem(this, ordersToPay.get(index).getOrder(), index, ordersToPay.get(index).payed, ordersToPay.get(index).status);
+        LeftToPayView.getItems().add(item);
+        updateIndex(LeftToPayView, ordersToPay, index);
       }
       
       
@@ -163,6 +167,16 @@ public class WaiterViewController {
 		updateIndex(OrdersToDeliverView, ordersToDeliver, index);
         OrdersToDeliverView.refresh();
         updateOrderStatus("Delivered");
+    }
+    
+    
+    public void dismissOrder(int index) {
+      ordersToPay.remove(index);
+      this.parent.updateOrdersToPay(ordersToPay);
+      LeftToPayView.getItems().remove(index);
+      updateIndex(LeftToPayView, ordersToPay, index);
+      LeftToPayView.refresh();
+      
     }
 
     private void updateOrderStatus(String status) {

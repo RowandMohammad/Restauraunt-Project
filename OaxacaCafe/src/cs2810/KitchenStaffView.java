@@ -39,7 +39,7 @@ public class KitchenStaffView {
     private void populateOrdersToCook() {
         int index = 0;
         for (Order order : ordersToCook) {
-            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, true, order.payed);
+            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, order.payed, order.status);
             ordersToCookView.getItems().add(item);
             index++;
         }
@@ -48,6 +48,7 @@ public class KitchenStaffView {
 
 
     public void confirmOrder(int index) {
+       ordersToCook.get(index).status = "Food Cooked";
         PendingOrderViewItem item = ordersToCookView.getItems().remove(index);
         ordersToDeliver.add(ordersToCook.get(index));
         Order order = ordersToCook.remove(index);

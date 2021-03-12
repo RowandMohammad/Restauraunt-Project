@@ -26,7 +26,8 @@ public class PendingOrderViewItem extends HBox {
 
     int index;
     boolean payed;
-    private boolean isPending;
+    String status;
+
 
     /**
      * No default initialization allowed
@@ -43,23 +44,23 @@ public class PendingOrderViewItem extends HBox {
      * @param orderDetails: List of items selected for order
      */
     public PendingOrderViewItem(WaiterViewController parentController, ArrayList<Menu_Item> orderDetails,
-                                int index, boolean isPending, boolean payed) {
+                                int index, boolean payed, String status) {
         this.parentController = parentController;
         this.index = index;
-        this.isPending = isPending;
         this.orderDetails = orderDetails;
         this.payed = payed;
+        this.status = status;
         this.setUpView();
         this.setupCallback("waiter");
     }
 
 
-    public PendingOrderViewItem(KitchenStaffView parentController2, ArrayList<Menu_Item> orderDetails, int index, boolean isPending, boolean payed) {
+    public PendingOrderViewItem(KitchenStaffView parentController2, ArrayList<Menu_Item> orderDetails, int index, boolean payed, String status) {
         this.parentController2 = parentController2;
         this.index = index;
-        this.isPending = isPending;
         this.orderDetails = orderDetails;
         this.payed = payed;
+        this.status = status;
         this.setUpView();
         this.setupCallback("kitchen");
 
@@ -69,49 +70,65 @@ public class PendingOrderViewItem extends HBox {
      * Utility function for initializing view
      */
     private void setUpView() {
-        boolean isFirst = true;
-        this.setAlignment(Pos.CENTER_LEFT);
+      boolean isFirst = true;
+      this.setAlignment(Pos.CENTER_LEFT);
+      if(status.equals("Delivered")) {
+        this.confirmButton = new Button("Dismiss");
+      }
+      else {
         this.confirmButton = new Button("Confirm");
-        HBox.setMargin(this.confirmButton, new Insets(0, 0, 0, 300));
-        this.orderDetailLabel = new Label();
-        String orderDetail = "";
+      }
 
-        for (Menu_Item menuItem : orderDetails) {
-            if (isFirst) {
-              
-                orderDetail += "Order Time: " + menuItem.getPurchaseDate() + "\n" + "Order Item(s):\n" + menuItem.name + "\n\n" + "Payed: " + payed;
-                isFirst = false;
-            } else {
-                orderDetail += menuItem.name + "\n";
-            }
-        }
-        this.orderDetailLabel.setText(orderDetail);
-        this.getChildren().addAll(orderDetailLabel, confirmButton);
-    }
 
-    /**
-     * Utility function for assigning callback function to button click and confirming order
-     *
-     * @param staff
-     */
-    private void setupCallback(String staff) {
-        this.confirmButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if (isPending) {
-                    if (staff.equals("waiter")) {
-                        parentController.confirmOrder(index);
-                    } else if (staff.equals("kitchen")) {
-                        parentController2.confirmOrder(index);
-                        isPending = false;
-                    }
-                } else {
-                    parentController.deliverOrder(index);
-                }
+      HBox.setMargin(this.confirmButton, new Insets(0, 0, 0, 300));
+      this.orderDetailLabel = new Label();
+      String orderDetail = "";
 
-            }
-        });
-    }
+      for (Menu_Item menuItem : orderDetails) {
+          if (isFirst) {
+
+              orderDetail += "Order Time: " + menuItem.getPurchaseDate() + "\n" + "Order Item(s):\n" + menuItem.name + "\n";
+              isFirst = false;
+    
+          }
+          else {
+            orderDetail += menuItem.name + "\n";
+          }
+      }
+      
+      if(status.equals("Delivered")) {
+        orderDetail += "\n\nPayed: " + payed + "\n\n";
+      }
+      this.orderDetailLabel.setText(orderDetail);
+      this.getChildren().addAll(orderDetailLabel, confirmButton);
+  }
+
+  /**
+   * Utility function for assigning callback function to button click and confirming order
+   *
+   * @param staff
+   */
+  private void setupCallback(String staff) {
+      this.confirmButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+
+              if(status.equals("Placed")) {
+                parentController.confirmOrder(index);   
+              }
+              else if(status.equals("In progress")) {
+                parentController2.confirmOrder(index);
+              }
+              else if(status.equals("Food Cooked")) {
+                parentController.deliverOrder(index);     
+              }  
+              else if(status.equals("Delivered")) {
+                parentController.dismissOrder(index);
+              }
+
+          }
+      });
+  }
 
     /**
      * Utility function for updating customer about order confirmation
@@ -150,11 +167,5 @@ public class PendingOrderViewItem extends HBox {
         this.index = index;
     }
 
-    public boolean isPending() {
-        return isPending;
-    }
-
-    public void setPending(boolean pending) {
-        isPending = pending;
-    }
+ 
 }
