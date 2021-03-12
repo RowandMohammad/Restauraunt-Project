@@ -56,14 +56,14 @@ public class WaiterloginController {
 		stage.close();
 	}
 
-	void changeScreenLoginCorrect(ActionEvent event, String staff) throws IOException {
+	void changeScreenLoginCorrect(ActionEvent event, String staff) throws IOException, URISyntaxException, SQLException {
 		System.out.println(staff);
 		if (staff.equals("Waiter")) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterView.fxml"));
 			Parent root = loader.load();
 			WaiterViewController controller = loader.getController();
 			WaiterViewController.setIsShowing(true);
-			controller.setInitialData(parent, pendingOrders, ordersToDeliver, ordersToCook, ordersToPay);
+			controller.setInitialData(parent, pendingOrders, ordersToDeliver, ordersToCook, ordersToPay, userAccount.getText());
 			parent.setWaiterController(waiterViewController);
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root));
@@ -82,7 +82,7 @@ public class WaiterloginController {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/KitchenView.fxml"));
 			Parent root = loader.load();
 			KitchenStaffView controller = loader.getController();
-			controller.initialiseData(parent, parent.getWaiterController(), ordersToCook, ordersToDeliver);
+			controller.initialiseData(parent, parent.getWaiterController(), ordersToCook, ordersToDeliver, userAccount.getText());
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root));
 			stage.show();

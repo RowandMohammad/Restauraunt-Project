@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.KitchenStaffView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.KitchenStaffView">
    <children>
       <ListView fx:id="ordersToCookView" layoutX="5.0" layoutY="173.0" prefHeight="539.0" prefWidth="852.0" />
       <Button fx:id="backToOrderingButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToOrderingPressed" prefHeight="83.0" prefWidth="163.0" text="Back to Ordering" />
@@ -16,5 +16,6 @@
          </font>
       </Label>
       <Label layoutX="651.0" layoutY="47.0" text="Logged in as:" />
+      <Label fx:id="UserLabel" layoutX="737.0" layoutY="47.0" prefHeight="24.0" prefWidth="106.0" />
    </children>
 </Pane>
