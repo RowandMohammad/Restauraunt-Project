@@ -49,6 +49,8 @@ public class ViewCustomerInterface {
   ArrayList<Order> ordersToCook = new ArrayList<Order>();
   ArrayList<Order> ordersToDeliver = new ArrayList<Order>();
   ArrayList<Order> ordersToPay = new ArrayList<Order>();
+  
+  ArrayList<Order> currentOrders = new ArrayList<Order>();
 
   
   ArrayList<ArrayList<Order>> allStatusOrders = new ArrayList<ArrayList<Order>>();
@@ -419,12 +421,14 @@ public class ViewCustomerInterface {
     if (basketItems.size() != 0) {
       Order order = new Order(basketItems,1,111, false);
       pendingOrders.add(order);
+      currentOrders.add(order);
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
       Parent root = loader.load();
       CheckoutViewController controller = loader.getController();
       controller.setParentController(this);
+      int prevOrders = currentOrders.size()-1;
       controller.populateCheckout(basketItems,
-          Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick);
+          Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick, prevOrders);
       
       basketItems = new ArrayList<Menu_Item>();
       BasketView.getItems().clear();
@@ -692,9 +696,10 @@ public class ViewCustomerInterface {
     pendingOrders = allStatusOrders.get(0);
     ordersToCook = allStatusOrders.get(1);
     ordersToDeliver = allStatusOrders.get(2);
-    ordersToPay = allStatusOrders.get(3);
+    ordersToPay.clear();
    
     allStatusOrders.clear();
+    currentOrders.clear();
 
   }
 

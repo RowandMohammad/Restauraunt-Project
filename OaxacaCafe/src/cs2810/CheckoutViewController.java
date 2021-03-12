@@ -25,7 +25,8 @@ public class CheckoutViewController {
   
   @FXML
   private Button payOrderButton;
-
+  
+  
   @FXML
   void changeScreenButtonPushed(ActionEvent event) throws IOException {
     Stage stage = (Stage) backToOrder.getScene().getWindow();
@@ -43,14 +44,14 @@ public class CheckoutViewController {
     window.setScene(new Scene(root));
   }
 
-  public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time) {
+  public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time, int prevOrders) {
     setTotalPrice(price);
     String order = "";
     String completeOrder = "";
     for (int i = 0; i < basket.size(); i++) {
       order = order + basket.get(i).name + "  £" + basket.get(i).price + "\n";
     }
-    completeOrder = time + "\n" + order;
+    completeOrder = time + "\n\n" + "Previous Orders: x" + prevOrders + " + \n" + order + "\n";
     price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
     OrderList.getItems().add(completeOrder);
     OrderList.getItems().add("Total Price: £" + price + "");
