@@ -39,7 +39,7 @@ public class KitchenStaffView {
     private void populateOrdersToCook() {
         int index = 0;
         for (Order order : ordersToCook) {
-            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, true);
+            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, true, order.payed);
             ordersToCookView.getItems().add(item);
             index++;
         }

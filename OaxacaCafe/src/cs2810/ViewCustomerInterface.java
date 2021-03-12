@@ -50,6 +50,11 @@ public class ViewCustomerInterface {
   ArrayList<Order> ordersToDeliver = new ArrayList<Order>();
   ArrayList<Order> ordersToPay = new ArrayList<Order>();
 
+  
+  ArrayList<ArrayList<Order>> allStatusOrders = new ArrayList<ArrayList<Order>>();
+  
+  
+
   String select = "";
 
 
@@ -412,7 +417,7 @@ public class ViewCustomerInterface {
       item.setPurchaseDate(timeOfClick);
     }
     if (basketItems.size() != 0) {
-      Order order = new Order(basketItems,1,111);
+      Order order = new Order(basketItems,1,111, false);
       pendingOrders.add(order);
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
       Parent root = loader.load();
@@ -641,6 +646,10 @@ public class ViewCustomerInterface {
   public void updateOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
     this.ordersToDeliver = ordersToDeliver;
   }
+  
+  public void updateOrdersToPay(ArrayList<Order> ordersToPay){
+    this.ordersToPay = ordersToPay;
+  }
 
   /**
    * Mutator function for updating order status from other views
@@ -665,6 +674,28 @@ public class ViewCustomerInterface {
    */
   public void setWaiterController(WaiterViewController waiterController) {
     this.waiterController = waiterController;
+  }
+  
+  public void setPayedOrders() {
+    allStatusOrders.add(pendingOrders);
+    allStatusOrders.add(ordersToCook);
+    allStatusOrders.add(ordersToDeliver);
+    allStatusOrders.add(ordersToPay);
+    
+    
+    for (int i = 0; i < allStatusOrders.size(); i++) {
+      for (int j = 0; j < allStatusOrders.get(i).size(); j++) {
+        allStatusOrders.get(i).get(j).payed = true;
+      }
+    }
+    
+    pendingOrders = allStatusOrders.get(0);
+    ordersToCook = allStatusOrders.get(1);
+    ordersToDeliver = allStatusOrders.get(2);
+    ordersToPay = allStatusOrders.get(3);
+   
+    allStatusOrders.clear();
+
   }
 
 }

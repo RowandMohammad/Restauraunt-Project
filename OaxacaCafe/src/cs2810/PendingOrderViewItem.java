@@ -25,6 +25,7 @@ public class PendingOrderViewItem extends HBox {
     private KitchenStaffView parentController2;
 
     int index;
+    boolean payed;
     private boolean isPending;
 
     /**
@@ -42,21 +43,23 @@ public class PendingOrderViewItem extends HBox {
      * @param orderDetails: List of items selected for order
      */
     public PendingOrderViewItem(WaiterViewController parentController, ArrayList<Menu_Item> orderDetails,
-                                int index, boolean isPending) {
+                                int index, boolean isPending, boolean payed) {
         this.parentController = parentController;
         this.index = index;
         this.isPending = isPending;
         this.orderDetails = orderDetails;
+        this.payed = payed;
         this.setUpView();
         this.setupCallback("waiter");
     }
 
 
-    public PendingOrderViewItem(KitchenStaffView parentController2, ArrayList<Menu_Item> orderDetails, int index, boolean isPending) {
+    public PendingOrderViewItem(KitchenStaffView parentController2, ArrayList<Menu_Item> orderDetails, int index, boolean isPending, boolean payed) {
         this.parentController2 = parentController2;
         this.index = index;
         this.isPending = isPending;
         this.orderDetails = orderDetails;
+        this.payed = payed;
         this.setUpView();
         this.setupCallback("kitchen");
 
@@ -75,7 +78,8 @@ public class PendingOrderViewItem extends HBox {
 
         for (Menu_Item menuItem : orderDetails) {
             if (isFirst) {
-                orderDetail += "Order Time: " + menuItem.getPurchaseDate() + "\n" + "Order Item(s):\n" + menuItem.name + "\n";
+              
+                orderDetail += "Order Time: " + menuItem.getPurchaseDate() + "\n" + "Order Item(s):\n" + menuItem.name + "\n\n" + "Payed: " + payed;
                 isFirst = false;
             } else {
                 orderDetail += menuItem.name + "\n";

@@ -63,7 +63,7 @@ public class WaiterViewController {
     public void populatePending(ArrayList<Order> pendingOrders) {
         int index = 0;
         for (Order order : pendingOrders) {
-            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, true);
+            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, true, order.payed);
             PendingOrdersView.getItems().add(item);
             index++;
         }
@@ -73,11 +73,21 @@ public class WaiterViewController {
     public void populateOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
         int index = 0;
         for (Order order : ordersToDeliver) {
-            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, false);
+            PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, false, order.payed);
             OrdersToDeliverView.getItems().add(item);
             index++;
         }
     }
+    
+    public void populateLeftToPay(ArrayList<Order> ordersToPay) {
+      int index = 0;
+      for (Order order : ordersToPay) {
+          PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, false, order.payed);
+          LeftToPayView.getItems().add(item);
+          index++;
+      }
+  }
+    
 
     @FXML
     void handleCancelOrder(ActionEvent event) {
@@ -139,6 +149,15 @@ public class WaiterViewController {
      * @param index of order which have to be moved to delivered
      */
     public void deliverOrder(int index) {
+      
+      if(ordersToDeliver.get(index).payed == false) {
+        ordersToPay.add(ordersToDeliver.get(index));
+        this.parent.updateOrdersToPay(ordersToPay);
+        populateLeftToPay(ordersToPay);
+      }
+      
+      
+      
         ordersToDeliver.remove(index);
         OrdersToDeliverView.getItems().remove(index);
 		updateIndex(OrdersToDeliverView, ordersToDeliver, index);
@@ -158,6 +177,7 @@ public class WaiterViewController {
         this.ordersToPay = ordersToPay;
         populatePending(pendingOrders);
         populateOrdersToDeliver(ordersToDeliver);
+        populateLeftToPay(ordersToPay);
     }
     
     public static void setIsShowing(boolean bool) {

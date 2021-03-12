@@ -50,6 +50,7 @@ public class PaymentViewController {
         Alert alert = new Alert(AlertType.INFORMATION, "Press OK to return to main menu.", ButtonType.OK);
         alert.setTitle("Transaction complete");
         alert.setHeaderText("Transaction was successfully processed. Thank you!");
+        parent.setPayedOrders();
         ButtonType result = alert.showAndWait().orElse(ButtonType.OK);
         if (ButtonType.OK.equals(result)) {
           Stage stage = (Stage) payButton.getScene().getWindow();
