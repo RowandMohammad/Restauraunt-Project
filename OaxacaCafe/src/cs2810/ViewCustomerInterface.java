@@ -164,7 +164,7 @@ public class ViewCustomerInterface {
     alert.setTitle("Payment error");
     System.out.println(totalPrice.getText());
     
-    if (!totalPrice.getText().contains("0.00") && basketItems.isEmpty()) {
+    if (!totalPrice.getText().equals("£ 0.00") && basketItems.isEmpty()) {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/PaymentView.fxml"));
       Parent root = loader.load();
       PaymentViewController controller = loader.getController();
@@ -174,7 +174,7 @@ public class ViewCustomerInterface {
       stage.setScene(new Scene(root));
       stage.show();
     }
-    else if (totalPrice.getText().contains("0.00")) {
+    else if (totalPrice.getText().equals("£ 0.00")) {
       alert.setHeaderText("Total cost of purchase should be above £0.00");
       alert.showAndWait();
     }
