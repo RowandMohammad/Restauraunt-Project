@@ -65,7 +65,8 @@ public class ViewCustomerInterface {
   ArrayList<Menu_Item> basketItems;
   // = new ArrayList<Menu_Item>();
   
-
+  MainControl parent;
+  
   @FXML
   private TabPane tabPane;
 
@@ -702,5 +703,14 @@ public class ViewCustomerInterface {
     currentOrders.clear();
 
   }
+  
+	public void setParent(MainControl parent) {
+		this.parent = parent;
+	}
+
+
+public void setStaff(waiterStaff waiterStaff) {
+//	adds the waiterStaff object to the arraylists in mainControl to test
+}
 
 }

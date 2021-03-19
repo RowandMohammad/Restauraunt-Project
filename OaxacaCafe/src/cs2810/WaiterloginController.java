@@ -65,6 +65,7 @@ public class WaiterloginController {
 			WaiterViewController.setIsShowing(true);
 			controller.setInitialData(parent, pendingOrders, ordersToDeliver, ordersToCook, ordersToPay, userAccount.getText());
 			parent.setWaiterController(waiterViewController);
+			parent.setStaff(new waiterStaff());
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root));
 			stage.show();
@@ -130,6 +131,8 @@ public class WaiterloginController {
 			alert.setHeaderText(null);
 			alert.setContentText("Login successful");
 			alert.showAndWait();
+			//initialise current staff using database values
+			//add object to array in maincontrol
 			Stage stage = (Stage) login.getScene().getWindow();
 			stage.close();
 			changeScreenLoginCorrect(event, results.getString(5));

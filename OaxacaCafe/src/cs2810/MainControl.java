@@ -34,8 +34,12 @@ public class MainControl extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("/CustomerView.fxml"));
+	FXMLLoader loader = new FXMLLoader(getClass().getResource("/CustomerView.fxml"));
+	Parent root = loader.load();
+	ViewCustomerInterface controller = loader.getController();
+    controller.setParent(this);
     Scene scene = new Scene(root);
+    
     scene.getStylesheets()
         .add(getClass().getClassLoader().getResource("styling/style.css").toExternalForm());
     
