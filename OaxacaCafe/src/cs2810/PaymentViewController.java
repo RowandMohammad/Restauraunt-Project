@@ -32,6 +32,11 @@ public class PaymentViewController {
     
     @FXML
     private Label totalPrice;
+    /**
+     * This function initialises all the listeners that are used to
+     * auto-fill characters in the fields
+     *  
+     */
     
     @FXML
     public void initialize() {
@@ -44,6 +49,11 @@ public class PaymentViewController {
     void purchaseOrder(ActionEvent event) {
       checkCardDetails();
     }
+    /**
+     * Checks card details by checking length and data type
+     * 
+     *  @return returns true or false and if also an error window if input is incorrect
+     */
 
     private void checkCardDetails() {
       if (isValidExpiry() && isValidName() && isValidCardNo() && isValidCVC()) {
