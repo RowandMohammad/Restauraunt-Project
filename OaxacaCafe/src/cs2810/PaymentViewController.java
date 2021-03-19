@@ -32,12 +32,12 @@ public class PaymentViewController {
     
     @FXML
     private Label totalPrice;
+    
     /**
      * This function initialises all the listeners that are used to
      * auto-fill characters in the fields
      *  
      */
-    
     @FXML
     public void initialize() {
       setCardNoListener();
@@ -49,12 +49,12 @@ public class PaymentViewController {
     void purchaseOrder(ActionEvent event) {
       checkCardDetails();
     }
+    
     /**
-     * Checks card details by checking length and data type
+     *  Checks card details by checking length and data type
      * 
      *  @return returns true or false and if also an error window if input is incorrect
      */
-
     private void checkCardDetails() {
       if (isValidExpiry() && isValidName() && isValidCardNo() && isValidCVC()) {
         Alert alert = new Alert(AlertType.INFORMATION, "Press OK to return to main menu.", ButtonType.OK);
@@ -126,7 +126,7 @@ public class PaymentViewController {
 
     private boolean isValidCardNo() {
       String cardNo = cardNoField.getText();
-      if (Pattern.matches("[0-9]{4}+[-]{1}+[0-9]{4}+[-]{1}+[0-9]{4}+[-]{1}+[0-9]{4}", cardNo) && cardNo != null) {
+      if (Pattern.matches("[0-9]{4}+[-]{1}+[0-9]{4}+[-]{1}+[0-9]{4}+[-]{1}+[0-9]{4}", cardNo)) {
         return true;
       }               
       return false;
