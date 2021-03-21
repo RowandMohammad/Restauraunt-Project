@@ -47,7 +47,7 @@ public class DatabaseInitialisation {
 			dropTable(dbConnection, "orders");
 			createTable(dbConnection,
 					"orders (ordernumber int PRIMARY KEY," + "foodordered varchar(500), "
-							+ "totalprice DECIMAL(4 , 2 ) NOT NULL, " + "ordertime int, " + "waiterid varchar(50), " + "cookid varchar(50), "
+							+ "totalprice DECIMAL(4 , 2 ) NOT NULL, " + "orderstatus varchar(50), " + "ordertime int, " + "waiterid varchar(50), " + "cookid varchar(50), "
 							+ "ETA int, "  + "tablenumber int, " + "review varchar(500))");
 
 		}
