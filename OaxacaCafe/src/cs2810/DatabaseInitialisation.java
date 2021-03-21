@@ -31,6 +31,29 @@ public class DatabaseInitialisation {
 			System.out.println("************** Connection Failedl! **************\"");
 			return;
 		}
+		{
+			dropTable(dbConnection, "mainmenu");
+			createTable(dbConnection,
+					"mainmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
+			dropTable(dbConnection, "sidesmenu");
+			createTable(dbConnection,
+					"sidesmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
+			dropTable(dbConnection, "drinksmenu");
+			createTable(dbConnection,
+					"drinksmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "ETA int)");
+			dropTable(dbConnection, "orders");
+			createTable(dbConnection,
+					"orders (ordernumber int PRIMARY KEY," + "foodordered varchar(500), "
+							+ "totalprice DECIMAL(4 , 2 ) NOT NULL, " + "ordertime int, " + "waiterid varchar(50), " + "cookid varchar(50), "
+							+ "ETA int, "  + "tablenumber int, " + "review varchar(500))");
+
+		}
+		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, ETA)", mainMenuFile);
+		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, ETA)", sidesMenuFile);
+		insertDataIntoTable(dbConnection, "drinksmenu (name, calories, ingredients, type, price, ETA)", drinksMenuFile);
 
 	}
 
