@@ -32,8 +32,8 @@
                         <Font name="Arial Black" size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="searchEmpID" layoutX="152.0" layoutY="196.0" />
-                  <Label layoutX="28.0" layoutY="196.0" prefHeight="30.0" prefWidth="125.0" text="Employee ID search:">
+                  <TextField fx:id="searchEmpName" layoutX="174.0" layoutY="198.0" />
+                  <Label layoutX="9.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="155.0" text="Employee Name search:">
                      <font>
                         <Font size="14.0" />
                      </font>

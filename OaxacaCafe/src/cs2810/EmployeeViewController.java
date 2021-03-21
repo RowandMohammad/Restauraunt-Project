@@ -35,7 +35,7 @@ public class EmployeeViewController {
 	@FXML
 	private Button BackToOrdering;
 	@FXML
-	private TextField searchEmpID;
+	private TextField searchEmpName;
 	@FXML
 	private Button searchButton;
 	@FXML
@@ -67,7 +67,7 @@ public class EmployeeViewController {
 
 	@FXML
 	private void searchEmployee(ActionEvent event) throws URISyntaxException, SQLException {
-		ObservableList<Employee> list = EmployeeDAO.searchEmployee(searchEmpID.getText());
+		ObservableList<Employee> list = EmployeeDAO.searchEmployee(searchEmpName.getText());
 		if (list.size() > 0) {
 			populateTable(list);
 		}
