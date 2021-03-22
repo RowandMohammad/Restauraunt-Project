@@ -51,7 +51,7 @@ public class CheckoutViewController {
 		setTotalPrice(price);
 		String order = "";
 		String completeOrder = "";
-		String foodOrderedinsert = "INSERT INTO orders (foodordered) VALUES(?)";
+		String foodOrderedinsert = "INSERT INTO orders (foodordered, totalprice, orderstatus) VALUES(?,?,?)";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		PreparedStatement statement = dbConnection.prepareStatement(foodOrderedinsert);
 		String foodOrdered = "";
@@ -60,12 +60,15 @@ public class CheckoutViewController {
 			foodOrdered = foodOrdered + " " + basket.get(i).name +",";
 
 		}
-		statement.setString(1, foodOrdered);
-		statement.executeUpdate();
+		
 		completeOrder = time + "\n\n" + "Previous Orders: x" + prevOrders + " + \n" + order + "\n";
 		price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 		OrderList.getItems().add(completeOrder);
 		OrderList.getItems().add("Total Price: £" + price + "");
+		statement.setString(1, foodOrdered);
+		statement.setFloat(2, price);
+		statement.setString(3, "Placed");
+		statement.executeUpdate();
 
 	}
 
