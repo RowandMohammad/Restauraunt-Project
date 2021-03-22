@@ -69,7 +69,11 @@ public class ListViewItem extends HBox {
         this.name = new Label(_name);
         this.price = new Label(_price);
         this.dietaryRequirements = dietaryRequirements;
-
+        
+        /**
+         * Read food pictures
+         * Design the size of pictures
+         */
         imageView.setFitHeight(50);
     	imageView.setFitWidth(50);
     	if(_name.equals("Burrito")) {
