@@ -47,7 +47,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 /**
- * The controller class for the Customer Interface and its relative functions
+ * The controller class for the Customer Interface and its relative functions.
+ * 
  * 
  * @author Erikas Vieraitis
  *
