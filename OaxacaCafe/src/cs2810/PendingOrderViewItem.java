@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class PendingOrderViewItem extends HBox {
     private ArrayList<Menu_Item> orderDetails;
     private Button confirmButton;
-    private Button changeOrder;
     private Label orderDetailLabel;
     private WaiterViewController parentController;
     private KitchenStaffView parentController2;

@@ -49,6 +49,7 @@
             <Label layoutX="548.0" layoutY="68.0" text="Logged In As:" />
             <Label fx:id="UserLabel" layoutX="632.0" layoutY="68.0" prefHeight="17.0" prefWidth="160.0" />
             <Button fx:id="CancelOrder" layoutX="679.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="33.0" prefWidth="115.0" text="Cancel Order" />
+            <Button fx:id="changeOrderButton" layoutX="527.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleChangeOrder" prefHeight="33.0" prefWidth="115.0" text="Change Order" />
          </children>
       </Pane>
    </children>

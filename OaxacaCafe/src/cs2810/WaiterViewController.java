@@ -54,6 +54,9 @@ public class WaiterViewController {
 
 	@FXML
 	private Button CancelOrder;
+	
+	@FXML
+    private Button changeOrderButton;
 
 
 
@@ -108,6 +111,20 @@ public class WaiterViewController {
 		}
 
 	}
+	
+	@FXML
+    void handleChangeOrder(ActionEvent event) {
+        int index = PendingOrdersView.getSelectionModel().getSelectedIndex();
+        if (index >= 0) {
+            changeOrder(index);
+        }
+
+    }
+	
+	void changeOrder(int index) {
+	  
+	}
+	
 
 	void cancelConfirmation(int index) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
