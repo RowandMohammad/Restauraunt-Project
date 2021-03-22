@@ -63,6 +63,7 @@ public class KitchenStaffView {
 	}
 
 	public void confirmOrder(int index) {
+		System.out.println(ordersToCook.get(index).getOrder().get(index));
 		ordersToCook.get(index).status = "Food Cooked";
 		PendingOrderViewItem item = ordersToCookView.getItems().remove(index);
 		ordersToDeliver.add(ordersToCook.get(index));
@@ -72,6 +73,7 @@ public class KitchenStaffView {
 		this.parent.updateOrdersToDeliver(ordersToDeliver);
 		ordersToCookView.refresh();
 		this.parent.setOrderStatus("Food Cooked");
+		
 
 	}
 
