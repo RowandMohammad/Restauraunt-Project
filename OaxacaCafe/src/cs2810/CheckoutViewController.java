@@ -6,7 +6,10 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,11 +50,12 @@ public class CheckoutViewController {
 		window.setScene(new Scene(root));
 	}
 
-	public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time, int prevOrders) throws SQLException, URISyntaxException {
+	public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time, int prevOrders, Date date) throws SQLException, URISyntaxException {
 		setTotalPrice(price);
 		String order = "";
 		String completeOrder = "";
-		String foodOrderedinsert = "INSERT INTO orders (foodordered, totalprice, orderstatus) VALUES(?,?,?)";
+		String foodOrderedinsert = "INSERT INTO orders (foodordered, totalprice, orderstatus, ordertime) VALUES(?,?,?,?)";
+		long ordertime = date.getTime();
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		PreparedStatement statement = dbConnection.prepareStatement(foodOrderedinsert);
 		String foodOrdered = "";
@@ -68,6 +72,7 @@ public class CheckoutViewController {
 		statement.setString(1, foodOrdered);
 		statement.setFloat(2, price);
 		statement.setString(3, "Placed");
+		statement.setTimestamp(4, new Timestamp(ordertime));
 		statement.executeUpdate();
 
 	}

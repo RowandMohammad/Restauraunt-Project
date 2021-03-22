@@ -48,7 +48,7 @@ public class DatabaseInitialisation {
 			dropTable(dbConnection, "orders");
 			createTable(dbConnection,
 					"orders (ordernumber uuid PRIMARY KEY DEFAULT gen_random_uuid()," + "foodordered varchar(500), "
-							+ "totalprice DECIMAL(4 , 2 ) , " + "orderstatus varchar(50), " + "ordertime int, " + "waiterid varchar(50), " + "cookid varchar(50), "
+							+ "totalprice DECIMAL(4 , 2 ) , " + "orderstatus varchar(50), " + "ordertime timestamp, " + "waiterid varchar(50), " + "cookid varchar(50), "
 							+ "eta int, "  + "tablenumber int, " + "review varchar(500))");
 			dropTable(dbConnection, "staffinfo");
 			createTable(dbConnection,

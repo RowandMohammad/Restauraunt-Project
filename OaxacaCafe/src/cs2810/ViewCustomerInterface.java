@@ -433,7 +433,7 @@ public class ViewCustomerInterface {
       controller.setParentController(this);
       int prevOrders = currentOrders.size()-1;
       controller.populateCheckout(basketItems,
-          Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick, prevOrders);
+          Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick, prevOrders, date);
       
       basketItems = new ArrayList<Menu_Item>();
       BasketView.getItems().clear();
