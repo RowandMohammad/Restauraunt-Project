@@ -8,7 +8,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -417,7 +421,7 @@ public class ViewCustomerInterface {
 
 
   @FXML
-  void checkoutButtonPushed(ActionEvent event) throws IOException {
+  void checkoutButtonPushed(ActionEvent event) throws IOException, NumberFormatException, SQLException, URISyntaxException {
     setOrderStatus("Placed");
     Date date = Calendar.getInstance().getTime();
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss");
@@ -436,7 +440,7 @@ public class ViewCustomerInterface {
       controller.setParentController(this);
       int prevOrders = currentOrders.size()-1;
       controller.populateCheckout(basketItems,
-          Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick, prevOrders);
+          Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick, prevOrders, date);
       
       basketItems = new ArrayList<Menu_Item>();
       BasketView.getItems().clear();
@@ -461,7 +465,7 @@ public class ViewCustomerInterface {
 
   // Testing method to add to basket
   @FXML
-  void handleAddItemButton(ActionEvent event) {
+  void handleAddItemButton(ActionEvent event) throws URISyntaxException, SQLException {
     setOrderStatus("Not Placed");
     ListViewItem selected = getSelect();
     String name = selected.getName();
@@ -475,6 +479,7 @@ public class ViewCustomerInterface {
         break;
       }
       x++;
+      
     }
     BasketView.getItems().add(
         (name + ", " + (quantitySpinner.getValue() + num) + ", " + selected.getPrice().getText()));
@@ -496,7 +501,7 @@ public class ViewCustomerInterface {
   }
 
 
-  ListViewItem getSelect() {
+  ListViewItem getSelect() throws URISyntaxException, SQLException {
     Tab Tab = tabPane.getSelectionModel().getSelectedItem();
     if (Tab.getText().equals("Main Menu")) {
       ListViewItem item = MainListView.getSelectionModel().getSelectedItem();
@@ -514,13 +519,15 @@ public class ViewCustomerInterface {
     return null;
   }
 
-  void addMainItem(String item) {
+  void addMainItem(String item) throws URISyntaxException, SQLException {
     for (int x = 0; x < mainItems.size(); x++) {
       if (item.equals(mainItems.get(x).name)) {
         for (int y = 0; y < quantitySpinner.getValue(); y++) {
           Menu_Item main = mainItems.get(x);
           Menu_Item clonedMain = main.Clone(main);
           basketItems.add(clonedMain);
+          System.out.println(mainItems.get(x).name);
+
         }
       }
     }
