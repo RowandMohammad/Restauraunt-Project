@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
@@ -58,6 +61,8 @@ public class ViewCustomerInterface {
 
   
   ArrayList<ArrayList<Order>> allStatusOrders = new ArrayList<ArrayList<Order>>();
+  String orderID=UUID.randomUUID().toString();
+  
   
   
 
@@ -411,20 +416,39 @@ public class ViewCustomerInterface {
       }
     }
   }
-
-
+  public String orderIDGenerator() {
+	  orderID = UUID.randomUUID().toString();
+	  return orderID;
+	  
+  }
+	private boolean orderCheck(String orderid) throws SQLException, URISyntaxException {
+		String usernameQuery = "select exists(select 1 from orders where orderid="+"'"+ orderid +"'"+")";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		ResultSet results = DatabaseInitialisation.executeSelect(dbConnection, usernameQuery);
+		if (results.next()) {
+			System.out.println(results.getString(1));
+			return false;
+		} else {
+			return true;
+		}
+	
+	}
+  
   @FXML
   void checkoutButtonPushed(ActionEvent event) throws IOException, NumberFormatException, SQLException, URISyntaxException {
     setOrderStatus("Placed");
     Date date = Calendar.getInstance().getTime();
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss");
     String timeOfClick = dateFormat.format(date);
-    
+    System.out.println(Float.parseFloat(totalPrice.getText().split(" ")[1]));
+    if (Float.parseFloat(totalPrice.getText().split(" ")[1]) == 0.0) {
+    	orderIDGenerator();
+    }
     for(Menu_Item item : basketItems) {
       item.setPurchaseDate(timeOfClick);
     }
     if (basketItems.size() != 0) {
-      Order order = new Order(basketItems,1,111, false, "Placed");
+      Order order = new Order(basketItems,1,111, false, "Placed", orderID );
       pendingOrders.add(order);
       currentOrders.add(order);
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckoutView.fxml"));
@@ -433,7 +457,7 @@ public class ViewCustomerInterface {
       controller.setParentController(this);
       int prevOrders = currentOrders.size()-1;
       controller.populateCheckout(basketItems,
-          Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick, prevOrders, date);
+          Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick, prevOrders, date, orderID);
       
       basketItems = new ArrayList<Menu_Item>();
       BasketView.getItems().clear();

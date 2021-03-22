@@ -3,9 +3,13 @@ package cs2810;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,6 +52,7 @@ public class WaiterViewController {
 
 	@FXML
 	private Button CancelOrder;
+	
 
 
 
@@ -127,8 +132,11 @@ public class WaiterViewController {
 	 * Utility function for moving order from pending state to deliverable state
 	 *
 	 * @param index of order which have to be moved to deliverable state
+	 * @throws URISyntaxException 
+	 * @throws SQLException 
 	 */
-	public void confirmOrder(int index) {
+	public void confirmOrder(int index) throws SQLException, URISyntaxException {
+		addToDB(index);
 		pendingOrders.get(index).status = "In progress";
 		PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
 		ordersToCook.add(pendingOrders.get(index));
@@ -139,6 +147,18 @@ public class WaiterViewController {
 		updateOrderStatus("In progress");
 		PendingOrdersView.refresh();
 		OrdersToDeliverView.refresh();
+		
+	}
+	
+	public void addToDB(int index) throws SQLException, URISyntaxException {
+		System.out.println(pendingOrders.get(index).orderID);
+		String waiterIDInsert = "UPDATE orders SET waiterid = ? WHERE orderid = ?";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		PreparedStatement statement = dbConnection.prepareStatement(waiterIDInsert);
+		statement.setString(1, UserLabel.getText());
+		statement.setString(2, pendingOrders.get(index).orderID);
+		statement.executeUpdate();
+		
 	}
 
 	private void updateIndex(ListView<PendingOrderViewItem> View, ArrayList<Order> Orders, int currentIndex) {
