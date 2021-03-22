@@ -21,6 +21,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+/**
+ * The controller class for the Waiter Interface and its relative functions.
+ * 
+ * @author Erikas Vieraitis
+ *
+ */
 public class WaiterViewController {
 
 	private ViewCustomerInterface parent;

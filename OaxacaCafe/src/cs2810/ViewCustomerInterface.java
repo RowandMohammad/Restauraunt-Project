@@ -1,6 +1,8 @@
 package cs2810;
 
 import static java.lang.System.err;
+
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -40,7 +42,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+/**
+ * The controller class for the Customer Interface and its relative functions
+ * 
+ * @author Erikas Vieraitis
+ *
+ */
 public class ViewCustomerInterface {
 
   static ArrayList<User> list = new ArrayList<User>();
@@ -148,7 +155,7 @@ public class ViewCustomerInterface {
   }
   
 
-  // Handles starting the menu
+
   @FXML
   void StartButtonPressed(ActionEvent event) throws IOException {
     LoadUser();

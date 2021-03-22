@@ -13,6 +13,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+/**
+ * The controller class for the Kitchen Staff Interface and its relative functions.
+ * 
+ * @author Erikas Vieraitis
+ *
+ */
 public class KitchenStaffView {
 
 	private ViewCustomerInterface parent;
@@ -34,6 +40,7 @@ public class KitchenStaffView {
 		((Stage) backToOrderingButton.getScene().getWindow()).close();
 
 	}
+
 
 	public void initialiseData(ViewCustomerInterface parent, WaiterViewController waiterController,
 			ArrayList<Order> ordersToCook, ArrayList<Order> ordersToDeliver, String username)
