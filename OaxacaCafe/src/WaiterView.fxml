@@ -62,7 +62,10 @@
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font></Label>
-            <Button fx:id="CancelOrder" layoutX="679.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="33.0" prefWidth="115.0" text="Cancel Order" />
+            <Button fx:id="CancelOrder" layoutX="679.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="33.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-border-style: solid; -fx-border-radius: 20; -fx-border-width: 1.2; -fx-background-insets: 1;" styleClass="cancel-button" stylesheets="@styling/style.css" text="Cancel Order" textFill="#060000">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
             <ImageView fitHeight="79.0" fitWidth="105.0" layoutX="11.0" layoutY="6.0">
                <image>
                   <Image url="@images/left%20arrow.png" />
