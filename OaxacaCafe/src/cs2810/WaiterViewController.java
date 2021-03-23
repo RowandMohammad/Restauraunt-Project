@@ -5,9 +5,14 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Date;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +25,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * The controller class for the Waiter Interface and its relative functions.
@@ -113,15 +119,36 @@ public class WaiterViewController {
 	}
 	
 	@FXML
-    void handleChangeOrder(ActionEvent event) {
+    void handleChangeOrder(ActionEvent event) throws IOException {
         int index = PendingOrdersView.getSelectionModel().getSelectedIndex();
         if (index >= 0) {
             changeOrder(index);
         }
+        
 
     }
 	
-	void changeOrder(int index) {
+	void changeOrder(int index) throws IOException {
+	  FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChangeOrderView.fxml"));
+      Parent root = loader.load();
+      ChangeOrderViewController controller = loader.getController();
+      controller.setInitialData(pendingOrders);
+      
+      Stage stage = new Stage();
+      stage.setScene(new Scene(root));
+      stage.show();
+      
+      DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+      EventHandler<ActionEvent> eventHandler = e -> {
+
+         stage.setTitle(df.format(new Date()));
+
+
+      };
+      Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
+      animation.setCycleCount(Timeline.INDEFINITE);
+      animation.play();
+	  
 	  
 	}
 	
