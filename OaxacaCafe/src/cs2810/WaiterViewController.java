@@ -3,12 +3,18 @@ package cs2810;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
+
 import java.util.ArrayList;
 import java.util.Date;
+
+import java.util.UUID;
+
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -63,8 +69,10 @@ public class WaiterViewController {
 	@FXML
 	private Button CancelOrder;
 	
+
 	@FXML
     private Button changeOrderButton;
+
 
 
 
@@ -183,9 +191,13 @@ public class WaiterViewController {
 	 * Utility function for moving order from pending state to deliverable state
 	 *
 	 * @param index of order which have to be moved to deliverable state
+	 * @throws URISyntaxException 
+	 * @throws SQLException 
 	 */
-	public void confirmOrder(int index) {
+	public void confirmOrder(int index) throws SQLException, URISyntaxException {
+
 		pendingOrders.get(index).status = "In progress";
+		addToDB(index, pendingOrders.get(index).status);
 		PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
 		ordersToCook.add(pendingOrders.get(index));
 		Order order = pendingOrders.remove(index);
@@ -195,6 +207,19 @@ public class WaiterViewController {
 		updateOrderStatus("In progress");
 		PendingOrdersView.refresh();
 		OrdersToDeliverView.refresh();
+		
+	}
+	
+	public void addToDB(int index, String status) throws SQLException, URISyntaxException {
+		System.out.println(pendingOrders.get(index).orderID);
+		String waiterIDInsert = "UPDATE orders SET waiterid = ?, orderstatus = ? WHERE orderid = ?";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		PreparedStatement statement = dbConnection.prepareStatement(waiterIDInsert);
+		statement.setString(1, UserLabel.getText());
+		statement.setString(2, status);
+		statement.setString(3, pendingOrders.get(index).orderID);
+		statement.executeUpdate();
+		
 	}
 
 	private void updateIndex(ListView<PendingOrderViewItem> View, ArrayList<Order> Orders, int currentIndex) {
