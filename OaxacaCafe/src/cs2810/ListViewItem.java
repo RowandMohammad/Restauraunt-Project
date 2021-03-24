@@ -16,22 +16,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
+ * @author zhac319
+ *
  * Utility class for managing all data for ListView items
  * data members
- * name: Label   ==> Product's Name
- * price: Label  ==> Product's Price
- * cal: String   ==> Product's Calories
- * ing: String[] ==> list of ingredients used in product
- */
-
-/**
- * Utility class for managing all data for ListView items
- * data members 
  * 		name: Label   ==> Product's Name
  * 		price: Label  ==> Product's Price
  * 		cal: String   ==> Product's Calories
  * 		ing: String[] ==> list of ingredients used in product
- *
  */
 public class ListViewItem extends HBox {
 
@@ -45,8 +37,10 @@ public class ListViewItem extends HBox {
     ImageView imageView = new ImageView();
 
     /**
+     * @author zhac319
+     * 
      *  No default construction allowed
-     *  Must be initialized using parameterized constructor
+     *  Must be initialised using parameterised constructor
      *  so that all necessary data is provided
      */
     @SuppressWarnings("unused")
@@ -55,8 +49,10 @@ public class ListViewItem extends HBox {
     }
 
     /**
+     * @author zhac319
+     * 
      * setup initial view and callback for list item
-     * parameterized constructor  
+     * parameterised constructor  
      * @param _name: Product's Name
      * @param _price: Product's unint price
      * @param cal: Product's total calories
@@ -71,6 +67,8 @@ public class ListViewItem extends HBox {
         this.dietaryRequirements = dietaryRequirements;
         
         /**
+         * @author zhac319
+         * 
          * Read food pictures
          * Design the size of pictures
          */
@@ -154,6 +152,8 @@ public class ListViewItem extends HBox {
 
 
     /**
+     * @author zhac319
+     * 
      * callback function for showing product calories pop-up
      */
     private void setCaloriesActionListener() {
@@ -171,6 +171,8 @@ public class ListViewItem extends HBox {
     }
 
     /**
+     * @author zhac319
+     * 
      * callback function for showing product Ingredients pop-up
      */
     private void setIngredientActionListener() {
@@ -194,6 +196,8 @@ public class ListViewItem extends HBox {
     }
 
     /**
+     * @author zhac319
+     * 
      * Utility function for converting listviewItem into string  
      * @return string object of current class
      */
@@ -210,6 +214,8 @@ public class ListViewItem extends HBox {
     }
 
     /**
+     * @author zhac319
+     * 
      * Check if passes object is equal to current object or not
      * @param o object to be checked
      * @return true if object is instance of ListviewItem and is equal to current items otherwise false
