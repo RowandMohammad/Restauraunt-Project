@@ -136,8 +136,9 @@ public class WaiterViewController {
 	 * @throws SQLException 
 	 */
 	public void confirmOrder(int index) throws SQLException, URISyntaxException {
-		addToDB(index);
+
 		pendingOrders.get(index).status = "In progress";
+		addToDB(index, pendingOrders.get(index).status);
 		PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
 		ordersToCook.add(pendingOrders.get(index));
 		Order order = pendingOrders.remove(index);
@@ -150,13 +151,14 @@ public class WaiterViewController {
 		
 	}
 	
-	public void addToDB(int index) throws SQLException, URISyntaxException {
+	public void addToDB(int index, String status) throws SQLException, URISyntaxException {
 		System.out.println(pendingOrders.get(index).orderID);
-		String waiterIDInsert = "UPDATE orders SET waiterid = ? WHERE orderid = ?";
+		String waiterIDInsert = "UPDATE orders SET waiterid = ?, orderstatus = ? WHERE orderid = ?";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		PreparedStatement statement = dbConnection.prepareStatement(waiterIDInsert);
 		statement.setString(1, UserLabel.getText());
-		statement.setString(2, pendingOrders.get(index).orderID);
+		statement.setString(2, status);
+		statement.setString(3, pendingOrders.get(index).orderID);
 		statement.executeUpdate();
 		
 	}

@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -27,7 +29,6 @@ public class CheckoutViewController {
 
 	private ViewCustomerInterface parent;
 	private Float totalPrice;
-	boolean check ;
 
 	@FXML
 	private Button backToOrder;
@@ -55,11 +56,12 @@ public class CheckoutViewController {
 		window.setScene(new Scene(root));
 	}
 
-	public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time, int prevOrders, Date date,
-			String orderID) throws SQLException, URISyntaxException {
+	public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time, int prevOrders, String orderID)
+			throws SQLException, URISyntaxException {
 		setTotalPrice(price);
 		String order = "";
 		String completeOrder = "";
+		Date date = Calendar.getInstance().getTime();
 
 		String foodOrdered = "";
 		for (int i = 0; i < basket.size(); i++) {
@@ -71,12 +73,13 @@ public class CheckoutViewController {
 		completeOrder = time + "\n\n" + "Previous Orders: x" + prevOrders + " + \n" + order + "\n";
 		price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 		OrderList.getItems().add(completeOrder);
-		OrderList.getItems().add("Total Price: £" + price + "");;
-		orderCheck(orderID); 
-		if (check == false) {
+		OrderList.getItems().add("Total Price: £" + price + "");
+		;
+		orderCheck(orderID);
+		if (orderCheck(orderID) == false) {
 			addToDB(date, price, foodOrdered, orderID);
 
-		} else if (check == true) {
+		} else if (orderCheck(orderID) == true) {
 			updateDB(price, foodOrdered, orderID);
 
 		}
@@ -85,23 +88,25 @@ public class CheckoutViewController {
 
 	private void addToDB(Date date, Float price, String foodOrdered, String orderid)
 			throws SQLException, URISyntaxException {
-		String foodOrderedinsert = "INSERT INTO orders (orderid, foodordered, totalprice, orderstatus, ordertime) VALUES(?,?,?,?,?)";
+		String foodOrderedinsert = "INSERT INTO orders (orderid, foodordered, totalprice, orderstatus) VALUES(?,?,?,?)";
 		long ordertime = date.getTime();
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		PreparedStatement statement = dbConnection.prepareStatement(foodOrderedinsert);
 		statement.setString(1, orderid);
-
 		statement.setString(2, foodOrdered);
 		statement.setFloat(3, price);
 		statement.setString(4, "Placed");
-		statement.setTimestamp(5, new Timestamp(ordertime));
 		statement.executeUpdate();
 
 	}
 
 	private void updateDB(Float price, String foodOrdered, String orderid) throws SQLException, URISyntaxException {
+		String getCurrentFood = "Select foodordered from orders where orderid = '"+ orderid+"'";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
-
+		ResultSet results = DatabaseInitialisation.executeSelect(dbConnection, getCurrentFood);
+		results.next();
+		String result = results.getString(1);
+		foodOrdered = foodOrdered + result;
 		String orderUpdate = "UPDATE orders SET foodordered = ?, totalprice = ? WHERE orderid = ?";
 		PreparedStatement statement = dbConnection.prepareStatement(orderUpdate);
 		statement.setString(1, foodOrdered);
@@ -111,7 +116,8 @@ public class CheckoutViewController {
 
 	}
 
-	private void orderCheck(String orderid) throws SQLException, URISyntaxException {
+	private boolean orderCheck(String orderid) throws SQLException, URISyntaxException {
+		boolean check = false;
 		System.out.println(orderid);
 		String orderChecker = "select exists(select 1 from orders where orderid=" + "'" + orderid + "'" + ")";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
@@ -121,13 +127,13 @@ public class CheckoutViewController {
 		result = results.getString(1);
 		System.out.println(results.getString(1));
 
-		if (result == "t") {
+		if (result.equals("t") ) {
 			check = true;
-		}else {
+		} else {
 			check = false;
 		}
 		System.out.println(check);
-
+		return check;
 
 	}
 

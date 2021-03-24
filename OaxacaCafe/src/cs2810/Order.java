@@ -17,6 +17,7 @@ public class Order {
     this.waiterId = waiterId;
     this.payed = payed;
     this.status = status;
+    this.orderID = orderID;
 
   }
   
