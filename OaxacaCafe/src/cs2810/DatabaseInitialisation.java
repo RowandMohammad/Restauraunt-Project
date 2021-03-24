@@ -53,12 +53,12 @@ public class DatabaseInitialisation {
 			dropTable(dbConnection, "staffinfo");
 			createTable(dbConnection,
 					"staffinfo (employeeid int PRIMARY KEY," + "employeename varchar(500), "
-							+ "username int, " + "password int, " + "employeerole varchar(50), " + "employeeemail varchar(150))");
+							+ "username int, " + "password int, " + "employeerole varchar(50), " + "employeeemail varchar(150), " + "tablenum int)");
 		}
 		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, stock, eta)", mainMenuFile);
 		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, stock, eta)", sidesMenuFile);
 		insertDataIntoTable(dbConnection, "drinksmenu (name, calories, ingredients, type, price, stock, eta)", drinksMenuFile);
-		insertDataIntoTable(dbConnection, "staffinfo (employeeid, employeename, username, password, employeerole, employeeemail)", staffLoginFile);
+		insertDataIntoTable(dbConnection, "staffinfo (employeeid, employeename, username, password, employeerole, employeeemail, tablenum)", staffLoginFile);
 
 	}
 
