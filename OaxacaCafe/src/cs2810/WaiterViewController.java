@@ -91,6 +91,7 @@ public class WaiterViewController {
 		}
 	}
 
+	
 	public void populateOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
 		int index = 0;
 		for (Order order : ordersToDeliver) {

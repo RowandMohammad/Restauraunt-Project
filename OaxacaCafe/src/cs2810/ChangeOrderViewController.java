@@ -34,7 +34,14 @@ public class ChangeOrderViewController {
 
     @FXML
     void addToOrderPressed(ActionEvent event) {
+      int index2 = allMenuItemsView.getSelectionModel().getSelectedIndex();
+      if (index2 >= 0) {
+        pendingOrders.get(index).getOrder().add(menuItems.get(index2));
+        currentOrderItemsView.getItems().clear();
+        populateOrder(pendingOrders, index);
+    }
 
+      
     }
 
     @FXML
@@ -44,6 +51,12 @@ public class ChangeOrderViewController {
 
     @FXML
     void deleteItemPressed(ActionEvent event) {
+      int index2 = currentOrderItemsView.getSelectionModel().getSelectedIndex();
+      if (index2 >= 0) {
+        pendingOrders.get(index).getOrder().remove(index2);
+        currentOrderItemsView.getItems().clear();
+        populateOrder(pendingOrders, index);
+      }
 
     }
     
