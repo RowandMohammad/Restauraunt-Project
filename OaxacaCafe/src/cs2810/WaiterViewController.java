@@ -178,6 +178,8 @@ public class WaiterViewController {
 	}
 
 	/**
+	 * @author zhac319
+	 * 
 	 * Utility function for moving order from pending state to deliverable state
 	 *
 	 * @param index of order which have to be moved to deliverable state
@@ -204,6 +206,8 @@ public class WaiterViewController {
 	}
 
 	/**
+	 * @author zhac319
+	 * 
 	 * Utility function for moving order from deliverable state to delivered
 	 *
 	 * @param index of order which have to be moved to delivered
