@@ -132,7 +132,7 @@ public class WaiterViewController {
 	  FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChangeOrderView.fxml"));
       Parent root = loader.load();
       ChangeOrderViewController controller = loader.getController();
-      controller.setInitialData(pendingOrders);
+      controller.setInitialData(parent, this, pendingOrders, index);
       
       Stage stage = new Stage();
       stage.setScene(new Scene(root));

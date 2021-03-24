@@ -1,5 +1,6 @@
 package cs2810;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +11,12 @@ import javafx.stage.Stage;
 public class ChangeOrderViewController {
   
   ArrayList<Order> pendingOrders;
-
+  ArrayList<Menu_Item> menuItems = new ArrayList<Menu_Item>();
+  MenuMain menuItemInit = new MenuMain();
+  private ViewCustomerInterface parent;
+  private WaiterViewController parent2;
+  int index;
+  
     @FXML
     private ListView<String> currentOrderItemsView;
 
@@ -41,19 +47,35 @@ public class ChangeOrderViewController {
 
     }
     
-    void setInitialData(ArrayList<Order> pendingOrders) {
+    void setInitialData(ViewCustomerInterface parent, WaiterViewController parent2, ArrayList<Order> pendingOrders, int index) throws IOException {
+      this.parent = parent;
+      this.parent2 = parent2;
       this.pendingOrders = pendingOrders;
-      populateOrder();
+      this.index = index;
+      populateOrder(pendingOrders, index);
       populateMenuItems();
     }
     
     
-    void populateMenuItems() {
+    void populateMenuItems() throws IOException {
+      menuItems.addAll(menuItemInit.initialiseMainItems());
+      menuItems.addAll(menuItemInit.initialiseSideItems());
+      menuItems.addAll(menuItemInit.initiliseDrinkItems());
+      
+      for (int i = 0; i < menuItems.size(); i++) {
+        allMenuItemsView.getItems().add(menuItems.get(i).name);
+      }
       
     }
 
     
-    void populateOrder() {
+    void populateOrder(ArrayList<Order> pendingOrders, int index) {
+      
+      for (int i = 0; i < pendingOrders.get(index).getOrder().size(); i++) {
+        currentOrderItemsView.getItems().add(pendingOrders.get(index).getOrder().get(i).name);
+      }
+      
+      
       
     }
 
