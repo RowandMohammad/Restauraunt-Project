@@ -8,7 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
-
+import java.net.URISyntaxException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -114,10 +115,23 @@ public class PendingOrderViewItem extends HBox {
           public void handle(ActionEvent event) {
 
               if(status.equals("Placed")) {
-                parentController.confirmOrder(index);   
+                try {
+					parentController.confirmOrder(index);
+				} catch (SQLException | URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}   
               }
               else if(status.equals("In progress")) {
-                parentController2.confirmOrder(index);
+                try {
+					parentController2.confirmOrder(index);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
               }
               else if(status.equals("Food Cooked")) {
                 parentController.deliverOrder(index);     
