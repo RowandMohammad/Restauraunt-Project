@@ -39,6 +39,8 @@ public class ChangeOrderViewController {
         pendingOrders.get(index).getOrder().add(menuItems.get(index2));
         currentOrderItemsView.getItems().clear();
         populateOrder(pendingOrders, index);
+        parent.updatePendingOrders(pendingOrders);
+        parent2.updatePendingOrders(pendingOrders);
     }
 
       
@@ -56,6 +58,8 @@ public class ChangeOrderViewController {
         pendingOrders.get(index).getOrder().remove(index2);
         currentOrderItemsView.getItems().clear();
         populateOrder(pendingOrders, index);
+        parent.updatePendingOrders(pendingOrders);
+        parent2.updatePendingOrders(pendingOrders);
       }
 
     }

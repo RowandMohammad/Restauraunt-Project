@@ -82,6 +82,7 @@ public class WaiterViewController {
 	}
 
 	public void populatePending(ArrayList<Order> pendingOrders) {
+	  PendingOrdersView.getItems().clear();
 		int index = 0;
 		for (Order order : pendingOrders) {
 			PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, order.payed,
@@ -265,5 +266,11 @@ public class WaiterViewController {
 	public void addOrderToDeliver(PendingOrderViewItem order) {
 		OrdersToDeliverView.getItems().add(order);
 		OrdersToDeliverView.refresh();
+	}
+	
+	public void updatePendingOrders(ArrayList<Order> pendingOrders) {
+	  this.pendingOrders = pendingOrders;
+	  populatePending(pendingOrders);
+	  
 	}
 }
