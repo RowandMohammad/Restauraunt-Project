@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -42,6 +43,7 @@ public class WaiterViewController {
 	ArrayList<Order> ordersToCook;
 	ArrayList<Order> ordersToDeliver;
 	ArrayList<Order> ordersToPay;
+	String tables;
 
 	@FXML
 	private ListView<PendingOrderViewItem> PendingOrdersView;
@@ -237,12 +239,13 @@ public class WaiterViewController {
 	}
 
 	public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders,
-			ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToCook, ArrayList<Order> ordersToPay, String username) throws URISyntaxException, SQLException {
+			ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToCook, ArrayList<Order> ordersToPay, String username, String tables) throws URISyntaxException, SQLException {
 		this.parent = parent;
 		this.pendingOrders = pendingOrders;
 		this.ordersToDeliver = ordersToDeliver;
 		this.ordersToCook = ordersToCook;
 		this.ordersToPay = ordersToPay;
+		this.tables = tables;
 		populatePending(pendingOrders);
 		populateOrdersToDeliver(ordersToDeliver);
 		populateLeftToPay(ordersToPay);
@@ -251,6 +254,7 @@ public class WaiterViewController {
 		ResultSet rsName = DatabaseInitialisation.executeSelect(dbConnection, employeeQuery);
 		rsName.next();
 		UserLabel.setText(rsName.getString("employeeName"));
+		System.out.print(this.tables);
 	}
 
 	public static void setIsShowing(boolean bool) {

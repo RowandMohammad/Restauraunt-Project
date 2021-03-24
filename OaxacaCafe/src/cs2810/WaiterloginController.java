@@ -30,6 +30,7 @@ public class WaiterloginController {
 
 	private ViewCustomerInterface parent;
 	private MainControl view;
+	private String tables = "";
 
 	ArrayList<Order> pendingOrders;
 	ArrayList<Order> ordersToCook;
@@ -63,7 +64,7 @@ public class WaiterloginController {
 			Parent root = loader.load();
 			WaiterViewController controller = loader.getController();
 			WaiterViewController.setIsShowing(true);
-			controller.setInitialData(parent, pendingOrders, ordersToDeliver, ordersToCook, ordersToPay, userAccount.getText());
+			controller.setInitialData(parent, pendingOrders, ordersToDeliver, ordersToCook, ordersToPay, userAccount.getText(), tables);
 			parent.setWaiterController(waiterViewController);
 			parent.setStaff(new waiterStaff());
 			Stage stage = new Stage();
@@ -127,12 +128,20 @@ public class WaiterloginController {
 		if (results.next()) {
 			System.out.println(results.getString(1));
 			Alert alert = new Alert(AlertType.INFORMATION);
+			if(Integer.parseInt(results.getString(7))==0) {
+				//tableNum generator code
+				if(tables.equals("")){
+					tables=tables+"1";
+				}
+				else {
+					tables = tables+",1";
+				}
+				//update database tablenum
+			}
 			alert.setTitle("success");
 			alert.setHeaderText(null);
 			alert.setContentText("Login successful");
 			alert.showAndWait();
-			//initialise current staff using database values
-			//add object to array in maincontrol
 			Stage stage = (Stage) login.getScene().getWindow();
 			stage.close();
 			changeScreenLoginCorrect(event, results.getString(5));
