@@ -10,13 +10,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #d32f2f; -fx-border-style: solid; -fx-border-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.WaiterloginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #d32f2f; -fx-border-style: solid; -fx-border-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.WaiterloginController">
    <children>
       <Label layoutX="133.0" layoutY="29.0" prefHeight="78.0" prefWidth="200.0" text="User Login">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
+      <ImageView fitHeight="266.0" fitWidth="392.0" layoutX="4.0" layoutY="-52.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/User%20login.png" />
+         </image>
+      </ImageView>
       <TextField fx:id="userAccount" layoutX="140.0" layoutY="116.0" prefHeight="20.0" prefWidth="150.0" promptText="Username">
       </TextField>
       <PasswordField fx:id="userPwd" layoutX="140.0" layoutY="153.0" prefHeight="20.0" prefWidth="150.0" promptText="Password">
