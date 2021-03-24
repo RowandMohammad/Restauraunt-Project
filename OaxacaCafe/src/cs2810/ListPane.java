@@ -14,6 +14,15 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+
+/**
+ * Utility class for managing all data for ListPane items
+ * data members 
+ * 		name: Label   ==> Product's Name
+ * 		price: Label  ==> Product's Price
+ * 		ing: String[] ==> list of ingredients used in product
+ *
+ */
 public class ListPane extends HBox {
 
     TextField name = new TextField();
@@ -27,13 +36,21 @@ public class ListPane extends HBox {
 
     }
 
+        /**
+     * @see class ListViewItem
+     * 
+     */
     public ListPane(String _name, String _price, String[] ing, String[] dietaryRequirements) {
         super();
         this.ing = ing;
         this.name = new TextField(_name);
         this.price = new TextField(_price);
         this.dietaryRequirements = dietaryRequirements;
-
+        
+        /**
+         * make name and price cannot edit before login
+         * 
+         */
         new LoginMessage();
         Map<String, Object> map = LoginMessage.getMessage();
         if (map.isEmpty()) {
@@ -48,7 +65,10 @@ public class ListPane extends HBox {
         HBox.setHgrow(lablesCotaier, Priority.ALWAYS);
         setDeleteBtnActionListener();
     }
-
+    
+    /**
+     * callback function for update the name and price after edit
+     */
     private void setDeleteBtnActionListener() {
         // TODO Auto-generated method stub
         updateBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -72,19 +92,19 @@ public class ListPane extends HBox {
                     ArrayList<Menu_Item> sideItems = MenuMain.initialiseSideItems();
                     for (Menu_Item item : mainItems) {
                         if (ings.equals(item.getIngredients())) {
-                            item.setPrice(Double.parseDouble(prices.split("£")[1]));
+                            item.setPrice(Double.parseDouble(prices.split("Â£")[1]));
                             item.setName(names);
                         }
                     }
                     for (Menu_Item item : drinkItems) {
                         if (ings.equals(item.getIngredients())) {
-                            item.setPrice(Double.parseDouble(prices.split("£")[1]));
+                            item.setPrice(Double.parseDouble(prices.split("Â£")[1]));
                             item.setName(names);
                         }
                     }
                     for (Menu_Item item : sideItems) {
                         if (ings.equals(item.getIngredients())) {
-                            item.setPrice(Double.parseDouble(prices.split("£")[1]));
+                            item.setPrice(Double.parseDouble(prices.split("Â£")[1]));
                             item.setName(names);
                         }
                     }
