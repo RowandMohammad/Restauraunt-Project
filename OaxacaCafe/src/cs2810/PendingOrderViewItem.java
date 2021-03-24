@@ -12,6 +12,8 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 
 /**
+ * @author zhac319
+ * 
  * Utility class for handling detail for new Order
  * data members
  * orderDetails: ArrayList<Menu_Item>  ==> List of items selected for order
@@ -30,6 +32,8 @@ public class PendingOrderViewItem extends HBox {
 
 
     /**
+     * @author zhac319
+     * 
      * No default initialization allowed
      * @param isPending
      * @param index
@@ -39,6 +43,8 @@ public class PendingOrderViewItem extends HBox {
 
 
     /**
+     * @author zhac319
+     * 
      * Parametrized constructor for initializing new order view object
      *
      * @param orderDetails: List of items selected for order
@@ -67,6 +73,8 @@ public class PendingOrderViewItem extends HBox {
     }
 
     /**
+     * @author zhac319
+     * 
      * Utility function for initializing view
      */
     private void setUpView() {
@@ -104,6 +112,8 @@ public class PendingOrderViewItem extends HBox {
   }
 
   /**
+   * @author zhac319
+   * 
    * Utility function for assigning callback function to button click and confirming order
    *
    * @param staff
@@ -131,6 +141,8 @@ public class PendingOrderViewItem extends HBox {
   }
 
     /**
+     * @author zhac319
+     * 
      * Utility function for updating customer about order confirmation
      */
     private void updateCustomerView() {
@@ -138,6 +150,8 @@ public class PendingOrderViewItem extends HBox {
     }
 
     /**
+     * @author zhac319
+     * 
      * @return List of all items in order
      */
     public ArrayList<Menu_Item> getOrderDetails() {
@@ -145,6 +159,8 @@ public class PendingOrderViewItem extends HBox {
     }
 
     /**
+     * @author zhac319
+     * 
      * @param orderDetails List of all items in order
      */
     public void setOrderDetails(ArrayList<Menu_Item> orderDetails) {
