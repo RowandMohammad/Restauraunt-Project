@@ -51,6 +51,9 @@ public class WaiterloginController {
 
 	private WaiterViewController waiterViewController;
 
+	/**
+	 *Testing method to back to the customer interface
+	 */
 	@FXML
 	void changeScreenButtonPushed(ActionEvent event) throws IOException {
 		Stage stage = (Stage) backToOrder.getScene().getWindow();
@@ -112,12 +115,21 @@ public class WaiterloginController {
 
 	}
 
+	/**
+	 *Testing method to clear account and password
+	 */
 	@FXML
 	void clearButton(ActionEvent event) throws IOException {
 		userPwd.setText("");
 		userAccount.setText("");
 	}
-
+	
+	/**
+	 *Testing method to login
+	 *Check if passes object is equal to current object or not
+         * @param object to be checked
+         * If the user name and password is correct,Enter the new interface
+	 */
 	@FXML
 	void loginButton(ActionEvent event) throws IOException, URISyntaxException, SQLException {
 		String usernameQuery = "SELECT * FROM staffinfo where username="+userAccount.getText()+" and password="+userPwd.getText()+"";
