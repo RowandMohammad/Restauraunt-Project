@@ -1,17 +1,12 @@
 package cs2810;
 
 import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,7 +30,7 @@ public class EmployeeViewController {
 	@FXML
 	private Button BackToOrdering;
 	@FXML
-	private TextField searchEmpID;
+	private TextField searchEmpName;
 	@FXML
 	private Button searchButton;
 	@FXML
@@ -67,7 +62,7 @@ public class EmployeeViewController {
 
 	@FXML
 	private void searchEmployee(ActionEvent event) throws URISyntaxException, SQLException {
-		ObservableList<Employee> list = EmployeeDAO.searchEmployee(searchEmpID.getText());
+		ObservableList<Employee> list = EmployeeDAO.searchEmployee(searchEmpName.getText());
 		if (list.size() > 0) {
 			populateTable(list);
 		}

@@ -10,7 +10,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #d32f2f; -fx-border-style: solid; -fx-border-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.WaiterloginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #d32f2f; -fx-border-style: solid; -fx-border-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.WaiterloginController">
+<!-- 
+	Waiter login page
+	
+	Authors:
+	ZHENG,kaiwei
+
+ -->
    <children>
       <Label layoutX="133.0" layoutY="29.0" prefHeight="78.0" prefWidth="200.0" text="User Login">
          <font>
@@ -53,9 +60,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="9.0" layoutY="44.0" text="Back to order">
+      <Label layoutX="9.0" layoutY="44.0" text="Back to order" textFill="WHITE">
          <font>
-            <Font name="Forte" size="14.0" />
+            <Font name="Forte" size="15.0" />
          </font>
       </Label>
    </children>

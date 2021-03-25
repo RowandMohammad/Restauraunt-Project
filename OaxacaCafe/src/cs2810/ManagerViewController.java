@@ -16,9 +16,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class ManagerViewController {
-	private ViewCustomerInterface parent;
-	private EmployeeViewController ev;
-
 	@FXML
 	private Button BackToOrdering;
 

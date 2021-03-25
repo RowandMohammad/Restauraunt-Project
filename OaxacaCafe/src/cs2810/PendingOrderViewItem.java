@@ -8,10 +8,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
-
+import java.net.URISyntaxException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * @author zhac319
+ * 
  * Utility class for handling detail for new Order
  * data members
  * orderDetails: ArrayList<Menu_Item>  ==> List of items selected for order
@@ -30,6 +33,8 @@ public class PendingOrderViewItem extends HBox {
 
 
     /**
+     * @author zhac319
+     * 
      * No default initialization allowed
      * @param isPending
      * @param index
@@ -39,6 +44,8 @@ public class PendingOrderViewItem extends HBox {
 
 
     /**
+     * @author zhac319
+     * 
      * Parametrized constructor for initializing new order view object
      *
      * @param orderDetails: List of items selected for order
@@ -67,6 +74,8 @@ public class PendingOrderViewItem extends HBox {
     }
 
     /**
+     * @author zhac319
+     * 
      * Utility function for initializing view
      */
     private void setUpView() {
@@ -104,6 +113,8 @@ public class PendingOrderViewItem extends HBox {
   }
 
   /**
+   * @author zhac319
+   * 
    * Utility function for assigning callback function to button click and confirming order
    *
    * @param staff
@@ -114,10 +125,23 @@ public class PendingOrderViewItem extends HBox {
           public void handle(ActionEvent event) {
 
               if(status.equals("Placed")) {
-                parentController.confirmOrder(index);   
+                try {
+					parentController.confirmOrder(index);
+				} catch (SQLException | URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}   
               }
               else if(status.equals("In progress")) {
-                parentController2.confirmOrder(index);
+                try {
+					parentController2.confirmOrder(index);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
               }
               else if(status.equals("Food Cooked")) {
                 parentController.deliverOrder(index);     
@@ -131,13 +155,18 @@ public class PendingOrderViewItem extends HBox {
   }
 
     /**
+     * @author zhac319
+     * 
      * Utility function for updating customer about order confirmation
      */
-    private void updateCustomerView() {
+    @SuppressWarnings("unused")
+	private void updateCustomerView() {
         //@TODO implement a strategy to communicate order status to customer
     }
 
     /**
+     * @author zhac319
+     * 
      * @return List of all items in order
      */
     public ArrayList<Menu_Item> getOrderDetails() {
@@ -145,6 +174,8 @@ public class PendingOrderViewItem extends HBox {
     }
 
     /**
+     * @author zhac319
+     * 
      * @param orderDetails List of all items in order
      */
     public void setOrderDetails(ArrayList<Menu_Item> orderDetails) {

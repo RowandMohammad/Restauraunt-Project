@@ -1,5 +1,8 @@
 package cs2810;
 
+import java.net.URISyntaxException;
+import java.sql.SQLException;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -18,7 +21,14 @@ public class XCellDelete extends ListCell<String> {
 
     hbox.getChildren().addAll(label, pane, button);
     HBox.setHgrow(pane, Priority.ALWAYS);
-    button.setOnAction(event -> VCI.delete(label.getText()));
+    button.setOnAction(event -> {
+		try {
+			VCI.delete(label.getText());
+		} catch (URISyntaxException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	});
 
   }
 

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.WaiterViewController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.WaiterViewController">
    <children>
       <Pane prefHeight="800.0" prefWidth="1358.0" style="-fx-background-color: #605B5A;">
          <children>
@@ -22,11 +22,11 @@
                   <Image url="@images/OX_Cafe.png" />
                </image>
             </ImageView>
-            <TabPane layoutX="-2.0" layoutY="144.0" prefHeight="656.0" prefWidth="907.0" style="-fx-background-color: #383535;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="250.0">
+            <TabPane layoutX="-2.0" layoutY="144.0" prefHeight="656.0" prefWidth="827.0" style="-fx-background-color: #383535;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="250.0">
               <tabs>
                 <Tab text="Pending Orders">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="626.0" prefWidth="803.0">
                            <children>
                               <ListView fx:id="PendingOrdersView" layoutX="14.0" layoutY="14.0" prefHeight="606.0" prefWidth="780.0" />
                            </children>
@@ -53,16 +53,11 @@
                   </Tab>
               </tabs>
             </TabPane>
-           
-            <Label layoutX="647.0" layoutY="8.0" text="Logged In As:" textFill="#010101">
+            <Label layoutX="579.0" layoutY="8.0" text="Logged In As:" textFill="#010101">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font></Label>
-            <Label fx:id="UserLabel" layoutX="748.0" layoutY="7.0" prefHeight="24.0" prefWidth="105.0" textFill="#010101">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font></Label>
-            <Button fx:id="CancelOrder" layoutX="679.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="33.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-border-style: solid; -fx-border-radius: 20; -fx-border-width: 1.2; -fx-background-insets: 1;" styleClass="cancel-button" stylesheets="@styling/style.css" text="Cancel Order" textFill="#060000">
+            <Button fx:id="CancelOrder" layoutX="679.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="33.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-border-style: solid; -fx-border-radius: 20; -fx-border-width: 1.2; -fx-background-insets: 1;" styleClass="waiter-cancel-change-btn" stylesheets="@styling/style.css" text="Cancel Order" textFill="#060000">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
@@ -85,6 +80,14 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <Label fx:id="UserLabel" layoutX="677.0" layoutY="10.0" prefHeight="20.0" prefWidth="132.0" style="-fx-text-fill: black;">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font></Label>
+            <Button fx:id="changeOrderButton" layoutX="679.0" layoutY="61.0" mnemonicParsing="false" onAction="#handleChangeOrder" prefHeight="33.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-border-style: solid; -fx-border-radius: 20; -fx-border-width: 1.2; -fx-background-insets: 1;" styleClass="waiter-cancel-change-btn" stylesheets="@styling/style.css" text="Change Order">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </Pane>
    </children>

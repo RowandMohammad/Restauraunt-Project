@@ -24,12 +24,12 @@ public class EmployeeDAO {
 			ObservableList<Employee> empList = FXCollections.observableArrayList();
 			while (rsSet.next()) {
 				Employee emp = new Employee();
-				emp.setEmpID(rsSet.getInt("employeeID"));
-				emp.setEmpName(rsSet.getString("employeeName"));
+				emp.setEmpID(rsSet.getInt("employeeid"));
+				emp.setEmpName(rsSet.getString("employeename"));
 				emp.setEmpUser(rsSet.getInt("username"));
 				emp.setEmpPass(rsSet.getInt("password"));
-				emp.setEmpRole(rsSet.getString("employeeRole"));
-				emp.setEmpEmail(rsSet.getString("employeeEmail"));
+				emp.setEmpRole(rsSet.getString("employeerole"));
+				emp.setEmpEmail(rsSet.getString("employeeemail"));
 				empList.add(emp);
 				
 			}
@@ -42,12 +42,14 @@ public class EmployeeDAO {
 		}
 	}
 
-	public static ObservableList<Employee> searchEmployee(String empID) throws URISyntaxException, SQLException {
-		String employeeSql = "select * from staffinfo where employeeID = "+empID+";";
+	public static ObservableList<Employee> searchEmployee(String empName) throws URISyntaxException, SQLException {
+		String employeeSql = "select * from staffinfo where employeename like '%" + empName + "%' ";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		ResultSet rsEmployee = DatabaseInitialisation.executeSelect(dbConnection, employeeSql);
 		ObservableList<Employee> list = getEmployeeObjects(rsEmployee);
+		System.out.println(empName);
 		return list;
+		
 	}
 
 }

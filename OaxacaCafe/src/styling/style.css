@@ -82,11 +82,12 @@
 	-fx-border-width: 0 0 2px;
 }
 
-.cancel-button {
+.waiter-cancel-change-btn {
 	-fx-background-color: #1565c0;
+	-fx-text-fill: black;
 }
 
-.cancel-button:hover {
+.waiter-cancel-change-btn:hover {
 	-fx-background-color: #607d8b;
 	-fx-text-fill: white;
 	-fx-border-color: white;

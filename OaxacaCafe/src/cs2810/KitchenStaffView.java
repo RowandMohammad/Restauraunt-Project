@@ -2,6 +2,7 @@ package cs2810;
 
 import java.net.URISyntaxException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,10 +14,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+/**
+ * The controller class for the Kitchen Staff Interface and its relative functions.
+ * 
+ * @author Erikas Vieraitis
+ *
+ */
 public class KitchenStaffView {
 
 	private ViewCustomerInterface parent;
-	private WaiterViewController waiterController;
 	ArrayList<Order> ordersToCook;
 	ArrayList<Order> ordersToDeliver;
 
@@ -35,10 +41,10 @@ public class KitchenStaffView {
 
 	}
 
+
 	public void initialiseData(ViewCustomerInterface parent, WaiterViewController waiterController,
 			ArrayList<Order> ordersToCook, ArrayList<Order> ordersToDeliver, String username)
 			throws URISyntaxException, SQLException {
-		this.waiterController = waiterController;
 		this.ordersToDeliver = ordersToDeliver;
 		this.ordersToCook = ordersToCook;
 		this.parent = parent;
@@ -62,16 +68,26 @@ public class KitchenStaffView {
 
 	}
 
-	public void confirmOrder(int index) {
+	public void confirmOrder(int index) throws SQLException, URISyntaxException {
+		System.out.println(ordersToCook.get(index).getOrder().get(index));
+
 		ordersToCook.get(index).status = "Food Cooked";
+		String cookIDInsert = "UPDATE orders SET cookid = ?, orderstatus = ? WHERE orderid = ?";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		PreparedStatement statement = dbConnection.prepareStatement(cookIDInsert);
+		statement.setString(1, UserLabel.getText());
+		statement.setString(2, ordersToCook.get(index).status);
+		statement.setString(3, ordersToCook.get(index).orderID);
+		statement.executeUpdate();
 		PendingOrderViewItem item = ordersToCookView.getItems().remove(index);
 		ordersToDeliver.add(ordersToCook.get(index));
-		Order order = ordersToCook.remove(index);
+		ordersToCook.remove(index);
 		updateIndex(ordersToCookView, item.getIndex());
 		this.parent.updateOrdersToCook(ordersToCook);
 		this.parent.updateOrdersToDeliver(ordersToDeliver);
 		ordersToCookView.refresh();
 		this.parent.setOrderStatus("Food Cooked");
+		
 
 	}
 

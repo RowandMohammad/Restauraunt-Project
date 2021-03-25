@@ -3,11 +3,18 @@ package cs2810;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +27,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+/**
+ * The controller class for the Waiter Interface and its relative functions.
+ * 
+ * @author Erikas Vieraitis
+ *
+ */
 public class WaiterViewController {
 
 	private ViewCustomerInterface parent;
@@ -30,6 +44,7 @@ public class WaiterViewController {
 	ArrayList<Order> ordersToCook;
 	ArrayList<Order> ordersToDeliver;
 	ArrayList<Order> ordersToPay;
+	String tables;
 
 	@FXML
 	private ListView<PendingOrderViewItem> PendingOrdersView;
@@ -48,6 +63,11 @@ public class WaiterViewController {
 
 	@FXML
 	private Button CancelOrder;
+	
+
+	@FXML
+    private Button changeOrderButton;
+
 
 
 
@@ -65,6 +85,7 @@ public class WaiterViewController {
 	}
 
 	public void populatePending(ArrayList<Order> pendingOrders) {
+	  PendingOrdersView.getItems().clear();
 		int index = 0;
 		for (Order order : pendingOrders) {
 			PendingOrderViewItem item = new PendingOrderViewItem(this, order.getOrder(), index, order.payed,
@@ -74,6 +95,7 @@ public class WaiterViewController {
 		}
 	}
 
+	
 	public void populateOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
 		int index = 0;
 		for (Order order : ordersToDeliver) {
@@ -102,6 +124,41 @@ public class WaiterViewController {
 		}
 
 	}
+	
+	@FXML
+    void handleChangeOrder(ActionEvent event) throws IOException {
+        int index = PendingOrdersView.getSelectionModel().getSelectedIndex();
+        if (index >= 0) {
+            changeOrder(index);
+        }
+        
+
+    }
+	
+	void changeOrder(int index) throws IOException {
+	  FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChangeOrderView.fxml"));
+      Parent root = loader.load();
+      ChangeOrderViewController controller = loader.getController();
+      controller.setInitialData(parent, this, pendingOrders, index);
+      
+      Stage stage = new Stage();
+      stage.setScene(new Scene(root));
+      stage.show();
+      
+      DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+      EventHandler<ActionEvent> eventHandler = e -> {
+
+         stage.setTitle(df.format(new Date()));
+
+
+      };
+      Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
+      animation.setCycleCount(Timeline.INDEFINITE);
+      animation.play();
+	  
+	  
+	}
+	
 
 	void cancelConfirmation(int index) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -124,21 +181,40 @@ public class WaiterViewController {
 	}
 
 	/**
+	 * @author zhac319
+	 * 
 	 * Utility function for moving order from pending state to deliverable state
 	 *
 	 * @param index of order which have to be moved to deliverable state
+	 * @throws URISyntaxException 
+	 * @throws SQLException 
 	 */
-	public void confirmOrder(int index) {
+	public void confirmOrder(int index) throws SQLException, URISyntaxException {
+
 		pendingOrders.get(index).status = "In progress";
-		PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
+		addToDB(index, pendingOrders.get(index).status);
+		PendingOrdersView.getItems().remove(index);
 		ordersToCook.add(pendingOrders.get(index));
-		Order order = pendingOrders.remove(index);
+		pendingOrders.remove(index);
 		updateIndex(PendingOrdersView, pendingOrders, index);
 		this.parent.updatePendingOrders(pendingOrders);
 		this.parent.updateOrdersToCook(ordersToCook);
 		updateOrderStatus("In progress");
 		PendingOrdersView.refresh();
 		OrdersToDeliverView.refresh();
+		
+	}
+	
+	public void addToDB(int index, String status) throws SQLException, URISyntaxException {
+		System.out.println(pendingOrders.get(index).orderID);
+		String waiterIDInsert = "UPDATE orders SET waiterid = ?, orderstatus = ? WHERE orderid = ?";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		PreparedStatement statement = dbConnection.prepareStatement(waiterIDInsert);
+		statement.setString(1, UserLabel.getText());
+		statement.setString(2, status);
+		statement.setString(3, pendingOrders.get(index).orderID);
+		statement.executeUpdate();
+		
 	}
 
 	private void updateIndex(ListView<PendingOrderViewItem> View, ArrayList<Order> Orders, int currentIndex) {
@@ -150,6 +226,8 @@ public class WaiterViewController {
 	}
 
 	/**
+	 * @author zhac319
+	 * 
 	 * Utility function for moving order from deliverable state to delivered
 	 *
 	 * @param index of order which have to be moved to delivered
@@ -187,12 +265,13 @@ public class WaiterViewController {
 	}
 
 	public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders,
-			ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToCook, ArrayList<Order> ordersToPay, String username) throws URISyntaxException, SQLException {
+			ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToCook, ArrayList<Order> ordersToPay, String username, String tables) throws URISyntaxException, SQLException {
 		this.parent = parent;
 		this.pendingOrders = pendingOrders;
 		this.ordersToDeliver = ordersToDeliver;
 		this.ordersToCook = ordersToCook;
 		this.ordersToPay = ordersToPay;
+		this.tables = tables;
 		populatePending(pendingOrders);
 		populateOrdersToDeliver(ordersToDeliver);
 		populateLeftToPay(ordersToPay);
@@ -201,6 +280,7 @@ public class WaiterViewController {
 		ResultSet rsName = DatabaseInitialisation.executeSelect(dbConnection, employeeQuery);
 		rsName.next();
 		UserLabel.setText(rsName.getString("employeeName"));
+		System.out.print(this.tables);
 	}
 
 	public static void setIsShowing(boolean bool) {
@@ -210,5 +290,11 @@ public class WaiterViewController {
 	public void addOrderToDeliver(PendingOrderViewItem order) {
 		OrdersToDeliverView.getItems().add(order);
 		OrdersToDeliverView.refresh();
+	}
+	
+	public void updatePendingOrders(ArrayList<Order> pendingOrders) {
+	  this.pendingOrders = pendingOrders;
+	  populatePending(pendingOrders);
+	  
 	}
 }

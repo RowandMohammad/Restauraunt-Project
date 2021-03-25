@@ -31,6 +31,34 @@ public class DatabaseInitialisation {
 			System.out.println("************** Connection Failedl! **************\"");
 			return;
 		}
+		{
+
+			dropTable(dbConnection, "mainmenu");
+			createTable(dbConnection,
+					"mainmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "stock int, " + "eta int)");
+			dropTable(dbConnection, "sidesmenu");
+			createTable(dbConnection,
+					"sidesmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "stock int, " + "eta int)");
+			dropTable(dbConnection, "drinksmenu");
+			createTable(dbConnection,
+					"drinksmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+							+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "stock int, " + "eta int)");
+			dropTable(dbConnection, "orders");
+			createTable(dbConnection,
+					"orders (orderid varchar(50) PRIMARY KEY," + "foodordered varchar(500), "
+							+ "totalprice DECIMAL(4 , 2 ) , " + "orderstatus varchar(50), " + "orderdate date NOT NULL DEFAULT CURRENT_DATE, " + "ordertime time NOT NULL DEFAULT CURRENT_TIME, " + "waiterid varchar(50), " + "cookid varchar(50), "
+							+ "eta varchar(20), "  + "tablenumber int, " + "review varchar(500))");
+			dropTable(dbConnection, "staffinfo");
+			createTable(dbConnection,
+					"staffinfo (employeeid int PRIMARY KEY," + "employeename varchar(500), "
+							+ "username int, " + "password int, " + "employeerole varchar(50), " + "employeeemail varchar(150), " + "tablenum int)");
+		}
+		insertDataIntoTable(dbConnection, "mainmenu (name, calories, ingredients, type, price, stock, eta)", mainMenuFile);
+		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, stock, eta)", sidesMenuFile);
+		insertDataIntoTable(dbConnection, "drinksmenu (name, calories, ingredients, type, price, stock, eta)", drinksMenuFile);
+		insertDataIntoTable(dbConnection, "staffinfo (employeeid, employeename, username, password, employeerole, employeeemail, tablenum)", staffLoginFile);
 
 	}
 
@@ -150,7 +178,7 @@ public class DatabaseInitialisation {
 			return false;
 		}
 		try {
-			int i = Integer.parseInt(numberInString);
+			Integer.parseInt(numberInString);
 		} catch (NumberFormatException nfe) {
 			return false;
 		}
@@ -163,7 +191,7 @@ public class DatabaseInitialisation {
 			return false;
 		}
 		try {
-			float i = Float.parseFloat(numberInString);
+			Float.parseFloat(numberInString);
 		} catch (NumberFormatException nfe) {
 			return false;
 		}
