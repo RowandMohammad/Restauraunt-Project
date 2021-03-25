@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -48,8 +49,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
-
 /**
  * The controller class for the Customer Interface and its relative functions.
  * 
@@ -72,12 +71,8 @@ public class ViewCustomerInterface {
 	String orderID = UUID.randomUUID().toString();
 
 	String select = "";
-	
-	String selectedMenu ="";
 
-
-
-
+	String selectedMenu = "";
 
 	MenuMain main = new MenuMain();
 
@@ -143,19 +138,15 @@ public class ViewCustomerInterface {
 	@FXML
 	private Button CallingButton;
 
-
-  @FXML
-  void StartButtonPressed(ActionEvent event) throws IOException {
-    LoadUser();
-    StartButton.setDisable(true);
-    StartButton.setVisible(false);
-    populateMenu();
-    quantitySpinner.setValueFactory(svf);
-    basketItems = new ArrayList<Menu_Item>();
-  }
-
-
-  
+	@FXML
+	void StartButtonPressed(ActionEvent event) throws IOException {
+		LoadUser();
+		StartButton.setDisable(true);
+		StartButton.setVisible(false);
+		populateMenu();
+		quantitySpinner.setValueFactory(svf);
+		basketItems = new ArrayList<Menu_Item>();
+	}
 
 	@FXML
 	private Button logoutbutton;
@@ -180,8 +171,6 @@ public class ViewCustomerInterface {
 		mp.play();
 		WaiterViewController.assistancePopup();
 	}
-
-
 
 	@FXML
 	void payTotalCost(ActionEvent event) throws IOException {
@@ -513,26 +502,48 @@ public class ViewCustomerInterface {
 			price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 			setTotalPrice(price);
 			setTotalTime(getTotalTime() + getTimeToCook(name, quantitySpinner.getValue()));
-			System.out.println(getTotalTime());
+
+			updateStock(name, stockReduce(name, quantitySpinner.getValue()));
 		}
 		quantitySpinner.getValueFactory().setValue(1);
-		
-
 
 		for (int i = 0; i < basketItems.size(); i++) {
 			System.out.println(basketItems.get(i));
 		}
 
 	}
-	
+
 	private int getTimeToCook(String name, Integer quantity) throws URISyntaxException, SQLException {
-		String getTimeToCook = "Select eta from "+ getSelectedMenu() +" where name = '"+ name+"'";
+		String getTimeToCook = "Select eta from " + getSelectedMenu() + " where name = '" + name + "'";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		ResultSet results = DatabaseInitialisation.executeSelect(dbConnection, getTimeToCook);
 		results.next();
 		int time = results.getInt(1) * quantity;
 		return time;
-		
+
+	}
+
+	private int stockReduce(String name, Integer quantity) throws URISyntaxException, SQLException {
+		String getItemStock = "Select stock from " + getSelectedMenu() + " where name = '" + name + "'";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		ResultSet results = DatabaseInitialisation.executeSelect(dbConnection, getItemStock);
+		results.next();
+		int newStock = results.getInt(1) - quantity;
+		System.out.println(newStock);
+		return newStock;
+
+	}
+
+
+
+	private void updateStock(String name, Integer newStock) throws URISyntaxException, SQLException {
+		String getItemStock = "UPDATE " + getSelectedMenu() + " SET stock = ? WHERE name = ?";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		PreparedStatement statement = dbConnection.prepareStatement(getItemStock);
+		statement.setInt(1, newStock);
+		statement.setString(2, name);
+		statement.executeUpdate();
+
 	}
 
 	ListViewItem getSelect() throws URISyntaxException, SQLException {
@@ -594,6 +605,8 @@ public class ViewCustomerInterface {
 		}
 	}
 
+
+
 	void setTotalPrice(float price) {
 		totalPrice.setText("£ " + price + "0");
 	}
@@ -602,19 +615,18 @@ public class ViewCustomerInterface {
 		return Float.parseFloat(this.totalPrice.getText().split("£")[1]);
 	}
 
-
-	void delete(String text) {
+	void delete(String text) throws URISyntaxException, SQLException {
 		System.out.print(text);
 		String name = text.split(", ")[0];
 		int num = Integer.parseInt(text.split(", ")[1]);
 		float price = getTotalPrice();
-		
+
 		for (int x = 0; x < basketItems.size(); x++) {
 			while (num > 0) {
 				if (basketItems.get(x).name.equals(name)) {
 					price = price - (float) basketItems.get(x).price;
 					basketItems.remove(x);
-					num--;
+					num--;;
 				}
 			}
 		}
@@ -622,6 +634,7 @@ public class ViewCustomerInterface {
 		// - (Float.parseFloat(***InsertMethodToFindPriceOfItemFromBasket***.split(",
 		// ")[1])) *
 		// Float.parseFloat(text.split(", ")[1])) + "");
+
 		setTotalPrice(price);
 		BasketView.getItems().remove(text);
 	}
@@ -760,8 +773,6 @@ public class ViewCustomerInterface {
 //	adds the waiterStaff object to the arraylists in mainControl to test
 	}
 
-
-
 	/**
 	 * @return the totalTime
 	 */
@@ -769,24 +780,19 @@ public class ViewCustomerInterface {
 		return totalTime;
 	}
 
-
-
 	/**
 	 * @param totalTime the totalTime to set
 	 */
 	public void setTotalTime(int totalTime) {
 		this.totalTime = totalTime;
 	}
-	
+
 	public String getSelectedMenu() {
 		return selectedMenu;
 	}
 
-
-
 	public void setSelectedMenu(String selectedMenu) {
 		this.selectedMenu = selectedMenu;
 	}
-
 
 }
