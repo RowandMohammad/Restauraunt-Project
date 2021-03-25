@@ -11,5 +11,6 @@
       <Label layoutX="642.0" layoutY="19.0" text="Logged In As:" />
       <Label fx:id="UserLabel" layoutX="727.0" layoutY="19.0" prefHeight="17.0" prefWidth="160.0" />
       <Button fx:id="viewEmployee" layoutX="24.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleViewEmployee" prefHeight="62.0" prefWidth="437.0" text="Employee View" />
+      <Button fx:id="viewStock" layoutX="24.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleViewStock" prefHeight="62.0" prefWidth="437.0" text="Stock View" />
    </children>
 </Pane>

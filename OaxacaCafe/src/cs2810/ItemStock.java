@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class MenuStock {
+public class ItemStock {
 	
 	private StringProperty nameProperty;
 	private StringProperty ingProperty;
@@ -15,7 +15,7 @@ public class MenuStock {
 	private FloatProperty unitPriceProperty;
 	private FloatProperty stockValueProperty;
 	
-	public MenuStock() {
+	public ItemStock() {
 		this.nameProperty = new SimpleStringProperty();
 		this.ingProperty = new SimpleStringProperty();
 		this.qStockProperty = new SimpleIntegerProperty();
@@ -49,7 +49,7 @@ public class MenuStock {
 	public Integer getItQStock() {
 		return qStockProperty.get();	
 	}
-	public void ItQStock(int stockQuantity) {
+	public void setItQStock(int stockQuantity) {
 		this.qStockProperty.set(stockQuantity);
 	}
 	public IntegerProperty getItemQStock() {
@@ -66,13 +66,13 @@ public class MenuStock {
 		return unitPriceProperty;	
 	}
 	//This is for MenuItem stock value
-	public float getItStockValue() {
+	public float getItSValue() {
 		return stockValueProperty.get();	
 	}
-	public void setItStockValue(float stockValue) {
+	public void setItSValue(float stockValue) {
 		this.stockValueProperty.set(stockValue);
 	}
-	public FloatProperty getItemStockValue() {
+	public FloatProperty getItemSValue() {
 		return stockValueProperty;	
 	}
 	
