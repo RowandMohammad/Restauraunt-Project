@@ -8,20 +8,30 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: bd202c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ManagerViewController">
+<Pane prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #605B5A;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ManagerViewController">
    <children>
-      <Label layoutX="14.0" layoutY="82.0" prefHeight="62.0" prefWidth="182.0" text="Back to customer ordering" textFill="WHITE">
+      <Button layoutX="221.0" layoutY="530.0" mnemonicParsing="false" onAction="#changethemenu" prefHeight="62.0" prefWidth="437.0" style="-fx-background-radius: 30; -fx-border-style: solid; -fx-border-radius: 30; -fx-border-width: 1.2; -fx-background-insets: 1;" styleClass="manager-view-change-btn" stylesheets="@styling/style.css" text="Change the menu">
          <font>
-            <Font name="System Bold Italic" size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
-      </Label>
-      <Button layoutX="221.0" layoutY="530.0" mnemonicParsing="false" onAction="#changethemenu" prefHeight="62.0" prefWidth="437.0" style="-fx-background-radius: 30; -fx-background-color: grey; -fx-border-style: solid; -fx-border-radius: 30; -fx-border-width: 1.5;" text="Change the menu" />
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="639.0" layoutY="19.0" text="Logged In As:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="UserLabel" layoutX="734.0" layoutY="22.0" prefHeight="17.0" prefWidth="160.0" />
-      <Button fx:id="viewEmployee" layoutX="221.0" layoutY="436.0" mnemonicParsing="false" onAction="#handleViewEmployee" prefHeight="62.0" prefWidth="437.0" style="-fx-background-radius: 30; -fx-background-color: grey; -fx-border-style: solid; -fx-border-width: 1.5; -fx-border-radius: 30;" text="Employee View" />
+      <Label fx:id="UserLabel" layoutX="734.0" layoutY="21.0" prefHeight="17.0" prefWidth="160.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Button fx:id="viewEmployee" layoutX="221.0" layoutY="436.0" mnemonicParsing="false" onAction="#handleViewEmployee" prefHeight="62.0" prefWidth="437.0" style="-fx-background-radius: 30; -fx-border-style: solid; -fx-border-width: 1.2; -fx-border-radius: 30; -fx-background-insets: 1;" styleClass="manager-view-change-btn" stylesheets="@styling/style.css" text="Employee View">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <ImageView fitHeight="105.0" fitWidth="118.0" layoutX="28.0" layoutY="6.0">
          <image>
             <Image url="@images/left%20arrow.png" />
@@ -36,5 +46,10 @@
             <Image url="@images/Employee%20Table%20(1).png" />
          </image>
       </ImageView>
+      <Label layoutX="9.0" layoutY="89.0" prefHeight="62.0" prefWidth="237.0" text="Back to customer ordering" textFill="WHITE">
+         <font>
+            <Font name="Forte" size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
