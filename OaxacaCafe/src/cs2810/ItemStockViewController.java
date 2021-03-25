@@ -2,7 +2,11 @@ package cs2810;
 
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +16,8 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ItemStockViewController {
@@ -33,17 +39,44 @@ public class ItemStockViewController {
 	private TableView<ItemStock> stockDrinksView;
 	@FXML
 	private Button BackToMenu;
-    @FXML
-    private TabPane tabPane;
+	@FXML
+	private TabPane tabPane;
 
-    @FXML
-    private Tab mainsTab;
+	@FXML
+	private Tab mainsTab;
 
-    @FXML
-    private Tab sidesTab;
+	@FXML
+	private Tab sidesTab;
 
-    @FXML
-    private Tab drinksTab;
+	@FXML
+	private Tab drinksTab;
+	ObservableList<ItemStock> itemMainsList;
+	ObservableList<ItemStock> itemSidesList;
+	ObservableList<ItemStock> itemDrinksList;
+	public ObservableList<ItemStock> getItemMainsList() {
+		return itemMainsList;
+	}
+
+	public void setItemMainsList(ObservableList<ItemStock> itemMainsList) {
+		this.itemMainsList = itemMainsList;
+	}
+
+	public ObservableList<ItemStock> getItemSidesList() {
+		return itemSidesList;
+	}
+
+	public void setItemSidesList(ObservableList<ItemStock> itemSidesList) {
+		this.itemSidesList = itemSidesList;
+	}
+
+	public ObservableList<ItemStock> getItemDrinksList() {
+		return itemDrinksList;
+	}
+
+	public void setItemDrinksList(ObservableList<ItemStock> itemDrinksList) {
+		this.itemDrinksList = itemDrinksList;
+	}
+	
 
 	@FXML
 	private void initialize() throws URISyntaxException, SQLException {
@@ -52,13 +85,12 @@ public class ItemStockViewController {
 		colItQStock.setCellValueFactory(cellData -> cellData.getValue().getItemQStock().asObject());
 		colItUPrice.setCellValueFactory(cellData -> cellData.getValue().getItemUPrice().asObject());
 		colItSValue.setCellValueFactory(cellData -> cellData.getValue().getItemSValue().asObject());
-
-		ObservableList<ItemStock> itemMainsList = ItemStockDAO.getAllRecords("mainmenu");
-		ObservableList<ItemStock> itemSidesList = ItemStockDAO.getAllRecords("sidesmenu");
-		ObservableList<ItemStock> itemDrinksList = ItemStockDAO.getAllRecords("drinksmenu");
-		populateTable(itemMainsList, "main");
+		setItemMainsList(ItemStockDAO.getAllRecords("mainmenu"));
+		setItemSidesList(ItemStockDAO.getAllRecords("sidesmenu"));
+		setItemDrinksList(ItemStockDAO.getAllRecords("drinksmenu"));
+		populateTable(itemMainsList);
+		changeTable();
 		System.out.println(tabPane.getSelectionModel().getSelectedItem().getText());
-
 
 	}
 
@@ -68,15 +100,28 @@ public class ItemStockViewController {
 
 	}
 
-	private void populateTable(ObservableList<ItemStock> itemList, String table) {
-		if (table.equals("main")) {
-			stockMainsView.setItems(itemList);
-		} else if (table.equals("sides")) {
-			stockSidesView.setItems(itemList);
-		} else if (table.equals("drinks")) {
-			stockDrinksView.setItems(itemList);
-		}
+	private void populateTable(ObservableList<ItemStock> itemList) {
 
+		stockMainsView.setItems(itemList);
 	}
+	
+	void changeTable() {
+		tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue) {
+				if (newValue.equals(mainsTab)) {
+					populateTable(getItemMainsList());
+				}else if (newValue.equals(sidesTab)) {
+					populateTable(getItemSidesList());
+				} else if (newValue.equals(drinksTab)) {
+					populateTable(getItemDrinksList());
+				}
+				// TODO Auto-generated method stub
+				
+			}
+	});
+	}
+
 
 }

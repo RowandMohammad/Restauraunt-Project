@@ -31,6 +31,7 @@ public class ItemStockDAO {
 				itemList.add(it);
 
 			}
+			
 			return itemList;
 
 		} catch (SQLException e) {
