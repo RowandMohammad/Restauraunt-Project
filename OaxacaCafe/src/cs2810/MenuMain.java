@@ -19,8 +19,6 @@ public class MenuMain {
 		} else {
     File file = new File("Main.txt");
     Scanner sc = new Scanner(file);
-    int count = 0;
-
     while (sc.hasNextLine()) {
 
       String name = sc.nextLine();
@@ -34,7 +32,6 @@ public class MenuMain {
       Menu_Item mainitem =
           new Menu_Item(name, calories, ingredients, price, cooktime, "Main", true, dietaryRequirements);
       mainItems.add(mainitem);
-      count++;
     }
     sc.close();
   }
@@ -47,8 +44,6 @@ public class MenuMain {
 		} else {
     File file = new File("Sides.txt");
     Scanner sc = new Scanner(file);
-    int count = 0;
-
     while (sc.hasNextLine()) {
 
       String name = sc.nextLine();
@@ -62,7 +57,6 @@ public class MenuMain {
       Menu_Item sideitem =
           new Menu_Item(name, calories, ingredients, price,cooktime, "Side", true, dietaryRequirements);
       sideItems.add(sideitem);
-      count++;
     }
     sc.close();
   }
@@ -74,8 +68,6 @@ public class MenuMain {
 		} else {
     File file = new File("Drinks.txt");
     Scanner sc = new Scanner(file);
-    int count = 0;
-
     while (sc.hasNextLine()) {
 
       String name = sc.nextLine();
@@ -89,7 +81,6 @@ public class MenuMain {
       Menu_Item drinkitem =
           new Menu_Item(name, calories, ingredients, price,cooktime, "Drink", true, dietaryRequirements);
       drinkItems.add(drinkitem);
-      count++;
     }
     sc.close();
   }

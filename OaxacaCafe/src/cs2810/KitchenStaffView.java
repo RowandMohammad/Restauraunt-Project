@@ -23,7 +23,6 @@ import javafx.stage.Stage;
 public class KitchenStaffView {
 
 	private ViewCustomerInterface parent;
-	private WaiterViewController waiterController;
 	ArrayList<Order> ordersToCook;
 	ArrayList<Order> ordersToDeliver;
 
@@ -46,7 +45,6 @@ public class KitchenStaffView {
 	public void initialiseData(ViewCustomerInterface parent, WaiterViewController waiterController,
 			ArrayList<Order> ordersToCook, ArrayList<Order> ordersToDeliver, String username)
 			throws URISyntaxException, SQLException {
-		this.waiterController = waiterController;
 		this.ordersToDeliver = ordersToDeliver;
 		this.ordersToCook = ordersToCook;
 		this.parent = parent;
@@ -83,7 +81,7 @@ public class KitchenStaffView {
 		statement.executeUpdate();
 		PendingOrderViewItem item = ordersToCookView.getItems().remove(index);
 		ordersToDeliver.add(ordersToCook.get(index));
-		Order order = ordersToCook.remove(index);
+		ordersToCook.remove(index);
 		updateIndex(ordersToCookView, item.getIndex());
 		this.parent.updateOrdersToCook(ordersToCook);
 		this.parent.updateOrdersToDeliver(ordersToDeliver);

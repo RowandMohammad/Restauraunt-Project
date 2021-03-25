@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -478,6 +475,7 @@ public class ViewCustomerInterface {
 	}
 
 	// Testing method to add to basket
+	@SuppressWarnings("deprecation")
 	@FXML
 	void handleAddItemButton(ActionEvent event) throws URISyntaxException, SQLException {
 		setOrderStatus("Not Placed");
@@ -734,6 +732,24 @@ public class ViewCustomerInterface {
 
 	public void setStaff(waiterStaff waiterStaff) {
 //	adds the waiterStaff object to the arraylists in mainControl to test
+	}
+
+
+
+	/**
+	 * @return the totalTime
+	 */
+	public int getTotalTime() {
+		return totalTime;
+	}
+
+
+
+	/**
+	 * @param totalTime the totalTime to set
+	 */
+	public void setTotalTime(int totalTime) {
+		this.totalTime = totalTime;
 	}
 
 }

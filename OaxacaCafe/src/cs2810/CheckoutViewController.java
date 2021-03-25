@@ -7,22 +7,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class CheckoutViewController {
@@ -56,6 +50,7 @@ public class CheckoutViewController {
 		window.setScene(new Scene(root));
 	}
 
+	@SuppressWarnings("deprecation")
 	public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time, int prevOrders, String orderID)
 			throws SQLException, URISyntaxException {
 		setTotalPrice(price);
@@ -89,7 +84,6 @@ public class CheckoutViewController {
 	private void addToDB(Date date, Float price, String foodOrdered, String orderid)
 			throws SQLException, URISyntaxException {
 		String foodOrderedinsert = "INSERT INTO orders (orderid, foodordered, totalprice, orderstatus) VALUES(?,?,?,?)";
-		long ordertime = date.getTime();
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		PreparedStatement statement = dbConnection.prepareStatement(foodOrderedinsert);
 		statement.setString(1, orderid);

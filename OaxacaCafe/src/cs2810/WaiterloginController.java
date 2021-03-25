@@ -188,4 +188,18 @@ public class WaiterloginController {
 		});
 	}
 
+	/**
+	 * @return the view
+	 */
+	public MainControl getView() {
+		return view;
+	}
+
+	/**
+	 * @param view the view to set
+	 */
+	public void setView(MainControl view) {
+		this.view = view;
+	}
+
 }

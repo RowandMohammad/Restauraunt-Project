@@ -178,7 +178,7 @@ public class DatabaseInitialisation {
 			return false;
 		}
 		try {
-			int i = Integer.parseInt(numberInString);
+			Integer.parseInt(numberInString);
 		} catch (NumberFormatException nfe) {
 			return false;
 		}
@@ -191,7 +191,7 @@ public class DatabaseInitialisation {
 			return false;
 		}
 		try {
-			float i = Float.parseFloat(numberInString);
+			Float.parseFloat(numberInString);
 		} catch (NumberFormatException nfe) {
 			return false;
 		}

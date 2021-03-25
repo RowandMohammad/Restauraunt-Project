@@ -159,7 +159,8 @@ public class PendingOrderViewItem extends HBox {
      * 
      * Utility function for updating customer about order confirmation
      */
-    private void updateCustomerView() {
+    @SuppressWarnings("unused")
+	private void updateCustomerView() {
         //@TODO implement a strategy to communicate order status to customer
     }
 

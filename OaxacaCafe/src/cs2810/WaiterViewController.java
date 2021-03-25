@@ -8,13 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.sql.Timestamp;
-
 import java.util.ArrayList;
 import java.util.Date;
-
-import java.util.UUID;
-
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -198,9 +193,9 @@ public class WaiterViewController {
 
 		pendingOrders.get(index).status = "In progress";
 		addToDB(index, pendingOrders.get(index).status);
-		PendingOrderViewItem item = PendingOrdersView.getItems().remove(index);
+		PendingOrdersView.getItems().remove(index);
 		ordersToCook.add(pendingOrders.get(index));
-		Order order = pendingOrders.remove(index);
+		pendingOrders.remove(index);
 		updateIndex(PendingOrdersView, pendingOrders, index);
 		this.parent.updatePendingOrders(pendingOrders);
 		this.parent.updateOrdersToCook(ordersToCook);

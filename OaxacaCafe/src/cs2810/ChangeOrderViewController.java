@@ -74,7 +74,8 @@ public class ChangeOrderViewController {
     }
     
     
-    void populateMenuItems() throws IOException {
+    @SuppressWarnings("static-access")
+	void populateMenuItems() throws IOException {
       menuItems.addAll(menuItemInit.initialiseMainItems());
       menuItems.addAll(menuItemInit.initialiseSideItems());
       menuItems.addAll(menuItemInit.initiliseDrinkItems());
