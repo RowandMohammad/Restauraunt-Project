@@ -6,16 +6,33 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.EmployeeViewController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.EmployeeViewController">
    <children>
       <ScrollPane prefHeight="800.0" prefWidth="908.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="796.0" prefWidth="906.0">
                <children>
+                  <ImageView fitHeight="262.0" fitWidth="218.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@images/Plain.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="262.0" fitWidth="218.0" layoutX="687.0" layoutY="2.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@images/Plain.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="247.0" fitWidth="517.0" layoutX="212.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@images/EmployeeTable2.png" />
+                     </image>
+                  </ImageView>
                   <Button fx:id="BackToOrdering" layoutX="28.0" layoutY="21.0" mnemonicParsing="false" onAction="#BackToOrderingPressed" prefHeight="45.0" prefWidth="184.0" text="&lt;--   Back to Manager Menu" />
                   <TableView fx:id="employeeList" layoutX="5.0" layoutY="245.0" prefHeight="544.0" prefWidth="900.0">
                     <columns>
@@ -27,18 +44,13 @@
                         <TableColumn fx:id="colEmpEmail" prefWidth="261.0" text="Email" />
                     </columns>
                   </TableView>
-                  <Label layoutX="345.0" layoutY="34.0" prefHeight="82.0" prefWidth="223.0" text="Employee View">
-                     <font>
-                        <Font name="Arial Black" size="22.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="searchEmpID" layoutX="152.0" layoutY="196.0" />
-                  <Label layoutX="28.0" layoutY="196.0" prefHeight="30.0" prefWidth="125.0" text="Employee ID search:">
+                  <TextField fx:id="searchEmpID" layoutX="14.0" layoutY="154.0" />
+                  <Label layoutX="14.0" layoutY="118.0" prefHeight="30.0" prefWidth="125.0" text="Employee ID search:">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="searchButton" layoutX="329.0" layoutY="196.0" mnemonicParsing="false" onAction="#searchEmployee" prefHeight="27.0" prefWidth="86.0" text="Search" />
+                  <Button fx:id="searchButton" layoutX="14.0" layoutY="183.0" mnemonicParsing="false" onAction="#searchEmployee" prefHeight="27.0" prefWidth="86.0" text="Search" />
                   <Button fx:id="searchAllEmployee" layoutX="740.0" layoutY="196.0" mnemonicParsing="false" onAction="#searchAllEmployees" prefHeight="27.0" prefWidth="152.0" text="Search All Employees" />
                </children>
             </AnchorPane>
