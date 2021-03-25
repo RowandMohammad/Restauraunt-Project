@@ -511,9 +511,12 @@ public class ViewCustomerInterface {
 					+ (Float.parseFloat(selected.getPrice().getText().split("£")[1]) * quantitySpinner.getValue());
 			price = BigDecimal.valueOf(price).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 			setTotalPrice(price);
+			setTotalTime(getTotalTime() + getTimeToCook(name, quantitySpinner.getValue()));
+			System.out.println(getTotalTime());
 		}
 		quantitySpinner.getValueFactory().setValue(1);
-		System.out.println(getTimeToCook(name));
+		
+
 
 		for (int i = 0; i < basketItems.size(); i++) {
 			System.out.println(basketItems.get(i));
@@ -521,12 +524,12 @@ public class ViewCustomerInterface {
 
 	}
 	
-	private int getTimeToCook(String name) throws URISyntaxException, SQLException {
+	private int getTimeToCook(String name, Integer quantity) throws URISyntaxException, SQLException {
 		String getTimeToCook = "Select eta from "+ getSelectedMenu() +" where name = '"+ name+"'";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		ResultSet results = DatabaseInitialisation.executeSelect(dbConnection, getTimeToCook);
 		results.next();
-		int time = results.getInt(1);
+		int time = results.getInt(1) * quantity;
 		return time;
 		
 	}
