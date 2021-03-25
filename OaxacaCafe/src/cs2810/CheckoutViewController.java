@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,8 +53,8 @@ public class CheckoutViewController {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time, int prevOrders, String orderID)
-			throws SQLException, URISyntaxException {
+	public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time, int prevOrders, String orderID, int totalTime)
+			throws SQLException, URISyntaxException, ParseException {
 		setTotalPrice(price);
 		String order = "";
 		String completeOrder = "";
@@ -72,42 +74,56 @@ public class CheckoutViewController {
 		;
 		orderCheck(orderID);
 		if (orderCheck(orderID) == false) {
-			addToDB(date, price, foodOrdered, orderID);
+			addToDB(date, price, foodOrdered, orderID, calcETA(totalTime));
 
 		} else if (orderCheck(orderID) == true) {
-			updateDB(price, foodOrdered, orderID);
+			updateDB(price, foodOrdered, orderID, calcETA(totalTime));
 
 		}
 
 	}
 
-	private void addToDB(Date date, Float price, String foodOrdered, String orderid)
+	private void addToDB(Date date, Float price, String foodOrdered, String orderid, String eta)
 			throws SQLException, URISyntaxException {
-		String foodOrderedinsert = "INSERT INTO orders (orderid, foodordered, totalprice, orderstatus) VALUES(?,?,?,?)";
+		String foodOrderedinsert = "INSERT INTO orders (orderid, foodordered, totalprice, orderstatus, eta) VALUES(?,?,?,?,?)";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		PreparedStatement statement = dbConnection.prepareStatement(foodOrderedinsert);
 		statement.setString(1, orderid);
 		statement.setString(2, foodOrdered);
 		statement.setFloat(3, price);
 		statement.setString(4, "Placed");
+		statement.setString(5, eta);
 		statement.executeUpdate();
 
 	}
 
-	private void updateDB(Float price, String foodOrdered, String orderid) throws SQLException, URISyntaxException {
+	private void updateDB(Float price, String foodOrdered, String orderid, String eta) throws SQLException, URISyntaxException {
 		String getCurrentFood = "Select foodordered from orders where orderid = '"+ orderid+"'";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		ResultSet results = DatabaseInitialisation.executeSelect(dbConnection, getCurrentFood);
 		results.next();
 		String result = results.getString(1);
 		foodOrdered = foodOrdered + result;
-		String orderUpdate = "UPDATE orders SET foodordered = ?, totalprice = ? WHERE orderid = ?";
+		String orderUpdate = "UPDATE orders SET foodordered = ?, totalprice = ?, eta = ? WHERE orderid = ?";
 		PreparedStatement statement = dbConnection.prepareStatement(orderUpdate);
 		statement.setString(1, foodOrdered);
 		statement.setFloat(2, price);
-		statement.setString(3, orderid);
+		statement.setString(3, eta);
+		statement.setString(4, orderid);
+		
 		statement.executeUpdate();
 
+	}
+	
+	private String calcETA(int totalTime) throws ParseException {
+		 Date time = new Date();
+		 SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+		 Date timeNow = formatter.parse(formatter.format(time));
+		 Calendar cal = Calendar.getInstance();
+		 cal.setTime(timeNow);
+		 cal.add(Calendar.MINUTE, totalTime);
+		 String newTime = formatter.format(cal.getTime());
+		 return newTime;
 	}
 
 	private boolean orderCheck(String orderid) throws SQLException, URISyntaxException {

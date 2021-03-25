@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -437,7 +438,7 @@ public class ViewCustomerInterface {
 
 	@FXML
 	void checkoutButtonPushed(ActionEvent event)
-			throws IOException, NumberFormatException, SQLException, URISyntaxException {
+			throws IOException, NumberFormatException, SQLException, URISyntaxException, ParseException {
 		setOrderStatus("Placed");
 		Date date = Calendar.getInstance().getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss");
@@ -460,7 +461,7 @@ public class ViewCustomerInterface {
 			controller.setParentController(this);
 			int prevOrders = currentOrders.size() - 1;
 			controller.populateCheckout(basketItems, Float.parseFloat(totalPrice.getText().split(" ")[1]), timeOfClick,
-					prevOrders, orderID);
+					prevOrders, orderID, getTotalTime());
 
 			basketItems = new ArrayList<Menu_Item>();
 			BasketView.getItems().clear();

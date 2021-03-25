@@ -49,7 +49,7 @@ public class DatabaseInitialisation {
 			createTable(dbConnection,
 					"orders (orderid varchar(50) PRIMARY KEY," + "foodordered varchar(500), "
 							+ "totalprice DECIMAL(4 , 2 ) , " + "orderstatus varchar(50), " + "orderdate date NOT NULL DEFAULT CURRENT_DATE, " + "ordertime time NOT NULL DEFAULT CURRENT_TIME, " + "waiterid varchar(50), " + "cookid varchar(50), "
-							+ "eta int, "  + "tablenumber int, " + "review varchar(500))");
+							+ "eta varchar(20), "  + "tablenumber int, " + "review varchar(500))");
 			dropTable(dbConnection, "staffinfo");
 			createTable(dbConnection,
 					"staffinfo (employeeid int PRIMARY KEY," + "employeename varchar(500), "
