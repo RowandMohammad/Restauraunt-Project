@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -69,6 +71,12 @@ public class ViewCustomerInterface {
 	String orderID = UUID.randomUUID().toString();
 
 	String select = "";
+	
+	String selectedMenu ="";
+
+
+
+
 
 	MenuMain main = new MenuMain();
 
@@ -505,11 +513,22 @@ public class ViewCustomerInterface {
 			setTotalPrice(price);
 		}
 		quantitySpinner.getValueFactory().setValue(1);
+		System.out.println(getTimeToCook(name));
 
 		for (int i = 0; i < basketItems.size(); i++) {
 			System.out.println(basketItems.get(i));
 		}
 
+	}
+	
+	private int getTimeToCook(String name) throws URISyntaxException, SQLException {
+		String getTimeToCook = "Select eta from "+ getSelectedMenu() +" where name = '"+ name+"'";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		ResultSet results = DatabaseInitialisation.executeSelect(dbConnection, getTimeToCook);
+		results.next();
+		int time = results.getInt(1);
+		return time;
+		
 	}
 
 	ListViewItem getSelect() throws URISyntaxException, SQLException {
@@ -517,14 +536,17 @@ public class ViewCustomerInterface {
 		if (Tab.getText().equals("Main Menu")) {
 			ListViewItem item = MainListView.getSelectionModel().getSelectedItem();
 			addMainItem(item.getName());
+			setSelectedMenu("mainmenu");
 			return item;
 		} else if (Tab.getText().equals("Sides")) {
 			ListViewItem item = SidesListView.getSelectionModel().getSelectedItem();
 			addSideItem(item.getName());
+			setSelectedMenu("sidesmenu");
 			return item;
 		} else if (Tab.getText().equals("Drinks")) {
 			ListViewItem item = DrinksListView.getSelectionModel().getSelectedItem();
 			addDrinkItem(item.getName());
+			setSelectedMenu("drinksmenu");
 			return item;
 		}
 		return null;
@@ -751,5 +773,16 @@ public class ViewCustomerInterface {
 	public void setTotalTime(int totalTime) {
 		this.totalTime = totalTime;
 	}
+	
+	public String getSelectedMenu() {
+		return selectedMenu;
+	}
+
+
+
+	public void setSelectedMenu(String selectedMenu) {
+		this.selectedMenu = selectedMenu;
+	}
+
 
 }
