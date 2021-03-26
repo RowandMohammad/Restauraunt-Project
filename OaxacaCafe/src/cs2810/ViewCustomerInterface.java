@@ -518,7 +518,7 @@ public class ViewCustomerInterface {
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		ResultSet results = DatabaseInitialisation.executeSelect(dbConnection, getTimeToCook);
 		results.next();
-		double time = results.getInt(1) * (quantity/1.25);
+		double time = results.getInt(1) * (quantity/1.5);
 		return time;
 
 	}
