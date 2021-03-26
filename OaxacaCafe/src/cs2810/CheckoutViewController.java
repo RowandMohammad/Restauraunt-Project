@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -34,6 +35,11 @@ public class CheckoutViewController {
 
 	@FXML
 	private Button payOrderButton;
+	
+	private String ETA;
+	
+    @FXML
+    private Label eta;
 
 	@FXML
 	void changeScreenButtonPushed(ActionEvent event) throws IOException {
@@ -80,6 +86,8 @@ public class CheckoutViewController {
 			updateDB(price, foodOrdered, orderID, calcETA(totalTime));
 
 		}
+		eta.setText(getETA());
+		
 
 	}
 
@@ -125,6 +133,7 @@ public class CheckoutViewController {
 		 cal.setTime(timeNow);
 		 cal.add(Calendar.MINUTE, totalTime);
 		 String newTime = formatter.format(cal.getTime());
+		 setETA(newTime);
 		 return newTime;
 	}
 
@@ -147,6 +156,12 @@ public class CheckoutViewController {
 		System.out.println(check);
 		return check;
 
+	}
+	private void setETA(String Eta) {
+		ETA = Eta;
+	}
+	private String getETA() {
+		return ETA;
 	}
 
 	private void setTotalPrice(Float price) {

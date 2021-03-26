@@ -467,6 +467,7 @@ public class ViewCustomerInterface {
 			animation.setCycleCount(Timeline.INDEFINITE);
 			animation.play();
 
+
 		} else {
 			System.out.println("Basket is empty");
 		}
@@ -518,7 +519,7 @@ public class ViewCustomerInterface {
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		ResultSet results = DatabaseInitialisation.executeSelect(dbConnection, getTimeToCook);
 		results.next();
-		int time = results.getInt(1) * quantity;
+		int time = results.getInt(1) * quantity/2;
 		return time;
 
 	}
@@ -651,8 +652,6 @@ public class ViewCustomerInterface {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
 		Parent root = loader.load();
-		WaiterloginController controller = loader.getController();
-		controller.setInitialData(this, pendingOrders, ordersToCook, ordersToDeliver, ordersToPay);
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root));
 		stage.show();

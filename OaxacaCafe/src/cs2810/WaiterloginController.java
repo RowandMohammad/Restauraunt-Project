@@ -178,6 +178,7 @@ public class WaiterloginController {
 		this.ordersToCook = ordersToCook;
 		this.ordersToDeliver = ordersToDeliver;
 		this.ordersToPay = ordersToPay;
+		
 	}
 
 	private void closeWaiterViewListener(Stage stage) {
