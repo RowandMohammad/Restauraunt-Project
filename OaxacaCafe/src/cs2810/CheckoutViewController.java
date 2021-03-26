@@ -23,7 +23,6 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 public class CheckoutViewController {
-
 	private ViewCustomerInterface parent;
 	private Float totalPrice;
 
@@ -47,6 +46,13 @@ public class CheckoutViewController {
 		stage.close();
 	}
 
+	/**
+	 * When the user clicks on the pay for order button it will load up the new FXML of the payment
+	 * view and set its parent to the CustomerView UI.
+	 * 
+	 * @param event the action event of the user clicking the pay order button
+	 * @throws IOException throws IOException if the PaymentView doesn't exist
+	 */
 	@FXML
 	void changeToPaymentView(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/PaymentView.fxml"));
@@ -84,11 +90,8 @@ public class CheckoutViewController {
 
 		} else if (orderCheck(orderID) == true) {
 			updateDB(price, foodOrdered, orderID, calcETA(d));
-
 		}
 		eta.setText(getETA());
-		
-
 	}
 
 	private void addToDB(Date date, Float price, String foodOrdered, String orderid, String eta)
@@ -168,6 +171,12 @@ public class CheckoutViewController {
 		totalPrice = price;
 	}
 
+	/**
+     * Sets the instance of the ViewCustomerInterface as the parent to this controller class so it can
+     * use its data and pass it to the PaymentViewController.
+     * 
+     * @param controller the parent controller to be passed
+     */
 	public void setParentController(ViewCustomerInterface controller) {
 		parent = controller;
 	}

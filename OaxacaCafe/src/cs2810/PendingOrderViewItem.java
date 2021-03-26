@@ -26,7 +26,6 @@ public class PendingOrderViewItem extends HBox {
     private Label orderDetailLabel;
     private WaiterViewController parentController;
     private KitchenStaffView parentController2;
-
     int index;
     boolean payed;
     String status;
@@ -92,19 +91,16 @@ public class PendingOrderViewItem extends HBox {
       HBox.setMargin(this.confirmButton, new Insets(0, 0, 0, 300));
       this.orderDetailLabel = new Label();
       String orderDetail = "";
-
+      // Iterate through all the orders to pass to the list view, the first iteration will show the order time
       for (Menu_Item menuItem : orderDetails) {
           if (isFirst) {
-
               orderDetail += "Order Time: " + menuItem.getOrderDate() + "\n" + "Order Item(s):\n" + menuItem.name + "\n";
               isFirst = false;
-    
           }
           else {
             orderDetail += menuItem.name + "\n";
           }
       }
-      
       if(status.equals("Delivered")) {
         orderDetail += "\n\nPayed: " + payed + "\n\n";
       }

@@ -468,6 +468,9 @@ public class ViewCustomerInterface {
 	}
 
 	/**
+	 * When user places an order by pressing checkout, their items will be added to the basket list
+	 * in order to be passed to the checkout view.
+	 * 
      * @param event the action event of when the user clicks on the checkout button
      * @throws IOException
      * @throws NumberFormatException
@@ -621,6 +624,7 @@ public class ViewCustomerInterface {
 			if (item.equals(mainItems.get(x).name)) {
 				for (int y = 0; y < quantitySpinner.getValue(); y++) {
 					Menu_Item main = mainItems.get(x);
+					// Clone the main item so they're separate objects
 					Menu_Item clonedMain = main.Clone(main);
 					basketItems.add(clonedMain);
 					System.out.println(mainItems.get(x).name);
@@ -635,6 +639,7 @@ public class ViewCustomerInterface {
 			if (item.equals(sideItems.get(x).name)) {
 				for (int y = 0; y < quantitySpinner.getValue(); y++) {
 					Menu_Item side = sideItems.get(x);
+					// Clone the side item so they're separate objects
 					Menu_Item clonedSide = side.Clone(side);
 					basketItems.add(clonedSide);
 				}
@@ -647,6 +652,7 @@ public class ViewCustomerInterface {
 			if (item.equals(drinkItems.get(x).name)) {
 				for (int y = 0; y < quantitySpinner.getValue(); y++) {
 					Menu_Item drink = drinkItems.get(x);
+					// Clone the drink item so they're separate objects
 					Menu_Item clonedDrink = drink.Clone(drink);
 					basketItems.add(clonedDrink);
 				}
@@ -654,12 +660,20 @@ public class ViewCustomerInterface {
 		}
 	}
 
-
-
+	/**
+	 * Set the total price of all the user's orders thus far.
+	 * 
+	 * @param price the total price in the customer UI to be displayed
+	 */
 	void setTotalPrice(float price) {
 		totalPrice.setText("£ " + price + "0");
 	}
 
+	/**
+	 * Getter for the total price for all the user's orders thus far.
+	 * 
+	 * @return returns the total price displayed in the customer UI
+	 */
 	Float getTotalPrice() {
 		return Float.parseFloat(this.totalPrice.getText().split("£")[1]);
 	}
@@ -760,7 +774,7 @@ public class ViewCustomerInterface {
 	}
 
 	/**
-	 * Mutator function for updating order status from other views
+	 * Mutator function for updating order status from other views.
 	 *
 	 * @param status of order
 	 */
@@ -769,7 +783,7 @@ public class ViewCustomerInterface {
 	}
 
 	/**
-	 * Accessor for obtaining refrance to waiter view
+	 * Access for obtaining the reference to waiter view.
 	 * 
 	 * @return waiterViewController object
 	 */
@@ -778,7 +792,7 @@ public class ViewCustomerInterface {
 	}
 
 	/**
-	 * Mutator for updating waiter view
+	 * Mutator for updating waiter view.
 	 * 
 	 * @param waiterController
 	 */
@@ -814,6 +828,8 @@ public class ViewCustomerInterface {
 	}
 
 	/**
+	 * Gets the total time for the food.
+	 * 
 	 * @return the totalTime
 	 */
 	public double getTotalTime() {
@@ -821,6 +837,8 @@ public class ViewCustomerInterface {
 	}
 
 	/**
+	 * Sets the total time for the food.
+	 * 
 	 * @param d the totalTime to set
 	 */
 	public void setTotalTime(double d) {

@@ -75,10 +75,9 @@ public class WaiterloginController {
 			stage.show();
 			DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
 			EventHandler<ActionEvent> eventHandler = e -> {
-
 				stage.setTitle(df.format(new Date()));
-
 			};
+			
 			Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
 			animation.setCycleCount(Timeline.INDEFINITE);
 			animation.play();
@@ -98,6 +97,7 @@ public class WaiterloginController {
 			Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
 			animation.setCycleCount(Timeline.INDEFINITE);
 			animation.play();
+			
 		} else if (staff.equals("Manager")) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/ManagerView.fxml"));
 			Parent root = loader.load();
@@ -112,7 +112,6 @@ public class WaiterloginController {
 			animation.setCycleCount(Timeline.INDEFINITE);
 			animation.play();
 		}
-
 	}
 
 	/**
@@ -172,15 +171,20 @@ public class WaiterloginController {
 	}
 
 	public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders,
-			ArrayList<Order> ordersToCook, ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToPay) {
+		ArrayList<Order> ordersToCook, ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToPay) {
 		this.parent = parent;
 		this.pendingOrders = pendingOrders;
 		this.ordersToCook = ordersToCook;
 		this.ordersToDeliver = ordersToDeliver;
 		this.ordersToPay = ordersToPay;
-		
 	}
 
+	/**
+	 * When the waiter closes the WaiterView UI via the top right button it will set the isShowing
+	 * boolean condition back to false.
+	 * 
+	 * @param stage the WaiterView UI to be passed
+	 */
 	private void closeWaiterViewListener(Stage stage) {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent we) {

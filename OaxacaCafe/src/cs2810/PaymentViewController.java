@@ -223,7 +223,7 @@ public class PaymentViewController {
     }
 
     /**
-     * Sets the instance of the ViewCustomerInterface as the parent to this controller so it can
+     * Sets the instance of the ViewCustomerInterface as the parent to this controller class so it can
      * use its data and alter the parent's data when a purchase is made.
      * 
      * @param controller the parent controller that the payment is using information from

@@ -83,18 +83,13 @@ public class ChangeOrderViewController {
       for (int i = 0; i < menuItems.size(); i++) {
         allMenuItemsView.getItems().add(menuItems.get(i).name);
       }
-      
     }
 
     
     void populateOrder(ArrayList<Order> pendingOrders, int index) {
-      
       for (int i = 0; i < pendingOrders.get(index).getOrder().size(); i++) {
         currentOrderItemsView.getItems().add(pendingOrders.get(index).getOrder().get(i).name);
       }
-      
-      
-      
     }
 
 }

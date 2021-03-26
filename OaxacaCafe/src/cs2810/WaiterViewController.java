@@ -38,7 +38,7 @@ import javafx.util.Duration;
 public class WaiterViewController {
 
 	private ViewCustomerInterface parent;
-	private static boolean isShowing;
+	private static boolean isShowing; // Boolean condition for when an instance of the Waiter UI is opened
 
 	ArrayList<Order> pendingOrders;
 	ArrayList<Order> ordersToCook;
@@ -64,7 +64,6 @@ public class WaiterViewController {
 	@FXML
 	private Button CancelOrder;
 	
-
 	@FXML
     private Button changeOrderButton;
 
@@ -82,6 +81,10 @@ public class WaiterViewController {
 		isShowing = false;
 	}
 
+	/**
+	 * Alerts the waiter if the customer clicks on the assistance help button with a pop up.
+	 * 
+	 */
 	public static void assistancePopup() {
 		if (isShowing) {
 			Alert alert = new Alert(AlertType.NONE, "Customer on table X is calling for assistance", ButtonType.OK);
@@ -150,7 +153,6 @@ public class WaiterViewController {
 		if (index >= 0) {
 			cancelConfirmation(index);
 		}
-
 	}
 	
 	/**
@@ -167,8 +169,6 @@ public class WaiterViewController {
         if (index >= 0) {
             changeOrder(index);
         }
-        
-
     }
 	
 	/**
@@ -191,16 +191,11 @@ public class WaiterViewController {
       
       DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
       EventHandler<ActionEvent> eventHandler = e -> {
-
          stage.setTitle(df.format(new Date()));
-
-
       };
       Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
       animation.setCycleCount(Timeline.INDEFINITE);
       animation.play();
-	  
-	  
 	}
 	
 
@@ -368,6 +363,11 @@ public class WaiterViewController {
 	}
 
 
+	/**
+	 * Set the boolean condition to be true if there is an instance of the WaiterView currently opened.
+	 * 
+	 * @param bool the condition whether the WaiterView is currently opened or not
+	 */
 	public static void setIsShowing(boolean bool) {
 		isShowing = bool;
 	}
