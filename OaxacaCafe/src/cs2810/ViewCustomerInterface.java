@@ -78,7 +78,6 @@ public class ViewCustomerInterface {
 
 	MenuMain main = new MenuMain();
 
-
 	ArrayList<Menu_Item> basketItems;
 	// = new ArrayList<Menu_Item>();
 
@@ -126,7 +125,7 @@ public class ViewCustomerInterface {
 	@FXML
 	private Label totalPrice;
 
-	private int totalTime;
+	private double totalTime;
 
 	// Button to add items to order
 	@FXML
@@ -562,12 +561,12 @@ public class ViewCustomerInterface {
 
 	}
 
-	private int getTimeToCook(String name, Integer quantity) throws URISyntaxException, SQLException {
+	private double getTimeToCook(String name, Integer quantity) throws URISyntaxException, SQLException {
 		String getTimeToCook = "Select eta from " + getSelectedMenu() + " where name = '" + name + "'";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		ResultSet results = DatabaseInitialisation.executeSelect(dbConnection, getTimeToCook);
 		results.next();
-		int time = results.getInt(1) * quantity/2;
+		double time = results.getInt(1) * (quantity/1.5);
 		return time;
 
 	}
@@ -699,6 +698,8 @@ public class ViewCustomerInterface {
 	void WaiterloginButton(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
 		Parent root = loader.load();
+		WaiterloginController controller = loader.getController();
+		controller.setInitialData(this, pendingOrders, ordersToCook, ordersToDeliver, ordersToPay);
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root));
 		stage.show();
@@ -814,15 +815,15 @@ public class ViewCustomerInterface {
 	/**
 	 * @return the totalTime
 	 */
-	public int getTotalTime() {
+	public double getTotalTime() {
 		return totalTime;
 	}
 
 	/**
-	 * @param totalTime the totalTime to set
+	 * @param d the totalTime to set
 	 */
-	public void setTotalTime(int totalTime) {
-		this.totalTime = totalTime;
+	public void setTotalTime(double d) {
+		this.totalTime = d;
 	}
 
 	public String getSelectedMenu() {
