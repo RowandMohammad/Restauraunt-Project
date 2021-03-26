@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
@@ -79,10 +80,20 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="StartButton" layoutX="-30.0" layoutY="-20.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="800.0" prefWidth="600.0" text="Click anywhere to start change the menu">
+      <Button fx:id="StartButton" layoutX="-30.0" layoutY="-20.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#StartButtonPressed" prefHeight="822.0" prefWidth="568.0" style="-fx-background-color: #FFCF6E;">
          <font>
-            <Font size="18.0" />
+            <Font name="System Italic" size="19.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="798.0" fitWidth="527.0">
+               <image>
+                  <Image url="@images/OX%20Cafe%20(800).png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </Pane>

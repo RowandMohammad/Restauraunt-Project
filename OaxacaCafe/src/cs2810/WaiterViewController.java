@@ -68,9 +68,6 @@ public class WaiterViewController {
 	@FXML
     private Button changeOrderButton;
 
-
-
-
 	/**
 	 * @author Erikas Vieraitis
 	 * 
