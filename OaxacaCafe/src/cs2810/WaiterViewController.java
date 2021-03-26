@@ -323,10 +323,34 @@ public class WaiterViewController {
 
 	}
 
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Function for updating the status of the pending order
+	 * 
+	 * @param status holds the String status value of an order
+	 */
 	private void updateOrderStatus(String status) {
 		parent.setOrderStatus(status);
 	}
 
+	
+	
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Utility function for initialising all of the data for the waiter view
+	 * 
+	 * @param parent holds the ViewCustomerInterface class parent
+	 * @param pendingOrders holds an Array containing all pending orders
+	 * @param ordersToDeliver holds an Array containing all orders that have been cooked
+	 * @param ordersToCook holds an Array containing all orders that need to be cooked
+	 * @param ordersToPay holds an Array containing all orders that haven't been payed for
+	 * @param username holds a String value containing the login user name
+	 * @param tables holds the table number values
+	 * @throws URISyntaxException
+	 * @throws SQLException
+	 */
 	public void setInitialData(ViewCustomerInterface parent, ArrayList<Order> pendingOrders,
 			ArrayList<Order> ordersToDeliver, ArrayList<Order> ordersToCook, ArrayList<Order> ordersToPay, String username, String tables) throws URISyntaxException, SQLException {
 		this.parent = parent;
@@ -346,15 +370,31 @@ public class WaiterViewController {
 		System.out.print(this.tables);
 	}
 
+
 	public static void setIsShowing(boolean bool) {
 		isShowing = bool;
 	}
 
+	
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Function which is called to add an Order to the Orders To Deliver tab when an order is cooked
+	 * 
+	 * @param order holds the pending order view item
+	 */
 	public void addOrderToDeliver(PendingOrderViewItem order) {
 		OrdersToDeliverView.getItems().add(order);
 		OrdersToDeliverView.refresh();
 	}
 	
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Function which is called to update the pending orders tab
+	 * 
+	 * @param pendingOrders holds an array list containing all orders that are pending
+	 */
 	public void updatePendingOrders(ArrayList<Order> pendingOrders) {
 	  this.pendingOrders = pendingOrders;
 	  populatePending(pendingOrders);
