@@ -17,11 +17,11 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="639.0" layoutY="19.0" text="Logged In As:">
+      <Label layoutX="639.0" layoutY="19.0" style="-fx-text-fill: black;" text="Logged In As:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="UserLabel" layoutX="734.0" layoutY="21.0" prefHeight="17.0" prefWidth="160.0">
+      <Label fx:id="UserLabel" layoutX="734.0" layoutY="21.0" prefHeight="17.0" prefWidth="160.0" style="-fx-text-fill: black;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
@@ -51,5 +51,12 @@
             <Font name="Forte" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="viewStock" layoutX="221.0" layoutY="623.0" mnemonicParsing="false" onAction="#handleViewStock" prefHeight="62.0" prefWidth="437.0" style="-fx-background-radius: 30; -fx-border-style: solid; -fx-border-radius: 30; -fx-border-width: 1.2; -fx-background-insets: 1;" styleClass="manager-view-change-btn" stylesheets="@styling/style.css" text="Stock View">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </Pane>

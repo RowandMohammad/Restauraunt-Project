@@ -94,6 +94,7 @@ public class CheckoutViewController {
 		statement.setString(4, "Placed");
 		statement.setString(5, eta);
 		statement.executeUpdate();
+		dbConnection.close();
 
 	}
 
@@ -112,6 +113,7 @@ public class CheckoutViewController {
 		statement.setString(4, orderid);
 		
 		statement.executeUpdate();
+		dbConnection.close();
 
 	}
 	

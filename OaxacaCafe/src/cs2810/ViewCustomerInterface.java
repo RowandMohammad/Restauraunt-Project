@@ -58,16 +58,19 @@ import javafx.util.Duration;
  */
 public class ViewCustomerInterface {
 
-	static ArrayList<User> list = new ArrayList<User>();
+	private static ArrayList<User> list = new ArrayList<User>();
+	private ArrayList<Menu_Item> mainItems;
+	private ArrayList<Menu_Item> drinkItems;
+	private ArrayList<Menu_Item> sideItems;
+	
+	private ArrayList<Order> pendingOrders = new ArrayList<Order>();
+	private ArrayList<Order> ordersToCook = new ArrayList<Order>();
+	private ArrayList<Order> ordersToDeliver = new ArrayList<Order>();
+	private ArrayList<Order> ordersToPay = new ArrayList<Order>();
 
-	ArrayList<Order> pendingOrders = new ArrayList<Order>();
-	ArrayList<Order> ordersToCook = new ArrayList<Order>();
-	ArrayList<Order> ordersToDeliver = new ArrayList<Order>();
-	ArrayList<Order> ordersToPay = new ArrayList<Order>();
+	private ArrayList<Order> currentOrders = new ArrayList<Order>();
 
-	ArrayList<Order> currentOrders = new ArrayList<Order>();
-
-	ArrayList<ArrayList<Order>> allStatusOrders = new ArrayList<ArrayList<Order>>();
+	private ArrayList<ArrayList<Order>> allStatusOrders = new ArrayList<ArrayList<Order>>();
 	String orderID = UUID.randomUUID().toString();
 
 	String select = "";
@@ -232,10 +235,6 @@ public class ViewCustomerInterface {
 			}
 		});
 	}
-
-	ArrayList<Menu_Item> mainItems;
-	ArrayList<Menu_Item> drinkItems;
-	ArrayList<Menu_Item> sideItems;
 
 	// Initialises the Menu list for Mains, Sides and Drinks
 	public void populateMenu() throws IOException {

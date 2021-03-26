@@ -59,7 +59,7 @@ public class DatabaseInitialisation {
 		insertDataIntoTable(dbConnection, "sidesmenu (name, calories, ingredients, type, price, stock, eta)", sidesMenuFile);
 		insertDataIntoTable(dbConnection, "drinksmenu (name, calories, ingredients, type, price, stock, eta)", drinksMenuFile);
 		insertDataIntoTable(dbConnection, "staffinfo (employeeid, employeename, username, password, employeerole, employeeemail, tablenum)", staffLoginFile);
-
+		
 	}
 
 	public static Connection getConnection() throws URISyntaxException, SQLException {
