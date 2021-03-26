@@ -1,6 +1,6 @@
-Beer,150,beer,veg-non-fizzy,2.00,10,0
-Coke,150,coke,veg-fizzy,1.50,10,0
-Sprite,120,sprite,veg-fizzy,1.50,10,0
-Vanilla Milkshake,500,Milk-Sugar-Cream-Corn syrup-Cellulose Gum-vanilla extract,veg-non-fizzy,3.00,10,0
-Chocolate Milkshake,500,Milk-Sugar-Cream-Corn syrup-Cellulose Gum-cocoa extract,veg-non-fizzy,3.00,10,0
-Strawberry Milkshake,500,Milk-Sugar-Cream-Corn syrup-Cellulose Gum-strawberry extract,veg-non-fizzy,3.00,10,0
+Beer,150,beer,veg-non-fizzy,2.00,30,0
+Coke,150,coke,veg-fizzy,1.50,30,0
+Sprite,120,sprite,veg-fizzy,1.50,30,0
+Vanilla Milkshake,500,Milk-Sugar-Cream-Corn syrup-Cellulose Gum-vanilla extract,veg-non-fizzy,3.00,30,0
+Chocolate Milkshake,500,Milk-Sugar-Cream-Corn syrup-Cellulose Gum-cocoa extract,veg-non-fizzy,3.00,30,0
+Strawberry Milkshake,500,Milk-Sugar-Cream-Corn syrup-Cellulose Gum-strawberry extract,veg-non-fizzy,3.00,30,0
