@@ -71,6 +71,14 @@ public class WaiterViewController {
 
 
 
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * FXML function for when BackToOrdering button is pressed
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void BackToOrderingPressed(ActionEvent event) throws IOException {
 		((Stage) BackToOrdering.getScene().getWindow()).close();
@@ -84,6 +92,13 @@ public class WaiterViewController {
 		}
 	}
 
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Function used to populate the Pending Order View for the waiter
+	 * 
+	 * @param pendingOrders holds an array containing the values of the current pending customer orders
+	 */
 	public void populatePending(ArrayList<Order> pendingOrders) {
 	  PendingOrdersView.getItems().clear();
 		int index = 0;
@@ -96,6 +111,13 @@ public class WaiterViewController {
 	}
 
 	
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Function used to populate the Orders ready for delivery
+	 * 
+	 * @param ordersToDeliver holds an array with the values of the orders ready for delivery
+	 */
 	public void populateOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
 		int index = 0;
 		for (Order order : ordersToDeliver) {
@@ -106,6 +128,14 @@ public class WaiterViewController {
 		}
 	}
 
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Function used to populate the Orders that have not been payed for yet
+	 * 
+	 * @param ordersToPay holds an array with the values of the orders that have not been payed for
+     */
+	 
 	public void populateLeftToPay(ArrayList<Order> ordersToPay) {
 		int index = 0;
 		for (Order order : ordersToPay) {
@@ -116,6 +146,7 @@ public class WaiterViewController {
 		}
 	}
 
+
 	@FXML
 	void handleCancelOrder(ActionEvent event) {
 		int index = PendingOrdersView.getSelectionModel().getSelectedIndex();
@@ -125,6 +156,14 @@ public class WaiterViewController {
 
 	}
 	
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * FXML function for when the Change Order button is pressed
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
     void handleChangeOrder(ActionEvent event) throws IOException {
         int index = PendingOrdersView.getSelectionModel().getSelectedIndex();
@@ -135,6 +174,14 @@ public class WaiterViewController {
 
     }
 	
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Function for changing a pending customer order which opens up a separate view
+	 * 
+	 * @param index holds the int value of the current item index selected
+	 * @throws IOException
+	 */
 	void changeOrder(int index) throws IOException {
 	  FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChangeOrderView.fxml"));
       Parent root = loader.load();
@@ -217,6 +264,15 @@ public class WaiterViewController {
 		
 	}
 
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Utility function for updating a current order items index in a view
+	 * 
+	 * @param View holds the list of items on the current GUI view 
+	 * @param Orders holds an array of order items 
+	 * @param currentIndex holds the int value of the current order object being manipulated
+	 */
 	private void updateIndex(ListView<PendingOrderViewItem> View, ArrayList<Order> Orders, int currentIndex) {
 		for (int i = 0; i < Orders.size(); i++) {
 			if (View.getItems().get(i).index > currentIndex) {
@@ -251,6 +307,13 @@ public class WaiterViewController {
 		updateOrderStatus("Delivered");
 	}
 
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Utility function for dismissing an Order that hasn't been payed for
+	 * 
+	 * @param index holds the int value of the current order object being dismissed
+	 */
 	public void dismissOrder(int index) {
 		ordersToPay.remove(index);
 		this.parent.updateOrdersToPay(ordersToPay);

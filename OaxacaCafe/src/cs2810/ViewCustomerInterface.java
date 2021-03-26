@@ -76,6 +76,7 @@ public class ViewCustomerInterface {
 
 	MenuMain main = new MenuMain();
 
+
 	ArrayList<Menu_Item> basketItems;
 	// = new ArrayList<Menu_Item>();
 

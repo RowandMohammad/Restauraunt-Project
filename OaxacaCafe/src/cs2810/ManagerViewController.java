@@ -33,7 +33,6 @@ public class ManagerViewController {
 		ResultSet rsName = DatabaseInitialisation.executeSelect(dbConnection, employeeQuery);
 		rsName.next();
 		UserLabel.setText(rsName.getString("employeeName"));
-		
 
 	}
 
