@@ -62,7 +62,7 @@ public class ViewCustomerInterface {
 	private ArrayList<Menu_Item> mainItems;
 	private ArrayList<Menu_Item> drinkItems;
 	private ArrayList<Menu_Item> sideItems;
-	
+
 	private ArrayList<Order> pendingOrders = new ArrayList<Order>();
 	private ArrayList<Order> ordersToCook = new ArrayList<Order>();
 	private ArrayList<Order> ordersToDeliver = new ArrayList<Order>();
@@ -70,7 +70,7 @@ public class ViewCustomerInterface {
 
 	private ArrayList<Order> currentOrders = new ArrayList<Order>();
 	private ArrayList<ArrayList<Order>> allStatusOrders = new ArrayList<ArrayList<Order>>();
-	
+
 	String orderID = UUID.randomUUID().toString();
 
 	String select = "";
@@ -164,7 +164,7 @@ public class ViewCustomerInterface {
 
 	@FXML
 	private Button payButton;
-	
+
 	/**
      * Initalalise the UI by adding the multiple options to the filtering buttons and
      * setting the listener.
@@ -227,7 +227,7 @@ public class ViewCustomerInterface {
 		}
 	}
 
-	
+
     /**
      * When the user switches tabs, the listener hides the filter buttons that do not correspond
      * to the the selected tab thus only one filtering option is shown at a time.
@@ -284,7 +284,7 @@ public class ViewCustomerInterface {
 		}
 	}
 
-	
+
 	/**
      * When the user filters out the main dishes, it will be removed from the list view and reinitalised again 
      * with the user's selection.
@@ -343,7 +343,7 @@ public class ViewCustomerInterface {
 		}
 	}
 
-	
+
 
    /**
     * When the user filters out the side dishes, it will be removed from the list view and reinitalised again 
@@ -403,7 +403,7 @@ public class ViewCustomerInterface {
 		}
 	}
 
-	
+
     /**
      * When the user filters out the drinks, it will be removed from the list view and reinitalised again 
      * with the user's selection.
@@ -482,7 +482,7 @@ public class ViewCustomerInterface {
 	void checkoutButtonPushed(ActionEvent event)
 			throws IOException, NumberFormatException, SQLException, URISyntaxException, ParseException {
 		setOrderStatus("Placed");
-		
+
 		// Gets the current time of when the checkout button is clicked
 		Date date = Calendar.getInstance().getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss");
@@ -524,7 +524,15 @@ public class ViewCustomerInterface {
 		}
 	}
 
-	// Testing method to add to basket
+	/**
+	 * @author Dennis Hopkins
+	 * 
+	 * Adds the selected menuItems to the basket, adds total price of items in basket.
+	 * 
+	 * @param event The instance of button pressed in the customer view
+	 * @throws URISyntaxException If the Syntax of the URI is incorrect
+	 * @throws SQLException If the SQL in getSelect() returns incorrectly
+	 */
 	@SuppressWarnings("deprecation")
 	@FXML
 	void handleAddItemButton(ActionEvent event) throws URISyntaxException, SQLException {
@@ -598,6 +606,15 @@ public class ViewCustomerInterface {
 
 	}
 
+	/**
+	 * @author Dennis Hokins
+	 * 
+	 * Gets the currently selected menuItem from the FXML menu 
+	 * 
+	 * @return The currently selected menu item 
+	 * @throws URISyntaxException If the Syntax of the URI is incorrect
+	 * @throws SQLException If the SQL syntax is incorrect
+	 */
 	ListViewItem getSelect() throws URISyntaxException, SQLException {
 		Tab Tab = tabPane.getSelectionModel().getSelectedItem();
 		if (Tab.getText().equals("Main Menu")) {
@@ -619,6 +636,15 @@ public class ViewCustomerInterface {
 		return null;
 	}
 
+	/**
+	 * @author Dennis Hopkins
+	 * 
+	 * Adds the Main menuItem matching the name inputed to the basketItems object
+	 * 
+	 * @param item The name of the main meal to add
+	 * @throws URISyntaxException If the Syntax of the URI is incorrect
+	 * @throws SQLException If the SQL syntax is incorrect
+	 */
 	void addMainItem(String item) throws URISyntaxException, SQLException {
 		for (int x = 0; x < mainItems.size(); x++) {
 			if (item.equals(mainItems.get(x).name)) {
@@ -634,6 +660,15 @@ public class ViewCustomerInterface {
 		}
 	}
 
+	/**
+	 * @author Dennis Hopkins
+	 * 
+	 * Adds the Side menuItem  matching the name inputed to the basketItems object
+	 * 
+	 * @param item The name of the side to add
+	 * @throws URISyntaxException If the Syntax of the URI is incorrect
+	 * @throws SQLException If the SQL syntax is incorrect
+	 */
 	void addSideItem(String item) {
 		for (int x = 0; x < sideItems.size(); x++) {
 			if (item.equals(sideItems.get(x).name)) {
@@ -647,6 +682,15 @@ public class ViewCustomerInterface {
 		}
 	}
 
+	/**
+	 * @author Dennis Hopkins
+	 * 
+	 * Adds the Drink menuItem  matching the name inputed to the basketItems object
+	 * 
+	 * @param item The name of the drink to add
+	 * @throws URISyntaxException If the Syntax of the URI is incorrect
+	 * @throws SQLException If the SQL syntax is incorrect
+	 */
 	void addDrinkItem(String item) {
 		for (int x = 0; x < drinkItems.size(); x++) {
 			if (item.equals(drinkItems.get(x).name)) {
@@ -661,18 +705,22 @@ public class ViewCustomerInterface {
 	}
 
 	/**
-	 * Set the total price of all the user's orders thus far.
+	 * @author Dennis Hopkins
 	 * 
-	 * @param price the total price in the customer UI to be displayed
+	 * Sets the total price of the basket
+	 * 
+	 * @param price A float storing value to set as the total price
 	 */
 	void setTotalPrice(float price) {
 		totalPrice.setText("£ " + price + "0");
 	}
 
 	/**
-	 * Getter for the total price for all the user's orders thus far.
+	 * @author Dennis Hopkins
 	 * 
-	 * @return returns the total price displayed in the customer UI
+	 * Returns the value of the basket total price
+	 * 
+	 * @return The total price
 	 */
 	Float getTotalPrice() {
 		return Float.parseFloat(this.totalPrice.getText().split("£")[1]);
@@ -805,7 +853,7 @@ public class ViewCustomerInterface {
 		allStatusOrders.add(ordersToCook);
 		allStatusOrders.add(ordersToDeliver);
 		allStatusOrders.add(ordersToPay);
-		
+
 		for (int i = 0; i < allStatusOrders.size(); i++) {
 			for (int j = 0; j < allStatusOrders.get(i).size(); j++) {
 				allStatusOrders.get(i).get(j).payed = true;
