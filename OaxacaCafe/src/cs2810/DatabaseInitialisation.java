@@ -32,13 +32,18 @@ public class DatabaseInitialisation {
 			return;
 		}
 		{
+
 			dropTable(dbConnection, "staffinfo");
 			createTable(dbConnection,
-					"staffinfo (employeeid int PRIMARY KEY," + "employeename varchar(500), "
-							+ "username int, " + "password int, " + "employeerole varchar(50), " + "employeeemail varchar(150), " + "tablenum int)");
+					"staffinfo (employeeid int PRIMARY KEY," + "employeename varchar(500), " + "username int, "
+							+ "password int, " + "employeerole varchar(50), " + "employeeemail varchar(150), "
+							+ "tablenum int)");
 		}
-		insertDataIntoTable(dbConnection, "staffinfo (employeeid, employeename, username, password, employeerole, employeeemail, tablenum)", staffLoginFile);
-		
+
+		insertDataIntoTable(dbConnection,
+				"staffinfo (employeeid, employeename, username, password, employeerole, employeeemail, tablenum)",
+				staffLoginFile);
+
 	}
 
 	public static Connection getConnection() throws URISyntaxException, SQLException {

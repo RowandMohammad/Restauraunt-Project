@@ -40,6 +40,8 @@ public class CheckoutViewController {
 	
     @FXML
     private Label eta;
+    
+    private static String OrderID = "";
 
 	@FXML
 	void changeScreenButtonPushed(ActionEvent event) throws IOException {
@@ -103,6 +105,7 @@ public class CheckoutViewController {
 		statement.setString(5, eta);
 		statement.executeUpdate();
 		dbConnection.close();
+		setOrderID(orderid);
 
 	}
 
@@ -170,6 +173,20 @@ public class CheckoutViewController {
 
 	public void setParentController(ViewCustomerInterface controller) {
 		parent = controller;
+	}
+
+	/**
+	 * @return the orderID
+	 */
+	public static String getOrderID() {
+		return OrderID;
+	}
+
+	/**
+	 * @param orderID the orderID to set
+	 */
+	public void setOrderID(String orderID) {
+		OrderID = orderID;
 	}
 
 }

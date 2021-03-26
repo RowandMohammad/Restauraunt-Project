@@ -239,7 +239,7 @@ public class WaiterViewController {
 	public void confirmOrder(int index) throws SQLException, URISyntaxException {
 
 		pendingOrders.get(index).status = "In progress";
-		addToDB(index, pendingOrders.get(index).status);
+		addToDB(pendingOrders.get(index).orderID, pendingOrders.get(index).status);
 		PendingOrdersView.getItems().remove(index);
 		ordersToCook.add(pendingOrders.get(index));
 		pendingOrders.remove(index);
@@ -252,14 +252,14 @@ public class WaiterViewController {
 		
 	}
 	
-	public void addToDB(int index, String status) throws SQLException, URISyntaxException {
-		System.out.println(pendingOrders.get(index).orderID);
+	public void addToDB(String index, String status) throws SQLException, URISyntaxException {
+		System.out.println(index);
 		String waiterIDInsert = "UPDATE orders SET waiterid = ?, orderstatus = ? WHERE orderid = ?";
 		Connection dbConnection = DatabaseInitialisation.getConnection();
 		PreparedStatement statement = dbConnection.prepareStatement(waiterIDInsert);
 		statement.setString(1, UserLabel.getText());
 		statement.setString(2, status);
-		statement.setString(3, pendingOrders.get(index).orderID);
+		statement.setString(3, index);
 		statement.executeUpdate();
 		
 	}
@@ -287,10 +287,12 @@ public class WaiterViewController {
 	 * Utility function for moving order from deliverable state to delivered
 	 *
 	 * @param index of order which have to be moved to delivered
+	 * @throws URISyntaxException 
+	 * @throws SQLException 
 	 */
-	public void deliverOrder(int index) {
+	public void deliverOrder(int index) throws SQLException, URISyntaxException {
 		ordersToDeliver.get(index).status = "Delivered";
-
+		addToDB(ordersToDeliver.get(index).orderID, ordersToDeliver.get(index).status);
 		if (ordersToDeliver.get(index).payed == false) {
 			ordersToPay.add(ordersToDeliver.get(index));
 			this.parent.updateOrdersToPay(ordersToPay);

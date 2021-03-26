@@ -1,5 +1,9 @@
 package cs2810;
 
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +50,7 @@ public class PaymentViewController {
     }
     
     @FXML
-    void purchaseOrder(ActionEvent event) {
+    void purchaseOrder(ActionEvent event) throws SQLException, URISyntaxException {
       checkCardDetails();
     }
     /**
@@ -54,13 +58,24 @@ public class PaymentViewController {
      * 
      *  @return returns true or false and if also an error window if input is incorrect
      */
-
-    private void checkCardDetails() {
+    
+	public void addToDB(String index, String status) throws SQLException, URISyntaxException {
+		System.out.println(index);
+		String statusUpdate = "UPDATE orders SET orderstatus = ? WHERE orderid = ?";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		PreparedStatement statement = dbConnection.prepareStatement(statusUpdate);
+		statement.setString(1, status);
+		statement.setString(2, CheckoutViewController.getOrderID());
+		statement.executeUpdate();
+		
+	}
+    private void checkCardDetails() throws SQLException, URISyntaxException {
       if (isValidExpiry() && isValidName() && isValidCardNo() && isValidCVC()) {
         Alert alert = new Alert(AlertType.INFORMATION, "Press OK to return to main menu.", ButtonType.OK);
         alert.setTitle("Transaction complete");
         alert.setHeaderText("Transaction was successfully processed. Thank you!");
         parent.setPayedOrders();
+        addToDB(CheckoutViewController.getOrderID(), "Paid");
         ButtonType result = alert.showAndWait().orElse(ButtonType.OK);
         if (ButtonType.OK.equals(result)) {
           Stage stage = (Stage) payButton.getScene().getWindow();

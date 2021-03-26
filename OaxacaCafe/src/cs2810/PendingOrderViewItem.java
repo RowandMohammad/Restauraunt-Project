@@ -144,7 +144,12 @@ public class PendingOrderViewItem extends HBox {
 				}
               }
               else if(status.equals("Food Cooked")) {
-                parentController.deliverOrder(index);     
+                try {
+					parentController.deliverOrder(index);
+				} catch (SQLException | URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}     
               }  
               else if(status.equals("Delivered")) {
                 parentController.dismissOrder(index);
