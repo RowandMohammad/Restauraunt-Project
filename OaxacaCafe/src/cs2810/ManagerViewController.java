@@ -24,6 +24,8 @@ public class ManagerViewController {
 
 	@FXML
 	private Button viewEmployee;
+    @FXML
+    private Button viewStock;
 
 
 	@FXML
@@ -58,6 +60,16 @@ public class ManagerViewController {
 	@FXML
 	void handleViewEmployee(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/EmployeeView.fxml"));
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		stage.show();
+		stage.setResizable(false);
+
+	}
+	@FXML
+	void handleViewStock(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("/ItemStockView.fxml"));
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
 		stage.setScene(scene);

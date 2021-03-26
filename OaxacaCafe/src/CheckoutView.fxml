@@ -26,7 +26,7 @@
          <effect>
             <Reflection bottomOpacity="0.17" fraction="0.64" topOpacity="0.35" />
          </effect></Button>
-      <Label layoutX="265.0" layoutY="194.0" prefHeight="31.0" prefWidth="182.0" text="Order Summary">
+      <Label layoutX="118.0" layoutY="197.0" prefHeight="31.0" prefWidth="182.0" text="Order Summary">
          <font>
             <Font name="Lucida Calligraphy Italic" size="19.0" />
          </font>
@@ -48,5 +48,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label layoutX="386.0" layoutY="199.0" prefHeight="31.0" prefWidth="152.0" text="Arrival Time : ">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="eta" layoutX="524.0" layoutY="195.0" prefHeight="40.0" prefWidth="81.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font></Label>
    </children>
 </Pane>
