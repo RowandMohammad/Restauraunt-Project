@@ -9,7 +9,7 @@ public class Menu_Item {
     boolean available;
     String[] dietaryRequirements;
     int cooktime;
-    String purchaseDate;
+    String orderDate;
 
 	public Menu_Item(String name, int calories, String[] ingredients, double price, int cooktime, String type,
 			boolean available, String[] dietaryRequirements) {
@@ -27,6 +27,13 @@ public class Menu_Item {
 	  //Default constructor for cloning a Menu_Item
     }
 
+  /**
+   * Creates a new instance of the menu item so that two foods that are the exact same will still
+   * be classified as separate objects - this is so they can have their own orderTime set to them.
+   * 
+   * @param item the menu item to be cloned to have same attributes
+   * @return returns the new item object which is cloned
+   */
   public Menu_Item Clone(Menu_Item item) {
 	  Menu_Item clone = new Menu_Item();
 	  clone.name = item.name;
@@ -40,12 +47,12 @@ public class Menu_Item {
       return clone;
 	}
 	
-	public void setPurchaseDate(String purchaseDate) {
-	  this.purchaseDate = purchaseDate;
+	public void setOrderDate(String orderDate) {
+	  this.orderDate = orderDate;
 	}
 	
-	public String getPurchaseDate() {
-	  return purchaseDate;
+	public String getOrderDate() {
+	  return orderDate;
 	}
 	
 

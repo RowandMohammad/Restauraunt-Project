@@ -96,7 +96,7 @@ public class PendingOrderViewItem extends HBox {
       for (Menu_Item menuItem : orderDetails) {
           if (isFirst) {
 
-              orderDetail += "Order Time: " + menuItem.getPurchaseDate() + "\n" + "Order Item(s):\n" + menuItem.name + "\n";
+              orderDetail += "Order Time: " + menuItem.getOrderDate() + "\n" + "Order Item(s):\n" + menuItem.name + "\n";
               isFirst = false;
     
           }

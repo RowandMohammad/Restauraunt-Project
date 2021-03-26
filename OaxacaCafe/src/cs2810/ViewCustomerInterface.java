@@ -64,10 +64,12 @@ public class ViewCustomerInterface {
 	ArrayList<Order> ordersToCook = new ArrayList<Order>();
 	ArrayList<Order> ordersToDeliver = new ArrayList<Order>();
 	ArrayList<Order> ordersToPay = new ArrayList<Order>();
-
 	ArrayList<Order> currentOrders = new ArrayList<Order>();
-
 	ArrayList<ArrayList<Order>> allStatusOrders = new ArrayList<ArrayList<Order>>();
+	ArrayList<Menu_Item> mainItems;
+	ArrayList<Menu_Item> drinkItems;
+	ArrayList<Menu_Item> sideItems;
+	
 	String orderID = UUID.randomUUID().toString();
 
 	String select = "";
@@ -162,6 +164,26 @@ public class ViewCustomerInterface {
 
 	@FXML
 	private Button payButton;
+	
+	/**
+     * Initalalise the UI by adding the multiple options to the filtering buttons and
+     * setting the listener.
+     * 
+     */
+    @FXML
+    public void initialize() {
+        ObservableList<String> filterMainOpt = FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian",
+            "Spicy", "Non-Spicy", "All");
+        ObservableList<String> filterSideOpt = FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian",
+            "Spicy", "Non-Spicy", "All");
+        ObservableList<String> filterDrinkOpt = FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian",
+            "Fizzy", "Non-Fizzy", "All");
+
+        filterBoxMain.setItems(filterMainOpt);
+        filterBoxDrinks.setItems(filterDrinkOpt);
+        filterBoxSides.setItems(filterSideOpt);
+        setFilteringListener();
+    }
 
 	// Handles button click to call waiter
 	@FXML
@@ -173,6 +195,14 @@ public class ViewCustomerInterface {
 		WaiterViewController.assistancePopup();
 	}
 
+	/**     
+     * The user can pay for the orders they have placed thus far by launching the payment UI, however
+     * if the total cost is £0.00 or they haven't placed their order yet an error alert pops up.
+     * 
+     * @param event the action of the user pressing the pay button
+     * @throws IOException return IOException if controller doesn't exist
+     * 
+     */
 	@FXML
 	void payTotalCost(ActionEvent event) throws IOException {
 		Alert alert = new Alert(AlertType.ERROR, "Press OK to return to main menu", ButtonType.OK);
@@ -197,21 +227,12 @@ public class ViewCustomerInterface {
 		}
 	}
 
-	@FXML
-	public void initialize() {
-		ObservableList<String> filterMainOpt = FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian",
-				"Spicy", "Non-Spicy", "All");
-		ObservableList<String> filterSideOpt = FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian",
-				"Spicy", "Non-Spicy", "All");
-		ObservableList<String> filterDrinkOpt = FXCollections.observableArrayList("Vegetarian", "Non-Vegetarian",
-				"Fizzy", "Non-Fizzy", "All");
-
-		filterBoxMain.setItems(filterMainOpt);
-		filterBoxDrinks.setItems(filterDrinkOpt);
-		filterBoxSides.setItems(filterSideOpt);
-		setFilteringListener();
-	}
-
+	
+    /**
+     * When the user switches tabs, the listener hides the filter buttons that do not correspond
+     * to the the selected tab thus only one filtering option is shown at a time.
+     * 
+     */
 	private void setFilteringListener() {
 		tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
 			public void changed(ObservableValue<? extends Tab> observable, Tab oldTab, Tab newTab) {
@@ -233,10 +254,6 @@ public class ViewCustomerInterface {
 			}
 		});
 	}
-
-	ArrayList<Menu_Item> mainItems;
-	ArrayList<Menu_Item> drinkItems;
-	ArrayList<Menu_Item> sideItems;
 
 	// Initialises the Menu list for Mains, Sides and Drinks
 	public void populateMenu() throws IOException {
@@ -267,6 +284,14 @@ public class ViewCustomerInterface {
 		}
 	}
 
+	
+	/**
+     * When the user filters out the main dishes, it will be removed from the list view and reinitalised again 
+     * with the user's selection.
+     * 
+     * @param event the action event of selecting any of the filtering options within the main tab
+     * @throws IOException
+     */
 	@FXML
 	public void filterChangeMain(ActionEvent event) throws IOException {
 		MainListView.getItems().removeAll(MainListView.getItems());
@@ -318,6 +343,15 @@ public class ViewCustomerInterface {
 		}
 	}
 
+	
+
+   /**
+    * When the user filters out the side dishes, it will be removed from the list view and reinitalised again 
+    * with the user's selection.
+    * 
+    * @param event the action event of selecting any of the filtering options within the side tab
+    * @throws IOException
+    */
 	@FXML
 	void filterChangeSides(ActionEvent event) {
 		SidesListView.getItems().removeAll(SidesListView.getItems());
@@ -369,6 +403,14 @@ public class ViewCustomerInterface {
 		}
 	}
 
+	
+    /**
+     * When the user filters out the drinks, it will be removed from the list view and reinitalised again 
+     * with the user's selection.
+     * 
+     * @param event the action event of selecting any of the filtering options within the drink tab
+     * @throws IOException
+     */
 	@FXML
 	void filterChangeDrinks(ActionEvent event) {
 		DrinksListView.getItems().removeAll(DrinksListView.getItems());
@@ -423,23 +465,32 @@ public class ViewCustomerInterface {
 	public String orderIDGenerator() {
 		orderID = UUID.randomUUID().toString();
 		return orderID;
-
 	}
 
+	/**
+     * @param event the action event of when the user clicks on the checkout button
+     * @throws IOException
+     * @throws NumberFormatException
+     * @throws SQLException
+     * @throws URISyntaxException
+     * @throws ParseException
+     */
 	@FXML
 	void checkoutButtonPushed(ActionEvent event)
 			throws IOException, NumberFormatException, SQLException, URISyntaxException, ParseException {
 		setOrderStatus("Placed");
+		
+		// Gets the current time of when the checkout button is clicked
 		Date date = Calendar.getInstance().getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, HH:mm:ss");
 		String timeOfClick = dateFormat.format(date);
 
-		System.out.println(Float.parseFloat(totalPrice.getText().split(" ")[1]));
 		if (Float.parseFloat(totalPrice.getText().split(" ")[1]) == 0.0) {
 			orderIDGenerator();
 		}
+		// Every item within the basket will have their order date set to when the user clicked checkout
 		for (Menu_Item item : basketItems) {
-			item.setPurchaseDate(timeOfClick);
+			item.setOrderDate(timeOfClick);
 		}
 		if (basketItems.size() != 0) {
 			Order order = new Order(basketItems, 1, 111, false, "Placed", orderID);
@@ -460,15 +511,11 @@ public class ViewCustomerInterface {
 			stage.show();
 			DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
 			EventHandler<ActionEvent> eventHandler = e -> {
-
 				stage.setTitle(df.format(new Date()));
-
 			};
 			Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
 			animation.setCycleCount(Timeline.INDEFINITE);
 			animation.play();
-
-
 		} else {
 			System.out.println("Basket is empty");
 		}
@@ -650,7 +697,6 @@ public class ViewCustomerInterface {
 
 	@FXML
 	void WaiterloginButton(ActionEvent event) throws IOException {
-
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/WaiterLogin.fxml"));
 		Parent root = loader.load();
 		Stage stage = new Stage();
@@ -658,25 +704,20 @@ public class ViewCustomerInterface {
 		stage.show();
 		DateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
 		EventHandler<ActionEvent> eventHandler = e -> {
-
 			stage.setTitle(df.format(new Date()));
-
 		};
 		Timeline animation = new Timeline(new KeyFrame(Duration.millis(1000), eventHandler));
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.play();
-
 	}
 
 	public static void LoadUser() {
 		try {
-
 			BufferedReader reader = new BufferedReader(new FileReader(new File("user.txt")));
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] data = line.split("\\s+");
 				list.add(new User(data[0], data[1], data[2]));
-
 			}
 			reader.close();
 		} catch (IOException e) {
@@ -748,21 +789,18 @@ public class ViewCustomerInterface {
 		allStatusOrders.add(ordersToCook);
 		allStatusOrders.add(ordersToDeliver);
 		allStatusOrders.add(ordersToPay);
-
+		
 		for (int i = 0; i < allStatusOrders.size(); i++) {
 			for (int j = 0; j < allStatusOrders.get(i).size(); j++) {
 				allStatusOrders.get(i).get(j).payed = true;
 			}
 		}
-
 		pendingOrders = allStatusOrders.get(0);
 		ordersToCook = allStatusOrders.get(1);
 		ordersToDeliver = allStatusOrders.get(2);
 		ordersToPay.clear();
-
 		allStatusOrders.clear();
 		currentOrders.clear();
-
 	}
 
 	public void setParent(MainControl parent) {
