@@ -32,18 +32,33 @@ public class DatabaseInitialisation {
 			return;
 		}
 		{
-
+			//Can use these methods to update DB
+			//dropTable(dbConnection, "mainmenu");
+			//createTable(dbConnection,
+					//"mainmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+							//+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "stock int, " + "eta int)");
+			//dropTable(dbConnection, "sidesmenu");
+			//createTable(dbConnection,
+			//"sidesmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+			//+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "stock int, " + "eta int)");
+			//dropTable(dbConnection, "drinksmenu");
+			//createTable(dbConnection,
+			//	"drinksmenu (name varchar(50) PRIMARY KEY," + "calories int, " + "ingredients varchar(200), "
+			//				+ "type varchar(50), " + "price DECIMAL(4 , 2 ) NOT NULL, " + "stock int, " + "eta int)");
+			//dropTable(dbConnection, "orders");
+			//createTable(dbConnection,
+			//		"orders (orderid varchar(50) PRIMARY KEY," + "foodordered varchar(500), "
+			//			+ "totalprice DECIMAL(4 , 2 ) , " + "orderstatus varchar(50), " + "orderdate date NOT NULL DEFAULT CURRENT_DATE, " + "ordertime time NOT NULL DEFAULT CURRENT_TIME, " + "waiterid varchar(50), " + "cookid varchar(50), "
+			//			+ "eta varchar(20), "  + "tablenumber int, " + "review varchar(500))");
 			dropTable(dbConnection, "staffinfo");
 			createTable(dbConnection,
-					"staffinfo (employeeid int PRIMARY KEY," + "employeename varchar(500), " + "username int, "
-							+ "password int, " + "employeerole varchar(50), " + "employeeemail varchar(150), "
-							+ "tablenum int)");
+				"staffinfo (employeeid int PRIMARY KEY," + "employeename varchar(500), "
+						+ "username int, " + "password int, " + "employeerole varchar(50), " + "employeeemail varchar(150), " + "tablenum int)");
 		}
 
-		insertDataIntoTable(dbConnection,
-				"staffinfo (employeeid, employeename, username, password, employeerole, employeeemail, tablenum)",
-				staffLoginFile);
-
+		insertDataIntoTable(dbConnection, "staffinfo (employeeid, employeename, username, password, employeerole, employeeemail, tablenum)", staffLoginFile);
+		
+		
 	}
 
 	public static Connection getConnection() throws URISyntaxException, SQLException {
