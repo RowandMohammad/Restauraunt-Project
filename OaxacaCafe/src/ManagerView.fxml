@@ -21,7 +21,7 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="UserLabel" layoutX="734.0" layoutY="21.0" prefHeight="17.0" prefWidth="160.0" style="-fx-text-fill: black;">
+      <Label fx:id="UserLabel" layoutX="734.0" layoutY="20.0" prefHeight="17.0" prefWidth="160.0" style="-fx-text-fill: black;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
