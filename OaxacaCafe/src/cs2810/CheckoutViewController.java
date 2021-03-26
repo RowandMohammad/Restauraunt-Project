@@ -59,13 +59,13 @@ public class CheckoutViewController {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time, int prevOrders, String orderID, int totalTime)
+	public void populateCheckout(ArrayList<Menu_Item> basket, Float price, String time, int prevOrders, String orderID, double totalTime)
 			throws SQLException, URISyntaxException, ParseException {
 		setTotalPrice(price);
 		String order = "";
 		String completeOrder = "";
 		Date date = Calendar.getInstance().getTime();
-
+		int d = (int) Math.round(totalTime);
 		String foodOrdered = "";
 		for (int i = 0; i < basket.size(); i++) {
 			order = order + basket.get(i).name + "  £" + basket.get(i).price + "\n";
@@ -80,10 +80,10 @@ public class CheckoutViewController {
 		;
 		orderCheck(orderID);
 		if (orderCheck(orderID) == false) {
-			addToDB(date, price, foodOrdered, orderID, calcETA(totalTime));
+			addToDB(date, price, foodOrdered, orderID, calcETA(d));
 
 		} else if (orderCheck(orderID) == true) {
-			updateDB(price, foodOrdered, orderID, calcETA(totalTime));
+			updateDB(price, foodOrdered, orderID, calcETA(d));
 
 		}
 		eta.setText(getETA());
