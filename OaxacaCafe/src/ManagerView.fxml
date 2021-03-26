@@ -1,16 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane prefHeight="800.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ManagerViewController">
+<Pane prefHeight="800.0" prefWidth="907.0" style="-fx-background-color: #605B5A;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs2810.ManagerViewController">
    <children>
-      <Button fx:id="BackToOrdering" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#BackToOrderingPressed" prefHeight="62.0" prefWidth="246.0" text="&lt;---- Back to Customer Ordering" />
-      <Button layoutX="24.0" layoutY="246.0" mnemonicParsing="false" onAction="#changethemenu" prefHeight="62.0" prefWidth="437.0" text="Change the menu" />
-      <Label layoutX="642.0" layoutY="19.0" text="Logged In As:" />
-      <Label fx:id="UserLabel" layoutX="727.0" layoutY="19.0" prefHeight="17.0" prefWidth="160.0" />
-      <Button fx:id="viewEmployee" layoutX="24.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleViewEmployee" prefHeight="62.0" prefWidth="437.0" text="Employee View" />
-      <Button fx:id="viewStock" layoutX="24.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleViewStock" prefHeight="62.0" prefWidth="437.0" text="Stock View" />
+      <Button layoutX="221.0" layoutY="530.0" mnemonicParsing="false" onAction="#changethemenu" prefHeight="62.0" prefWidth="437.0" style="-fx-background-radius: 30; -fx-border-style: solid; -fx-border-radius: 30; -fx-border-width: 1.2; -fx-background-insets: 1;" styleClass="manager-view-change-btn" stylesheets="@styling/style.css" text="Change the menu">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="639.0" layoutY="19.0" style="-fx-text-fill: black;" text="Logged In As:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label fx:id="UserLabel" layoutX="734.0" layoutY="20.0" prefHeight="17.0" prefWidth="160.0" style="-fx-text-fill: black;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Button fx:id="viewEmployee" layoutX="221.0" layoutY="436.0" mnemonicParsing="false" onAction="#handleViewEmployee" prefHeight="62.0" prefWidth="437.0" style="-fx-background-radius: 30; -fx-border-style: solid; -fx-border-width: 1.2; -fx-border-radius: 30; -fx-background-insets: 1;" styleClass="manager-view-change-btn" stylesheets="@styling/style.css" text="Employee View">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ImageView fitHeight="105.0" fitWidth="118.0" layoutX="28.0" layoutY="6.0">
+         <image>
+            <Image url="@images/left%20arrow.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="BackToOrdering" layoutX="39.0" layoutY="19.0" mnemonicParsing="false" onAction="#BackToOrderingPressed" opacity="0.0" prefHeight="62.0" prefWidth="90.0" text="&lt;---- Back to Customer Ordering">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ImageView fitHeight="374.0" fitWidth="534.0" layoutX="197.0" layoutY="50.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/Employee%20Table%20(1).png" />
+         </image>
+      </ImageView>
+      <Label layoutX="9.0" layoutY="89.0" prefHeight="62.0" prefWidth="237.0" text="Back to customer ordering" textFill="WHITE">
+         <font>
+            <Font name="Forte" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="viewStock" layoutX="221.0" layoutY="623.0" mnemonicParsing="false" onAction="#handleViewStock" prefHeight="62.0" prefWidth="437.0" style="-fx-background-radius: 30; -fx-border-style: solid; -fx-border-radius: 30; -fx-border-width: 1.2; -fx-background-insets: 1;" styleClass="manager-view-change-btn" stylesheets="@styling/style.css" text="Stock View">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </Pane>

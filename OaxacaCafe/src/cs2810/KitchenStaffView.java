@@ -42,6 +42,19 @@ public class KitchenStaffView {
 	}
 
 
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Utility function for initialising all of the data for the kitchen view
+	 * 
+	 * @param parent holds the ViewCustomerInterface class parent
+	 * @param waiterController holds the WaiterViewController class parent
+	 * @param ordersToCook holds an Array containing all orders that need to be cooked
+	 * @param ordersToDeliver holds an Array containing all orders that have been cooked
+	 * @param username holds a String value containing the login user name
+	 * @throws URISyntaxException
+	 * @throws SQLException
+	 */
 	public void initialiseData(ViewCustomerInterface parent, WaiterViewController waiterController,
 			ArrayList<Order> ordersToCook, ArrayList<Order> ordersToDeliver, String username)
 			throws URISyntaxException, SQLException {
@@ -57,6 +70,14 @@ public class KitchenStaffView {
 		UserLabel.setText(rsName.getString("employeeName"));
 	}
 
+	
+	
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Function used to populate the orders to cook view for the kitchen
+	 * 
+	 */
 	private void populateOrdersToCook() {
 		int index = 0;
 		for (Order order : ordersToCook) {
@@ -68,6 +89,15 @@ public class KitchenStaffView {
 
 	}
 
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Function used for confirming an order when the confirm button is pressed in the kitchen view
+	 * 
+	 * @param index
+	 * @throws SQLException
+	 * @throws URISyntaxException
+	 */
 	public void confirmOrder(int index) throws SQLException, URISyntaxException {
 		System.out.println(ordersToCook.get(index).getOrder().get(index));
 
@@ -90,7 +120,16 @@ public class KitchenStaffView {
 		
 
 	}
-
+	
+	
+	/**
+     * @author Erikas Vieraitis
+     * 
+     * Utility function for updating a current order items index in a view
+     * 
+     * @param ordersToCookView holds an array of order items 
+     * @param currentIndex holds the int value of the current order object being manipulated
+     */
 	private void updateIndex(ListView<PendingOrderViewItem> ordersToCookView, int currentIndex) {
 		for (int i = 0; i < ordersToCook.size(); i++)
 			if (ordersToCookView.getItems().get(i).index > currentIndex)
