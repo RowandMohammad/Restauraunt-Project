@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class used for initialising all of the Menu Items as objects from a text file
+ * 
+ * @author Erikas Vieraitis
+ *
+ */
 public class MenuMain {
 
 	private static ArrayList<Menu_Item> mainItems = new ArrayList<Menu_Item>();
@@ -14,6 +20,14 @@ public class MenuMain {
 
 	
 
+	/**
+	 * @author Erikas Vieraitis
+	 * 
+	 * Method used to read from the main menu text file and insert the information as menu objects
+	 * 
+	 * @return mainItems returns an array list containing the main menu item objects
+	 * @throws IOException
+	 */
 	public static ArrayList<Menu_Item> initialiseMainItems() throws IOException {
 		if (null != mainItems && mainItems.size() > 0) {
 
@@ -41,6 +55,14 @@ public class MenuMain {
 	
 	
 	
+	/**
+     * @author Erikas Vieraitis
+     * 
+     * Method used to read from the side menu text file and insert the information as menu objects
+     * 
+     * @return sideItems returns an array list containing the side menu item objects
+     * @throws IOException
+     */
 	public static ArrayList<Menu_Item> initialiseSideItems() throws IOException {
 		if (null != sideItems && sideItems.size() > 0) {
 
@@ -65,6 +87,18 @@ public class MenuMain {
   }
     return sideItems;
 }
+	
+	
+	
+	
+	/**
+     * @author Erikas Vieraitis
+     * 
+     * Method used to read from the drinks menu text file and insert the information as menu objects
+     * 
+     * @return drinkItems returns an array list containing the drink menu item objects
+     * @throws IOException
+     */
 	public static ArrayList<Menu_Item> initiliseDrinkItems() throws IOException {
 		if (null != drinkItems && drinkItems.size() > 0) {
 
