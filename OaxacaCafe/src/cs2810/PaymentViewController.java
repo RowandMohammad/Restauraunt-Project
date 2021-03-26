@@ -1,5 +1,9 @@
 package cs2810;
 
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,7 +55,7 @@ public class PaymentViewController {
      * @param event the action event when purchase button is pressed
      */
     @FXML
-    void purchaseOrder(ActionEvent event) {
+    void purchaseOrder(ActionEvent event) throws SQLException, URISyntaxException {
       checkCardDetails();
     }
     
@@ -60,12 +64,25 @@ public class PaymentViewController {
      * notifying whether the user input their details correctly.
      * 
      */
-    private void checkCardDetails() {
+    
+	public void addToDB(String index, String status) throws SQLException, URISyntaxException {
+		System.out.println(index);
+		String statusUpdate = "UPDATE orders SET orderstatus = ? WHERE orderid = ?";
+		Connection dbConnection = DatabaseInitialisation.getConnection();
+		PreparedStatement statement = dbConnection.prepareStatement(statusUpdate);
+		statement.setString(1, status);
+		statement.setString(2, CheckoutViewController.getOrderID());
+		statement.executeUpdate();
+		
+	}
+    private void checkCardDetails() throws SQLException, URISyntaxException {
+
       if (isValidExpiry() && isValidName() && isValidCardNo() && isValidCVC()) {
         Alert alert = new Alert(AlertType.INFORMATION, "Press OK to return to main menu.", ButtonType.OK);
         alert.setTitle("Transaction complete");
         alert.setHeaderText("Transaction was successfully processed. Thank you!");
         parent.setPayedOrders();
+        addToDB(CheckoutViewController.getOrderID(), "Paid");
         ButtonType result = alert.showAndWait().orElse(ButtonType.OK);
         if (ButtonType.OK.equals(result)) {
           // Closes the payment UI and resets the total price in the customer UI back to £0.00
